@@ -71,7 +71,7 @@ macro_rules! disp_expand {
         disp_expand!($function, ($rt_type, [u32, u64, i32, i64, f32, f64, bool, String, u8]), $rt_dispatch_types, $type_args, $args)
     };
     ($function:ident, ($rt_type:expr, @numbers),                 $rt_dispatch_types:tt, $type_args:tt, $args:tt) => {
-        disp_expand!($function, ($rt_type, [u32, u64, i32, i64, f32, f64, u8]), $rt_dispatch_types, $type_args, $args)
+        disp_expand!($function, ($rt_type, [i32, i64, f32, f64]), $rt_dispatch_types, $type_args, $args)
     };
     ($function:ident, ($rt_type:expr, [$($dispatch_type:ty),+]), $rt_dispatch_types:tt, $type_args:tt, $args:tt) => {
         match $rt_type.id {

@@ -18,35 +18,40 @@ pub use crate::trans::dataframe::*;
 pub mod dataframe;
 
 // Trait for all constructors, can have different implementations depending on concrete types of Domains and/or Metrics
-pub trait MakeTransformation0<DI: Domain, DO: Domain, MI: Metric, MO: Metric> {
+pub trait MakeTransformation0<DI: Domain, DO: Domain, MI: Metric, MO: Metric>
+    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
     fn make() -> crate::core::Transformation<DI, DO, MI, MO> {
         Self::make0()
     }
     fn make0() -> crate::core::Transformation<DI, DO, MI, MO>;
 }
 
-pub trait MakeTransformation1<DI: Domain, DO: Domain, MI: Metric, MO: Metric, P1> {
+pub trait MakeTransformation1<DI: Domain, DO: Domain, MI: Metric, MO: Metric, P1>
+    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
     fn make(param1: P1) -> crate::core::Transformation<DI, DO, MI, MO> {
         Self::make1(param1)
     }
     fn make1(param1: P1) -> crate::core::Transformation<DI, DO, MI, MO>;
 }
 
-pub trait MakeTransformation2<DI: Domain, DO: Domain, MI: Metric, MO: Metric, P1, P2> {
+pub trait MakeTransformation2<DI: Domain, DO: Domain, MI: Metric, MO: Metric, P1, P2>
+    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
     fn make(param1: P1, param2: P2) -> crate::core::Transformation<DI, DO, MI, MO> {
         Self::make2(param1, param2)
     }
     fn make2(param1: P1, param2: P2) -> crate::core::Transformation<DI, DO, MI, MO>;
 }
 
-pub trait MakeTransformation3<DI: Domain, DO: Domain, MI: Metric, MO: Metric, P1, P2, P3> {
+pub trait MakeTransformation3<DI: Domain, DO: Domain, MI: Metric, MO: Metric, P1, P2, P3>
+    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
     fn make(param1: P1, param2: P2, param3: P3) -> crate::core::Transformation<DI, DO, MI, MO> {
         Self::make3(param1, param2, param3)
     }
     fn make3(param1: P1, param2: P2, param3: P3) -> crate::core::Transformation<DI, DO, MI, MO>;
 }
 
-pub trait MakeTransformation4<DI: Domain, DO: Domain, MI: Metric, MO: Metric, P1, P2, P3, P4> {
+pub trait MakeTransformation4<DI: Domain, DO: Domain, MI: Metric, MO: Metric, P1, P2, P3, P4>
+    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
     fn make(param1: P1, param2: P2, param3: P3, param4: P4) -> crate::core::Transformation<DI, DO, MI, MO> {
         Self::make4(param1, param2, param3, param4)
     }
@@ -58,7 +63,7 @@ pub struct Identity;
 
 impl<D, T, M, Q> MakeTransformation2<D, D, M, M, D, M> for Identity
     where D: Domain<Carrier=T>, T: Clone,
-          M: Metric<Distance=Q>, Q: Clone {
+          M: Metric<Distance=Q>, Q: Clone + PartialOrd + Mul<Output=Q> + Div<Output=Q> {
     fn make2(domain: D, metric: M) -> Transformation<D, D, M, M> {
         let function = |arg: &T| arg.clone();
         let stability_relation = |_d_in: &Q, _d_out: &Q| true;
@@ -103,8 +108,7 @@ pub struct BoundedSum<MI, MO, T> {
 impl<MO, T> MakeTransformation2<VectorDomain<IntervalDomain<T>>, AllDomain<T>, HammingDistance, MO, T, T> for BoundedSum<HammingDistance, MO, T>
     where T: 'static + Copy + PartialOrd + Sub<Output=T> + NumCast + Mul<Output=T> + Sum<T>,
           MO: SensitivityMetric<Distance=T>,
-          u32: From<MO::Distance>,
-          MO::Distance: Clone + From<u32> + From<T> + Mul<Output=MO::Distance> + Div<Output=MO::Distance> + PartialOrd {
+          MO::Distance: Clone + Mul<Output=MO::Distance> + Div<Output=MO::Distance> + PartialOrd + NumCast {
     fn make2(lower: T, upper: T) -> Transformation<VectorDomain<IntervalDomain<T>>, AllDomain<T>, HammingDistance, MO> {
         Transformation::new_constant_stability(
             VectorDomain::new(IntervalDomain::new(Bound::Included(lower.clone()), Bound::Included(upper.clone()))),
@@ -125,11 +129,9 @@ fn max<T: PartialOrd>(a: T, b: T) -> T {
 }
 
 impl<MO, T> MakeTransformation2<VectorDomain<IntervalDomain<T>>, AllDomain<T>, SymmetricDistance, MO, T, T> for BoundedSum<SymmetricDistance, MO, T>
-    where T: 'static + Copy + PartialOrd + Sub<Output=T> + NumCast + Mul<Output=T> + Sum<T> + Signed + From<MO::Distance>,
+    where T: 'static + Copy + PartialOrd + Sub<Output=T> + NumCast + Mul<Output=T> + Sum<T> + Signed,
           MO: SensitivityMetric<Distance=T>,
-          u32: From<MO::Distance>,
-          MO::Distance: Clone + Mul<MO::Distance, Output=MO::Distance> + Div<MO::Distance, Output=MO::Distance> + From<u32> + From<T> + PartialOrd, {
-    // Question- how to set the associated type for a trait that a concrete type is using
+          MO::Distance: Clone + Mul<MO::Distance, Output=MO::Distance> + Div<MO::Distance, Output=MO::Distance> + PartialOrd + NumCast {
     fn make2(lower: T, upper: T) -> Transformation<VectorDomain<IntervalDomain<T>>, AllDomain<T>, SymmetricDistance, MO> {
         Transformation::new_constant_stability(
             VectorDomain::new(IntervalDomain::new(Bound::Included(lower.clone()), Bound::Included(upper.clone()))),
@@ -233,7 +235,7 @@ mod tests {
 
     #[test]
     fn test_make_bounded_sum_l1() {
-        let transformation = BoundedSum::<HammingDistance, L1Sensitivity<_>, i32>::make(0, 10);
+        let transformation = BoundedSum::<HammingDistance, L1Sensitivity<_>, u32>::make(0, 10);
         let arg = vec![1, 2, 3, 4, 5];
         let ret = transformation.function.eval(&arg);
         let expected = 15;
@@ -242,7 +244,7 @@ mod tests {
 
     #[test]
     fn test_make_bounded_sum_l2() {
-        let transformation = BoundedSum::<HammingDistance, L2Sensitivity<_>, i32>::make(0, 10);
+        let transformation = BoundedSum::<HammingDistance, L2Sensitivity<_>, u32>::make(0, 10);
         let arg = vec![1, 2, 3, 4, 5];
         let ret = transformation.function.eval(&arg);
         let expected = 15;

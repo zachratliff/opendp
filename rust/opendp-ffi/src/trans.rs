@@ -14,7 +14,7 @@ use crate::util;
 use crate::util::c_bool;
 use crate::util::TypeArgs;
 use std::ops::{Sub, Mul};
-use num::{NumCast};
+use num::{NumCast, Signed};
 
 // TODO: update dispatch macros to call new trait calling convention
 //       dispatch based on Metric type
@@ -112,10 +112,10 @@ pub extern "C" fn opendp_trans__make_clamp(type_args: *const c_char, lower: *con
 #[no_mangle]
 pub extern "C" fn opendp_trans__make_bounded_sum_l1(type_args: *const c_char, lower: *const c_void, upper: *const c_void) -> *mut FfiTransformation {
     fn monomorphize<T>(lower: *const c_void, upper: *const c_void) -> *mut FfiTransformation where
-        T: 'static + Copy + PartialOrd + Sub<Output=T> + NumCast + Mul<Output=T> + Sum<T> {
+        T: 'static + Copy + Sub<Output=T> + Mul<Output=T> + Sum<T> + PartialOrd + NumCast + Signed {
         let lower = util::as_ref(lower as *const T).clone();
         let upper = util::as_ref(upper as *const T).clone();
-        let transformation = trans::BoundedSum::<HammingDistance, L1Sensitivity<f64>, T>::make(lower, upper);
+        let transformation = trans::BoundedSum::<HammingDistance, L1Sensitivity<T>, T>::make(lower, upper);
         FfiTransformation::new_from_types(transformation)
     }
     let type_args = TypeArgs::expect(type_args, 1);
@@ -125,10 +125,10 @@ pub extern "C" fn opendp_trans__make_bounded_sum_l1(type_args: *const c_char, lo
 #[no_mangle]
 pub extern "C" fn opendp_trans__make_bounded_sum_l2(type_args: *const c_char, lower: *const c_void, upper: *const c_void) -> *mut FfiTransformation {
     fn monomorphize<T>(lower: *const c_void, upper: *const c_void) -> *mut FfiTransformation where
-        T: 'static + Copy + PartialOrd + Sub<Output=T> + NumCast + Mul<Output=T> + Sum<T> {
+        T: 'static + Copy + Sub<Output=T> + Mul<Output=T> + Sum<T> + PartialOrd + NumCast + Signed {
         let lower = util::as_ref(lower as *const T).clone();
         let upper = util::as_ref(upper as *const T).clone();
-        let transformation = trans::BoundedSum::<HammingDistance, L2Sensitivity<_>, T>::make(lower, upper);
+        let transformation = trans::BoundedSum::<HammingDistance, L2Sensitivity<T>, T>::make(lower, upper);
         FfiTransformation::new_from_types(transformation)
     }
     let type_args = TypeArgs::expect(type_args, 1);

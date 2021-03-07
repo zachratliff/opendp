@@ -20,9 +20,11 @@
 use std::ops::{Div, Mul};
 use std::rc::Rc;
 
+use num::{NumCast, ToPrimitive};
+
 use crate::dom::{BoxDomain, PairDomain};
-use crate::trans::MakeTransformation2;
 use crate::meas::MakeMeasurement2;
+use crate::trans::MakeTransformation2;
 
 /// A set which constrains the input or output of a [`Function`].
 ///
@@ -161,44 +163,72 @@ impl<MI: Metric, MO: Measure> PrivacyRelation<MI, MO> {
 /// A `StabilityRelation` is implemented as a function that takes an input and output [`Metric::Distance`],
 /// and returns a boolean indicating if the relation holds.
 #[derive(Clone)]
-pub struct StabilityRelation<MI: Metric, MO: Metric> {
-    pub relation: Rc<dyn Fn(&MI::Distance, &MO::Distance) -> bool>,
-    pub forward_map: Option<Rc<dyn Fn(&MI::Distance) -> Box<MO::Distance>>>,
-    pub backward_map: Option<Rc<dyn Fn(&MO::Distance) -> Box<MI::Distance>>>,
-}
-impl<MI: Metric, MO: Metric> StabilityRelation<MI, MO> {
-    pub fn new(relation: impl Fn(&MI::Distance, &MO::Distance) -> bool + 'static) -> Self {
-        StabilityRelation { relation: Rc::new(relation), forward_map: None, backward_map: None }
+pub enum StabilityRelation<MI: Metric, MO: Metric>
+    // PartialOrd for {Map, Constant}, Mul and Div for {Constant}
+    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
+
+    Function(Rc<dyn Fn(&MI::Distance, &MO::Distance) -> bool>),
+
+    Map {
+        forward: Rc<dyn Fn(&MI::Distance) -> MO::Distance>,
+        backward: Option<Rc<dyn Fn(&MO::Distance) -> MI::Distance>>
+    },
+
+    Constant {
+        forward: Rc<dyn Fn(&MI::Distance) -> MO::Distance>,
+        backward: Option<Rc<dyn Fn(&MO::Distance) -> MI::Distance>>,
+        value: MO::Distance
     }
-    pub fn new_all(relation: impl Fn(&MI::Distance, &MO::Distance) -> bool + 'static, forward_map: Option<impl Fn(&MI::Distance) -> Box<MO::Distance> + 'static>, backward_map: Option<impl Fn(&MO::Distance) -> Box<MI::Distance> + 'static>) -> Self {
-        StabilityRelation {
-            relation: Rc::new(relation),
-            forward_map: forward_map.map(|h| Rc::new(h) as Rc<_>),
-            backward_map: backward_map.map(|h| Rc::new(h) as Rc<_>),
+}
+impl<MI: Metric, MO: Metric> StabilityRelation<MI, MO>
+    where MI::Distance: Clone,
+          MO::Distance: Clone + Mul<Output=MO::Distance> + Div<Output=MO::Distance> + PartialOrd {
+    pub fn new(relation: impl Fn(&MI::Distance, &MO::Distance) -> bool + 'static) -> Self {
+        Self::Function(Rc::new(relation))
+    }
+    pub fn new_from_map(
+        forward_map: impl Fn(&MI::Distance) -> MO::Distance + 'static,
+        backward_map: Option<impl Fn(&MO::Distance) -> MI::Distance + 'static>) -> Self {
+        Self::Map {
+            forward: Rc::new(forward_map) as Rc<_>,
+            backward: backward_map.map(|h| Rc::new(h) as Rc<_>)
         }
     }
-    pub fn new_from_constant<C>(c: C) -> StabilityRelation<MI, MO> where
-        MI::Distance: Clone + From<MO::Distance>,
-        MO::Distance: Clone + From<MI::Distance> + From<C> + Mul<Output=MO::Distance> + Div<Output=MO::Distance> + PartialOrd,
-        C: 'static + Copy {
-        let relation = move |d_in: &MI::Distance, d_out: &MO::Distance| -> bool {
-            d_out.clone() >= MO::Distance::from(d_in.clone()) * MO::Distance::from(c)
-        };
-        let forward_map = move |d_in: &MI::Distance| -> Box<MO::Distance> {
-            Box::new(MO::Distance::from(d_in.clone()) * MO::Distance::from(c))
-        };
-        let backward_map = move |d_out: &MO::Distance| -> Box<MI::Distance> {
-            Box::new(MI::Distance::from(d_out.clone() / MO::Distance::from(c)))
-        };
-        StabilityRelation::new_all(relation, Some(forward_map), Some(backward_map))
+    pub fn new_from_constant(value: MO::Distance) -> StabilityRelation<MI, MO>
+        where MI::Distance: Clone + ToPrimitive + NumCast,
+              MO::Distance: Clone + ToPrimitive + NumCast {
+        Self::Constant {
+            forward: Rc::new(|d_in: &MI::Distance| NumCast::from(d_in.clone()).unwrap()),
+            backward: Some(Rc::new(|d_out: &MO::Distance| NumCast::from(d_out.clone()).unwrap())),
+            value
+        }
     }
-    pub fn eval(&self, input_distance: &MI::Distance, output_distance: &MO::Distance) -> bool {
-        (self.relation)(input_distance, output_distance)
+    pub fn eval(&self, d_in: &MI::Distance, d_out: &MO::Distance) -> bool {
+        if let Self::Function(relate) = self {
+            (relate)(d_in, d_out)
+        } else if let Some(d_out_map) = self.forward_map(d_in) {
+            d_out >= &d_out_map
+        } else {
+            unreachable!()
+        }
     }
-}
+    pub fn forward_map(&self, d_in: &MI::Distance) -> Option<MO::Distance> {
+        Some(match self {
+            Self::Map {forward, backward: _} => (forward)(d_in),
+            Self::Constant {forward, backward: _, value} => (forward)(d_in) * value.clone(),
+            Self::Function(_) => return None
+        })
+    }
+    pub fn backward_map(&self, d_out: &MO::Distance) -> Option<MI::Distance> {
+        Some(match self {
+            Self::Map {forward: _, backward: Some(backward)} => (backward)(d_out),
+            Self::Constant {forward: _, backward: Some(backward), value} => (backward)(&(d_out.clone() / value.clone())),
+            _ => return None
+        })
+    }
 
-impl<MI: 'static + Metric, MO: 'static + Metric> StabilityRelation<MI, MO> {
-    pub fn make_chain<MX: 'static + Metric>(relation1: &StabilityRelation<MX, MO>, relation0: &StabilityRelation<MI, MX>, hint: Option<&HintTt<MI, MO, MX>>) -> Self {
+    pub fn make_chain<MX: 'static + Metric>(relation1: &StabilityRelation<MX, MO>, relation0: &StabilityRelation<MI, MX>, hint: Option<&HintTt<MI, MO, MX>>) -> Self
+        where MX::Distance: Clone + PartialOrd + Mul<Output=MX::Distance> + Div<Output=MX::Distance> {
         if let Some(hint) = hint {
             Self::make_chain_hint(relation1, relation0, hint)
         } else {
@@ -206,16 +236,21 @@ impl<MI: 'static + Metric, MO: 'static + Metric> StabilityRelation<MI, MO> {
         }
     }
 
-    fn make_chain_no_hint<MX: 'static + Metric>(relation1: &StabilityRelation<MX, MO>, relation0: &StabilityRelation<MI, MX>) -> Self {
-        let hint = if let Some(forward_map) = &relation0.forward_map {
-            let forward_map = forward_map.clone();
-            Some(HintTt::new(move |d_in, _d_out| forward_map(d_in)))
-        } else if let Some(backward_map) = &relation1.backward_map {
-            let backward_map = backward_map.clone();
-            Some(HintTt::new(move |_d_in, d_out| backward_map(d_out)))
-        } else {
-            None
+    fn make_chain_no_hint<MX: 'static + Metric>(relation1: &StabilityRelation<MX, MO>, relation0: &StabilityRelation<MI, MX>) -> Self
+        where MX::Distance: Clone + PartialOrd + Mul<Output=MX::Distance> + Div<Output=MX::Distance> {
+
+        let hint = match (relation0, relation1) {
+            (StabilityRelation::Map {forward, backward: _}, _) =>
+                Some(HintTt::new(move |d_in: &MI::Distance, _d_out| Box::new((forward)(d_in)))),
+            (StabilityRelation::Constant {forward, backward: _, value}, _) =>
+                Some(HintTt::new(move |d_in, _d_out| Box::new((forward)(d_in) * value.clone()))),
+            (_, StabilityRelation::Map {forward: _, backward: Some(backward)}) =>
+                Some(HintTt::new(move |_d_in, d_out| Box::new((backward)(d_out)))),
+            (_, StabilityRelation::Constant {forward: _, backward: Some(backward), value}) =>
+                Some(HintTt::new(move |_d_in, d_out: &MO::Distance| Box::new((backward)(&(d_out.clone() / value.clone()))))),
+            _ => None
         };
+
         if let Some(hint) = hint {
             Self::make_chain_hint(relation1, relation0, &hint)
         } else {
@@ -224,7 +259,8 @@ impl<MI: 'static + Metric, MO: 'static + Metric> StabilityRelation<MI, MO> {
         }
     }
 
-    fn make_chain_hint<MX: 'static + Metric>(relation1: &StabilityRelation<MX, MO>, relation0: &StabilityRelation<MI, MX>, hint: &HintTt<MI, MO, MX>) -> Self {
+    fn make_chain_hint<MX: 'static + Metric>(relation1: &StabilityRelation<MX, MO>, relation0: &StabilityRelation<MI, MX>, hint: &HintTt<MI, MO, MX>) -> Self
+        where MX::Distance: PartialOrd + Mul<Output=MX::Distance> + Div<Output=MX::Distance> {
         fn chain_option_maps<QI, QX, QO>(map1: &Option<Rc<dyn Fn(&QX) -> Box<QO>>>, map0: &Option<Rc<dyn Fn(&QI) -> Box<QX>>>) -> Option<impl Fn(&QI) -> Box<QO>> {
             if let (Some(map0), Some(map1)) = (map0, map1) {
                 let map0 = map0.clone();
@@ -278,7 +314,8 @@ impl<DI: Domain, DO: Domain, MI: Metric, MO: Measure> Measurement<DI, DO, MI, MO
 }
 
 /// A data transformation with certain stability characteristics.
-pub struct Transformation<DI: Domain, DO: Domain, MI: Metric, MO: Metric> {
+pub struct Transformation<DI: Domain, DO: Domain, MI: Metric, MO: Metric>
+    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
     pub input_domain: Box<DI>,
     pub output_domain: Box<DO>,
     pub function: Function<DI, DO>,
@@ -287,7 +324,8 @@ pub struct Transformation<DI: Domain, DO: Domain, MI: Metric, MO: Metric> {
     pub stability_relation: StabilityRelation<MI, MO>,
 }
 
-impl<DI: Domain, DO: Domain, MI: Metric, MO: Metric> Transformation<DI, DO, MI, MO> {
+impl<DI: Domain, DO: Domain, MI: Metric, MO: Metric> Transformation<DI, DO, MI, MO>
+    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
     pub fn new(
         input_domain: DI,
         output_domain: DO,
@@ -313,9 +351,9 @@ impl<DI: Domain, DO: Domain, MI: Metric, MO: Metric> Transformation<DI, DO, MI, 
         output_metric: MO,
         stability_constant: C,
     ) -> Self where
-        MI::Distance: Clone + From<MO::Distance>,
-        MO::Distance: Clone + From<MI::Distance> + From<C> + Mul<Output=MO::Distance> + Div<Output=MO::Distance> + PartialOrd,
-        C: 'static + Copy {
+        MI::Distance: Clone + NumCast,
+        MO::Distance: Clone + NumCast + Mul<Output=MO::Distance> + Div<Output=MO::Distance> + PartialOrd,
+        C: 'static + Copy + NumCast {
         Transformation {
             input_domain: Box::new(input_domain),
             output_domain: Box::new(output_domain),
@@ -381,7 +419,8 @@ impl<DI, DX, DO, MI, MX, MO> MakeMeasurement2<DI, DO, MI, MO, &Measurement<DX, D
           DO: 'static + Domain,
           MI: 'static + Metric,
           MX: 'static + Metric,
-          MO: 'static + Measure {
+          MO: 'static + Measure,
+          MX::Distance: PartialOrd + Mul<Output=MX::Distance> + Div<Output=MX::Distance> {
     fn make2(measurement1: &Measurement<DX, DO, MX, MO>, transformation0: &Transformation<DI, DX, MI, MX>) -> Measurement<DI, DO, MI, MO> {
         let input_glue = MetricGlue::<DI, MI>::new();
         let x_glue = MetricGlue::<DX, MX>::new();
@@ -391,7 +430,8 @@ impl<DI, DX, DO, MI, MX, MO> MakeMeasurement2<DI, DO, MI, MO, &Measurement<DX, D
 }
 
 pub fn make_chain_mt_glue<DI, DX, DO, MI, MX, MO>(measurement1: &Measurement<DX, DO, MX, MO>, transformation0: &Transformation<DI, DX, MI, MX>, input_glue: &MetricGlue<DI, MI>, x_glue: &MetricGlue<DX, MX>, output_glue: &MeasureGlue<DO, MO>) -> Measurement<DI, DO, MI, MO> where
-    DI: 'static + Domain, DX: 'static + Domain, DO: 'static + Domain, MI: 'static + Metric, MX: 'static + Metric, MO: 'static + Measure {
+    DI: 'static + Domain, DX: 'static + Domain, DO: 'static + Domain, MI: 'static + Metric, MX: 'static + Metric, MO: 'static + Measure,
+    MX::Distance: PartialOrd + Mul<Output=MX::Distance> + Div<Output=MX::Distance> {
     assert!((x_glue.domain_eq)(&transformation0.output_domain, &measurement1.input_domain));
     let input_domain = (input_glue.domain_clone)(&transformation0.input_domain);
     let output_domain = (output_glue.domain_clone)(&measurement1.output_domain);
@@ -408,7 +448,9 @@ pub struct ChainTT;
 
 impl ChainTT {
     pub fn make_chain_tt_glue<DI, DX, DO, MI, MX, MO>(transformation1: &Transformation<DX, DO, MX, MO>, transformation0: &Transformation<DI, DX, MI, MX>, hint: Option<&HintTt<MI, MO, MX>>, input_glue: &MetricGlue<DI, MI>, x_glue: &MetricGlue<DX, MX>, output_glue: &MetricGlue<DO, MO>) -> Transformation<DI, DO, MI, MO> where
-        DI: 'static + Domain, DX: 'static + Domain, DO: 'static + Domain, MI: 'static + Metric, MX: 'static + Metric, MO: 'static + Metric {
+        DI: 'static + Domain, DX: 'static + Domain, DO: 'static + Domain, MI: 'static + Metric, MX: 'static + Metric, MO: 'static + Metric,
+        MX::Distance: PartialOrd + Mul<Output=MX::Distance> + Div<Output=MX::Distance>,
+        MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
         assert!((x_glue.domain_eq)(&transformation0.output_domain, &transformation1.input_domain));
         let input_domain = (input_glue.domain_clone)(&transformation0.input_domain);
         let output_domain = (output_glue.domain_clone)(&transformation1.output_domain);
@@ -428,7 +470,9 @@ impl<DI, DX, DO, MI, MX, MO> MakeTransformation2<DI, DO, MI, MO, &Transformation
           DO: 'static + Domain,
           MI: 'static + Metric,
           MX: 'static + Metric,
-          MO: 'static + Metric {
+          MO: 'static + Metric,
+          MX::Distance: PartialOrd + Mul<Output=MX::Distance> + Div<Output=MX::Distance>,
+          MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
     fn make2(transformation1: &Transformation<DX, DO, MX, MO>, transformation0: &Transformation<DI, DX, MI, MX>) -> Transformation<DI, DO, MI, MO> {
         let input_glue = MetricGlue::<DI, MI>::new();
         let x_glue = MetricGlue::<DX, MX>::new();
