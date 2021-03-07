@@ -499,7 +499,6 @@ impl ChainTT {
         let function = Function::make_chain(&transformation1.function, &transformation0.function);
         let input_metric = (input_glue.metric_clone)(&transformation0.input_metric);
         let output_metric = (output_glue.metric_clone)(&transformation1.output_metric);
-        // TODO: StabilityRelation for make_chain_tt
         let stability_relation = StabilityRelation::make_chain(
             &transformation1.stability_relation,
             &transformation0.stability_relation,

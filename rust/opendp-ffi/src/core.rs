@@ -6,14 +6,43 @@ use opendp::core::{ChainTT, Domain, Measure, MeasureGlue, Measurement, Metric, M
 
 use crate::util;
 use crate::util::Type;
+use std::ops::{Div, Mul};
+use std::cmp::Ordering;
+
+#[derive(Clone)]
+pub struct Slot;
+impl Mul for Slot {
+    type Output = Self;
+
+    fn mul(self, _rhs: Self) -> Self::Output {
+        unreachable!()
+    }
+}
+impl Div for Slot {
+    type Output = Self;
+
+    fn div(self, _rhs: Self) -> Self::Output {
+        unreachable!()
+    }
+}
+impl PartialEq for Slot {
+    fn eq(&self, _other: &Self) -> bool {
+        unreachable!()
+    }
+}
+impl PartialOrd for Slot {
+    fn partial_cmp(&self, _other: &Self) -> Option<Ordering> {
+        unreachable!()
+    }
+}
 
 pub struct FfiObject {
     pub type_: Type,
-    pub value: Box<()>,
+    pub value: Box<Slot>,
 }
 
 impl FfiObject {
-    pub fn new_typed(type_: Type, value: Box<()>) -> *mut FfiObject {
+    pub fn new_typed(type_: Type, value: Box<Slot>) -> *mut FfiObject {
         let object = FfiObject { type_, value };
         util::into_raw(object)
     }
@@ -32,7 +61,7 @@ impl FfiObject {
 
     pub fn as_ref<T>(&self) -> &T {
         // TODO: Check type.
-        let value = self.value.as_ref() as *const () as *const T;
+        let value = self.value.as_ref() as *const Slot as *const T;
         let value = unsafe { value.as_ref() };
         value.unwrap()
     }
@@ -82,20 +111,20 @@ impl<D: 'static + Domain, M: 'static + Measure> FfiMeasureGlue<D, M> {
 #[derive(Clone, PartialEq)]
 pub struct FfiDomain;
 impl Domain for FfiDomain {
-    type Carrier = ();
+    type Carrier = Slot;
     fn member(&self, _val: &Self::Carrier) -> bool { unimplemented!() }
 }
 
 #[derive(Clone)]
 pub struct FfiMeasure;
 impl Measure for FfiMeasure {
-    type Distance = ();
+    type Distance = Slot;
 }
 
 #[derive(Clone)]
 pub struct FfiMetric;
 impl Metric for FfiMetric {
-    type Distance = ();
+    type Distance = Slot;
 }
 
 pub struct FfiMeasurement {
