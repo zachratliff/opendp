@@ -163,9 +163,7 @@ impl<MI: Metric, MO: Measure> PrivacyRelation<MI, MO> {
 /// A `StabilityRelation` is implemented as a function that takes an input and output [`Metric::Distance`],
 /// and returns a boolean indicating if the relation holds.
 #[derive(Clone)]
-pub enum StabilityRelation<MI: Metric, MO: Metric>
-    // PartialOrd for {Map, Constant}, Mul and Div for {Constant}
-    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
+pub enum StabilityRelation<MI: Metric, MO: Metric> {
 
     Function(Rc<dyn Fn(&MI::Distance, &MO::Distance) -> bool>),
 
@@ -359,8 +357,7 @@ impl<DI: Domain, DO: Domain, MI: Metric, MO: Measure> Measurement<DI, DO, MI, MO
 }
 
 /// A data transformation with certain stability characteristics.
-pub struct Transformation<DI: Domain, DO: Domain, MI: Metric, MO: Metric>
-    where MO::Distance: PartialOrd + Mul<Output=MO::Distance> + Div<Output=MO::Distance> {
+pub struct Transformation<DI: Domain, DO: Domain, MI: Metric, MO: Metric> {
     pub input_domain: Box<DI>,
     pub output_domain: Box<DO>,
     pub function: Function<DI, DO>,
@@ -475,8 +472,7 @@ impl<DI, DX, DO, MI, MX, MO> MakeMeasurement2<DI, DO, MI, MO, &Measurement<DX, D
 }
 
 pub fn make_chain_mt_glue<DI, DX, DO, MI, MX, MO>(measurement1: &Measurement<DX, DO, MX, MO>, transformation0: &Transformation<DI, DX, MI, MX>, input_glue: &MetricGlue<DI, MI>, x_glue: &MetricGlue<DX, MX>, output_glue: &MeasureGlue<DO, MO>) -> Measurement<DI, DO, MI, MO> where
-    DI: 'static + Domain, DX: 'static + Domain, DO: 'static + Domain, MI: 'static + Metric, MX: 'static + Metric, MO: 'static + Measure,
-    MX::Distance: PartialOrd + Mul<Output=MX::Distance> + Div<Output=MX::Distance> {
+    DI: 'static + Domain, DX: 'static + Domain, DO: 'static + Domain, MI: 'static + Metric, MX: 'static + Metric, MO: 'static + Measure {
     assert!((x_glue.domain_eq)(&transformation0.output_domain, &measurement1.input_domain));
     let input_domain = (input_glue.domain_clone)(&transformation0.input_domain);
     let output_domain = (output_glue.domain_clone)(&measurement1.output_domain);
