@@ -22,8 +22,8 @@ def main():
 
     # Noisy sum, col 1
     select_1 = odp.trans.make_select_column(b"<i32>", b"1")
-    clamp_1 = odp.trans.make_clamp(b"<i32>", odp.i32_p(0), odp.i32_p(10))
-    bounded_sum_1 = odp.trans.make_bounded_sum_l1(b"<i32>", odp.i32_p(0), odp.i32_p(10))
+    clamp_1 = odp.trans.make_clamp(b"<i32>", opendp.i32_p(0), opendp.i32_p(10))
+    bounded_sum_1 = odp.trans.make_bounded_sum_l1(b"<i32>", opendp.i32_p(0), opendp.i32_p(10))
     base_laplace_1 = odp.meas.make_base_laplace(b"<i32>", 1.0)
     noisy_sum_1 = odp.core.make_chain_mt(base_laplace_1, odp.make_chain_tt_multi(bounded_sum_1, clamp_1, select_1))
 
