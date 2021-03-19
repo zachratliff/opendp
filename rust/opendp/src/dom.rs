@@ -1,7 +1,7 @@
 //! Various implementations of Domain.
 //!
 //! These different versions of [`Domain`] provide a general set of models used throughout OpenDP.
-//! Most of the implementaitons are generic, with the type parameter setting the underlying [`Domain::Carrier`]
+//! Most of the implementations are generic, with the type parameter setting the underlying [`Domain::Carrier`]
 //! type.
 
 use std::collections::HashMap;
@@ -66,8 +66,9 @@ impl<D: Domain> Domain for DataDomain<D> where
     D::Carrier: 'static + Form {
     type Carrier = Data;
     fn member(&self, val: &Self::Carrier) -> bool {
-        let val = val.as_form();
-        self.form_domain.member(val)
+        val.as_form()
+            .map(|v| self.form_domain.member(v))
+            .unwrap_or(false)
     }
 }
 

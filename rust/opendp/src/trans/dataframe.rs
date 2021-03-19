@@ -102,7 +102,7 @@ fn parse_column<T>(key: &str, impute: bool, df: &DataFrame) -> Fallible<DataFram
     T: 'static + Element + Clone + PartialEq + FromStr + Default,
     T::Err: Debug {
     let col = df.get(key).ok_or(Error::FailedFunction)?;
-    let col = col.as_form();
+    let col = col.as_form()?;
     let col = vec_string_to_str(col);
     let col = parse_series::<T>(&col, impute)?;
     replace_col(key, &df, &col.into())
@@ -140,7 +140,7 @@ impl<M, T> MakeTransformation1<MapDomain<AllDomain<Data>>, VectorDomain<AllDomai
             VectorDomain::new_all(),
             Function::new(move |arg: &DataFrame| -> Vec<T> {
                 let ret = arg.get(&key).expect("Missing dataframe column");
-                let ret: &Vec<T> = ret.as_form();
+                let ret: &Vec<T> = ret.as_form().unwrap();
                 ret.clone()
             }),
             M::new(),
@@ -192,7 +192,7 @@ fn parse_series<T>(col: &Vec<&str>, default_on_error: bool) -> Fallible<Vec<T>> 
     if default_on_error {
         Ok(col.into_iter().map(|v| v.parse().unwrap_or_default()).collect())
     } else {
-        col.into_iter().map(|v| v.parse().map_err(Error::from_debug)).collect()
+        col.into_iter().map(|v| v.parse().map_err(|e| Error::FailedCastTo(format!("{:?}", e)).into())).collect()
     }
 }
 

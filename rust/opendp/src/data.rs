@@ -6,6 +6,7 @@
 use std::any::Any;
 use std::collections::HashMap;
 use std::fmt::Debug;
+use crate::{Error, Fallible};
 
 pub trait TraitObject {
     fn into_any(self: Box<Self>) -> Box<dyn Any>;
@@ -89,13 +90,14 @@ impl Data {
     pub fn new<T: 'static + Form>(form: T) -> Data {
         Data { form: Box::new(form) }
     }
-    pub fn as_form<T: 'static + Form>(&self) -> &T {
-        self.form.as_any().downcast_ref::<T>().expect("Wrong form")
+    pub fn as_form<T: 'static + Form>(&self) -> Fallible<&T> {
+        self.form.as_any().downcast_ref::<T>()
+            .ok_or(Error::FailedCast.into())
     }
-    pub fn into_form<T: 'static + Form>(self) -> T {
-        let any= self.form.into_any();
-        let result= any.downcast::<T>();
-        *result.expect("Wrong form")
+    pub fn into_form<T: 'static + Form>(self) -> Fallible<T> {
+        self.form.into_any().downcast::<T>()
+            .map_err(|_e| Error::FailedCast.into())
+            .map(|v| *v)
     }
 }
 
@@ -161,7 +163,7 @@ mod tests {
 
     fn test_round_trip<T: 'static + Form + PartialEq>(form: T) {
         let data = Data { form: form.box_clone() };
-        let retrieved: &T = data.as_form();
+        let retrieved: &T = data.as_form().unwrap();
         assert_eq!(&form, retrieved);
     }
 

@@ -4,7 +4,7 @@ use std::fmt::{Debug, Formatter};
 use std::mem::transmute;
 use std::os::raw::c_char;
 
-use opendp::{core, Error};
+use opendp::{core, Error, ErrorBase};
 use opendp::core::{ChainMT, ChainTT, Domain, Measure, MeasureGlue, Measurement, Metric, MetricGlue, Transformation};
 
 use crate::util;
@@ -42,12 +42,14 @@ pub struct FfiError {
 }
 
 impl FfiError {
-    pub fn new(error: Error) -> *mut Self {
+    pub fn new(error: ErrorBase) -> *mut Self {
         fn substring(s: &str, start: usize, end: usize) -> String {
             assert!(end >= start);
             let len = end - start;
             s.chars().skip(start).take(len).collect()
         }
+        // TODO: do something with this string
+        let _backtrace = format!("{:?}", error.backtrace);
         let error = format!("{:?}", error);
         let type_message = error.find("(").map_or_else(
             || (error.clone(), None),
@@ -99,7 +101,7 @@ pub enum FfiResult<T> {
 }
 
 impl<T> FfiResult<T> {
-    pub fn new(result: Result<T, Error>) -> Self {
+    pub fn new(result: Result<T, ErrorBase>) -> Self {
         result.map_or_else(|e| Self::Err(FfiError::new(e)), |o| Self::Ok(o))
     }
 }
@@ -218,7 +220,7 @@ pub extern "C" fn opendp_core__measurement_invoke(this: *const FfiMeasurement, a
     let this = util::as_ref(this);
     let arg = util::as_ref(arg);
     if arg.type_ != this.input_glue.domain_carrier {
-        return FfiResult::new(Err(Error::DomainMismatch))
+        return FfiResult::new(Err(Error::DomainMismatch.into()))
     }
     let res_type = this.output_glue.domain_carrier.clone();
     let res = this.value.function.eval_ffi(&arg.value);
@@ -236,7 +238,7 @@ pub extern "C" fn opendp_core__transformation_invoke(this: *const FfiTransformat
     let this = util::as_ref(this);
     let arg = util::as_ref(arg);
     if arg.type_ != this.input_glue.domain_carrier {
-        return FfiResult::new(Err(Error::DomainMismatch))
+        return FfiResult::new(Err(Error::DomainMismatch.into()))
     }
     let res_type = this.output_glue.domain_carrier.clone();
     let res = this.value.function.eval_ffi(&arg.value);
@@ -267,7 +269,7 @@ pub extern "C" fn opendp_core__make_chain_mt(measurement1: *mut FfiMeasurement, 
     } = measurement1;
 
     if output_glue0.domain_type != input_glue1.domain_type {
-        return FfiResult::new(Err(Error::DomainMismatch))
+        return FfiResult::new(Err(Error::DomainMismatch.into()))
     }
 
     let measurement = ChainMT::make_chain_mt_glue(
@@ -299,7 +301,7 @@ pub extern "C" fn opendp_core__make_chain_tt(transformation1: *mut FfiTransforma
     } = transformation1;
 
     if output_glue0.domain_type != input_glue1.domain_type {
-        return FfiResult::new(Err(Error::DomainMismatch))
+        return FfiResult::new(Err(Error::DomainMismatch.into()))
     }
 
     let transformation = ChainTT::make_chain_tt_glue(
@@ -319,7 +321,7 @@ pub extern "C" fn opendp_core__make_composition(measurement0: *mut FfiMeasuremen
     let measurement0 = util::as_ref(measurement0);
     let measurement1 = util::as_ref(measurement1);
     if measurement0.input_glue.domain_type != measurement1.input_glue.domain_type {
-        return FfiResult::new(Err(Error::DomainMismatch))
+        return FfiResult::new(Err(Error::DomainMismatch.into()))
     }
     let input_glue = measurement0.input_glue.clone();
     let output_glue0 = measurement0.output_glue.clone();
