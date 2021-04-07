@@ -20,12 +20,13 @@
 // Ordering of generic arguments
 // DI, DO, MI, MO, TI, TO, QI, QO
 
+use std::any::{Any, TypeId};
 use std::ops::{Div, Mul};
 use std::rc::Rc;
 
-use crate::error::Fallible;
 use crate::dom::{BoxDomain, PairDomain};
-use crate::meas::MakeMeasurement2;
+use crate::error::Fallible;
+use crate::meas::{MakeMeasurement1, MakeMeasurement2};
 use crate::traits::DistanceCast;
 use crate::trans::MakeTransformation2;
 
@@ -364,6 +365,118 @@ pub struct Measurement<DI: Domain, DO: Domain, MI: Metric, MO: Measure> {
     pub input_metric: Box<MI>,
     pub output_measure: Box<MO>,
     pub privacy_relation: PrivacyRelation<MI, MO>,
+}
+
+// I moved these down into Metric in a later PR
+trait NewMetric {fn new() -> Self;}
+trait NewMeasure {fn new() -> Self;}
+
+#[derive(Clone, PartialEq)]
+struct AnyDomain(pub TypeId);
+impl AnyDomain {
+    fn new<T: 'static>() -> Self {
+        AnyDomain(TypeId::of::<T>())
+    }
+}
+impl Domain for AnyDomain {
+    type Carrier = Box<dyn Any>;
+    fn member(&self, val: &Self::Carrier) -> bool {
+        self.0 == val.type_id()
+    }
+}
+#[derive(Clone, PartialEq)]
+struct AnyVectorDomain(Vec<AnyDomain>);
+impl AnyVectorDomain {
+    fn new(v: Vec<AnyDomain>) -> Self {
+        AnyVectorDomain(v)
+    }
+}
+impl Domain for AnyVectorDomain {
+    type Carrier = Vec<<AnyDomain as Domain>::Carrier>;
+    fn member(&self, val: &Self::Carrier) -> bool {
+        self.0.iter().zip(val.iter()).all(|(d0, v1)| d0.member(v1))
+    }
+}
+
+trait Composable<DI: Domain, QI, QO> {
+    fn get_input_domain(&self) -> &DI;
+    fn get_output_type_id(&self) -> TypeId;
+    fn function(&self) -> Function<DI, AnyDomain>;
+    fn privacy_relation(&self, d_in: &QI, d_out: &QO) -> Fallible<bool>;
+}
+
+impl<DI: Domain + 'static, DO: Domain + 'static, MI: Metric, MO: Measure> Composable<DI, MI::Distance, MO::Distance> for Measurement<DI, DO, MI, MO>
+    where DI::Carrier: Clone, DO::Carrier: Clone {
+    fn get_input_domain(&self) -> &DI {
+        &*self.input_domain
+    }
+    fn get_output_type_id(&self) -> TypeId {
+        TypeId::of::<DO::Carrier>()
+    }
+    fn function(&self) -> Function<DI, AnyDomain> {
+        let function = self.function.clone();
+        Function::new_fallible(move |args: &DI::Carrier| function.eval_ffi(args).map(|v| v as Box<dyn Any>))
+    }
+    fn privacy_relation(&self, d_in: &MI::Distance, d_out: &MO::Distance) -> Fallible<bool> {
+        self.privacy_relation.eval(d_in, d_out)
+    }
+}
+
+struct Compose2;
+
+impl<DI, MI, MO> MakeMeasurement1<
+    DI, AnyVectorDomain, MI, MO,
+    Vec<Box<dyn Composable<DI, MI::Distance, MO::Distance>>>,
+> for Compose2
+    where DI: 'static + Domain,
+          MI: 'static + Metric + NewMetric,
+          MO: 'static + Measure + NewMeasure {
+    fn make1(
+        measurements: Vec<Box<dyn Composable<DI, MI::Distance, MO::Distance>>>,
+    ) -> Fallible<Measurement<DI, AnyVectorDomain, MI, MO>> {
+
+        if measurements.is_empty() {
+            return fallible!(MakeMeasurement, "must have at least one measurement in composition");
+        }
+
+        let first_input_domain = measurements[0].get_input_domain();
+        if measurements.iter().any(|meas| meas.get_input_domain() != first_input_domain) {
+            return fallible!(MakeMeasurement, "input measurements must share same input domain")
+        }
+
+        let functions = measurements.iter().map(|meas| meas.function()).collect::<Vec<_>>();
+        Ok(Measurement::new(
+            first_input_domain.clone(),
+            AnyVectorDomain::new(measurements.iter()
+                .map(|meas| AnyDomain(meas.get_output_type_id())).collect()),
+            Function::new_fallible(enclose!(functions, move |args: &DI::Carrier| functions.into_iter()
+                .map(|f| f.eval(args)).collect::<Fallible<Vec<_>>>())),
+            MI::new(),
+            MO::new(),
+            PrivacyRelation::new_fallible(move |d_in: &MI::Distance, d_out: &MO::Distance| {
+                let d_out_single = d_out; // / measurements.len();
+                measurements.iter().try_fold(true, |prior, meas| if prior {
+                    meas.privacy_relation(d_in, d_out_single)
+                } else {
+                    Ok(false)
+                })
+            })
+        ))
+    }
+}
+
+// on each measurement--
+// DI, MI, MO, TI, QI, QO: we know these types are shared by all measurements
+// TO: convert to Box<dyn Any>
+// DO: convert to AllDomain<Box<dyn Any>>
+
+fn cat_measurement<DI: Domain + 'static, DO: Domain + 'static, MI: Metric + 'static, MO: Measure + 'static>(
+    mut measurements: Vec<Box<dyn Composable<DI, MI::Distance, MO::Distance>>>,
+    new: Measurement<DI, DO, MI, MO>
+) -> Vec<Box<dyn Composable<DI, MI::Distance, MO::Distance>>>
+    where DI::Carrier: Clone, DO::Carrier: Clone {
+    measurements.push(Box::new(new) as Box<_>);
+    measurements
 }
 
 impl<DI: Domain, DO: Domain, MI: Metric, MO: Measure> Measurement<DI, DO, MI, MO> {
