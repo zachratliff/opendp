@@ -5,6 +5,7 @@ import re
 import sys
 
 
+
 def str_to_c_char_p(s):
     return s.encode("utf-8") if s is not None else None
 
@@ -39,6 +40,9 @@ class FfiObject(ctypes.Structure):
 
 class FfiMeasurement(ctypes.Structure):
     pass # Opaque struct
+
+class FfiMeasurementPtr(ctypes.POINTER(FfiMeasurement)):
+    def
 
 class FfiTransformation(ctypes.Structure):
     pass # Opaque struct
@@ -87,11 +91,11 @@ def _wrap_in_slice(ptr, len_):  # -> *FfiSlice
 
 
 def _scalar_to_slice(val, type_name):
-    return _wrap_in_slice(ctypes.byref(OpenDP.ATOM_MAP[type_name](val)), 1)
+    return _wrap_in_slice(ctypes.byref(ATOM_MAP[type_name](val)), 1)
 
 
 def _slice_to_scalar(raw, type_name):
-    return ctypes.cast(raw.contents.ptr, ctypes.POINTER(OpenDP.ATOM_MAP[type_name])).contents.value
+    return ctypes.cast(raw.contents.ptr, ctypes.POINTER(ATOM_MAP[type_name])).contents.value
 
 
 def _string_to_slice(val):
@@ -107,22 +111,22 @@ def _vector_to_slice(val, type_name):
     if not isinstance(val, list):
         raise OdpException(f"Cannot cast a non-list type to a vector")
 
-    if inner_type_name not in OpenDP.ATOM_MAP:
-        raise OdpException(f"Members must be one of {OpenDP.ATOM_MAP.keys()}")
+    if inner_type_name not in ATOM_MAP:
+        raise OdpException(f"Members must be one of {ATOM_MAP.keys()}")
 
     if val:
         # check that actual type can be represented by the inner_type_name
-        equivalence_class = OpenDP.ATOM_EQUIVALENCE_CLASSES[OpenDP.infer_object_type(val[0])]
+        equivalence_class = ATOM_EQUIVALENCE_CLASSES[infer_object_type(val[0])]
         if inner_type_name not in equivalence_class:
             raise OdpException("Data cannot be represented by the suggested type_name")
 
-    array = (OpenDP.ATOM_MAP[inner_type_name] * len(val))(*val)
+    array = (ATOM_MAP[inner_type_name] * len(val))(*val)
     return _wrap_in_slice(array, len(val))
 
 
 def _slice_to_vector(raw, type_name):
     inner_type_name = type_name[4:-1]
-    return ctypes.cast(raw.contents.ptr, ctypes.POINTER(OpenDP.ATOM_MAP[inner_type_name]))[0:raw.contents.len]
+    return ctypes.cast(raw.contents.ptr, ctypes.POINTER(ATOM_MAP[inner_type_name]))[0:raw.contents.len]
 
 
 def _tuple_to_slice(val, type_name):
@@ -139,16 +143,17 @@ def _tuple_to_slice(val, type_name):
     if len(inner_type_names) != len(val):
         return OdpException("type_name members must have same length as tuple")
 
-    if any(t not in OpenDP.ATOM_MAP for t in inner_type_names):
-        return OdpException(f"Tuple members must be one of {OpenDP.ATOM_MAP.keys()}")
+    if any(t not in ATOM_MAP for t in inner_type_names):
+        return OdpException(f"Tuple members must be one of {ATOM_MAP.keys()}")
 
     # check that actual type can be represented by the inner_type_name
     for v, inner_type_name in zip(val, inner_type_names):
-        equivalence_class = OpenDP.ATOM_EQUIVALENCE_CLASSES[OpenDP.infer_object_type(v)]
+        equivalence_class = ATOM_EQUIVALENCE_CLASSES[infer_object_type(v)]
         if inner_type_name not in equivalence_class:
             raise OdpException("Data cannot be represented by the suggested type_name")
 
-    ptr_data = (ctypes.cast(ctypes.pointer(OpenDP.ATOM_MAP[name](v)), ctypes.c_void_p) for v, name in zip(val, inner_type_names))
+    ptr_data = (ctypes.cast(ctypes.pointer(ATOM_MAP[name](v)), ctypes.c_void_p) for v, name in
+                zip(val, inner_type_names))
     array = (ctypes.c_void_p * len(val))(*ptr_data)
     return _wrap_in_slice(ctypes.byref(array), len(val))
 
@@ -160,12 +165,12 @@ def _slice_to_tuple(raw, type_name: str):
     # list of void*
     ptr_data = void_array_ptr[0:raw.contents.len]
     # tuple of instances of python types
-    return tuple(ctypes.cast(void_p, ctypes.POINTER(OpenDP.ATOM_MAP[name])).contents.value
+    return tuple(ctypes.cast(void_p, ctypes.POINTER(ATOM_MAP[name])).contents.value
                  for void_p, name in zip(ptr_data, inner_type_names))
 
 
 def _slice_to_py(raw, type_name):
-    if type_name in OpenDP.ATOM_MAP:
+    if type_name in ATOM_MAP:
         return _slice_to_scalar(raw, type_name)
 
     if type_name.startswith("Vec<") and type_name.endswith('>'):
@@ -181,7 +186,7 @@ def _slice_to_py(raw, type_name):
 
 
 def _py_to_slice(val, type_name):
-    if type_name in OpenDP.ATOM_MAP:
+    if type_name in ATOM_MAP:
         return _scalar_to_slice(val, type_name)
 
     if type_name.startswith("Vec<") and type_name.endswith('>'):
@@ -304,151 +309,150 @@ class Mod:
                 backtrace = c_char_p_to_str(err_contents.backtrace)
                 Mod.error_free(err)
                 raise OdpException(variant, message, backtrace)
+
         return unwrap
 
 
-class OpenDP:
+def _get_lib_dir():
+    internal_lib_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lib")
+    # Use environment variable to allow running without installation.
+    return os.environ.get("OPENDP_LIB_DIR", internal_lib_dir)
 
-    @classmethod
-    def _get_lib_dir(cls):
-        # Use environment variable to allow running without installation.
-        dir = os.environ.get("OPENDP_LIB_DIR")
-        if not dir:
-            package_dir = os.path.dirname(os.path.abspath(__file__))
-            # TODO: Have separate sub-dirs under lib for each platform to avoid name collisions?
-            dir = os.path.join(package_dir, "lib")
-        return dir
 
-    @classmethod
-    def _get_lib_name(cls):
-        platform_to_name = {
-            "darwin": "libopendp_ffi.dylib",
-            "linux": "libopendp_ffi.so",
-            "win32": "opendp_ffi.dll",
-        }
-        if sys.platform not in platform_to_name:
-            raise Exception("Platform not supported", sys.platform)
-        return platform_to_name[sys.platform]
-
-    @classmethod
-    def _get_lib_path(cls):
-        dir = cls._get_lib_dir()
-        name = cls._get_lib_name()
-        return os.path.join(dir, name)
-
-    def __init__(self, lib_path=None):
-        lib_path = lib_path or self._get_lib_path()
-        lib = ctypes.cdll.LoadLibrary(lib_path)
-        Mod.initialize(lib, "opendp_core__")
-        self.core = Mod(lib, "opendp_core__")
-        self.data = Mod(lib, "opendp_data__")
-        self.meas = Mod(lib, "opendp_meas__")
-        self.trans = Mod(lib, "opendp_trans__")
-        # print("Initialized OpenDP Library")
-
-    def make_chain_tt_multi(self, *transformations):
-        if not transformations:
-            raise OdpException("Must have at least one Transformation")
-        elif len(transformations) == 1:
-            return transformations[0]
-        else:
-            return self.make_chain_tt_multi(*transformations[:-2], self.core.make_chain_tt(transformations[-2], transformations[-1]))
-
-    @staticmethod
-    def get_first(arr):
-        return arr[0] if arr else 0
-
-    ATOM_MAP = {
-        'f32': ctypes.c_float,
-        'f64': ctypes.c_double,
-        'u8': ctypes.c_uint8,
-        'u16': ctypes.c_uint16,
-        'u32': ctypes.c_uint32,
-        'u64': ctypes.c_uint64,
-        'i8': ctypes.c_int8,
-        'i16': ctypes.c_int16,
-        'i32': ctypes.c_int32,
-        'i64': ctypes.c_int64,
-        'bool': ctypes.c_bool,
+def _get_lib_name():
+    platform_to_name = {
+        "darwin": "libopendp_ffi.dylib",
+        "linux": "libopendp_ffi.so",
+        "win32": "opendp_ffi.dll",
     }
+    if sys.platform not in platform_to_name:
+        raise Exception("Platform not supported", sys.platform)
+    return platform_to_name[sys.platform]
 
-    # list all acceptable alternative types for each default type
-    ATOM_EQUIVALENCE_CLASSES = {
-        'i32': ['u8', 'u16', 'u32', 'u64', 'i8', 'i16', 'i32', 'i64'],
-        'f64': ['f32', 'f64'],
-        'bool': ['bool']
-    }
 
-    @staticmethod
-    def infer_object_type(val):
-        if isinstance(val, int):
-            return "i32"
-        elif isinstance(val, float):
-            return "f64"
-        elif isinstance(val, str):
-            return "String"
-        elif isinstance(val, bool):
-            return "bool"
-        elif isinstance(val, list):
-            return f"Vec<{OpenDP.infer_object_type(OpenDP.get_first(val))}>"
-        elif isinstance(val, tuple):
-            return f"({','.join(map(OpenDP.infer_object_type, val))})"
+lib = ctypes.cdll.LoadLibrary(os.path.join(_get_lib_dir(), _get_lib_name()))
+Mod.initialize(lib, "opendp_core__")
+core = Mod(lib, "opendp_core__")
+data = Mod(lib, "opendp_data__")
+meas = Mod(lib, "opendp_meas__")
+trans = Mod(lib, "opendp_trans__")
 
-        raise Exception("Unknown type", type(val))
 
-    def py_to_object(self, val, type_arg=None):
-        if type_arg:
-            type_name = type_arg[1:-1]
-        else:
-            type_name = self.infer_object_type(val)
+# print("Initialized OpenDP Library")
 
-        ffi_slice = _py_to_slice(val, type_name)
-        return self.data.slice_as_object(f"<{type_name}>".encode(), ffi_slice)
 
-    def object_to_py(self, obj):
-        type_name_ptr = self.data.object_type(obj)
-        type_name = type_name_ptr.value.decode()
-        ffi_slice = self.data.object_as_slice(obj)
-        try:
-            return _slice_to_py(ffi_slice, type_name)
-        except UnknownTypeException:
-            raise
-        except Exception as err:
-            print("MASKED ERROR:", err)
-            print("using string fallback")
-            # raise err
-            # If we fail, resort to string representation.
-            #TODO: Remove this fallback once we have composition and/or tuples sorted out.
-            return self.data.to_string(obj).value.decode()
-        finally:
-            self.data.slice_free(ffi_slice)
+def make_chain_tt_multi(self, *transformations):
+    if not transformations:
+        raise OdpException("Must have at least one Transformation")
+    elif len(transformations) == 1:
+        return transformations[0]
+    else:
+        return self.make_chain_tt_multi(*transformations[:-2],
+                                        self.core.make_chain_tt(transformations[-2], transformations[-1]))
 
-    def measurement_invoke(self, measurement, arg, *, type_name=None):
-        arg = self.py_to_object(arg, type_name)
-        res = self.core.measurement_invoke(measurement, arg)
-        return self.object_to_py(res)
 
-    def transformation_invoke(self, transformation, arg, *, type_name=None):
-        arg = self.py_to_object(arg, type_name)
-        res = self.core.transformation_invoke(transformation, arg)
-        return self.object_to_py(res)
+@staticmethod
+def get_first(arr):
+    return arr[0] if arr else 0
 
-    def measurement_check(self, measurement, d_in, d_out, *, d_in_type_arg=None, d_out_type_arg=None, debug=False):
-        d_in = self.py_to_object(d_in, d_in_type_arg and d_in_type_arg[1:-1])
-        d_out = self.py_to_object(d_out, d_out_type_arg and d_out_type_arg[1:-1])
 
-        def _check():
-            val_ptr = self.core.measurement_check(measurement, d_in, d_out)
-            val = val_ptr.contents.value
-            self.data.slice_free(self.data.bool_free(val_ptr))
-            return val
+ATOM_MAP = {
+    'f32': ctypes.c_float,
+    'f64': ctypes.c_double,
+    'u8': ctypes.c_uint8,
+    'u16': ctypes.c_uint16,
+    'u32': ctypes.c_uint32,
+    'u64': ctypes.c_uint64,
+    'i8': ctypes.c_int8,
+    'i16': ctypes.c_int16,
+    'i32': ctypes.c_int32,
+    'i64': ctypes.c_int64,
+    'bool': ctypes.c_bool,
+}
 
-        if debug:
-            return _check()
+# list all acceptable alternative types for each default type
+ATOM_EQUIVALENCE_CLASSES = {
+    'i32': ['u8', 'u16', 'u32', 'u64', 'i8', 'i16', 'i32', 'i64'],
+    'f64': ['f32', 'f64'],
+    'bool': ['bool']
+}
 
-        try:
-            return _check()
-        except OdpException as err:
-            if err.variant == "RelationDebug":
-                return False
-            raise
+
+@staticmethod
+def infer_object_type(val):
+    if isinstance(val, int):
+        return "i32"
+    elif isinstance(val, float):
+        return "f64"
+    elif isinstance(val, str):
+        return "String"
+    elif isinstance(val, bool):
+        return "bool"
+    elif isinstance(val, list):
+        return f"Vec<{infer_object_type(get_first(val))}>"
+    elif isinstance(val, tuple):
+        return f"({','.join(map(infer_object_type, val))})"
+
+    raise Exception("Unknown type", type(val))
+
+
+def py_to_object(self, val, type_arg=None):
+    if type_arg:
+        type_name = type_arg[1:-1]
+    else:
+        type_name = self.infer_object_type(val)
+
+    ffi_slice = _py_to_slice(val, type_name)
+    return self.data.slice_as_object(f"<{type_name}>".encode(), ffi_slice)
+
+
+def object_to_py(self, obj):
+    type_name_ptr = self.data.object_type(obj)
+    type_name = type_name_ptr.value.decode()
+    ffi_slice = self.data.object_as_slice(obj)
+    try:
+        return _slice_to_py(ffi_slice, type_name)
+    except UnknownTypeException:
+        raise
+    except Exception as err:
+        print("MASKED ERROR:", err)
+        print("using string fallback")
+        # raise err
+        # If we fail, resort to string representation.
+        # TODO: Remove this fallback once we have composition and/or tuples sorted out.
+        return self.data.to_string(obj).value.decode()
+    finally:
+        self.data.slice_free(ffi_slice)
+
+
+def measurement_invoke(self, measurement, arg, *, type_name=None):
+    arg = self.py_to_object(arg, type_name)
+    res = self.core.measurement_invoke(measurement, arg)
+    return self.object_to_py(res)
+
+
+def transformation_invoke(self, transformation, arg, *, type_name=None):
+    arg = self.py_to_object(arg, type_name)
+    res = self.core.transformation_invoke(transformation, arg)
+    return self.object_to_py(res)
+
+
+def measurement_check(self, measurement, d_in, d_out, *, d_in_type_arg=None, d_out_type_arg=None, debug=False):
+    d_in = self.py_to_object(d_in, d_in_type_arg and d_in_type_arg[1:-1])
+    d_out = self.py_to_object(d_out, d_out_type_arg and d_out_type_arg[1:-1])
+
+    def _check():
+        val_ptr = self.core.measurement_check(measurement, d_in, d_out)
+        val = val_ptr.contents.value
+        self.data.slice_free(self.data.bool_free(val_ptr))
+        return val
+
+    if debug:
+        return _check()
+
+    try:
+        return _check()
+    except OdpException as err:
+        if err.variant == "RelationDebug":
+            return False
+        raise

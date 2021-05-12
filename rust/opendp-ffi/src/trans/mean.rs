@@ -8,13 +8,14 @@ use opendp::core::{DatasetMetric, SensitivityMetric};
 use opendp::dist::{HammingDistance, L1Sensitivity, L2Sensitivity, SymmetricDistance};
 use opendp::err;
 use opendp::traits::DistanceConstant;
-use opendp::trans::{BoundedMeanConstant, make_bounded_mean};
+use opendp::trans::{BoundedMeanConstant};
+use opendp::trans;
 
 use crate::core::{FfiResult, FfiTransformation};
-use crate::util::{Type, parse_type_args};
+use crate::util::{Type, parse_type_args, into_raw};
 
 #[no_mangle]
-pub extern "C" fn opendp_trans__make_bounded_mean(type_args: *const c_char, lower: *const c_void, upper: *const c_void, length: c_uint) -> FfiResult<*mut FfiTransformation> {
+pub extern "C" fn make_bounded_mean(type_args: *const c_char, lower: *const c_void, upper: *const c_void, length: c_uint) -> *mut FfiResult<*mut FfiTransformation> {
     fn monomorphize<T>(type_args: Vec<Type>, lower: *const c_void, upper: *const c_void, length: usize) -> FfiResult<*mut FfiTransformation>
         where T: DistanceConstant + Sub<Output=T> + Float,
               for<'a> T: Sum<&'a T> {
@@ -24,7 +25,7 @@ pub extern "C" fn opendp_trans__make_bounded_mean(type_args: *const c_char, lowe
                   MO::Distance: DistanceConstant + Sub<Output=MO::Distance> + Float,
                   for<'a> MO::Distance: Sum<&'a MO::Distance>,
                   (MI, MO): BoundedMeanConstant<MI, MO> {
-            make_bounded_mean::<MI, MO>(lower, upper, length).into()
+            trans::make_bounded_mean::<MI, MO>(lower, upper, length).into()
         }
         let lower = *try_as_ref!(lower as *const T);
         let upper = *try_as_ref!(upper as *const T);
@@ -34,7 +35,7 @@ pub extern "C" fn opendp_trans__make_bounded_mean(type_args: *const c_char, lowe
         ], (lower, upper, length))
     }
     let length = length as usize;
-    let type_args = try_!(parse_type_args(type_args, 2));
-    let type_output = try_!(type_args[1].get_sensitivity_distance());
-    dispatch!(monomorphize, [(type_output, @floats)], (type_args, lower, upper, length))
+    let type_args = try_raw!(parse_type_args(type_args, 2));
+    let type_output = try_raw!(type_args[1].get_sensitivity_distance());
+    into_raw(dispatch!(monomorphize, [(type_output, @floats)], (type_args, lower, upper, length)))
 }

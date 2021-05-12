@@ -102,12 +102,25 @@ macro_rules! try_ {
         }
     }
 }
+macro_rules! try_raw {
+    ($value:expr) => {
+        match $value {
+            Ok(x) => x,
+            Err(e) => return crate::util::into_raw(e.into()),
+        }
+    }
+}
 // attempt to convert a raw pointer to a reference
 //      as_ref      ok_or_else       try_!
 // *mut T -> Option<&T> -> Fallible<&T> -> &T
 macro_rules! try_as_ref {
     ($value:expr) => {
         try_!(crate::util::as_ref($value).ok_or_else(|| opendp::err!(FFI, concat!("null pointer: ", stringify!($value)))));
+    }
+}
+macro_rules! try_raw_as_ref {
+    ($value:expr) => {
+        try_raw!(crate::util::as_ref($value).ok_or_else(|| opendp::err!(FFI, concat!("null pointer: ", stringify!($value)))));
     }
 }
 

@@ -7,14 +7,15 @@ use num::{Float, Integer, NumCast, One, Zero};
 use opendp::err;
 use opendp::core::SensitivityMetric;
 use opendp::dist::{L1Sensitivity, L2Sensitivity};
-use opendp::meas::{BaseStabilityNoise, make_base_stability};
+use opendp::meas::{BaseStabilityNoise};
+use opendp::meas;
 use opendp::samplers::CastRug;
 
 use crate::core::{FfiMeasurement, FfiResult};
-use crate::util::{parse_type_args, Type};
+use crate::util::{parse_type_args, Type, into_raw};
 
 #[no_mangle]
-pub extern "C" fn opendp_meas__make_base_stability(type_args: *const c_char, n: usize, scale: *const c_void, threshold: *const c_void) -> FfiResult<*mut FfiMeasurement> {
+pub extern "C" fn make_base_stability(type_args: *const c_char, n: usize, scale: *const c_void, threshold: *const c_void) -> *mut FfiResult<*mut FfiMeasurement> {
     fn monomorphize<TIC, TOC>(type_args: Vec<Type>, n: usize, scale: *const c_void, threshold: *const c_void) -> FfiResult<*mut FfiMeasurement>
         where TIC: 'static + Integer + Zero + One + AddAssign + Clone + NumCast,
               TOC: 'static + PartialOrd + Clone + NumCast + Float + CastRug {
@@ -23,7 +24,7 @@ pub extern "C" fn opendp_meas__make_base_stability(type_args: *const c_char, n: 
                   TIK: 'static + Eq + Hash + Clone,
                   TIC: 'static + Integer + Zero + One + AddAssign + Clone + NumCast,
                   MI::Distance: 'static + Clone + NumCast + PartialOrd + Float + CastRug {
-            make_base_stability::<MI, TIK, TIC>(n, scale, threshold).into()
+            meas::make_base_stability::<MI, TIK, TIC>(n, scale, threshold).into()
         }
         let scale = *try_as_ref!(scale as *const TOC);
         let threshold = *try_as_ref!(threshold as *const TOC);
@@ -33,9 +34,9 @@ pub extern "C" fn opendp_meas__make_base_stability(type_args: *const c_char, n: 
             (type_args[2], [TIC])
         ], (n, scale, threshold))
     }
-    let type_args = try_!(parse_type_args(type_args, 4));
-    dispatch!(monomorphize, [
+    let type_args = try_raw!(parse_type_args(type_args, 4));
+    into_raw(dispatch!(monomorphize, [
         (type_args[2], @integers),
         (type_args[3], @floats)
-    ], (type_args, n, scale, threshold))
+    ], (type_args, n, scale, threshold)))
 }

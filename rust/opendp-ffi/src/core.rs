@@ -11,6 +11,10 @@ use opendp::error::*;
 
 use crate::util;
 use crate::util::{c_bool, Type};
+use arrow::ffi::{FFI_ArrowArray, FFI_ArrowSchema, ArrowArray};
+use arrow::array::{make_array_from_raw, Int64Array, Array};
+use std::convert::TryFrom;
+use std::iter::FromIterator;
 
 #[derive(PartialEq)]
 pub enum FfiOwnership {
@@ -367,3 +371,19 @@ mod tests {
     }
 
 }
+
+// #[no_mangle]
+// pub extern "C" fn double(array_ptr: *const FFI_ArrowArray, schema_ptr: *const FFI_ArrowSchema) -> *const FFI_ArrowArray {
+//     // 1. ffi::ArrrowArray -> 2. ArrayData -> 3. Arc<Array>
+//     let array = unsafe { make_array_from_raw(array_ptr, schema_ptr).unwrap() };
+//     let v = array.as_any().downcast_ref::<Int64Array>().unwrap();
+//
+//     let result = arrow::compute::add(v, v).unwrap();
+//
+//     // let result_vec: Vec<Option<i64>> = Vec::from_iter(result.iter().cloned());
+//     // println!("result_vec: {:?}", result_vec);
+//
+//     let array: ArrowArray = ArrowArray::try_from(result.data().clone()).unwrap();
+//     ArrowArray::into_raw(array).0
+// }
+

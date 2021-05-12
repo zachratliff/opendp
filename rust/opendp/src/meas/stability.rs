@@ -11,9 +11,9 @@ use crate::error::Fallible;
 
 // TIK: Type of Input Key
 // TIC: Type of Input Count
-// TOC: Type of Output Count (equal to MI::Distance)
+// TOC: Type of Output Count (equal to MI::Distance, type of input sensitivity)
 
-pub type CountDomain<TIK, TIC> = SizedDomain<MapDomain<AllDomain<TIK>, AllDomain<TIC>>>;
+pub type CountDomain<TIK, TC> = SizedDomain<MapDomain<AllDomain<TIK>, AllDomain<TC>>>;
 
 // tie metric space with distribution
 pub trait BaseStabilityNoise: Metric {
@@ -51,6 +51,7 @@ pub fn make_base_stability<MI, TIK, TIC>(
         SizedDomain::new(MapDomain { key_domain: AllDomain::new(), value_domain: AllDomain::new() }, n),
         Function::new_fallible(move |data: &HashMap<TIK, TIC>| {
             data.iter()
+                .filter(|(k, c_in)| !c_in.is_zero())
                 .map(|(k, c_in)| {
                     // cast the value to MI::Distance (output count)
                     let c_out = num_cast!(c_in.clone(); MI::Distance)?;
@@ -76,13 +77,13 @@ pub fn make_base_stability<MI, TIK, TIC>(
                 return fallible!(FailedRelation, "cause: epsilon <= 0")
             }
             if eps >= _n.ln() {
-                return fallible!(RelationDebug, "cause: epsilon >= n.ln()");
+                return fallible!(RelationDebug, "cause: epsilon >= ln(n)");
             }
             if del.is_sign_negative() || del.is_zero() {
                 return fallible!(FailedRelation, "cause: delta <= 0")
             }
             if del >= _n.recip() {
-                return fallible!(RelationDebug, "cause: del >= n.ln()");
+                return fallible!(RelationDebug, "cause: delta >= 1 / n");
             }
             if scale < ideal_scale {
                 return fallible!(RelationDebug, "cause: scale < d_in / (epsilon * n)")
