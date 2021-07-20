@@ -80,8 +80,20 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../contrib/index.html">
-  Contributor Guide
+ <a class="reference internal nav-link" href="../../../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources/index.html">
+  Resources
  </a>
 </li>
 
@@ -173,7 +185,7 @@
 <span class="kn">from</span> <span class="nn">opendp.v1.typing</span> <span class="kn">import</span> <span class="o">*</span>
 
 
-<div class="viewcode-block" id="make_cast"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_cast">[docs]</a><span class="k">def</span> <span class="nf">make_cast</span><span class="p">(</span>
+<div class="viewcode-block" id="make_cast"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_cast">[docs]</a><span class="k">def</span> <span class="nf">make_cast</span><span class="p">(</span>
     <span class="n">TI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
     <span class="n">TO</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -206,7 +218,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span> <span class="n">TO</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_cast_default"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_cast_default">[docs]</a><span class="k">def</span> <span class="nf">make_cast_default</span><span class="p">(</span>
+<div class="viewcode-block" id="make_cast_default"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_cast_default">[docs]</a><span class="k">def</span> <span class="nf">make_cast_default</span><span class="p">(</span>
     <span class="n">TI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
     <span class="n">TO</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -238,7 +250,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span> <span class="n">TO</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_is_equal"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_is_equal">[docs]</a><span class="k">def</span> <span class="nf">make_is_equal</span><span class="p">(</span>
+<div class="viewcode-block" id="make_is_equal"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_is_equal">[docs]</a><span class="k">def</span> <span class="nf">make_is_equal</span><span class="p">(</span>
     <span class="n">value</span><span class="p">,</span>
     <span class="n">TI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -268,7 +280,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">TI</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_cast_inherent"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_cast_inherent">[docs]</a><span class="k">def</span> <span class="nf">make_cast_inherent</span><span class="p">(</span>
+<div class="viewcode-block" id="make_cast_inherent"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_cast_inherent">[docs]</a><span class="k">def</span> <span class="nf">make_cast_inherent</span><span class="p">(</span>
     <span class="n">TI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
     <span class="n">TO</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -301,7 +313,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span> <span class="n">TO</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_cast_metric"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_cast_metric">[docs]</a><span class="k">def</span> <span class="nf">make_cast_metric</span><span class="p">(</span>
+<div class="viewcode-block" id="make_cast_metric"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_cast_metric">[docs]</a><span class="k">def</span> <span class="nf">make_cast_metric</span><span class="p">(</span>
     <span class="n">MI</span><span class="p">:</span> <span class="n">DatasetMetric</span><span class="p">,</span>
     <span class="n">MO</span><span class="p">:</span> <span class="n">DatasetMetric</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
@@ -338,7 +350,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">MO</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_clamp"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_clamp">[docs]</a><span class="k">def</span> <span class="nf">make_clamp</span><span class="p">(</span>
+<div class="viewcode-block" id="make_clamp"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_clamp">[docs]</a><span class="k">def</span> <span class="nf">make_clamp</span><span class="p">(</span>
     <span class="n">lower</span><span class="p">,</span>
     <span class="n">upper</span><span class="p">,</span>
     <span class="n">DI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;VectorDomain&lt;AllDomain&lt;T&gt;&gt;&quot;</span><span class="p">,</span>
@@ -378,7 +390,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">DI</span><span class="p">,</span> <span class="n">M</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_unclamp"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_unclamp">[docs]</a><span class="k">def</span> <span class="nf">make_unclamp</span><span class="p">(</span>
+<div class="viewcode-block" id="make_unclamp"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_unclamp">[docs]</a><span class="k">def</span> <span class="nf">make_unclamp</span><span class="p">(</span>
     <span class="n">lower</span><span class="p">,</span>
     <span class="n">upper</span><span class="p">,</span>
     <span class="n">M</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
@@ -416,7 +428,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">M</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_count"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_count">[docs]</a><span class="k">def</span> <span class="nf">make_count</span><span class="p">(</span>
+<div class="viewcode-block" id="make_count"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_count">[docs]</a><span class="k">def</span> <span class="nf">make_count</span><span class="p">(</span>
     <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
     <span class="n">TO</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;u32&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -448,7 +460,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">TIA</span><span class="p">,</span> <span class="n">TO</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_count_distinct"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_count_distinct">[docs]</a><span class="k">def</span> <span class="nf">make_count_distinct</span><span class="p">(</span>
+<div class="viewcode-block" id="make_count_distinct"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_count_distinct">[docs]</a><span class="k">def</span> <span class="nf">make_count_distinct</span><span class="p">(</span>
     <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
     <span class="n">TO</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;u32&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -480,7 +492,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">TIA</span><span class="p">,</span> <span class="n">TO</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_count_by"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_count_by">[docs]</a><span class="k">def</span> <span class="nf">make_count_by</span><span class="p">(</span>
+<div class="viewcode-block" id="make_count_by"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_count_by">[docs]</a><span class="k">def</span> <span class="nf">make_count_by</span><span class="p">(</span>
     <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">MO</span><span class="p">:</span> <span class="n">SensitivityMetric</span><span class="p">,</span>
     <span class="n">TI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
@@ -523,7 +535,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">MO</span><span class="p">,</span> <span class="n">TI</span><span class="p">,</span> <span class="n">TO</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_count_by_categories"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_count_by_categories">[docs]</a><span class="k">def</span> <span class="nf">make_count_by_categories</span><span class="p">(</span>
+<div class="viewcode-block" id="make_count_by_categories"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_count_by_categories">[docs]</a><span class="k">def</span> <span class="nf">make_count_by_categories</span><span class="p">(</span>
     <span class="n">categories</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">MO</span><span class="p">:</span> <span class="n">SensitivityMetric</span><span class="p">,</span>
     <span class="n">TI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -565,7 +577,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">MO</span><span class="p">,</span> <span class="n">TI</span><span class="p">,</span> <span class="n">TO</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_split_lines"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_split_lines">[docs]</a><span class="k">def</span> <span class="nf">make_split_lines</span><span class="p">(</span>
+<div class="viewcode-block" id="make_split_lines"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_split_lines">[docs]</a><span class="k">def</span> <span class="nf">make_split_lines</span><span class="p">(</span>
     
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that takes a string and splits it into a Vec&lt;String&gt; of its lines.</span>
@@ -587,7 +599,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_split_records"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_split_records">[docs]</a><span class="k">def</span> <span class="nf">make_split_records</span><span class="p">(</span>
+<div class="viewcode-block" id="make_split_records"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_split_records">[docs]</a><span class="k">def</span> <span class="nf">make_split_records</span><span class="p">(</span>
     <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that splits each record in a Vec&lt;String&gt; into a Vec&lt;Vec&lt;String&gt;&gt;.</span>
@@ -612,7 +624,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">separator</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_create_dataframe"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_create_dataframe">[docs]</a><span class="k">def</span> <span class="nf">make_create_dataframe</span><span class="p">(</span>
+<div class="viewcode-block" id="make_create_dataframe"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_create_dataframe">[docs]</a><span class="k">def</span> <span class="nf">make_create_dataframe</span><span class="p">(</span>
     <span class="n">col_names</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">K</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -643,7 +655,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">col_names</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_split_dataframe"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_split_dataframe">[docs]</a><span class="k">def</span> <span class="nf">make_split_dataframe</span><span class="p">(</span>
+<div class="viewcode-block" id="make_split_dataframe"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_split_dataframe">[docs]</a><span class="k">def</span> <span class="nf">make_split_dataframe</span><span class="p">(</span>
     <span class="n">separator</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">col_names</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">K</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
@@ -679,7 +691,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">separator</span><span class="p">,</span> <span class="n">col_names</span><span class="p">,</span> <span class="n">K</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_parse_column"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_parse_column">[docs]</a><span class="k">def</span> <span class="nf">make_parse_column</span><span class="p">(</span>
+<div class="viewcode-block" id="make_parse_column"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_parse_column">[docs]</a><span class="k">def</span> <span class="nf">make_parse_column</span><span class="p">(</span>
     <span class="n">key</span><span class="p">,</span>
     <span class="n">impute</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
@@ -718,7 +730,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">impute</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_select_column"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_select_column">[docs]</a><span class="k">def</span> <span class="nf">make_select_column</span><span class="p">(</span>
+<div class="viewcode-block" id="make_select_column"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_select_column">[docs]</a><span class="k">def</span> <span class="nf">make_select_column</span><span class="p">(</span>
     <span class="n">key</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
     <span class="n">K</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
@@ -753,7 +765,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_identity"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_identity">[docs]</a><span class="k">def</span> <span class="nf">make_identity</span><span class="p">(</span>
+<div class="viewcode-block" id="make_identity"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_identity">[docs]</a><span class="k">def</span> <span class="nf">make_identity</span><span class="p">(</span>
     <span class="n">M</span><span class="p">:</span> <span class="n">DatasetMetric</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -785,7 +797,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_impute_constant"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_impute_constant">[docs]</a><span class="k">def</span> <span class="nf">make_impute_constant</span><span class="p">(</span>
+<div class="viewcode-block" id="make_impute_constant"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_impute_constant">[docs]</a><span class="k">def</span> <span class="nf">make_impute_constant</span><span class="p">(</span>
     <span class="n">constant</span><span class="p">,</span>
     <span class="n">DA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;OptionNullDomain&lt;AllDomain&lt;T&gt;&gt;&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -819,7 +831,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">DA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_impute_uniform_float"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_impute_uniform_float">[docs]</a><span class="k">def</span> <span class="nf">make_impute_uniform_float</span><span class="p">(</span>
+<div class="viewcode-block" id="make_impute_uniform_float"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_impute_uniform_float">[docs]</a><span class="k">def</span> <span class="nf">make_impute_uniform_float</span><span class="p">(</span>
     <span class="n">lower</span><span class="p">,</span>
     <span class="n">upper</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
@@ -852,7 +864,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_bounded_mean"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_bounded_mean">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_mean</span><span class="p">(</span>
+<div class="viewcode-block" id="make_bounded_mean"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_bounded_mean">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_mean</span><span class="p">(</span>
     <span class="n">lower</span><span class="p">,</span>
     <span class="n">upper</span><span class="p">,</span>
     <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -890,7 +902,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_bounded_sum"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_bounded_sum">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_sum</span><span class="p">(</span>
+<div class="viewcode-block" id="make_bounded_sum"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_bounded_sum">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_sum</span><span class="p">(</span>
     <span class="n">lower</span><span class="p">,</span>
     <span class="n">upper</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
@@ -924,7 +936,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_bounded_sum_n"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_bounded_sum_n">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_sum_n</span><span class="p">(</span>
+<div class="viewcode-block" id="make_bounded_sum_n"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_bounded_sum_n">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_sum_n</span><span class="p">(</span>
     <span class="n">lower</span><span class="p">,</span>
     <span class="n">upper</span><span class="p">,</span>
     <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -963,7 +975,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_bounded_variance"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.trans.html#opendp.v1.trans.make_bounded_variance">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_variance</span><span class="p">(</span>
+<div class="viewcode-block" id="make_bounded_variance"><a class="viewcode-back" href="../../../api/python/opendp.v1.trans.html#opendp.v1.trans.make_bounded_variance">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_variance</span><span class="p">(</span>
     <span class="n">lower</span><span class="p">,</span>
     <span class="n">upper</span><span class="p">,</span>
     <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>

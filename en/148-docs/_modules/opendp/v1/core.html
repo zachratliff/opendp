@@ -80,8 +80,20 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../contrib/index.html">
-  Contributor Guide
+ <a class="reference internal nav-link" href="../../../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources/index.html">
+  Resources
  </a>
 </li>
 
@@ -237,7 +249,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">))</span>
 
 
-<div class="viewcode-block" id="transformation_check"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.transformation_check">[docs]</a><span class="k">def</span> <span class="nf">transformation_check</span><span class="p">(</span>
+<div class="viewcode-block" id="transformation_check"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.transformation_check">[docs]</a><span class="k">def</span> <span class="nf">transformation_check</span><span class="p">(</span>
     <span class="n">transformation</span><span class="p">:</span> <span class="n">Transformation</span><span class="p">,</span>
     <span class="n">d_in</span><span class="p">,</span>
     <span class="n">d_out</span>
@@ -268,7 +280,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">),</span> <span class="n">BoolPtr</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="measurement_check"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.measurement_check">[docs]</a><span class="k">def</span> <span class="nf">measurement_check</span><span class="p">(</span>
+<div class="viewcode-block" id="measurement_check"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.measurement_check">[docs]</a><span class="k">def</span> <span class="nf">measurement_check</span><span class="p">(</span>
     <span class="n">measurement</span><span class="p">:</span> <span class="n">Measurement</span><span class="p">,</span>
     <span class="n">d_in</span><span class="p">,</span>
     <span class="n">d_out</span>
@@ -299,7 +311,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">),</span> <span class="n">BoolPtr</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="measurement_invoke"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.measurement_invoke">[docs]</a><span class="k">def</span> <span class="nf">measurement_invoke</span><span class="p">(</span>
+<div class="viewcode-block" id="measurement_invoke"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.measurement_invoke">[docs]</a><span class="k">def</span> <span class="nf">measurement_invoke</span><span class="p">(</span>
     <span class="n">measurement</span><span class="p">:</span> <span class="n">Measurement</span><span class="p">,</span>
     <span class="n">arg</span><span class="p">:</span> <span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -328,7 +340,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">arg</span><span class="p">),</span> <span class="n">AnyObjectPtr</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="transformation_invoke"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.transformation_invoke">[docs]</a><span class="k">def</span> <span class="nf">transformation_invoke</span><span class="p">(</span>
+<div class="viewcode-block" id="transformation_invoke"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.transformation_invoke">[docs]</a><span class="k">def</span> <span class="nf">transformation_invoke</span><span class="p">(</span>
     <span class="n">transformation</span><span class="p">:</span> <span class="n">Transformation</span><span class="p">,</span>
     <span class="n">arg</span><span class="p">:</span> <span class="n">Any</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -358,7 +370,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation</span><span class="p">,</span> <span class="n">arg</span><span class="p">),</span> <span class="n">AnyObjectPtr</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_chain_mt"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.make_chain_mt">[docs]</a><span class="k">def</span> <span class="nf">make_chain_mt</span><span class="p">(</span>
+<div class="viewcode-block" id="make_chain_mt"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.make_chain_mt">[docs]</a><span class="k">def</span> <span class="nf">make_chain_mt</span><span class="p">(</span>
     <span class="n">measurement</span><span class="p">:</span> <span class="n">Measurement</span><span class="p">,</span>
     <span class="n">transformation</span><span class="p">:</span> <span class="n">Transformation</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
@@ -387,7 +399,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">transformation</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_chain_tt"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.make_chain_tt">[docs]</a><span class="k">def</span> <span class="nf">make_chain_tt</span><span class="p">(</span>
+<div class="viewcode-block" id="make_chain_tt"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.make_chain_tt">[docs]</a><span class="k">def</span> <span class="nf">make_chain_tt</span><span class="p">(</span>
     <span class="n">transformation1</span><span class="p">:</span> <span class="n">Transformation</span><span class="p">,</span>
     <span class="n">transformation0</span><span class="p">:</span> <span class="n">Transformation</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -416,7 +428,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation1</span><span class="p">,</span> <span class="n">transformation0</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_basic_composition"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.make_basic_composition">[docs]</a><span class="k">def</span> <span class="nf">make_basic_composition</span><span class="p">(</span>
+<div class="viewcode-block" id="make_basic_composition"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.make_basic_composition">[docs]</a><span class="k">def</span> <span class="nf">make_basic_composition</span><span class="p">(</span>
     <span class="n">measurement0</span><span class="p">:</span> <span class="n">Measurement</span><span class="p">,</span>
     <span class="n">measurement1</span><span class="p">:</span> <span class="n">Measurement</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
@@ -445,7 +457,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement0</span><span class="p">,</span> <span class="n">measurement1</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="transformation_input_carrier_type"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.transformation_input_carrier_type">[docs]</a><span class="k">def</span> <span class="nf">transformation_input_carrier_type</span><span class="p">(</span>
+<div class="viewcode-block" id="transformation_input_carrier_type"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.transformation_input_carrier_type">[docs]</a><span class="k">def</span> <span class="nf">transformation_input_carrier_type</span><span class="p">(</span>
     <span class="n">transformation</span><span class="p">:</span> <span class="n">Transformation</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get the input (carrier) data type of `transformation`.</span>
@@ -469,7 +481,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="measurement_input_carrier_type"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.measurement_input_carrier_type">[docs]</a><span class="k">def</span> <span class="nf">measurement_input_carrier_type</span><span class="p">(</span>
+<div class="viewcode-block" id="measurement_input_carrier_type"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.measurement_input_carrier_type">[docs]</a><span class="k">def</span> <span class="nf">measurement_input_carrier_type</span><span class="p">(</span>
     <span class="n">measurement</span><span class="p">:</span> <span class="n">Measurement</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get the input (carrier) data type of `measurement`.</span>
@@ -493,7 +505,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="transformation_input_distance_type"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.transformation_input_distance_type">[docs]</a><span class="k">def</span> <span class="nf">transformation_input_distance_type</span><span class="p">(</span>
+<div class="viewcode-block" id="transformation_input_distance_type"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.transformation_input_distance_type">[docs]</a><span class="k">def</span> <span class="nf">transformation_input_distance_type</span><span class="p">(</span>
     <span class="n">transformation</span><span class="p">:</span> <span class="n">Transformation</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get the input distance type of `transformation`.</span>
@@ -517,7 +529,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="transformation_output_distance_type"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.transformation_output_distance_type">[docs]</a><span class="k">def</span> <span class="nf">transformation_output_distance_type</span><span class="p">(</span>
+<div class="viewcode-block" id="transformation_output_distance_type"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.transformation_output_distance_type">[docs]</a><span class="k">def</span> <span class="nf">transformation_output_distance_type</span><span class="p">(</span>
     <span class="n">transformation</span><span class="p">:</span> <span class="n">Transformation</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get the output distance type of `transformation`.</span>
@@ -541,7 +553,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="measurement_input_distance_type"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.measurement_input_distance_type">[docs]</a><span class="k">def</span> <span class="nf">measurement_input_distance_type</span><span class="p">(</span>
+<div class="viewcode-block" id="measurement_input_distance_type"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.measurement_input_distance_type">[docs]</a><span class="k">def</span> <span class="nf">measurement_input_distance_type</span><span class="p">(</span>
     <span class="n">measurement</span><span class="p">:</span> <span class="n">Measurement</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get the input distance type of `measurement`.</span>
@@ -565,7 +577,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="measurement_output_distance_type"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.core.html#opendp.v1.core.measurement_output_distance_type">[docs]</a><span class="k">def</span> <span class="nf">measurement_output_distance_type</span><span class="p">(</span>
+<div class="viewcode-block" id="measurement_output_distance_type"><a class="viewcode-back" href="../../../api/python/opendp.v1.core.html#opendp.v1.core.measurement_output_distance_type">[docs]</a><span class="k">def</span> <span class="nf">measurement_output_distance_type</span><span class="p">(</span>
     <span class="n">measurement</span><span class="p">:</span> <span class="n">Measurement</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get the output distance type of `measurement`.</span>

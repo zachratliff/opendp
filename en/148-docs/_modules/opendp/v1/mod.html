@@ -80,8 +80,20 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../contrib/index.html">
-  Contributor Guide
+ <a class="reference internal nav-link" href="../../../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources/index.html">
+  Resources
  </a>
 </li>
 
@@ -172,7 +184,7 @@
 <span class="kn">from</span> <span class="nn">opendp.v1._lib</span> <span class="kn">import</span> <span class="n">AnyMeasurement</span><span class="p">,</span> <span class="n">AnyTransformation</span>
 
 
-<div class="viewcode-block" id="Measurement"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.mod.html#opendp.v1.mod.Measurement">[docs]</a><span class="k">class</span> <span class="nc">Measurement</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">AnyMeasurement</span><span class="p">)):</span>
+<div class="viewcode-block" id="Measurement"><a class="viewcode-back" href="../../../api/python/opendp.v1.mod.html#opendp.v1.mod.Measurement">[docs]</a><span class="k">class</span> <span class="nc">Measurement</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">AnyMeasurement</span><span class="p">)):</span>
     <span class="sd">&quot;&quot;&quot;A differentially private unit of computation.</span>
 <span class="sd">    A measurement contains a function and a privacy relation.</span>
 <span class="sd">    The function releases a differentially-private release.</span>
@@ -214,7 +226,7 @@
         <span class="kn">from</span> <span class="nn">opendp.v1.core</span> <span class="kn">import</span> <span class="n">measurement_invoke</span>
         <span class="k">return</span> <span class="n">measurement_invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Measurement.invoke"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.mod.html#opendp.v1.mod.Measurement.invoke">[docs]</a>    <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+<div class="viewcode-block" id="Measurement.invoke"><a class="viewcode-back" href="../../../api/python/opendp.v1.mod.html#opendp.v1.mod.Measurement.invoke">[docs]</a>    <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a differentially-private release with `arg`.</span>
 <span class="sd">        </span>
 <span class="sd">        :param arg: Input to the measurement.</span>
@@ -224,7 +236,7 @@
         <span class="kn">from</span> <span class="nn">opendp.v1.core</span> <span class="kn">import</span> <span class="n">measurement_invoke</span>
         <span class="k">return</span> <span class="n">measurement_invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Measurement.check"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.mod.html#opendp.v1.mod.Measurement.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="Measurement.check"><a class="viewcode-back" href="../../../api/python/opendp.v1.mod.html#opendp.v1.mod.Measurement.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Check if the measurement satisfies the privacy relation at `d_in`, `d_out`.</span>
 <span class="sd">        </span>
 <span class="sd">        :param d_in: Distance in terms of the input metric.</span>
@@ -283,7 +295,7 @@
         <span class="n">_measurement_free</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Transformation"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.mod.html#opendp.v1.mod.Transformation">[docs]</a><span class="k">class</span> <span class="nc">Transformation</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">AnyTransformation</span><span class="p">)):</span>
+<div class="viewcode-block" id="Transformation"><a class="viewcode-back" href="../../../api/python/opendp.v1.mod.html#opendp.v1.mod.Transformation">[docs]</a><span class="k">class</span> <span class="nc">Transformation</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">AnyTransformation</span><span class="p">)):</span>
     <span class="sd">&quot;&quot;&quot;A non-differentially private unit of computation.</span>
 <span class="sd">    A transformation contains a function and a stability relation.</span>
 <span class="sd">    The function maps from an input domain to an output domain.</span>
@@ -320,7 +332,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_type_</span> <span class="o">=</span> <span class="n">AnyTransformation</span>
 
-<div class="viewcode-block" id="Transformation.invoke"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.mod.html#opendp.v1.mod.Transformation.invoke">[docs]</a>    <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+<div class="viewcode-block" id="Transformation.invoke"><a class="viewcode-back" href="../../../api/python/opendp.v1.mod.html#opendp.v1.mod.Transformation.invoke">[docs]</a>    <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute a non-differentially-private query with `arg`.</span>
 
 <span class="sd">        :param arg: Input to the transformation.</span>
@@ -334,7 +346,7 @@
         <span class="kn">from</span> <span class="nn">opendp.v1.core</span> <span class="kn">import</span> <span class="n">transformation_invoke</span>
         <span class="k">return</span> <span class="n">transformation_invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Transformation.check"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.mod.html#opendp.v1.mod.Transformation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Transformation.check"><a class="viewcode-back" href="../../../api/python/opendp.v1.mod.html#opendp.v1.mod.Transformation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check if the transformation satisfies the stability relation at `d_in`, `d_out`.</span>
 
 <span class="sd">        :param d_in: Distance in terms of the input metric.</span>
@@ -405,11 +417,11 @@
         <span class="n">_transformation_free</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="UnknownTypeException"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.mod.html#opendp.v1.mod.UnknownTypeException">[docs]</a><span class="k">class</span> <span class="nc">UnknownTypeException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="UnknownTypeException"><a class="viewcode-back" href="../../../api/python/opendp.v1.mod.html#opendp.v1.mod.UnknownTypeException">[docs]</a><span class="k">class</span> <span class="nc">UnknownTypeException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="OpenDPException"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.mod.html#opendp.v1.mod.OpenDPException">[docs]</a><span class="k">class</span> <span class="nc">OpenDPException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="OpenDPException"><a class="viewcode-back" href="../../../api/python/opendp.v1.mod.html#opendp.v1.mod.OpenDPException">[docs]</a><span class="k">class</span> <span class="nc">OpenDPException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;General exception for errors originating from the underlying OpenDP library.</span>
 <span class="sd">    The variant attribute corresponds to `one of the following variants &lt;https://github.com/opendp/opendp/blob/53ec58d01762ca5ceee08590d7e7b725bbdafcf6/rust/opendp/src/error.rs#L46-L87&gt;`_ and can be matched on.</span>
 <span class="sd">    Error variants may change in library updates.</span>

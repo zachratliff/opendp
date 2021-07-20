@@ -80,8 +80,20 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../../contrib/index.html">
-  Contributor Guide
+ <a class="reference internal nav-link" href="../../../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../examples/index.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../resources/index.html">
+  Resources
  </a>
 </li>
 
@@ -173,7 +185,7 @@
 <span class="kn">from</span> <span class="nn">opendp.v1.typing</span> <span class="kn">import</span> <span class="o">*</span>
 
 
-<div class="viewcode-block" id="make_base_laplace"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.meas.html#opendp.v1.meas.make_base_laplace">[docs]</a><span class="k">def</span> <span class="nf">make_base_laplace</span><span class="p">(</span>
+<div class="viewcode-block" id="make_base_laplace"><a class="viewcode-back" href="../../../api/python/opendp.v1.meas.html#opendp.v1.meas.make_base_laplace">[docs]</a><span class="k">def</span> <span class="nf">make_base_laplace</span><span class="p">(</span>
     <span class="n">scale</span><span class="p">,</span>
     <span class="n">D</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;AllDomain&lt;T&gt;&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
@@ -209,7 +221,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">D</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_base_gaussian"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.meas.html#opendp.v1.meas.make_base_gaussian">[docs]</a><span class="k">def</span> <span class="nf">make_base_gaussian</span><span class="p">(</span>
+<div class="viewcode-block" id="make_base_gaussian"><a class="viewcode-back" href="../../../api/python/opendp.v1.meas.html#opendp.v1.meas.make_base_gaussian">[docs]</a><span class="k">def</span> <span class="nf">make_base_gaussian</span><span class="p">(</span>
     <span class="n">scale</span><span class="p">,</span>
     <span class="n">D</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;AllDomain&lt;T&gt;&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
@@ -242,7 +254,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">D</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_base_geometric"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.meas.html#opendp.v1.meas.make_base_geometric">[docs]</a><span class="k">def</span> <span class="nf">make_base_geometric</span><span class="p">(</span>
+<div class="viewcode-block" id="make_base_geometric"><a class="viewcode-back" href="../../../api/python/opendp.v1.meas.html#opendp.v1.meas.make_base_geometric">[docs]</a><span class="k">def</span> <span class="nf">make_base_geometric</span><span class="p">(</span>
     <span class="n">scale</span><span class="p">,</span>
     <span class="n">D</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;AllDomain&lt;i32&gt;&quot;</span><span class="p">,</span>
     <span class="n">QO</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
@@ -278,7 +290,7 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">QO</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_base_stability"><a class="viewcode-back" href="../../../user/api-reference/opendp.v1.meas.html#opendp.v1.meas.make_base_stability">[docs]</a><span class="k">def</span> <span class="nf">make_base_stability</span><span class="p">(</span>
+<div class="viewcode-block" id="make_base_stability"><a class="viewcode-back" href="../../../api/python/opendp.v1.meas.html#opendp.v1.meas.make_base_stability">[docs]</a><span class="k">def</span> <span class="nf">make_base_stability</span><span class="p">(</span>
     <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">scale</span><span class="p">,</span>
     <span class="n">threshold</span><span class="p">,</span>
