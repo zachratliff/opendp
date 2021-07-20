@@ -15,6 +15,8 @@ use crate::any::AnyTransformation;
 use crate::core::{FfiResult, IntoAnyTransformationFfiResultExt};
 use crate::util::{MetricClass, Type};
 
+use fixed::types::I16F16;
+
 #[no_mangle]
 pub extern "C" fn opendp_trans__make_clamp(
     lower: *const c_void, upper: *const c_void,

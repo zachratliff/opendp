@@ -4,7 +4,7 @@ use std::ops::Sub;
 use std::os::raw::{c_char, c_uint, c_void};
 
 use opendp::err;
-use opendp::traits::{Abs, DistanceConstant, InfCast, SaturatingAdd, ExactIntCast, CheckedMul};
+use opendp::traits::{DistanceConstant, InfCast, SaturatingAdd, ExactIntCast, CheckedMul, CheckedAbs};
 use opendp::trans::{make_bounded_sum, make_bounded_sum_n};
 
 use crate::any::AnyTransformation;
@@ -12,6 +12,8 @@ use crate::core::{FfiResult, IntoAnyTransformationFfiResultExt};
 use crate::util::Type;
 use num::Zero;
 use opendp::dist::IntDistance;
+
+use fixed::types::I16F16;
 
 #[no_mangle]
 pub extern "C" fn opendp_trans__make_bounded_sum(
@@ -21,7 +23,7 @@ pub extern "C" fn opendp_trans__make_bounded_sum(
     fn monomorphize<T>(
         lower: *const c_void, upper: *const c_void
     ) -> FfiResult<*mut AnyTransformation>
-        where T: DistanceConstant<IntDistance> + Sub<Output=T> + Abs + SaturatingAdd + Zero,
+        where T: DistanceConstant<IntDistance> + Sub<Output=T> + Zero + CheckedAbs + SaturatingAdd + Zero,
               IntDistance: InfCast<T> {
         let lower = try_as_ref!(lower as *const T).clone();
         let upper = try_as_ref!(upper as *const T).clone();

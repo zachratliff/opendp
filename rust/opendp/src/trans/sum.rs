@@ -9,27 +9,31 @@ use crate::core::{Function, StabilityRelation, Transformation};
 use crate::dist::{AbsoluteDistance, IntDistance, SymmetricDistance};
 use crate::dom::{AllDomain, IntervalDomain, SizedDomain, VectorDomain};
 use crate::error::*;
-use crate::traits::{Abs, DistanceConstant, InfCast, SaturatingAdd, CheckedMul, ExactIntCast};
-
-fn max<T: PartialOrd>(a: T, b: T) -> Option<T> {
-    a.partial_cmp(&b).map(|o| if let Ordering::Less = o {b} else {a})
-}
+use crate::traits::{DistanceConstant, InfCast, SaturatingAdd, CheckedMul, ExactIntCast, CheckedAbs};
 
 pub fn make_bounded_sum<T>(
     lower: T, upper: T
 ) -> Fallible<Transformation<VectorDomain<IntervalDomain<T>>, AllDomain<T>, SymmetricDistance, AbsoluteDistance<T>>>
-    where T: DistanceConstant<IntDistance> + Sub<Output=T> + Abs + SaturatingAdd + Zero,
+    where T: DistanceConstant<IntDistance> + Sub<Output=T> + CheckedAbs + SaturatingAdd + Zero,
           IntDistance: InfCast<T> {
+    let abs_l = lower.clone().checked_abs()
+        .ok_or_else(|| err!(MakeTransformation, "abs(lower) failed"))?;
+    let abs_u = upper.clone().checked_abs()
+        .ok_or_else(|| err!(MakeTransformation, "abs(upper) failed"))?;
+    let c = match abs_l.partial_cmp(&abs_u) {
+        None => return fallible!(MakeTransformation, "lower and upper must be comparable"),
+        Some(Ordering::Less) => abs_u,
+        Some(_) => abs_l
+    };
 
     Ok(Transformation::new(
         VectorDomain::new(IntervalDomain::new(
-            Bound::Included(lower.clone()), Bound::Included(upper.clone()))?),
+            Bound::Included(lower), Bound::Included(upper))?),
         AllDomain::new(),
         Function::new(|arg: &Vec<T>| arg.iter().fold(T::zero(), |sum, v| sum.saturating_add(v))),
         SymmetricDistance::default(),
         AbsoluteDistance::default(),
-        StabilityRelation::new_from_constant(max(lower.abs(), upper.abs())
-            .ok_or_else(|| err!(InvalidDistance, "lower and upper must be comparable"))?)))
+        StabilityRelation::new_from_constant(c)))
 }
 
 
