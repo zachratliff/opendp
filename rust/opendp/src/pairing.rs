@@ -1,4 +1,4 @@
-use crate::dom::{AllDomain, IntervalDomain, InherentNullDomain, InherentNull, VectorDomain, SizedDomain};
+use crate::dom::{AllDomain, IntervalDomain, InherentNullDomain, InherentNull, VectorDomain, SizedDomain, OptionNullDomain};
 use crate::core::Domain;
 use crate::dist::{AbsoluteDistance, SymmetricDistance};
 
@@ -9,24 +9,23 @@ impl<D: Inner + Subdomain<VectorDomain<D::Inner>>> CompatiblePairing for (D, Sym
     where D::Inner: Domain {}
 
 
+// identify a type shared by all domains in an equivalence class
+// used to bundle a type `Inner` that would otherwise leak out from the trait
 pub trait Inner { type Inner; }
 impl<D: Domain> Inner for VectorDomain<D> { type Inner = D; }
+impl<D: Inner + Domain> Inner for SizedDomain<D> {type Inner = D::Inner; }
+
 impl<T> Inner for AllDomain<T> { type Inner = T; }
-impl<D: Domain> Inner for SizedDomain<VectorDomain<D>> { type Inner = D; }
+impl<T> Inner for IntervalDomain<T> { type Inner = T; }
+impl<D: Inner + Domain> Inner for OptionNullDomain<D> { type Inner = D::Inner; }
 
 
+// implement subdomain for any domain that is a subdomain of a more general domain
 pub trait Subdomain<D1: Domain>: Domain {}
 impl<T> Subdomain<AllDomain<T>> for AllDomain<T> {}
 impl<T: PartialOrd + Clone> Subdomain<AllDomain<T>> for IntervalDomain<T> {}
 impl<D: Domain> Subdomain<AllDomain<D::Carrier>> for InherentNullDomain<D>
     where D::Carrier: InherentNull {}
-impl<D: Domain> Subdomain<VectorDomain<D>> for VectorDomain<D> {}
-impl<D: Domain> Subdomain<VectorDomain<D>> for SizedDomain<VectorDomain<D>> {}
 
-
-// This impl requires that the inner domain of VectorDomain is a Subdomain of AllDomain
-// - It has the same issue that caused the I generic on CompatiblePairing to pop out
-// // type parameter T is unconstrained
-// impl<T, D: Subdomain<AllDomain<T>>> Subdomain<VectorDomain<D>> for VectorDomain<D> {}
-// // type parameter T is unconstrained
-// impl<T, D: Subdomain<AllDomain<T>>> Subdomain<VectorDomain<D>> for SizedDomain<VectorDomain<D>> {}
+impl<D: Inner + Subdomain<AllDomain<D::Inner>>> Subdomain<VectorDomain<D>> for VectorDomain<D> {}
+impl<D: Inner + Subdomain<AllDomain<D::Inner>>> Subdomain<VectorDomain<D>> for SizedDomain<VectorDomain<D>> {}
