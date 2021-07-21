@@ -2,14 +2,17 @@ use crate::dom::{AllDomain, IntervalDomain, InherentNullDomain, InherentNull, Ve
 use crate::core::Domain;
 use crate::dist::{AbsoluteDistance, SymmetricDistance};
 
-// How do we get rid of I?
-// I is the type that the domain is parameterized by.
-// - It exists for the Subdomain bound
-// - It breaks the trait
-pub trait CompatiblePairing<I> {}
+pub trait CompatiblePairing {}
 
-impl<T, D: Subdomain<AllDomain<T>>, Q> CompatiblePairing<T> for (D, AbsoluteDistance<Q>) {}
-impl<DA: Domain, D: Subdomain<VectorDomain<DA>>> CompatiblePairing<DA> for (D, SymmetricDistance) {}
+impl<D: Inner + Subdomain<AllDomain<D::Inner>>, Q> CompatiblePairing for (D, AbsoluteDistance<Q>) {}
+impl<D: Inner + Subdomain<VectorDomain<D::Inner>>> CompatiblePairing for (D, SymmetricDistance)
+    where D::Inner: Domain {}
+
+
+pub trait Inner { type Inner; }
+impl<D: Domain> Inner for VectorDomain<D> { type Inner = D; }
+impl<T> Inner for AllDomain<T> { type Inner = T; }
+impl<D: Domain> Inner for SizedDomain<VectorDomain<D>> { type Inner = D; }
 
 
 pub trait Subdomain<D1: Domain>: Domain {}
