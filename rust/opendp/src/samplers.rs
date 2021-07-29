@@ -523,3 +523,68 @@ impl SampleGaussian for f32 {
         Ok(shift + scale * std::f32::consts::SQRT_2 * (erf::erfc_inv(2.0 * uniform_sample) as f32))
     }
 }
+
+#[cfg(test)]
+mod test_rug {
+    use super::*;
+    use std::collections::{HashMap, HashSet};
+    use crate::error::Fallible;
+
+    #[test]
+    fn test_stacking() -> Fallible<()> {
+
+        let p = 53;
+        let mut location = Float::with_val(p, 0.999999);
+        let max = Float::with_val(p, 100.);
+
+        let mut scaler = Float::with_val(p, 1.0);
+        scaler.next_up();
+
+        let mut log = HashSet::new();
+        log.insert(format!("{:?}", location));
+        location.next_up();
+        log.insert(format!("{:?}", location));
+        while location < max {
+            let mut scaled = location.clone() * &scaler;
+            println!("location: {}", location);
+            println!("scaled: {}", scaled);
+
+            if !log.insert(format!("{:?}", scaled)) {
+                panic!("stacking detected: {}", scaled)
+            }
+            scaled.next_down();
+            if !log.contains(&format!("{:?}", scaled)) {
+                panic!("gap detected: {}", scaled)
+            }
+            location.next_up();
+        }
+
+        Ok(())
+    }
+
+    #[test]
+    fn test_float() -> Fallible<()> {
+        let mut rng = GeneratorOpenSSL {};
+        let mut state = ThreadRandState::new_custom(&mut rng);
+        let p = 1;
+
+        let mut scaler = Float::with_val(p, 1.);
+        scaler.next_up();
+
+        let mut counts = HashMap::new();
+        let mut counts_scaled = HashMap::new();
+        (0..10000).for_each(|_| {
+
+            let sample = Float::with_val(p, Float::random_normal(&mut state));
+            *counts
+                .entry(format!("{:?}", sample))
+                .or_insert(0) += 1;
+
+            *counts_scaled.entry(format!("{:?}", sample * &scaler))
+                .or_insert(0) += 1;
+        });
+        println!("samples = {:?}", counts);
+        println!("scaled_samples = {:?}", counts_scaled);
+        Ok(())
+    }
+}
