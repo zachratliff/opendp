@@ -3,9 +3,11 @@ name: Documentation
 # Controls when the action will run. 
 on:
   # Triggers whenever latest is updated or a release is done
-  workflow_run:
-    workflows: ["Sync Branches"]
-    types: [completed]
+  push:
+    branches: [148-docs-6]
+#  workflow_run:
+#    workflows: ["Sync Branches"]
+#    types: [completed]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,11 +20,13 @@ jobs:
       OPENDP_HEADLESS: true
 
     # Run only if sync-branches workflow succeeded.
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
