@@ -4,7 +4,7 @@ name: Documentation
 on:
   # Triggers whenever latest is updated or a release is done
   push:
-    branches: [148-docs-6]
+    branches: [148-docs-6-mike]
 #  workflow_run:
 #    workflows: ["Sync Branches"]
 #    types: [completed]
