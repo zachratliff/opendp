@@ -1,7 +1,7 @@
-opendp.v1.mod module
+opendp.typing module
 ====================
 
-.. automodule:: opendp.v1.mod
+.. automodule:: opendp.typing
    :members:
    :undoc-members:
    :show-inheritance:
