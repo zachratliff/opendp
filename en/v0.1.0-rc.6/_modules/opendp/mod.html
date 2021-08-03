@@ -451,6 +451,22 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_traceback</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_traceback</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">response</span></div>
+
+
+<span class="n">GLOBAL_FEATURES</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="enable_features"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.enable_features">[docs]</a><span class="k">def</span> <span class="nf">enable_features</span><span class="p">(</span><span class="o">*</span><span class="n">features</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">GLOBAL_FEATURES</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">features</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="disable_features"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.disable_features">[docs]</a><span class="k">def</span> <span class="nf">disable_features</span><span class="p">(</span><span class="o">*</span><span class="n">features</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">GLOBAL_FEATURES</span><span class="o">.</span><span class="n">difference_update</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">features</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="assert_features"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.assert_features">[docs]</a><span class="k">def</span> <span class="nf">assert_features</span><span class="p">(</span><span class="o">*</span><span class="n">features</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">GLOBAL_FEATURES</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Attempted to use function that requires </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">, but </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2"> is not enabled. Check the documentation for the feature, then call enable_features(</span><span class="se">\&quot;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">)&quot;</span></div>
 </pre></div>
 
               </div>

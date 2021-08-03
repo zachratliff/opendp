@@ -420,13 +420,13 @@
 <h2><a class="toc-backref" href="#id4">Build OpenDP</a><a class="headerlink" href="#build-opendp" title="Permalink to this headline">¶</a></h2>
 <p>Change to the <code class="docutils literal notranslate"><span class="pre">rust</span></code> directory before attempting a build, run the tests, and then return to the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> rust
-cargo build --features<span class="o">=</span>python
+cargo build
 cargo <span class="nb">test</span>
 <span class="nb">cd</span> ..
 </pre></div>
 </div>
-<p>If you are on Windows, use <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span> <span class="pre">--no-default-features</span> <span class="pre">--features=python</span></code>.
-Be aware that this also disables floating-point protections.</p>
+<p>Add <cite>–features=untrusted</cite> to the <cite>cargo</cite> commands to include non-secure floating-point and contrib features like <cite>make_base_laplace</cite>.
+If you are on Windows, [check the windows build instructions](<a class="reference external" href="https://github.com/opendp/opendp/tree/main/windows">https://github.com/opendp/opendp/tree/main/windows</a>).</p>
 </div>
 <div class="section" id="install-python-dependencies">
 <h2><a class="toc-backref" href="#id5">Install Python Dependencies</a><a class="headerlink" href="#install-python-dependencies" title="Permalink to this headline">¶</a></h2>
@@ -439,6 +439,7 @@ mkdir src/opendp/lib
 pip install -e .
 </pre></div>
 </div>
+<p>The developer install will not work if you don’t use the <cite>-e</cite> flag when installing with pip!</p>
 </div>
 <div class="section" id="run-the-tests">
 <h2><a class="toc-backref" href="#id6">Run the Tests</a><a class="headerlink" href="#run-the-tests" title="Permalink to this headline">¶</a></h2>
