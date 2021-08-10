@@ -384,11 +384,11 @@
 
     <span class="k">def</span> <span class="fm">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Measurement&quot;</span><span class="p">,</span> <span class="s2">&quot;Transformation&quot;</span><span class="p">]):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">):</span>
-            <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">make_chain_mt</span>
+            <span class="kn">from</span> <span class="nn">opendp.comb</span> <span class="kn">import</span> <span class="n">make_chain_mt</span>
             <span class="k">return</span> <span class="n">make_chain_mt</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">):</span>
-            <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">make_chain_tt</span>
+            <span class="kn">from</span> <span class="nn">opendp.comb</span> <span class="kn">import</span> <span class="n">make_chain_tt</span>
             <span class="k">return</span> <span class="n">make_chain_tt</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
 
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;rshift expected a measurement or transformation, got </span><span class="si">{</span><span class="n">other</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
