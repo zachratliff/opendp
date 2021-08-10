@@ -265,12 +265,13 @@
 
 
 <div class="viewcode-block" id="make_is_equal"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_is_equal">[docs]</a><span class="k">def</span> <span class="nf">make_is_equal</span><span class="p">(</span>
-    <span class="n">value</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">TI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that checks if each element is equal to `value`.</span>
 <span class="sd">    </span>
 <span class="sd">    :param value: value to check against</span>
+<span class="sd">    :type value: Any</span>
 <span class="sd">    :param TI: input data type</span>
 <span class="sd">    :type TI: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A is_equal step.</span>
@@ -283,12 +284,12 @@
     <span class="n">TI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TI</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">TI</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">TI</span><span class="p">)</span>
     <span class="n">TI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_is_equal</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">TI</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
@@ -733,7 +734,7 @@
 
 
 <div class="viewcode-block" id="make_parse_column"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_parse_column">[docs]</a><span class="k">def</span> <span class="nf">make_parse_column</span><span class="p">(</span>
-    <span class="n">key</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
     <span class="n">impute</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">K</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
@@ -741,6 +742,7 @@
     <span class="sd">&quot;&quot;&quot;Make a Transformation that parses the `key` column of a dataframe as `T`.</span>
 <span class="sd">    </span>
 <span class="sd">    :param key: name of column to select from dataframe and parse</span>
+<span class="sd">    :type key: Any</span>
 <span class="sd">    :param impute: Enable to impute values that fail to parse. If false, raise an error if parsing fails.</span>
 <span class="sd">    :type impute: bool</span>
 <span class="sd">    :param K: categorical/hashable data type of the key/column name</span>
@@ -758,27 +760,28 @@
     <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
     <span class="n">impute</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">impute</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">)</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_parse_column</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">impute</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_select_column"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_select_column">[docs]</a><span class="k">def</span> <span class="nf">make_select_column</span><span class="p">(</span>
-    <span class="n">key</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
     <span class="n">K</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that retrieves the column `key` from a dataframe as Vec&lt;`T`&gt;.</span>
 <span class="sd">    </span>
 <span class="sd">    :param key: categorical/hashable data type of the key/column name</span>
+<span class="sd">    :type key: Any</span>
 <span class="sd">    :param K: data type of the key</span>
 <span class="sd">    :type K: RuntimeTypeDescriptor</span>
 <span class="sd">    :param T: data type to downcast to</span>
@@ -794,13 +797,13 @@
     <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">key</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_select_column</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
@@ -839,7 +842,7 @@
 
 
 <div class="viewcode-block" id="make_impute_constant"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_impute_constant">[docs]</a><span class="k">def</span> <span class="nf">make_impute_constant</span><span class="p">(</span>
-    <span class="n">constant</span><span class="p">,</span>
+    <span class="n">constant</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">DA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;OptionNullDomain&lt;AllDomain&lt;T&gt;&gt;&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that replaces null/None data with `constant`.</span>
@@ -847,6 +850,7 @@
 <span class="sd">    Set DA to InherentNullDomain&lt;AllDomain&lt;T&gt;&gt; for imputing on types that have an inherent representation of nullity, like floats.</span>
 <span class="sd">    </span>
 <span class="sd">    :param constant: Value to replace nulls with.</span>
+<span class="sd">    :type constant: Any</span>
 <span class="sd">    :param DA: domain of data being imputed. This is OptionNullDomain&lt;AllDomain&lt;T&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;T&gt;&gt;</span>
 <span class="sd">    :type DA: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A impute_constant step.</span>
@@ -861,12 +865,12 @@
     <span class="n">DA</span> <span class="o">=</span> <span class="n">DA</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">constant</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">constant</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     <span class="n">DA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">DA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_impute_constant</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">DA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>

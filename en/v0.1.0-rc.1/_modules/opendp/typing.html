@@ -372,6 +372,12 @@
                     <span class="s2">&quot;cannot infer atomic type of empty list&quot;</span><span class="p">)</span>
             <span class="p">])</span>
 
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">public_example</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;HashMap&#39;</span><span class="p">,</span> <span class="p">[</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">public_example</span><span class="o">.</span><span class="n">keys</span><span class="p">()))),</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">public_example</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
+            <span class="p">])</span>
+
         <span class="k">if</span> <span class="n">public_example</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;Option&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">UnknownType</span><span class="p">(</span><span class="s2">&quot;Constructed Option from a None variant&quot;</span><span class="p">)])</span>
 
