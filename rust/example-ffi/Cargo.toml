@@ -1,0 +1,27 @@
+[package]
+name = "example-ffi"
+description = "A minimal example FFI crate for the OpenDP library."
+license-file = "../../LICENSE"
+readme = "../../README.md"
+homepage = "https://opendp.org/"
+repository = "https://github.com/opendp/opendp"
+version = "0.0.0-development"
+authors = ["The OpenDP Project <info@opendp.org>"]
+edition = "2018"
+
+[dependencies]
+backtrace = "0.3"
+
+[dependencies.opendp]
+path = "../opendp"
+version = "0.0.0-development"
+default-features = false
+# insert desired opendp features here
+features = []
+
+[lib]
+crate-type = ["rlib", "cdylib"]
+
+# don't consider this a part of the opendp and opendp-ffi workspace
+[workspace]
+
