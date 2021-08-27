@@ -2,4 +2,4 @@ Application Structure
 =====================
 
 .. contents:: |toctitle|
-	:local:
+    :local:
