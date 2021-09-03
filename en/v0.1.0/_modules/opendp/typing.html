@@ -319,7 +319,7 @@
 
             <span class="n">domain</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s1">&#39;AllDomain&#39;</span><span class="p">:</span> <span class="n">AllDomain</span><span class="p">,</span>
-                <span class="s1">&#39;IntervalDomain&#39;</span><span class="p">:</span> <span class="n">IntervalDomain</span><span class="p">,</span>
+                <span class="s1">&#39;BoundedDomain&#39;</span><span class="p">:</span> <span class="n">BoundedDomain</span><span class="p">,</span>
                 <span class="s1">&#39;VectorDomain&#39;</span><span class="p">:</span> <span class="n">VectorDomain</span><span class="p">,</span>
                 <span class="s1">&#39;OptionNullDomain&#39;</span><span class="p">:</span> <span class="n">OptionNullDomain</span><span class="p">,</span>
                 <span class="s1">&#39;InherentNullDomain&#39;</span><span class="p">:</span> <span class="n">InherentNullDomain</span><span class="p">,</span>
@@ -512,7 +512,7 @@
 
 
 <span class="n">AllDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;AllDomain&#39;</span><span class="p">)</span>
-<span class="n">IntervalDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;IntervalDomain&#39;</span><span class="p">)</span>
+<span class="n">BoundedDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;BoundedDomain&#39;</span><span class="p">)</span>
 <span class="n">VectorDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;VectorDomain&#39;</span><span class="p">)</span>
 <span class="n">OptionNullDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;OptionNullDomain&#39;</span><span class="p">)</span>
 <span class="n">InherentNullDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;InherentNullDomain&#39;</span><span class="p">)</span>
@@ -529,6 +529,10 @@
 
 <div class="viewcode-block" id="get_domain_atom_or_infer"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_domain_atom_or_infer">[docs]</a><span class="k">def</span> <span class="nf">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span> <span class="n">RuntimeType</span><span class="p">,</span> <span class="n">example</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">get_domain_atom</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span> <span class="ow">or</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">example</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_first"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_first">[docs]</a><span class="k">def</span> <span class="nf">get_first</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 </pre></div>
 
               </div>
