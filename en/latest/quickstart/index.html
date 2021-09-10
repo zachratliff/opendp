@@ -192,9 +192,24 @@
               
               <div class="toc-item">
                 
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
-    
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   Installation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hello-opendp">
+   Hello, OpenDP!
+  </a>
+ </li>
+</ul>
+
 </nav>
               </div>
               
@@ -216,7 +231,33 @@
                 
   <div class="section" id="quickstart">
 <h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
-<p>(In the future, this section will describe how to use the <a class="reference external" href="https://github.com/opendp/opendp">OpenDP Library</a>.)</p>
+<div class="contents local topic" id="toctitle">
+<p class="topic-title">Contents:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation" id="id1">Installation</a></p></li>
+<li><p><a class="reference internal" href="#hello-opendp" id="id2">Hello, OpenDP!</a></p></li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id1">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to get started with OpenDP is from Python. Use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install the <a class="reference external" href="https://pypi.org/project/opendp/">opendp</a> package from PyPI.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>% pip install opendp
+</pre></div>
+</div>
+<p>This will make the OpenDP modules available to your local environment.</p>
+</div>
+<div class="section" id="hello-opendp">
+<h2><a class="toc-backref" href="#id2">Hello, OpenDP!</a><a class="headerlink" href="#hello-opendp" title="Permalink to this headline">¶</a></h2>
+<p>Once you’ve installed OpenDP, you can write your first program. In the example below, we’ll construct an identity <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>, then invoke it on a string.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_identity</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="n">SubstituteDistance</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span> <span class="o">=</span> <span class="n">make_identity</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="n">SubstituteDistance</span><span class="p">,</span> <span class="n">TA</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+<span class="go">&#39;Hello, world!&#39;</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
