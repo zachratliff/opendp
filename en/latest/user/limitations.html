@@ -184,23 +184,23 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="combinator-constructors.html">
+   Combinator Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation-constructors.html">
+   Transformation Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="measurement-constructors.html">
+   Measurement Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="application-structure.html">
    Application Structure
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data-input-output.html">
-   Data Input and Output
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="type-conversions.html">
-   Type Conversions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="implementation-notes.html">
-   Implementation Notes
   </a>
  </li>
 </ul>
@@ -304,48 +304,55 @@
               <div>
                 
   <div class="section" id="limitations">
-<h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="toctitle">
 <p class="topic-title">Contents:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
-<li><p><a class="reference internal" href="#privacy-concerns" id="id2">Privacy Concerns</a></p></li>
-<li><p><a class="reference internal" href="#incomplete-privacy-proofs" id="id3">Incomplete Privacy Proofs</a></p></li>
-<li><p><a class="reference internal" href="#missing-functionality" id="id4">Missing Functionality</a></p></li>
-<li><p><a class="reference internal" href="#api-stability" id="id5">API Stability</a></p></li>
-<li><p><a class="reference internal" href="#software-quality" id="id6">Software Quality</a></p></li>
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#privacy-concerns" id="id3">Privacy Concerns</a></p></li>
+<li><p><a class="reference internal" href="#incomplete-privacy-proofs" id="id4">Incomplete Privacy Proofs</a></p></li>
+<li><p><a class="reference internal" href="#missing-functionality" id="id5">Missing Functionality</a></p></li>
+<li><p><a class="reference internal" href="#api-stability" id="id6">API Stability</a></p></li>
+<li><p><a class="reference internal" href="#software-quality" id="id7">Software Quality</a></p></li>
 </ul>
 </div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>OpenDP is early in its development history. We aim to build <em>the</em> trusted implementation of differential privacy algorithms, but we’re not there yet. We feel that OpenDP already can be used to build some useful applications, but please be aware of the following limitations.</p>
 </div>
 <div class="section" id="privacy-concerns">
-<h2><a class="toc-backref" href="#id2">Privacy Concerns</a><a class="headerlink" href="#privacy-concerns" title="Permalink to this headline">¶</a></h2>
-<p>As a work in progress, OpenDP has some known privacy concerns. These vulnerabilities can have a significant impact on some applications, so you should carefully consider them when using OpenDP.</p>
+<h2><a class="toc-backref" href="#id3">Privacy Concerns</a><a class="headerlink" href="#privacy-concerns" title="Permalink to this headline">¶</a></h2>
+<p>As a work in progress, OpenDP has some known privacy concerns.
+These vulnerabilities can have a significant impact on some applications,
+so you should carefully consider them when using OpenDP.</p>
 <ul class="simple">
-<li><p>Floating point issues: There are situations where OpenDP generates noise using native machine representations. This has the known issue of porous floating point output, resulting in <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/10/lsbs.pdf">attacks</a> where privacy can be violated.</p></li>
-<li><p>Side channel attacks: OpenDP is not robust to some side channel attacks. These include things like timing attacks, cache effects, etc. These may make it possible for an attacker to obtain information outside the intended interfaces of OpenDP functions, violating privacy.</p></li>
+<li><p>Floating point issues: There are situations where OpenDP generates noise using native machine representations.
+This has the known issue of porous floating point output,
+resulting in <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/10/lsbs.pdf">attacks</a> where privacy can be violated.
+See <a class="reference internal" href="measurement-constructors.html#floating-point"><span class="std std-ref">Floating-Point</span></a> for additional comments.</p></li>
+<li><p>Side channel attacks: OpenDP is not robust to some side channel attacks.
+These include things like timing attacks, cache effects, etc.
+These may make it possible for an attacker to obtain information outside the intended interfaces of OpenDP functions, violating privacy.</p></li>
 </ul>
 <p>We know that these issues are critical for a privacy library, and are formulating plans to address them. Until then, <em>we strongly recommend that you not yet use OpenDP for any privacy-critical applications</em>.</p>
 </div>
 <div class="section" id="incomplete-privacy-proofs">
-<h2><a class="toc-backref" href="#id3">Incomplete Privacy Proofs</a><a class="headerlink" href="#incomplete-privacy-proofs" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Incomplete Privacy Proofs</a><a class="headerlink" href="#incomplete-privacy-proofs" title="Permalink to this headline">¶</a></h2>
 <p>An important element of the OpenDP project is a formal vetting process that all library components must undergo, to verify their privacy characteristics. This process involves supplying mathematical proofs of the privacy properties of all algorithms and validating that all code faithfully implements the specified algorithms.</p>
 <p>For the most part, the code in OpenDP hasn’t yet undergone that vetting. This process is underway, but will take time. Therefore, we can’t yet properly vouch for the privacy claims of the implemented algorithms. If mathematical verifiability is important to you, then you shouldn’t yet rely on the code in OpenDP.</p>
 </div>
 <div class="section" id="missing-functionality">
-<h2><a class="toc-backref" href="#id4">Missing Functionality</a><a class="headerlink" href="#missing-functionality" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Missing Functionality</a><a class="headerlink" href="#missing-functionality" title="Permalink to this headline">¶</a></h2>
 <p>There are some elements of the OpenDP Programming Framework, the conceptual basis for OpenDP, that are not yet implemented. Foremost among these is the concept of interactive measurements. (There is an initial prototype, implemented in Rust only, but it’s not fully fleshed out). These elements are on our roadmap, but applications will have to wait to use them.</p>
 </div>
 <div class="section" id="api-stability">
-<h2><a class="toc-backref" href="#id5">API Stability</a><a class="headerlink" href="#api-stability" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">API Stability</a><a class="headerlink" href="#api-stability" title="Permalink to this headline">¶</a></h2>
 <p>The APIs of OpenDP are still in flux, and subject to change. We’ve iterated a lot on these interfaces, and feel like the general shape is working well, but it’s likely that many details will change in backwards-incompatible ways. This
 early flexibility is important to evolve the library, and we appreciate your understanding and feedback on improvements.</p>
 <p>When we release OpenDP 1.0.0, we’ll begin to offer API stability within <a class="reference external" href="https://semver.org">major versions</a>. Until then, please don’t depend on interfaces remaining the same across releases of OpenDP.</p>
 </div>
 <div class="section" id="software-quality">
-<h2><a class="toc-backref" href="#id6">Software Quality</a><a class="headerlink" href="#software-quality" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Software Quality</a><a class="headerlink" href="#software-quality" title="Permalink to this headline">¶</a></h2>
 <p>Like any software project, OpenDP likely has bugs. Because it’s still an early project, it likely has many bugs! We strive to make high quality software, but if you encounter issues, <a class="reference external" href="https://github.com/opendp/opendp/issues">please let us know</a>.</p>
 </div>
 </div>

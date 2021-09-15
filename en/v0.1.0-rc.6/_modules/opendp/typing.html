@@ -274,8 +274,6 @@
 <span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(&quot;i32&quot;) == &quot;i32&quot;</span>
 <span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(L1Distance[int]) == &quot;L1Distance&lt;i32&gt;&quot;</span>
 <span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(L1Distance[&quot;f32&quot;]) == &quot;L1Distance&lt;f32&gt;&quot;</span>
-<span class="sd">        &gt;&gt;&gt; from typing import List</span>
-<span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(List[int]) == &quot;Vec&lt;int&gt;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">generics</span> <span class="o">=</span> <span class="n">generics</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>

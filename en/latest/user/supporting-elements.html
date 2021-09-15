@@ -34,7 +34,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Application Structure" href="application-structure.html" />
+    <link rel="next" title="Combinator Constructors" href="combinator-constructors.html" />
     <link rel="prev" title="Core Structures" href="core-structures.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -184,23 +184,23 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="combinator-constructors.html">
+   Combinator Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation-constructors.html">
+   Transformation Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="measurement-constructors.html">
+   Measurement Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="application-structure.html">
    Application Structure
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data-input-output.html">
-   Data Input and Output
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="type-conversions.html">
-   Type Conversions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="implementation-notes.html">
-   Implementation Notes
   </a>
  </li>
 </ul>
@@ -258,23 +258,33 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function">
+   Function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#domains">
    Domains
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metrics-and-measures">
-   Metrics and Measures
+  <a class="reference internal nav-link" href="#metrics">
+   Metrics
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#distances">
-   Distances
+  <a class="reference internal nav-link" href="#measures">
+   Measures
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#relations">
    Relations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distances">
+   Distances
   </a>
  </li>
 </ul>
@@ -303,27 +313,164 @@
 <div class="contents local topic" id="toctitle">
 <p class="topic-title">Contents:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
-<li><p><a class="reference internal" href="#domains" id="id2">Domains</a></p></li>
-<li><p><a class="reference internal" href="#metrics-and-measures" id="id3">Metrics and Measures</a></p></li>
-<li><p><a class="reference internal" href="#distances" id="id4">Distances</a></p></li>
-<li><p><a class="reference internal" href="#relations" id="id5">Relations</a></p></li>
+<li><p><a class="reference internal" href="#overview" id="id6">Overview</a></p></li>
+<li><p><a class="reference internal" href="#function" id="id7">Function</a></p></li>
+<li><p><a class="reference internal" href="#domains" id="id8">Domains</a></p></li>
+<li><p><a class="reference internal" href="#metrics" id="id9">Metrics</a></p></li>
+<li><p><a class="reference internal" href="#measures" id="id10">Measures</a></p></li>
+<li><p><a class="reference internal" href="#relations" id="id11">Relations</a></p></li>
+<li><p><a class="reference internal" href="#distances" id="id12">Distances</a></p></li>
 </ul>
 </div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This section builds on the <a class="reference internal" href="core-structures.html#core-structures"><span class="std std-ref">Core Structures</span></a> documentation to expand on the constituent pieces of Measurements and Transformations.</p>
+</div>
+<div class="section" id="function">
+<span id="functions"></span><h2><a class="toc-backref" href="#id7">Function</a><a class="headerlink" href="#function" title="Permalink to this headline">¶</a></h2>
+<p>As one would expect, all data processing is handled via a function.
+The function member stored in a Transformation or Measurement struct is straightforward representation of an idealized mathematical function.
+A mathematical function is a binary relation between two sets,
+that associates each value in the input set with a value in the output set.
+In OpenDP, we capture these sets with domains…</p>
 </div>
 <div class="section" id="domains">
-<h2><a class="toc-backref" href="#id2">Domains</a><a class="headerlink" href="#domains" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><a class="toc-backref" href="#id8">Domains</a><a class="headerlink" href="#domains" title="Permalink to this headline">¶</a></h2>
+<p>A domain describes the set of all possible input values of a function, or all possible output values of a function.
+Two domains (<code class="docutils literal notranslate"><span class="pre">input_domain</span></code> and <code class="docutils literal notranslate"><span class="pre">output_domain</span></code>) are bundled within each Transformation or Measurement to describe all possible inputs and outputs of the function.</p>
+<p>Some common domains are:</p>
+<dl class="field-list">
+<dt class="field-odd">AllDomain&lt;T&gt;</dt>
+<dd class="field-odd"><div class="line-block">
+<div class="line">The set of all non-null values in the type T.</div>
+<div class="line">For example, <code class="docutils literal notranslate"><span class="pre">AllDomain&lt;u8&gt;</span></code> describes the set of all possible unsigned 8-bit integers:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">...,</span> <span class="pre">127}</span></code>.</div>
 </div>
-<div class="section" id="metrics-and-measures">
-<h2><a class="toc-backref" href="#id3">Metrics and Measures</a><a class="headerlink" href="#metrics-and-measures" title="Permalink to this headline">¶</a></h2>
+</dd>
+<dt class="field-even">BoundedDomain&lt;T&gt;</dt>
+<dd class="field-even"><div class="line-block">
+<div class="line">The set of all non-null values in the type T, bounded between some L and U.</div>
+<div class="line">For example, <code class="docutils literal notranslate"><span class="pre">BoundedDomain&lt;u32&gt;</span></code> between -2 and 2:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{-2,</span> <span class="pre">-1,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2}</span></code>.</div>
 </div>
-<div class="section" id="distances">
-<h2><a class="toc-backref" href="#id4">Distances</a><a class="headerlink" href="#distances" title="Permalink to this headline">¶</a></h2>
+</dd>
+<dt class="field-odd">VectorDomain&lt;D&gt;</dt>
+<dd class="field-odd"><div class="line-block">
+<div class="line">The set of all vectors, where each element of the vector is a member of domain D.</div>
+<div class="line">For example, <code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;bool&gt;&gt;</span></code> describes the set of all boolean vectors:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{[True],</span> <span class="pre">[False],</span> <span class="pre">[True,</span> <span class="pre">True],</span> <span class="pre">[True,</span> <span class="pre">False],</span> <span class="pre">...}</span></code>.</div>
+</div>
+</dd>
+<dt class="field-even">SizedDomain&lt;D&gt;</dt>
+<dd class="field-even"><div class="line-block">
+<div class="line">The set of all values in the domain D, that have a specific size.</div>
+<div class="line">For example, <code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;bool&gt;&gt;&gt;</span></code> of size 2 describe the set of boolean vectors:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{[True,</span> <span class="pre">True],</span> <span class="pre">[True,</span> <span class="pre">False],</span> <span class="pre">[False,</span> <span class="pre">True],</span> <span class="pre">[False,</span> <span class="pre">False]}</span></code>.</div>
+</div>
+</dd>
+</dl>
+<p>In many cases, you provide some qualities about the underlying domain and the rest is automatically chosen by the constructor.</p>
+<p>Lets look at the Transformation returned from <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_sum" title="opendp.trans.make_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_bounded_sum(bounds=(0,</span> <span class="pre">1))</span></code></a>.
+The input domain has type <code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;i32&gt;&gt;</span></code>,
+read as “the set of all vectors of 32-bit signed integers bounded between 0 and 1.”
+The bounds argument to the constructor provides L and U, and since TIA (atomic input type) is not passed,
+TIA is inferred from the type of the public bounds.
+The output domain is simply <code class="docutils literal notranslate"><span class="pre">AllDomain&lt;i32&gt;</span></code>, or “the set of all 32-bit signed integers.”</p>
+<p>These domains serve two purposes:</p>
+<ol class="arabic simple">
+<li><p>The relation depends on the input and output domain in its proof to restrict the set of neighboring datasets or distributions.
+An example is the relation for <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_sum" title="opendp.trans.make_sized_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_sum()</span></code></a>,
+which makes use of a <code class="docutils literal notranslate"><span class="pre">SizedDomain</span></code> domain descriptor to more tightly bound the sensitivity.</p></li>
+<li><p>Combinators also use domains to ensure the output is well-defined.
+For instance, chainer constructors check that intermediate domains are equivalent,
+to guarantee that the output of the interior function is always a valid input to the exterior function.</p></li>
+</ol>
+</div>
+<div class="section" id="metrics">
+<span id="id2"></span><h2><a class="toc-backref" href="#id9">Metrics</a><a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h2>
+<p>A metric is a function that computes the distance between two elements of a set.</p>
+<p id="symmetric-distance">A concrete example of a metric in opendp is <code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code>, or “the symmetric distance metric <code class="docutils literal notranslate"><span class="pre">|A</span> <span class="pre">△</span> <span class="pre">B|</span> <span class="pre">=</span> <span class="pre">|(A\B)</span> <span class="pre">∪</span> <span class="pre">(B\A)|</span></code>.”
+This is used to count the fewest number of additions or removals to convert one dataset <code class="docutils literal notranslate"><span class="pre">A</span></code> into another dataset <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<p id="absolute-distance">Each metric is bundled together with a domain, and <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> are members of that domain.
+Since the symmetric distance metric is often paired with a <code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;D&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> are often vectors.
+In practice, if we had a dataset where each user can influence at most k records, we would say that the symmetric distance is bounded by <cite>k</cite>, so <code class="docutils literal notranslate"><span class="pre">d_in=k</span></code>.</p>
+<p>Another example metric is <code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;f64&gt;</span></code>.
+This can be read as “the absolute distance metric <code class="docutils literal notranslate"><span class="pre">|A</span> <span class="pre">-</span> <span class="pre">B|</span></code>, where distances are expressed in 64-bit floats.”
+This metric is used to represent global sensitivities
+(an upper bound on how much an aggregated value can change if you were to perturb an individual in the original dataset).
+In practice, most users will not have a need to provide global sensitivities to privacy relations,
+because they are a midway distance bound encountered while relating dataset distances and privacy distances.
+However, there are situations where constructors accept a metric for specifying the metric for sensitivities.</p>
+</div>
+<div class="section" id="measures">
+<span id="id3"></span><h2><a class="toc-backref" href="#id10">Measures</a><a class="headerlink" href="#measures" title="Permalink to this headline">¶</a></h2>
+<p>In OpenDP, a measure is a function for measuring the distance between probability distributions.</p>
+<p id="max-divergence">A concrete example is <code class="docutils literal notranslate"><span class="pre">MaxDivergence&lt;f64&gt;</span></code>,
+read as “the max divergence metric where numbers are expressed in terms of 64-bit floats.”
+The max divergence measure has distances that correspond to <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> in the pure definition of differential privacy.</p>
+<p id="smoothed-max-divergence">Another example is <code class="docutils literal notranslate"><span class="pre">SmoothedMaxDivergence&lt;f64&gt;</span></code>.
+The smoothed max divergence measure corresponds to approximate differential privacy,
+where distances are <code class="docutils literal notranslate"><span class="pre">(epsilon,</span> <span class="pre">delta)</span></code> tuples.</p>
+<p>Every Measurement (<a class="reference internal" href="measurement-constructors.html#measurement-constructors"><span class="std std-ref">see listing</span></a>) contains an output_measure, and compositors are always typed by a Measure.</p>
 </div>
 <div class="section" id="relations">
-<h2><a class="toc-backref" href="#id5">Relations</a><a class="headerlink" href="#relations" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2><a class="toc-backref" href="#id11">Relations</a><a class="headerlink" href="#relations" title="Permalink to this headline">¶</a></h2>
+<p>We assert the privacy properties of a Transformation or Measurement’s function via a relation.
+Relations accept a <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and a <code class="docutils literal notranslate"><span class="pre">d_out</span></code> and return a boolean.
+There are a couple equivalent interpretations for when a relation returns True:</p>
+<ul class="simple">
+<li><p>All potential input perturbations do not significantly influence the output.</p></li>
+<li><p>The transformation or measurement is (<code class="docutils literal notranslate"><span class="pre">d_in</span></code>, <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)-close.</p></li>
+</ul>
+<p>What does (<code class="docutils literal notranslate"><span class="pre">d_in</span></code>, <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)-close mean?
+If a measurement is (<code class="docutils literal notranslate"><span class="pre">d_in</span></code>, <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)-close,
+then the output is <code class="docutils literal notranslate"><span class="pre">d_out</span></code>-DP when the input is changed by at most <code class="docutils literal notranslate"><span class="pre">d_in</span></code>.
+If a transformation is (<code class="docutils literal notranslate"><span class="pre">d_in</span></code>, <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)-close,
+then the output can change by at most <code class="docutils literal notranslate"><span class="pre">d_out</span></code> when the input is changed by at most <code class="docutils literal notranslate"><span class="pre">d_in</span></code>.</p>
+<p>What are <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code>?
+<code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> are distances in terms of the input and output metric or measure.
+Refer to <a class="reference internal" href="#distances"><span class="std std-ref">Distances</span></a> below for more details.</p>
+<p>This should be enough rope to work with, but I’ll still touch quickly on the mathematical side.
+Refer to the programming framework paper itself if you want a deeper understanding.
+Consider <code class="docutils literal notranslate"><span class="pre">d_X</span></code> the input metric, <code class="docutils literal notranslate"><span class="pre">d_Y</span></code> the output metric or measure,
+and <code class="docutils literal notranslate"><span class="pre">f</span></code> the function in the Transformation or Measurement.</p>
+<p>A slightly more mathematical way to express this is:
+If the relation passes, then it tells you that, for all <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">x'</span></code> in the input domain:</p>
+<ul class="simple">
+<li><p>if <code class="docutils literal notranslate"><span class="pre">d_X(x,</span> <span class="pre">x')</span> <span class="pre">&lt;=</span> <span class="pre">d_in</span></code> (if neighboring datasets are at most <code class="docutils literal notranslate"><span class="pre">d_in</span></code>-close)</p></li>
+<li><p>then <code class="docutils literal notranslate"><span class="pre">d_Y(x,</span> <span class="pre">x')</span> <span class="pre">&lt;=</span> <span class="pre">d_out</span></code> (then the distance between function outputs is no greater than <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)</p></li>
+</ul>
+<p>Notice that if the relation passes at <code class="docutils literal notranslate"><span class="pre">d_out</span></code>, it will pass for any value greater than <code class="docutils literal notranslate"><span class="pre">d_out</span></code>.
+This is an incredibly useful observation, as we will see in the <a class="reference internal" href="application-structure.html#parameter-search"><span class="std std-ref">Parameter Search</span></a> section.</p>
+<p>Putting this to practice, the following example checks the stability relation on a clamp transformation.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_clamp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clamp</span> <span class="o">=</span> <span class="n">make_clamp</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The maximum number of records that any one individual may influence in your dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">in_symmetric_distance</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># clamp is a 1-stable transformation, so this should pass for any symmetric_distance &gt;= 3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">clamp</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">d_in</span><span class="o">=</span><span class="n">in_symmetric_distance</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="distances">
+<span id="id5"></span><h2><a class="toc-backref" href="#id12">Distances</a><a class="headerlink" href="#distances" title="Permalink to this headline">¶</a></h2>
+<p>You can determine what units <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> are expressed in based on the <code class="docutils literal notranslate"><span class="pre">input_metric</span></code>, and <code class="docutils literal notranslate"><span class="pre">output_metric</span></code> or <code class="docutils literal notranslate"><span class="pre">output_measure</span></code>.
+Follow the links into the example metrics and measures to get more detail on what the distances mean for that kind of metric or measure.</p>
+<p>On Transformations, the <code class="docutils literal notranslate"><span class="pre">input_metric</span></code> will be a dataset metric like <a class="reference internal" href="#symmetric-distance"><span class="std std-ref">SymmetricDistance</span></a>.
+The <code class="docutils literal notranslate"><span class="pre">output_metric</span></code> will either be some dataset metric (on dataset transformations)
+or some kind of global sensitivity metric like <a class="reference internal" href="#absolute-distance"><span class="std std-ref">AbsoluteDistance</span></a> (on aggregations).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">input_metric</span></code> of Measurements is initially only some kind of global sensitivity metric.
+However, once you chain the Measurement with a Transformation, the resulting Measurement will have whatever <code class="docutils literal notranslate"><span class="pre">input_metric</span></code> was on the Transformation.
+The <code class="docutils literal notranslate"><span class="pre">output_measure</span></code> of Measurements is some kind of privacy measure like <a class="reference internal" href="#max-divergence"><span class="std std-ref">MaxDivergence</span></a> or <a class="reference internal" href="#smoothed-max-divergence"><span class="std std-ref">SmoothedMaxDivergence</span></a>.</p>
+<p>It is critical that you choose the correct <code class="docutils literal notranslate"><span class="pre">d_in</span></code> for the relation,
+whereas you can use <a class="reference internal" href="application-structure.html#parameter-search"><span class="std std-ref">binary search utilities</span></a> to find the tightest <code class="docutils literal notranslate"><span class="pre">d_out</span></code>.
+Practically speaking, the smaller the <code class="docutils literal notranslate"><span class="pre">d_out</span></code>, the tighter your analysis will be.</p>
+<p>You might find it surprising that metrics and measures are never actually evaluated!
+The framework does not evaluate these because it only needs to relate a user-provided input distance to another user-provided output distance.
+Even the user should not directly compute input and output distances:
+they are <a class="reference internal" href="application-structure.html#determining-accuracy"><span class="std std-ref">solved-for</span></a>, <a class="reference internal" href="application-structure.html#parameter-search"><span class="std std-ref">bisected</span></a>, or even <a class="reference internal" href="application-structure.html#putting-together"><span class="std std-ref">contextual</span></a>.</p>
+<p>Be careful: even a dataset query to determine the greatest number of contributions made by any any one individual can itself be private information.</p>
 </div>
 </div>
 
@@ -334,7 +481,7 @@
               <div class='prev-next-bottom'>
                 
     <a class='left-prev' id="prev-link" href="core-structures.html" title="previous page">Core Structures</a>
-    <a class='right-next' id="next-link" href="application-structure.html" title="next page">Application Structure</a>
+    <a class='right-next' id="next-link" href="combinator-constructors.html" title="next page">Combinator Constructors</a>
 
               </div>
               
