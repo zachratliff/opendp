@@ -179,8 +179,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="contributing.html">
-     Contributing
+    <a class="reference internal" href="contribution-process.html">
+     Contribution Process
     </a>
    </li>
    <li class="toctree-l2">
@@ -194,13 +194,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="review-process.html">
-     Review Process
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="committer-notes.html">
-     Committer Notes
+    <a class="reference internal" href="maintainer-notes.html">
+     Maintainer Notes
     </a>
    </li>
   </ul>
@@ -303,22 +298,23 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-get-involved">How to Get Involved</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#bug-reports">Bug Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#code-and-proof-contributions">Code and Proof Contributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#resolve-an-issue">Resolve an Issue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#write-documentation">Write Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#add-tests">Add Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#review-pull-requests">Review Pull Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intro.html#respond-to-discussion-posts">Respond to Discussion Posts</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#welcome">Welcome</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#ways-to-contribute">Ways to Contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="contributing.html#submitting-pull-requests">Submitting Pull Requests</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#find-or-create-a-github-issue">Find or Create a GitHub Issue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#create-a-new-branch-off-the-main-branch">Create a New Branch off the main Branch</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#commit-your-change-to-your-new-branch">Commit Your Change to Your New Branch</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#rebase-as-needed">Rebase as Needed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#push-your-branch-to-github">Push Your Branch to GitHub</a></li>
-<li class="toctree-l3"><a class="reference internal" href="contributing.html#make-a-pull-request">Make a Pull Request</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="contribution-process.html">Contribution Process</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contribution-process.html#development-setup">Development Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribution-process.html#implementation">Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribution-process.html#review-process">Review Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contribution-process.html#merge">Merge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logistics.html">Logistics</a><ul>
@@ -339,34 +335,30 @@
 <li class="toctree-l3"><a class="reference internal" href="logistics.html#building-the-docs">Building the Docs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="logistics.html#development-tooling">Development Tooling</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code-structure.html">Code Structure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code-structure.html#constructor-functions">Constructor Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code-structure.html#proofs">Proofs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code-structure.html#ffi-wrappers">FFI Wrappers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-structure.html#constructor-function">Constructor Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-structure.html#proof">Proof</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-structure.html#ffi-wrapper">FFI Wrapper</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="review-process.html">Review Process</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="review-process.html#matching-proof-pseudocode-to-implementation">Matching Proof Pseudocode to Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review-process.html#validating-privacy-claims">Validating Privacy Claims</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maintainer-notes.html">Maintainer Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maintainer-notes.html#summary">Summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="maintainer-notes.html#rationale">Rationale</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="committer-notes.html">Committer Notes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="committer-notes.html#summary">Summary</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="committer-notes.html#rationale">Rationale</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="committer-notes.html#task-tracking">Task Tracking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="committer-notes.html#code-hygiene">Code Hygiene</a></li>
-<li class="toctree-l2"><a class="reference internal" href="committer-notes.html#branching-strategy">Branching Strategy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="committer-notes.html#release-process">Release Process</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="committer-notes.html#overview">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="committer-notes.html#playbook">Playbook</a></li>
-<li class="toctree-l3"><a class="reference internal" href="committer-notes.html#release-workflows">Release Workflows</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="committer-notes.html#sync-branches-yml">sync-branches.yml</a></li>
-<li class="toctree-l4"><a class="reference internal" href="committer-notes.html#release-yml">release.yml</a></li>
-<li class="toctree-l4"><a class="reference internal" href="committer-notes.html#docs-yml">docs.yml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintainer-notes.html#task-tracking">Task Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintainer-notes.html#code-hygiene">Code Hygiene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintainer-notes.html#branching-strategy">Branching Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintainer-notes.html#release-process">Release Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="maintainer-notes.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maintainer-notes.html#playbook">Playbook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="maintainer-notes.html#release-workflows">Release Workflows</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="maintainer-notes.html#sync-branches-yml">sync-branches.yml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maintainer-notes.html#release-yml">release.yml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maintainer-notes.html#docs-yml">docs.yml</a></li>
 </ul>
 </li>
 </ul>

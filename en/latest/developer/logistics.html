@@ -35,7 +35,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Code Structure" href="code-structure.html" />
-    <link rel="prev" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="Contribution Process" href="contribution-process.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -179,8 +179,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="contributing.html">
-     Contributing
+    <a class="reference internal" href="contribution-process.html">
+     Contribution Process
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -194,13 +194,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="review-process.html">
-     Review Process
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="committer-notes.html">
-     Committer Notes
+    <a class="reference internal" href="maintainer-notes.html">
+     Maintainer Notes
     </a>
    </li>
   </ul>
@@ -342,6 +337,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#development-tooling">
+   Development Tooling
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -364,46 +364,49 @@
               <div>
                 
   <div class="section" id="logistics">
-<h1>Logistics<a class="headerlink" href="#logistics" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Logistics<a class="headerlink" href="#logistics" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="toctitle">
 <p class="topic-title">Contents:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#development-environment" id="id1">Development Environment</a></p>
+<li><p><a class="reference internal" href="#development-environment" id="id2">Development Environment</a></p>
 <ul>
-<li><p><a class="reference internal" href="#install-rust" id="id2">Install Rust</a></p></li>
-<li><p><a class="reference internal" href="#install-python" id="id3">Install Python</a></p></li>
-<li><p><a class="reference internal" href="#clone-the-opendp-repo" id="id4">Clone the OpenDP Repo</a></p></li>
+<li><p><a class="reference internal" href="#install-rust" id="id3">Install Rust</a></p></li>
+<li><p><a class="reference internal" href="#install-python" id="id4">Install Python</a></p></li>
+<li><p><a class="reference internal" href="#clone-the-opendp-repo" id="id5">Clone the OpenDP Repo</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#building-opendp" id="id5">Building OpenDP</a></p>
+<li><p><a class="reference internal" href="#building-opendp" id="id6">Building OpenDP</a></p>
 <ul>
-<li><p><a class="reference internal" href="#build-opendp" id="id6">Build OpenDP</a></p></li>
-<li><p><a class="reference internal" href="#install-python-dependencies" id="id7">Install Python Dependencies</a></p></li>
-<li><p><a class="reference internal" href="#run-the-tests" id="id8">Run the Tests</a></p></li>
+<li><p><a class="reference internal" href="#build-opendp" id="id7">Build OpenDP</a></p></li>
+<li><p><a class="reference internal" href="#install-python-dependencies" id="id8">Install Python Dependencies</a></p></li>
+<li><p><a class="reference internal" href="#run-the-tests" id="id9">Run the Tests</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#documentation" id="id9">Documentation</a></p>
+<li><p><a class="reference internal" href="#documentation" id="id10">Documentation</a></p>
 <ul>
-<li><p><a class="reference internal" href="#documentation-source" id="id10">Documentation Source</a></p></li>
-<li><p><a class="reference internal" href="#building-the-docs" id="id11">Building the Docs</a></p></li>
+<li><p><a class="reference internal" href="#documentation-source" id="id11">Documentation Source</a></p></li>
+<li><p><a class="reference internal" href="#building-the-docs" id="id12">Building the Docs</a></p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="#development-tooling" id="id13">Development Tooling</a></p></li>
 </ul>
 </div>
 <div class="section" id="development-environment">
-<h2><a class="toc-backref" href="#id1">Development Environment</a><a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Development Environment</a><a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h2>
 <p>Follow the steps below to get an OpenDP development environment set up, including the ability to run tests in both Rust and Python.</p>
 <div class="section" id="install-rust">
-<h3><a class="toc-backref" href="#id2">Install Rust</a><a class="headerlink" href="#install-rust" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Install Rust</a><a class="headerlink" href="#install-rust" title="Permalink to this headline">¶</a></h3>
 <p>Download Rust from the <a class="reference external" href="https://www.rust-lang.org">Rust website</a>.</p>
 </div>
 <div class="section" id="install-python">
-<h3><a class="toc-backref" href="#id3">Install Python</a><a class="headerlink" href="#install-python" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Install Python</a><a class="headerlink" href="#install-python" title="Permalink to this headline">¶</a></h3>
 <p>Download Python from the <a class="reference external" href="https://www.python.org">Python website</a>.</p>
 </div>
 <div class="section" id="clone-the-opendp-repo">
-<h3><a class="toc-backref" href="#id4">Clone the OpenDP Repo</a><a class="headerlink" href="#clone-the-opendp-repo" title="Permalink to this headline">¶</a></h3>
-<p>Clone the repo and change into the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> directory that’s created.</p>
+<h3><a class="toc-backref" href="#id5">Clone the OpenDP Repo</a><a class="headerlink" href="#clone-the-opendp-repo" title="Permalink to this headline">¶</a></h3>
+<p>If you don’t have write access to the OpenDP repository, you will first need to make a fork.
+<a class="reference external" href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">The GitHub documentation explains this process well</a>.</p>
+<p>Clone the repo (or your fork) and change into the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> directory that’s created.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/opendp/opendp.git
 <span class="nb">cd</span> opendp
 </pre></div>
@@ -411,9 +414,9 @@
 </div>
 </div>
 <div class="section" id="building-opendp">
-<h2><a class="toc-backref" href="#id5">Building OpenDP</a><a class="headerlink" href="#building-opendp" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Building OpenDP</a><a class="headerlink" href="#building-opendp" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="build-opendp">
-<h3><a class="toc-backref" href="#id6">Build OpenDP</a><a class="headerlink" href="#build-opendp" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Build OpenDP</a><a class="headerlink" href="#build-opendp" title="Permalink to this headline">¶</a></h3>
 <p>Change to the <code class="docutils literal notranslate"><span class="pre">rust</span></code> directory before attempting a build, run the tests, and then return to the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> rust
 cargo build
@@ -422,10 +425,10 @@ cargo <span class="nb">test</span>
 </pre></div>
 </div>
 <p>Add <cite>–features=untrusted</cite> to the <cite>cargo</cite> commands to include non-secure floating-point and contrib features like <cite>make_base_laplace</cite>.
-If you are on Windows, [check the windows build instructions](<a class="reference external" href="https://github.com/opendp/opendp/tree/main/windows">https://github.com/opendp/opendp/tree/main/windows</a>).</p>
+If you are on Windows, <cite>check the windows build instructions &lt;https://github.com/opendp/opendp/tree/main/windows&gt;</cite>.</p>
 </div>
 <div class="section" id="install-python-dependencies">
-<h3><a class="toc-backref" href="#id7">Install Python Dependencies</a><a class="headerlink" href="#install-python-dependencies" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Install Python Dependencies</a><a class="headerlink" href="#install-python-dependencies" title="Permalink to this headline">¶</a></h3>
 <p>Change to the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory, create a Python virtual environment, activate it, install dependencies, and then install the Python OpenDP library itself.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> python
 python3 -m venv venv
@@ -438,7 +441,7 @@ pip install -e .
 <p>The developer install will not work if you don’t use the <cite>-e</cite> flag when installing with pip!</p>
 </div>
 <div class="section" id="run-the-tests">
-<h3><a class="toc-backref" href="#id8">Run the Tests</a><a class="headerlink" href="#run-the-tests" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Run the Tests</a><a class="headerlink" href="#run-the-tests" title="Permalink to this headline">¶</a></h3>
 <p>From the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory, set an environment variable to the location of the OpenDP library you built. Then run the tests.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">OPENDP_LIB_DIR</span><span class="o">=</span>../rust/target/debug
 pytest -v
@@ -447,15 +450,36 @@ pytest -v
 </div>
 </div>
 <div class="section" id="documentation">
-<h2><a class="toc-backref" href="#id9">Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="documentation-source">
-<h3><a class="toc-backref" href="#id10">Documentation Source</a><a class="headerlink" href="#documentation-source" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Documentation Source</a><a class="headerlink" href="#documentation-source" title="Permalink to this headline">¶</a></h3>
 <p>The source for this documentation can be found in the “docs” directory at <a class="reference external" href="https://github.com/opendp/opendp">https://github.com/opendp/opendp</a></p>
 </div>
 <div class="section" id="building-the-docs">
-<h3><a class="toc-backref" href="#id11">Building the Docs</a><a class="headerlink" href="#building-the-docs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Building the Docs</a><a class="headerlink" href="#building-the-docs" title="Permalink to this headline">¶</a></h3>
 <p>The docs are built using Sphinx and the steps are listed in the README in the “docs” directory.</p>
 </div>
+</div>
+<div class="section" id="development-tooling">
+<h2><a class="toc-backref" href="#id13">Development Tooling</a><a class="headerlink" href="#development-tooling" title="Permalink to this headline">¶</a></h2>
+<p>There are many development environments that work with Rust. Here are a few:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://plugins.jetbrains.com/plugin/8182-rust">Intellij IDEA</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">VS Code</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rust-lang/rust-enhanced">Sublime</a></p></li>
+</ul>
+<p>Use whatever developer tooling you are comfortable with.
+The benefit to using Intellij IDEA is that the core developers use it,
+which makes it possible for one of us to actually join your IDE with the <a class="reference external" href="https://www.jetbrains.com/code-with-me/">CodeWithMe Plugin</a>,
+and talk through issues.</p>
+<p>A few notes on Intellij IDEA:</p>
+<ul class="simple">
+<li><p>Both the Intellij IDEA community edition and the CodeWithMe plugin are free</p></li>
+<li><p>Be sure to open the project at the root of the git repository</p></li>
+<li><p>Be sure to install the Python and Rust plugins for interactivity</p></li>
+<li><p>Be sure to “attach” the Cargo.toml in the red banner the first time you open a Rust source file</p></li>
+</ul>
+<p>To reiterate, of course, use whatever developer tooling you are comfortable with!</p>
 </div>
 </div>
 
@@ -465,7 +489,7 @@ pytest -v
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="contributing.html" title="previous page">Contributing</a>
+    <a class='left-prev' id="prev-link" href="contribution-process.html" title="previous page">Contribution Process</a>
     <a class='right-next' id="next-link" href="code-structure.html" title="next page">Code Structure</a>
 
               </div>
