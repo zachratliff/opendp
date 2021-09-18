@@ -439,7 +439,7 @@ We can ensure data is non-null by imputing.</p>
 <p>When you cast with <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast" title="opendp.trans.make_cast"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_cast()</span></code></a> or <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast_default" title="opendp.trans.make_cast_default"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_cast_default()</span></code></a>,
 the cast may fail, so the output domain may include null values (<code class="docutils literal notranslate"><span class="pre">OptionNullDomain</span></code> and <code class="docutils literal notranslate"><span class="pre">InherentNullDomain</span></code>).
 We have provided imputation transformations to transform the data domain to the non-null <code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code>.</p>
-<p>You may also be in a situation where you want to bypass dataframe loading and casting,
+<p>You may also be in a situation where you want to bypass dataframe loading and casting
 because you already have a vector of floats loaded into memory.
 In this case, you should start your chain with an imputer if the floats are potentially null.</p>
 <dl class="field-list simple">
@@ -487,7 +487,7 @@ For example, the relation downstream for the <a class="reference internal" href=
 This relation states that adding or removing <code class="docutils literal notranslate"><span class="pre">d_in</span></code> records may influence the sum by <code class="docutils literal notranslate"><span class="pre">d_in</span></code> * the greatest magnitude of a record.</p>
 <p>Any aggregator that needs bounded data will indicate it in the function name.
 In these kinds of aggregators the relations make use of the clamping bounds <code class="docutils literal notranslate"><span class="pre">L</span></code> and <code class="docutils literal notranslate"><span class="pre">U</span></code> to translate <code class="docutils literal notranslate"><span class="pre">d_in</span></code> to <code class="docutils literal notranslate"><span class="pre">d_out</span></code>.</p>
-<p>Clamping happens after casting and imputation, but before resizing.
+<p>Clamping happens after casting and imputation but before resizing.
 Only chain with a clamp transformation if the aggregator you intend to use needs bounded data.</p>
 <table class="table">
 <colgroup>
@@ -561,7 +561,7 @@ These default to <code class="docutils literal notranslate"><span class="pre">L1
 If you set the output metric to <code class="docutils literal notranslate"><span class="pre">L2Distance[TOA]</span></code>, you can chain with L2 mechanisms like <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_base_gaussian()</span></code>.</p>
 <p>The <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count_by" title="opendp.trans.make_count_by"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_by()</span></code></a> transformation stands out;
 it is currently the only transformation that pairs with <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_base_stability()</span></code>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">make_sized_bounded_covariance</span></code> aggregator is rust-only at this time because data loaders for data of type <code class="docutils literal notranslate"><span class="pre">Vec&lt;(T,</span> <span class="pre">T)&gt;</span></code> are not implemented.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">make_sized_bounded_covariance</span></code> aggregator is Rust-only at this time because data loaders for data of type <code class="docutils literal notranslate"><span class="pre">Vec&lt;(T,</span> <span class="pre">T)&gt;</span></code> are not implemented.</p>
 <table class="table">
 <colgroup>
 <col style="width: 33%" />
@@ -607,7 +607,7 @@ it is currently the only transformation that pairs with <code class="xref py py-
 <td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>make_sized_bounded_covariance (rust only)</p></td>
+<tr class="row-even"><td><p>make_sized_bounded_covariance (Rust only)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;(T,T)&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
 </tr>

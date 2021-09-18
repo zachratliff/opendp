@@ -363,7 +363,7 @@ This is the primary differentiating factor between measurements and transformati
 <span id="id3"></span><h2><a class="toc-backref" href="#id6">Transformation</a><a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h2>
 <p>A <a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a> is a (deterministic) mapping from datasets to datasets.
 Transformations are used to preprocess and aggregate data before chaining with a measurement.</p>
-<p>Similarly to <code class="docutils literal notranslate"><span class="pre">meas</span></code> above, lets say we have an arbitrary instance of a Transformation, called <code class="docutils literal notranslate"><span class="pre">trans</span></code>,
+<p>Similarly to <code class="docutils literal notranslate"><span class="pre">meas</span></code> above, let’s say we have an arbitrary instance of a Transformation, called <code class="docutils literal notranslate"><span class="pre">trans</span></code>,
 and a code snippet <code class="docutils literal notranslate"><span class="pre">trans.check(d_in,</span> <span class="pre">d_out)</span></code>.
 If the code snippet evaluates to True, then <code class="docutils literal notranslate"><span class="pre">trans</span></code> is <code class="docutils literal notranslate"><span class="pre">d_out</span></code>-close on <code class="docutils literal notranslate"><span class="pre">d_in</span></code>-close inputs,
 or equivalently “(<code class="docutils literal notranslate"><span class="pre">d_in</span></code>, <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)-close”.
@@ -402,7 +402,7 @@ Transformations need to be <a class="reference internal" href="combinator-constr
 The majority of the library’s interface consists of these constructors.</p>
 <p>Because Measurements and Transformations are themselves like functions (they can be invoked on an input and return an output),
 you can think of constructors as higher-order functions:
-You call them to produce another function, that you will then feed data.</p>
+You call them to produce another function that you will then feed data.</p>
 <p>There’s a few top-level constructor listings:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="combinator-constructors.html#combinator-constructors"><span class="std std-ref">Combinator Constructors</span></a></p></li>

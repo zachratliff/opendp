@@ -330,7 +330,7 @@
 <span id="functions"></span><h2><a class="toc-backref" href="#id7">Function</a><a class="headerlink" href="#function" title="Permalink to this headline">¶</a></h2>
 <p>As one would expect, all data processing is handled via a function.
 The function member stored in a Transformation or Measurement struct is straightforward representation of an idealized mathematical function.
-A mathematical function is a binary relation between two sets,
+A mathematical function is a binary relation between two sets
 that associates each value in the input set with a value in the output set.
 In OpenDP, we capture these sets with domains…</p>
 </div>
@@ -370,7 +370,7 @@ Two domains (<code class="docutils literal notranslate"><span class="pre">input_
 </dd>
 </dl>
 <p>In many cases, you provide some qualities about the underlying domain and the rest is automatically chosen by the constructor.</p>
-<p>Lets look at the Transformation returned from <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_sum" title="opendp.trans.make_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_bounded_sum(bounds=(0,</span> <span class="pre">1))</span></code></a>.
+<p>Let’s look at the Transformation returned from <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_sum" title="opendp.trans.make_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_bounded_sum(bounds=(0,</span> <span class="pre">1))</span></code></a>.
 The input domain has type <code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;i32&gt;&gt;</span></code>,
 read as “the set of all vectors of 32-bit signed integers bounded between 0 and 1.”
 The bounds argument to the constructor provides L and U, and since TIA (atomic input type) is not passed,
@@ -382,7 +382,7 @@ The output domain is simply <code class="docutils literal notranslate"><span cla
 An example is the relation for <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_sum" title="opendp.trans.make_sized_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_sum()</span></code></a>,
 which makes use of a <code class="docutils literal notranslate"><span class="pre">SizedDomain</span></code> domain descriptor to more tightly bound the sensitivity.</p></li>
 <li><p>Combinators also use domains to ensure the output is well-defined.
-For instance, chainer constructors check that intermediate domains are equivalent,
+For instance, chainer constructors check that intermediate domains are equivalent
 to guarantee that the output of the interior function is always a valid input to the exterior function.</p></li>
 </ol>
 </div>
@@ -430,7 +430,7 @@ then the output can change by at most <code class="docutils literal notranslate"
 <p>What are <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code>?
 <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> are distances in terms of the input and output metric or measure.
 Refer to <a class="reference internal" href="#distances"><span class="std std-ref">Distances</span></a> below for more details.</p>
-<p>This should be enough rope to work with, but I’ll still touch quickly on the mathematical side.
+<p>This should be enough rope to work with, but let’s still touch quickly on the mathematical side.
 Refer to the programming framework paper itself if you want a deeper understanding.
 Consider <code class="docutils literal notranslate"><span class="pre">d_X</span></code> the input metric, <code class="docutils literal notranslate"><span class="pre">d_Y</span></code> the output metric or measure,
 and <code class="docutils literal notranslate"><span class="pre">f</span></code> the function in the Transformation or Measurement.</p>
@@ -470,7 +470,7 @@ Practically speaking, the smaller the <code class="docutils literal notranslate"
 The framework does not evaluate these because it only needs to relate a user-provided input distance to another user-provided output distance.
 Even the user should not directly compute input and output distances:
 they are <a class="reference internal" href="application-structure.html#determining-accuracy"><span class="std std-ref">solved-for</span></a>, <a class="reference internal" href="application-structure.html#parameter-search"><span class="std std-ref">bisected</span></a>, or even <a class="reference internal" href="application-structure.html#putting-together"><span class="std std-ref">contextual</span></a>.</p>
-<p>Be careful: even a dataset query to determine the greatest number of contributions made by any any one individual can itself be private information.</p>
+<p>Be careful: even a dataset query to determine the greatest number of contributions made by any one individual can itself be private information.</p>
 </div>
 </div>
 
