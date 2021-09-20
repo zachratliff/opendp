@@ -70,7 +70,7 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../quickstart/index.html">
+ <a class="reference internal nav-link" href="../../quickstart.html">
   Quickstart
  </a>
 </li>
@@ -82,7 +82,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../examples/index.html">
+ <a class="reference internal nav-link" href="../../examples.html">
   Examples
  </a>
 </li>
@@ -100,7 +100,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../contact/index.html">
+ <a class="reference internal nav-link" href="../../contact.html">
   Contact
  </a>
 </li>
@@ -152,15 +152,10 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
-    <p class="caption" role="heading">
- <span class="caption-text">
-  Contents:
- </span>
-</p>
-<ul class="current nav bd-sidenav">
+    <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="index.html">
-   Python
+   Python API
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -219,7 +214,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference external" href="https://docs.rs/opendp">
-   Rust
+   Rust API
   </a>
  </li>
 </ul>
@@ -291,7 +286,7 @@
 <span id="opendp-core-module"></span><h1>opendp.core module<a class="headerlink" href="#module-opendp.core" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.measurement_check">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><span class="pre">opendp.mod.Measurement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_check" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the privacy relation of the <cite>measurement</cite> at the given <cite>d_in</cite>, <cite>d_out</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -319,7 +314,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.measurement_input_carrier_type">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_input_carrier_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><span class="pre">opendp.mod.Measurement</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_input_carrier_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_input_carrier_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_input_carrier_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_input_carrier_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_input_carrier_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the input (carrier) data type of <cite>measurement</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -340,7 +335,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.measurement_input_distance_type">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_input_distance_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><span class="pre">opendp.mod.Measurement</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_input_distance_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_input_distance_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_input_distance_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_input_distance_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_input_distance_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the input distance type of <cite>measurement</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -361,7 +356,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.measurement_invoke">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><span class="pre">opendp.mod.Measurement</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_invoke" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_invoke" title="Permalink to this definition">¶</a></dt>
 <dd><p>Invoke the <cite>measurement</cite> with <cite>arg</cite>. Returns a differentially private release.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -388,7 +383,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.measurement_output_distance_type">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_output_distance_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><span class="pre">opendp.mod.Measurement</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_output_distance_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_output_distance_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_output_distance_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_output_distance_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_output_distance_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the output distance type of <cite>measurement</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -409,7 +404,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.transformation_check">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><span class="pre">opendp.mod.Transformation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_check" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check the stability relation of the <cite>transformation</cite> at the given <cite>d_in</cite>, <cite>d_out</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -437,7 +432,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.transformation_input_carrier_type">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_input_carrier_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><span class="pre">opendp.mod.Transformation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_input_carrier_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_input_carrier_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_input_carrier_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_input_carrier_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_input_carrier_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the input (carrier) data type of <cite>transformation</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -458,7 +453,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.transformation_input_distance_type">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_input_distance_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><span class="pre">opendp.mod.Transformation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_input_distance_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_input_distance_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_input_distance_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_input_distance_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_input_distance_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the input distance type of <cite>transformation</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -479,7 +474,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.transformation_invoke">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><span class="pre">opendp.mod.Transformation</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_invoke" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_invoke" title="Permalink to this definition">¶</a></dt>
 <dd><p>Invoke the <cite>transformation</cite> with <cite>arg</cite>. 
 The response is not differentially private as it has not been chained with a measurement.</p>
 <dl class="field-list simple">
@@ -507,7 +502,7 @@ The response is not differentially private as it has not been chained with a mea
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.transformation_output_distance_type">
-<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_output_distance_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><span class="pre">opendp.mod.Transformation</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_output_distance_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_output_distance_type" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">transformation_output_distance_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#transformation_output_distance_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.transformation_output_distance_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the output distance type of <cite>transformation</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

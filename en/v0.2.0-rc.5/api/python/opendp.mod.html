@@ -326,7 +326,7 @@ The privacy relation maps from an input metric to an output measure.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="opendp.mod.Measurement.check">
-<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement.check" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement.check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the measurement satisfies the privacy relation at <cite>d_in</cite>, <cite>d_out</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -402,11 +402,20 @@ This is the type that the budget is expressed in.</p>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="opendp.mod.OpenDPException">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">OpenDPException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variant</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_traceback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#OpenDPException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.OpenDPException" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">OpenDPException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_traceback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#OpenDPException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.OpenDPException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>General exception for errors originating from the underlying OpenDP library.
 The variant attribute corresponds to <a class="reference external" href="https://github.com/opendp/opendp/blob/53ec58d01762ca5ceee08590d7e7b725bbdafcf6/rust/opendp/src/error.rs#L46-L87">one of the following variants</a> and can be matched on.
 Error variants may change in library updates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>variant</strong> (<em>str</em>) – </p></li>
+<li><p><strong>message</strong> (<em>str</em>) – </p></li>
+<li><p><strong>inner_traceback</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py class">
@@ -536,17 +545,31 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.assert_features">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">assert_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/opendp/mod.html#assert_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.assert_features" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">assert_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#assert_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.assert_features" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>features</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.binary_search">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predicate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predicate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find the closest passing value to the decision boundary of <cite>predicate</cite> within float or integer <cite>bounds</cite>.</p>
 <p>If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p></p></dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>predicate</strong> (<em>Callable</em><em>[</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>bool</em><em>]</em>) – </p></li>
+<li><p><strong>bounds</strong> (<em>Union</em><em>[</em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Integer binary search</span>
@@ -560,8 +583,8 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>predicate</strong> – a monotonic unary function from a number to a boolean</p></li>
-<li><p><strong>bounds</strong> – a 2-tuple of the lower and upper bounds to the input of <cite>predicate</cite></p></li>
+<li><p><strong>predicate</strong> (<em>Callable</em><em>[</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>bool</em><em>]</em>) – a monotonic unary function from a number to a boolean</p></li>
+<li><p><strong>bounds</strong> (<em>Union</em><em>[</em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em>) – a 2-tuple of the lower and upper bounds to the input of <cite>predicate</cite></p></li>
 <li><p><strong>tolerance</strong> – the discovered parameter differs by at most <cite>tolerance</cite> from the ideal parameter</p></li>
 </ul>
 </dd>
@@ -576,15 +599,33 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.binary_search_chain">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">make_chain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation"><span class="pre">opendp.mod.Transformation</span></a><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement"><span class="pre">opendp.mod.Measurement</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation"><span class="pre">opendp.mod.Transformation</span></a><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement"><span class="pre">opendp.mod.Measurement</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search_chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search_chain" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">make_chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search_chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search_chain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optimizes a parameterized chain <cite>make_chain</cite> within float or integer <cite>bounds</cite>,
 subject to the chained relation being (<cite>d_in</cite>, <cite>d_out</cite>)-close.</p>
 <p><cite>bounds</cite> defaults to (0., MAX_FINITE_FLOAT).
 If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <p>See <cite>binary_search_param</cite> to retrieve the discovered parameter instead of the complete computation chain.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Example</dt>
-<dd class="field-odd"><p></p></dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>make_chain</strong> (<em>Callable</em><em>[</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>Union</em><em>[</em><a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>opendp.mod.Transformation</em></a><em>, </em><a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>opendp.mod.Measurement</em></a><em>]</em><em>]</em>) – a unary function that maps from a number to a Transformation or Measurement</p></li>
+<li><p><strong>d_in</strong> – desired input distance of the computation chain</p></li>
+<li><p><strong>d_out</strong> – desired output distance of the computation chain</p></li>
+<li><p><strong>bounds</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>]</em>) – a 2-tuple of the lower and upper bounds to the input of <cite>make_chain</cite></p></li>
+<li><p><strong>tolerance</strong> – the discovered parameter differs by at most <cite>tolerance</cite> from the ideal parameter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a chain parameterized at the nearest passing value to the decision point of the relation</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – if the arguments are ill-formed (type issues, decision boundary not within <cite>bounds</cite>)</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation">opendp.mod.Transformation</a>, <a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement">opendp.mod.Measurement</a>]</p>
+</dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_chain</span><span class="p">,</span> <span class="n">enable_features</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_clamp</span><span class="p">,</span> <span class="n">make_bounded_resize</span><span class="p">,</span> <span class="n">make_sized_bounded_mean</span>
@@ -606,28 +647,11 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">chain</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>make_chain</strong> – a unary function that maps from a number to a Transformation or Measurement</p></li>
-<li><p><strong>d_in</strong> – desired input distance of the computation chain</p></li>
-<li><p><strong>d_out</strong> – desired output distance of the computation chain</p></li>
-<li><p><strong>bounds</strong> – a 2-tuple of the lower and upper bounds to the input of <cite>make_chain</cite></p></li>
-<li><p><strong>tolerance</strong> – the discovered parameter differs by at most <cite>tolerance</cite> from the ideal parameter</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a chain parameterized at the nearest passing value to the decision point of the relation</p>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><strong>AssertionError</strong> – if the arguments are ill-formed (type issues, decision boundary not within <cite>bounds</cite>)</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.binary_search_param">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">make_chain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation"><span class="pre">opendp.mod.Transformation</span></a><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement"><span class="pre">opendp.mod.Measurement</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search_param" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">make_chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search_param" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optimizes a parameterized chain <cite>make_chain</cite> within float or integer <cite>bounds</cite>,
 subject to the chained relation being (<cite>d_in</cite>, <cite>d_out</cite>)-close.</p>
 <p><cite>bounds</cite> defaults to (0., MAX_FINITE_FLOAT).
@@ -635,6 +659,15 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p></p></dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>make_chain</strong> (<em>Callable</em><em>[</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>Union</em><em>[</em><a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>opendp.mod.Transformation</em></a><em>, </em><a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>opendp.mod.Measurement</em></a><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>bounds</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[float, int]</p>
+</dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_param</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_laplace</span>
@@ -652,10 +685,10 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>make_chain</strong> – a unary function that maps from a number to a Transformation or Measurement</p></li>
+<li><p><strong>make_chain</strong> (<em>Callable</em><em>[</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>Union</em><em>[</em><a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>opendp.mod.Transformation</em></a><em>, </em><a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>opendp.mod.Measurement</em></a><em>]</em><em>]</em>) – a unary function that maps from a number to a Transformation or Measurement</p></li>
 <li><p><strong>d_in</strong> – desired input distance of the computation chain</p></li>
 <li><p><strong>d_out</strong> – desired output distance of the computation chain</p></li>
-<li><p><strong>bounds</strong> – a 2-tuple of the lower and upper bounds to the input of <cite>make_chain</cite></p></li>
+<li><p><strong>bounds</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>]</em>) – a 2-tuple of the lower and upper bounds to the input of <cite>make_chain</cite></p></li>
 <li><p><strong>tolerance</strong> – the discovered parameter differs by at most <cite>tolerance</cite> from the ideal parameter</p></li>
 </ul>
 </dd>
@@ -665,18 +698,37 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>AssertionError</strong> – if the arguments are ill-formed (type issues, decision boundary not within <cite>bounds</cite>)</p>
 </dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[float, int]</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.disable_features">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">disable_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/opendp/mod.html#disable_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.disable_features" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">disable_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#disable_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.disable_features" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>features</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.enable_features">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">enable_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/opendp/mod.html#enable_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.enable_features" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">enable_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#enable_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.enable_features" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>features</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 

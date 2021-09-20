@@ -70,7 +70,7 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../quickstart/index.html">
+ <a class="reference internal nav-link" href="../quickstart.html">
   Quickstart
  </a>
 </li>
@@ -82,7 +82,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../examples/index.html">
+ <a class="reference internal nav-link" href="../examples.html">
   Examples
  </a>
 </li>
@@ -100,7 +100,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../contact/index.html">
+ <a class="reference internal nav-link" href="../contact.html">
   Contact
  </a>
 </li>
@@ -253,11 +253,6 @@
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#overview">
-   Overview
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#floating-point">
    Floating-Point
   </a>
@@ -285,15 +280,6 @@
                 
   <div class="section" id="measurement-constructors">
 <span id="id1"></span><h1>Measurement Constructors<a class="headerlink" href="#measurement-constructors" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="toctitle">
-<p class="topic-title">Contents:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#overview" id="id3">Overview</a></p></li>
-<li><p><a class="reference internal" href="#floating-point" id="id4">Floating-Point</a></p></li>
-</ul>
-</div>
-<div class="section" id="overview">
-<h2><a class="toc-backref" href="#id3">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>This section gives a high-level overview of the measurements that are available in the library.
 Refer to the <a class="reference internal" href="core-structures.html#measurement"><span class="std std-ref">Measurement</span></a> section for an explanation of what a measurement is.</p>
 <p>As covered in the <a class="reference internal" href="combinator-constructors.html#chaining"><span class="std std-ref">Chaining</span></a> section, the intermediate domains and metrics need to match when chaining.
@@ -360,9 +346,8 @@ You can choose whether to construct scalar or vector-valued versions by setting 
 </tr>
 </tbody>
 </table>
-</div>
 <div class="section" id="floating-point">
-<span id="id2"></span><h2><a class="toc-backref" href="#id4">Floating-Point</a><a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Floating-Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h2>
 <p>Given the context of measurements, this section goes into greater detail than <a class="reference internal" href="limitations.html#limitations"><span class="std std-ref">Limitations</span></a> on floating-point issues.
 Be warned that <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_laplace" title="opendp.meas.make_base_laplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_laplace()</span></code></a>, <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_gaussian" title="opendp.meas.make_base_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_gaussian()</span></code></a> and <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_stability" title="opendp.meas.make_base_stability"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_stability()</span></code></a>
 depend on continuous distributions that are poorly approximated by finite computers.</p>

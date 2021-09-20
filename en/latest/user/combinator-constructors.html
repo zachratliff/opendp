@@ -70,7 +70,7 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../quickstart/index.html">
+ <a class="reference internal nav-link" href="../quickstart.html">
   Quickstart
  </a>
 </li>
@@ -82,7 +82,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../examples/index.html">
+ <a class="reference internal nav-link" href="../examples.html">
   Examples
  </a>
 </li>
@@ -100,7 +100,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../contact/index.html">
+ <a class="reference internal nav-link" href="../contact.html">
   Contact
  </a>
 </li>
@@ -290,19 +290,11 @@
                 
   <div class="section" id="combinator-constructors">
 <span id="id1"></span><h1>Combinator Constructors<a class="headerlink" href="#combinator-constructors" title="Permalink to this headline">¶</a></h1>
-<div class="contents local topic" id="toctitle">
-<p class="topic-title">Contents:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#chaining" id="id3">Chaining</a></p></li>
-<li><p><a class="reference internal" href="#composition" id="id4">Composition</a></p></li>
-<li><p><a class="reference internal" href="#amplification" id="id5">Amplification</a></p></li>
-</ul>
-</div>
 <p>Combinator constructors use transformations or measurements to produce new transformations or measurements.
 Combinators are an area of OpenDP that are still heavily in development,
 but the chainers in particular are foundational and well-tested.</p>
 <div class="section" id="chaining">
-<span id="id2"></span><h2><a class="toc-backref" href="#id3">Chaining</a><a class="headerlink" href="#chaining" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Chaining<a class="headerlink" href="#chaining" title="Permalink to this headline">¶</a></h2>
 <p>Two of the most essential constructors are the “chainers” that chain transformations with transformations, and transformations with measurements.
 Chainers are used to incrementally piece Transformations or Measurements together that represent longer computational pipelines.</p>
 <p>The <a class="reference internal" href="../api/python/opendp.comb.html#opendp.comb.make_chain_tt" title="opendp.comb.make_chain_tt"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.comb.make_chain_tt()</span></code></a> constructor creates a new Transformation by combining an inner and an outer Transformation.
@@ -337,7 +329,7 @@ The syntax automatically chooses between <code class="xref py py-func docutils l
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">noisy_sum</span> <span class="o">=</span> <span class="n">bounded_sum</span> <span class="o">&gt;&gt;</span> <span class="n">base_geometric</span>
 </pre></div>
 </div>
-<p>In this example the chaining was successful because:</p>
+<p id="chaining-mismatch">In this example the chaining was successful because:</p>
 <ul class="simple">
 <li><p>bounded_sum’s output domain is equivalent to base_geometric’s input domain</p></li>
 <li><p>bounded_sum’s output metric is equivalent to base_geometric’s input metric</p></li>
@@ -351,7 +343,7 @@ but the chaining fails because the sum emits floats and the geometric mechanism 
 <span class="gp">... </span>    <span class="n">make_bounded_sum</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">base_geometric</span>
 <span class="gp">... </span><span class="k">except</span> <span class="n">OpenDPException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">message</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="go">Intermediate domains don&#39;t match.</span>
+<span class="go">Intermediate domains don&#39;t match. See https://github.com/opendp/opendp/discussions/297</span>
 <span class="go">    The structure of the intermediate domains are the same, but the types or parameters differ.</span>
 <span class="go">    shared_domain: AllDomain()</span>
 </pre></div>
@@ -361,7 +353,7 @@ This is intended to enable further chaining with preprocessors like <a class="re
 See the section on <a class="reference internal" href="transformation-constructors.html#transformation-constructors"><span class="std std-ref">Transformation Constructors</span></a> for more information on how to preprocess data in OpenDP.</p>
 </div>
 <div class="section" id="composition">
-<h2><a class="toc-backref" href="#id4">Composition</a><a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h2>
+<h2>Composition<a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h2>
 <p>OpenDP has a simple composition combinator for building a tuple of measurements out of two measurements.
 You can nest this composition combinator arbitrarily.</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.comb</span> <span class="kn">import</span> <span class="n">make_basic_composition</span>
@@ -379,7 +371,7 @@ You can nest this composition combinator arbitrarily.</p>
 </dl>
 </div>
 <div class="section" id="amplification">
-<h2><a class="toc-backref" href="#id5">Amplification</a><a class="headerlink" href="#amplification" title="Permalink to this headline">¶</a></h2>
+<h2>Amplification<a class="headerlink" href="#amplification" title="Permalink to this headline">¶</a></h2>
 <p>Population amplification based on sampling has an implementation but is not yet finalized.
 Progress on this can be found in the following PR:</p>
 <dl class="field-list simple">
