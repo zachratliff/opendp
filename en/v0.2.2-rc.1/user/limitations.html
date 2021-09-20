@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Limitations &#8212; OpenDP</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting Started" href="getting-started.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Limitations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="programming-framework.html">
+   Programming Framework
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="core-structures.html">
+   Core Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-elements.html">
+   Supporting Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="combinator-constructors.html">
+   Combinator Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation-constructors.html">
+   Transformation Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="measurement-constructors.html">
+   Measurement Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="application-structure.html">
+   Application Structure
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+  <li><a href="../../latest/user/limitations.html">latest</a></li>
+  <li><a href="../../stable/user/limitations.html">stable</a></li>
+</ul>
+
+
+<h6>Tags</h6>
+<ul>
+  <li><a href="../../v0.1.0/index.html">v0.1.0</a></li>
+  <li><a href="../../v0.1.0-rc.1/index.html">v0.1.0-rc.1</a></li>
+  <li><a href="../../v0.1.0-rc.2/index.html">v0.1.0-rc.2</a></li>
+  <li><a href="../../v0.1.0-rc.3/index.html">v0.1.0-rc.3</a></li>
+  <li><a href="../../v0.1.0-rc.4/index.html">v0.1.0-rc.4</a></li>
+  <li><a href="../../v0.1.0-rc.5/index.html">v0.1.0-rc.5</a></li>
+  <li><a href="../../v0.1.0-rc.6/index.html">v0.1.0-rc.6</a></li>
+  <li><a href="../../v0.1.0-rc.7/index.html">v0.1.0-rc.7</a></li>
+  <li><a href="../../v0.1.0-rc.8/index.html">v0.1.0-rc.8</a></li>
+  <li><a href="../../v0.2.0/user/limitations.html">v0.2.0</a></li>
+  <li><a href="../../v0.2.0-rc.2/index.html">v0.2.0-rc.2</a></li>
+  <li><a href="../../v0.2.0-rc.3/index.html">v0.2.0-rc.3</a></li>
+  <li><a href="../../v0.2.0-rc.4/user/limitations.html">v0.2.0-rc.4</a></li>
+  <li><a href="../../v0.2.0-rc.5/user/limitations.html">v0.2.0-rc.5</a></li>
+  <li><a href="../../v0.2.0-rc.6/user/limitations.html">v0.2.0-rc.6</a></li>
+  <li><a href="../../v0.2.0-rc1/index.html">v0.2.0-rc1</a></li>
+  <li><a href="../../v0.2.1/user/limitations.html">v0.2.1</a></li>
+  <li><a href="../../v0.2.1-rc.1/user/limitations.html">v0.2.1-rc.1</a></li>
+  <li><a href="limitations.html">v0.2.2-rc.1</a></li>
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#privacy-concerns">
+   Privacy Concerns
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#incomplete-privacy-proofs">
+   Incomplete Privacy Proofs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#missing-functionality">
+   Missing Functionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api-stability">
+   API Stability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-quality">
+   Software Quality
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="limitations">
+<span id="id1"></span><h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h1>
+<p>OpenDP is early in its development history.
+We aim to work with the community to make it <em>the</em> trustworthy implementation of differential privacy algorithms, but that will take some time.
+OpenDP already can be used to build some applications, but please be aware of the following limitations when deploying it.</p>
+<div class="section" id="privacy-concerns">
+<h2>Privacy Concerns<a class="headerlink" href="#privacy-concerns" title="Permalink to this headline">¶</a></h2>
+<p>As a work in progress, OpenDP has some known privacy concerns.
+These vulnerabilities may have an impact on some applications, depending on how they operate.</p>
+<ul class="simple">
+<li><p><strong>Floating point issues:</strong> Some of the OpenDP privacy mechanisms are based on assuming an idealized model of real-number arithmetic
+(as is common in the differential privacy research literature).
+Their implementations using floating-point numbers have <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/10/lsbs.pdf">known issues</a>,
+where the differential privacy property is not satisfied due to discrepancies between real-number arithmetic and floating-point arithmetic.
+Through the ongoing process of vetting privacy proofs (see below), we plan to clearly distinguish such mechanisms from ones
+whose concrete implementations faithfully satisfy differential privacy (e.g. discrete noise-addition mechanisms).
+See <a class="reference internal" href="measurement-constructors.html#floating-point"><span class="std std-ref">Floating-Point</span></a> for additional comments.</p></li>
+<li><p><strong>Side-channel attacks:</strong> OpenDP has not yet been hardened against side-channel attacks.
+These include things like timing attacks, cache effects, etc.
+These may make it possible for an attacker who interacts with the system running OpenDP software to obtain information outside
+the intended interfaces, potentially violating differential privacy.</p></li>
+</ul>
+<p>Please carefully consider the implications of these limitations if you are building a privacy-critical application.</p>
+</div>
+<div class="section" id="incomplete-privacy-proofs">
+<h2>Incomplete Privacy Proofs<a class="headerlink" href="#incomplete-privacy-proofs" title="Permalink to this headline">¶</a></h2>
+<p>An important element of the OpenDP Project is a formal vetting process that all library components must undergo, to verify their privacy characteristics.
+This process involves supplying mathematical proofs of the privacy properties of all algorithms and validating that all code faithfully implements
+the specified algorithms.</p>
+<p>This vetting process is currently underway for the code in the OpenDP Library.
+Through the vetting process, we expect to uncover bugs in code and proofs and make corrections to components to ensure they satisfy the specified
+privacy-relevant properties.
+As components complete the vetting process, they will drop the <code class="docutils literal notranslate"><span class="pre">contrib</span></code> feature flag, and will be accessible without explicitly opting into
+unvetted components.</p>
+</div>
+<div class="section" id="missing-functionality">
+<h2>Missing Functionality<a class="headerlink" href="#missing-functionality" title="Permalink to this headline">¶</a></h2>
+<p>There are some elements of the OpenDP Programming Framework, the conceptual basis for OpenDP, that are not yet implemented.
+Foremost among these is the concept of interactive measurements.
+(There is an initial prototype, implemented in Rust only, but it’s not fully fleshed out).
+These elements are on our roadmap, but applications will have to wait to use them.</p>
+</div>
+<div class="section" id="api-stability">
+<h2>API Stability<a class="headerlink" href="#api-stability" title="Permalink to this headline">¶</a></h2>
+<p>The APIs of OpenDP are still in flux, and subject to change.
+We’ve iterated a lot on these interfaces, and feel like the general shape is working well, but it’s likely that many details will change in backwards-incompatible ways.
+This early flexibility is important to evolve the library, and we appreciate your understanding and feedback on improvements.</p>
+<p>When we release OpenDP 1.0.0, we’ll begin to offer API stability within <a class="reference external" href="https://semver.org">major versions</a>.
+Until then, please don’t depend on interfaces remaining the same across releases of OpenDP.</p>
+</div>
+<div class="section" id="software-quality">
+<h2>Software Quality<a class="headerlink" href="#software-quality" title="Permalink to this headline">¶</a></h2>
+<p>Like any software project, OpenDP likely has bugs. Because it’s still an early project, it likely has many bugs!
+We strive to make high quality software, but if you encounter issues, <a class="reference external" href="https://github.com/opendp/opendp/issues">please let us know</a>.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="getting-started.html" title="next page">Getting Started</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

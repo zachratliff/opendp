@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting Started &#8212; OpenDP</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Programming Framework" href="programming-framework.html" />
+    <link rel="prev" title="Limitations" href="limitations.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="limitations.html">
+   Limitations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="programming-framework.html">
+   Programming Framework
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="core-structures.html">
+   Core Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-elements.html">
+   Supporting Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="combinator-constructors.html">
+   Combinator Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation-constructors.html">
+   Transformation Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="measurement-constructors.html">
+   Measurement Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="application-structure.html">
+   Application Structure
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+  <li><a href="../../latest/user/getting-started.html">latest</a></li>
+  <li><a href="../../stable/user/getting-started.html">stable</a></li>
+</ul>
+
+
+<h6>Tags</h6>
+<ul>
+  <li><a href="../../v0.1.0/index.html">v0.1.0</a></li>
+  <li><a href="../../v0.1.0-rc.1/index.html">v0.1.0-rc.1</a></li>
+  <li><a href="../../v0.1.0-rc.2/index.html">v0.1.0-rc.2</a></li>
+  <li><a href="../../v0.1.0-rc.3/index.html">v0.1.0-rc.3</a></li>
+  <li><a href="../../v0.1.0-rc.4/index.html">v0.1.0-rc.4</a></li>
+  <li><a href="../../v0.1.0-rc.5/index.html">v0.1.0-rc.5</a></li>
+  <li><a href="../../v0.1.0-rc.6/index.html">v0.1.0-rc.6</a></li>
+  <li><a href="../../v0.1.0-rc.7/index.html">v0.1.0-rc.7</a></li>
+  <li><a href="../../v0.1.0-rc.8/index.html">v0.1.0-rc.8</a></li>
+  <li><a href="../../v0.2.0/user/getting-started.html">v0.2.0</a></li>
+  <li><a href="../../v0.2.0-rc.2/user/getting-started.html">v0.2.0-rc.2</a></li>
+  <li><a href="../../v0.2.0-rc.3/user/getting-started.html">v0.2.0-rc.3</a></li>
+  <li><a href="../../v0.2.0-rc.4/user/getting-started.html">v0.2.0-rc.4</a></li>
+  <li><a href="../../v0.2.0-rc.5/user/getting-started.html">v0.2.0-rc.5</a></li>
+  <li><a href="../../v0.2.0-rc.6/user/getting-started.html">v0.2.0-rc.6</a></li>
+  <li><a href="../../v0.2.0-rc1/user/getting-started.html">v0.2.0-rc1</a></li>
+  <li><a href="../../v0.2.1/user/getting-started.html">v0.2.1</a></li>
+  <li><a href="../../v0.2.1-rc.1/user/getting-started.html">v0.2.1-rc.1</a></li>
+  <li><a href="getting-started.html">v0.2.2-rc.1</a></li>
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   Installation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#platforms">
+     Platforms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-opendp-for-python-from-pypi">
+     Installing OpenDP for Python from PyPI
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-opendp-for-rust-from-crates-io">
+     Installing OpenDP for Rust from crates.io
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-opendp-from-source">
+     Building OpenDP from Source
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hello-opendp">
+   Hello, OpenDP!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-s-next">
+   What’s Next?
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>This section will walk you through the process of getting started with OpenDP. By the end, you should have a working OpenDP installation, and you’ll be ready to explore OpenDP programming.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>OpenDP is built with a layered architecture. The core consists of a native library, implemented in Rust. On top of this core are bindings for using OpenDP from other languages (currently only Python, but we hope to add bindings for more languages in the future).</p>
+<p>In order to use OpenDP in your applications, the first step is installing the library so that it’s accessible to your local environment. Depending on how you intend to use OpenDP, these steps may vary.</p>
+<div class="section" id="platforms">
+<h3>Platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">¶</a></h3>
+<p>OpenDP is built for the following platforms:</p>
+<ul class="simple">
+<li><p>Python 3.6-3.9</p></li>
+<li><p>Linux, x86 64-bit, versions compatible with <a class="reference external" href="https://github.com/pypa/manylinux">manylinux</a> (others may work)</p></li>
+<li><p>macOS, x86 64-bit, version 10.13 or later</p></li>
+<li><p>Windows, x86 64-bit, version 7 or later</p></li>
+</ul>
+<p>Other platforms may work, but will require <a class="reference external" href="#building-opendp-from-source">building from source</a>.</p>
+</div>
+<div class="section" id="installing-opendp-for-python-from-pypi">
+<h3>Installing OpenDP for Python from PyPI<a class="headerlink" href="#installing-opendp-for-python-from-pypi" title="Permalink to this headline">¶</a></h3>
+<p>OpenDP is distributed as a <a class="reference external" href="https://pypi.org/project/opendp/">Python package on PyPI</a>. You can install it using <code class="docutils literal notranslate"><span class="pre">pip</span></code> or another package management tool:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">pip install opendp</span>
+</pre></div></div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The OpenDP Python package contains binaries for all supported platforms, so you don’t need to worry about specifying a specific platform.</p>
+</div>
+<p>At this point, you should be good to go! You can confirm your installation in Python by importing the top-level module <code class="docutils literal notranslate"><span class="pre">opendp</span></code>:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">opendp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-opendp-for-rust-from-crates-io">
+<h3>Installing OpenDP for Rust from crates.io<a class="headerlink" href="#installing-opendp-for-rust-from-crates-io" title="Permalink to this headline">¶</a></h3>
+<p>OpenDP is also available as a <a class="reference external" href="https://crates.io/crates/opendp">Rust crate</a>. This is uncommon, as most people will use OpenDP through one of the other language bindings. But if you need to use the Rust interface of OpenDP directly, you can just reference the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> crate in your <code class="docutils literal notranslate"><span class="pre">Cargo.toml</span></code> file:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[dependencies]</span>
+<span class="n">opendp</span> <span class="o">=</span> <span class="s">&quot;0.1.0&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The actual version may differ depending on the <a class="reference external" href="https://github.com/opendp/opendp/releases">releases available</a>.</p>
+</div>
+<p>With that configured, the Rust dependency system will automatically download the crate as needed, and you can just <code class="docutils literal notranslate"><span class="pre">use</span></code> the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> module:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="n">opendp</span>::<span class="n">core</span>::<span class="o">*</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// OpenDP code goes here!</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-opendp-from-source">
+<h3>Building OpenDP from Source<a class="headerlink" href="#building-opendp-from-source" title="Permalink to this headline">¶</a></h3>
+<p>Under special circumstances, it may be necessary to install OpenDP directly from the source files.
+This is only required if you want to build OpenDP from scratch, or if you’re interested in <a class="reference internal" href="../developer/index.html"><span class="doc">contributing to OpenDP</span></a>.</p>
+<p>For this to work, you’ll need some prerequisites:</p>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://www.rust-lang.org/tools/install">Rust toolchain</a>, edition 2018.</p></li>
+<li><p>Python, version 3.6 or higher.</p></li>
+<li><p>Python package <a class="reference external" href="https://docs.pytest.org/en/stable/">pytest</a> (optional but recommended).</p></li>
+</ul>
+<p>Assuming your base environment is ready, start by cloning the <a class="reference external" href="https://github.com/opendp/opendp">opendp git repo</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone git@github.com:opendp/opendp.git</span>
+<span class="prompt1"><span class="nb">cd</span> opendp</span>
+</pre></div></div><p>Next, you’ll need to build the Rust binaries. This is done by running <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code> in the <code class="docutils literal notranslate"><span class="pre">rust</span></code> subdirectory of the repo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> rust</span>
+<span class="prompt1">cargo build</span>
+</pre></div></div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’re using Windows, you may encounter problems when <code class="docutils literal notranslate"><span class="pre">cargo</span></code> tries to compile some dependencies. There are detailed instructions and scripts for dealing with this in the <a class="reference external" href="https://github.com/opendp/opendp/tree/main/windows">windows subdirectory</a> of the repository.</p>
+</div>
+<p>This will compile a debug version of the OpenDP shared library, placing it in the directory <code class="docutils literal notranslate"><span class="pre">opendp/rust/target/debug</span></code>. (The specific name of the library file will vary depending on your platform.)</p>
+<p>Finally, you can create a local Python package that incorporates your new shared library. This is possible by using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> with the <code class="docutils literal notranslate"><span class="pre">-e</span></code> option in the <code class="docutils literal notranslate"><span class="pre">python</span></code> subdirectory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ../python</span>
+<span class="prompt1">pip install -e .</span>
+</pre></div></div><p>At this point, you should be able use OpenDP as a locally installed package. You can test that things are working by running the OpenDP test suite, using <code class="docutils literal notranslate"><span class="pre">pytest</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip install opendp</span>
+<span class="prompt1"></span>
+<span class="prompt1"><span class="c1"># Still in python subdirectory</span></span>
+<span class="prompt1">pytest</span>
+</pre></div></div><p>If everything has gone well, you’ll see a bunch of output, then a line similar to this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="o">==================</span> <span class="m">57</span> passed <span class="k">in</span> <span class="m">1</span>.02s <span class="o">==================</span></span>
+</pre></div></div><p>This is just a quick overview of building OpenDP. If you’re interested in porting OpenDP to a different platform, we’d be delighted to get your help; please <a class="reference internal" href="../contact.html"><span class="doc">contact us</span></a>!</p>
+</div>
+</div>
+<div class="section" id="hello-opendp">
+<span id="id1"></span><h2>Hello, OpenDP!<a class="headerlink" href="#hello-opendp" title="Permalink to this headline">¶</a></h2>
+<p>Once you’ve installed OpenDP, you can write your first program.
+In the example below, we’ll construct a <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>, which is an OpenDP object that transforms data in some way.
+In this case, the operation it performs is the identity transformation – so no transformation at all!
+Then we’ll apply that transformation to a vector consisting of one string, and get back a copy of the vector.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_identity</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="n">VectorDomain</span><span class="p">,</span> <span class="n">AllDomain</span><span class="p">,</span> <span class="n">SymmetricDistance</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span> <span class="o">=</span> <span class="n">make_identity</span><span class="p">(</span><span class="n">D</span><span class="o">=</span><span class="n">VectorDomain</span><span class="p">[</span><span class="n">AllDomain</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">M</span><span class="o">=</span><span class="n">SymmetricDistance</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">identity</span><span class="p">([</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">])</span>
+<span class="go">[&#39;Hello, world!&#39;]</span>
+</pre></div>
+</div>
+<p>First, we import some types to have them in scope.
+<a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_identity" title="opendp.trans.make_identity"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_identity</span></code></a> is a <a class="reference internal" href="core-structures.html#constructors"><span class="std std-ref">constructor function</span></a>,
+and the imports from <a class="reference internal" href="../api/python/opendp.typing.html#module-opendp.typing" title="opendp.typing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">opendp.typing</span></code></a> are necessary for disambiguating the types the transformation will work with.</p>
+<p>Next we call <code class="docutils literal notranslate"><span class="pre">make_identity()</span></code> to construct an identity <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>.
+Because OpenDP is statically typed (even when called from dynamically typed languages like Python), we need to specify some type information.
+This is done by supplying some key-value arguments.
+<code class="docutils literal notranslate"><span class="pre">D=VectorDomain[AllDomain[str]]</span></code> says that we want the <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> to have an input and output <a class="reference internal" href="supporting-elements.html#domains"><span class="std std-ref">Domain</span></a> consisting of all string vectors,
+and <code class="docutils literal notranslate"><span class="pre">M=SymmetricDistance</span></code> says that we want the resulting <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> to use the OpenDP type <code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code> for its input and output <a class="reference internal" href="supporting-elements.html#metrics"><span class="std std-ref">Metric</span></a>.</p>
+<p>Finally, we invoke our <code class="docutils literal notranslate"><span class="pre">identity</span></code> transformation by calling it like a function on a string vector. As expected, it returns the same string vector back to us!</p>
+<p>That’s not particularly exciting, but it shows the rudiments of an OpenDP program.
+Don’t worry if some of the concepts don’t make sense because they’ll be explained later in this guide.</p>
+</div>
+<div class="section" id="what-s-next">
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>Now that you’ve had a taste of OpenDP, you can start exploring the library in more depth.
+The remainder of this guide will walk you through the concepts that underlie OpenDP,
+starting with its conceptual underpinnings, known as the <a class="reference internal" href="programming-framework.html"><span class="doc">OpenDP Programming Framework</span></a>.</p>
+<p>If you’re eager to just jump in with programming, you can look at some of the <a class="reference internal" href="../examples.html"><span class="doc">example uses of OpenDP</span></a>.</p>
+<p>For those who prefer to study reference material, you can consult the <a class="reference internal" href="../api/index.html"><span class="doc">API Docs</span></a>.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="limitations.html" title="previous page">Limitations</a>
+    <a class='right-next' id="next-link" href="programming-framework.html" title="next page">Programming Framework</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
