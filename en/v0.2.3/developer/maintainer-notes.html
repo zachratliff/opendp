@@ -1,0 +1,674 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maintainer Notes &#8212; OpenDP</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OpenDP Commons" href="../opendp-commons/index.html" />
+    <link rel="prev" title="Developer Frequently Asked Questions" href="developer-faq.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../user/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resources/index.html">
+   Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../faq.html">
+   Frequently Asked Questions
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Developer Guide
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="getting-involved.html">
+     Getting Involved
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contribution-process.html">
+     Contribution Process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="development-environment.html">
+     Development Environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="code-structure.html">
+     Code Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="developer-faq.html">
+     Developer Frequently Asked Questions
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Maintainer Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../opendp-commons/index.html">
+   OpenDP Commons
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+  <li><a href="../../latest/developer/maintainer-notes.html">latest</a></li>
+  <li><a href="../../stable/developer/maintainer-notes.html">stable</a></li>
+</ul>
+
+
+<h6>Tags</h6>
+<ul>
+  <li><a href="../../v0.1.0/index.html">v0.1.0</a></li>
+  <li><a href="../../v0.1.0-rc.1/index.html">v0.1.0-rc.1</a></li>
+  <li><a href="../../v0.1.0-rc.2/index.html">v0.1.0-rc.2</a></li>
+  <li><a href="../../v0.1.0-rc.3/index.html">v0.1.0-rc.3</a></li>
+  <li><a href="../../v0.1.0-rc.4/index.html">v0.1.0-rc.4</a></li>
+  <li><a href="../../v0.1.0-rc.5/index.html">v0.1.0-rc.5</a></li>
+  <li><a href="../../v0.1.0-rc.6/index.html">v0.1.0-rc.6</a></li>
+  <li><a href="../../v0.1.0-rc.7/index.html">v0.1.0-rc.7</a></li>
+  <li><a href="../../v0.1.0-rc.8/index.html">v0.1.0-rc.8</a></li>
+  <li><a href="../../v0.2.0/index.html">v0.2.0</a></li>
+  <li><a href="../../v0.2.0-rc.2/index.html">v0.2.0-rc.2</a></li>
+  <li><a href="../../v0.2.0-rc.3/index.html">v0.2.0-rc.3</a></li>
+  <li><a href="../../v0.2.0-rc.4/index.html">v0.2.0-rc.4</a></li>
+  <li><a href="../../v0.2.0-rc.5/index.html">v0.2.0-rc.5</a></li>
+  <li><a href="../../v0.2.0-rc.6/index.html">v0.2.0-rc.6</a></li>
+  <li><a href="../../v0.2.0-rc1/index.html">v0.2.0-rc1</a></li>
+  <li><a href="../../v0.2.1/index.html">v0.2.1</a></li>
+  <li><a href="../../v0.2.1-rc.1/index.html">v0.2.1-rc.1</a></li>
+  <li><a href="../../v0.2.2/developer/maintainer-notes.html">v0.2.2</a></li>
+  <li><a href="../../v0.2.2-rc.1/developer/maintainer-notes.html">v0.2.2-rc.1</a></li>
+  <li><a href="maintainer-notes.html">v0.2.3</a></li>
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rationale">
+     Rationale
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task-tracking">
+   Task Tracking
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-hygiene">
+   Code Hygiene
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#branching-strategy">
+   Branching Strategy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#release-process">
+   Release Process
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#playbook">
+     Playbook
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#release-workflows">
+     Release Workflows
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sync-branches-yml">
+       sync-branches.yml
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#release-yml">
+       release.yml
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#docs-yml">
+       docs.yml
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="maintainer-notes">
+<h1>Maintainer Notes<a class="headerlink" href="#maintainer-notes" title="Permalink to this headline">¶</a></h1>
+<p>This section maps out development logistics for the core team of OpenDP developers.</p>
+<div class="contents local topic" id="toctitle">
+<p class="topic-title">Contents:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#summary" id="id1">Summary</a></p>
+<ul>
+<li><p><a class="reference internal" href="#rationale" id="id2">Rationale</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#task-tracking" id="id3">Task Tracking</a></p></li>
+<li><p><a class="reference internal" href="#code-hygiene" id="id4">Code Hygiene</a></p></li>
+<li><p><a class="reference internal" href="#branching-strategy" id="id5">Branching Strategy</a></p></li>
+<li><p><a class="reference internal" href="#release-process" id="id6">Release Process</a></p>
+<ul>
+<li><p><a class="reference internal" href="#overview" id="id7">Overview</a></p></li>
+<li><p><a class="reference internal" href="#playbook" id="id8">Playbook</a></p></li>
+<li><p><a class="reference internal" href="#release-workflows" id="id9">Release Workflows</a></p>
+<ul>
+<li><p><a class="reference internal" href="#sync-branches-yml" id="id10">sync-branches.yml</a></p></li>
+<li><p><a class="reference internal" href="#release-yml" id="id11">release.yml</a></p></li>
+<li><p><a class="reference internal" href="#docs-yml" id="id12">docs.yml</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="summary">
+<h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Base all code on a long-lived branch called <code class="docutils literal notranslate"><span class="pre">main</span></code>, where we enforce a linear history.</p></li>
+<li><p>Do development on short-lived feature branches, which are merged to <code class="docutils literal notranslate"><span class="pre">main</span></code> with squash commits.</p></li>
+<li><p>Generate new versions via GitHub Releases, using long-lived release branches.</p></li>
+</ul>
+<div class="section" id="rationale">
+<h3><a class="toc-backref" href="#id2">Rationale</a><a class="headerlink" href="#rationale" title="Permalink to this headline">¶</a></h3>
+<p>Our process should be as simple as feasible – but not simpler!
+We need to balance developer friendliness with the special requirements of privacy-sensitive software.</p>
+<p>We want a clean <code class="docutils literal notranslate"><span class="pre">main</span></code> branch that is always in a known good state.
+It should always be usable for development, and all tests should pass.
+This allows us to create releases easily, using the most up-to-date code.</p>
+<p>We need linear code history, without unanticipated changes introduced by merge commits.
+This is important so that contributions are validated using the exact code that will land on <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+<p>We need separate release branches to allow bug fixes for previous versions.
+This is important to support library users who can’t upgrade to the latest version of OpenDP yet.</p>
+<p>All release tasks should be automated and drivable from GitHub.
+Creating a release should not require setup of a local environment, and should not have any dependencies on non-standard tools.
+This is important to allow for delegation of tasks and continuity of the project.</p>
+</div>
+</div>
+<div class="section" id="task-tracking">
+<h2><a class="toc-backref" href="#id3">Task Tracking</a><a class="headerlink" href="#task-tracking" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Use GitHub Issues to track all tasks. This is helpful to know who’s working on what.</p></li>
+<li><p>Use the <a class="reference external" href="https://github.com/orgs/opendp/projects/1?card_filter_query=label%3A%22opendp+core%22">OpenDP Development GitHub Project</a>
+to organize work and prioritize tasks for development.</p></li>
+<li><p>Manage all changes using GitHub Pull Requests.</p></li>
+</ul>
+</div>
+<div class="section" id="code-hygiene">
+<h2><a class="toc-backref" href="#id4">Code Hygiene</a><a class="headerlink" href="#code-hygiene" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Follow the Rust guidelines for coding style. Code should be formatted using the default settings of rustfmt.
+(TODO: Automatic marking of style issues on PRs – <a class="reference external" href="https://github.com/opendp/opendp/issues/256">https://github.com/opendp/opendp/issues/256</a>)</p></li>
+<li><p>Write API docs for all public and significant private APIs.
+We use inline comments to explain complicated code.</p></li>
+<li><p>Make sure <code class="docutils literal notranslate"><span class="pre">main</span></code> is always in a good state: Code compiles, tests pass.
+If <code class="docutils literal notranslate"><span class="pre">main</span></code> is ever broken, it should be the team’s top priority to fix it.</p></li>
+<li><p>Use GitHub Actions to check PRs automatically, and don’t allow merges if checks fail.</p></li>
+</ul>
+</div>
+<div class="section" id="branching-strategy">
+<h2><a class="toc-backref" href="#id5">Branching Strategy</a><a class="headerlink" href="#branching-strategy" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Use a single, long-lived branch named <code class="docutils literal notranslate"><span class="pre">main</span></code> for core project history.</p></li>
+<li><p>Maintain a linear history on <code class="docutils literal notranslate"><span class="pre">main</span></code>, meaning every commit is based only on the previous commit.
+Don’t do merge commits onto <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p>Do development on short-lived feature branches, derived from <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+Feature branches have the naming scheme <code class="docutils literal notranslate"><span class="pre">&lt;nnn&gt;-&lt;short-desc&gt;</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">&lt;nnn&gt;</span></code> is the number of the GitHub issue tracking this task,
+and <code class="docutils literal notranslate"><span class="pre">&lt;short-desc&gt;</span></code> is a short description of the change. For instance, <code class="docutils literal notranslate"><span class="pre">123-new-measurement</span></code></p></li>
+<li><p>Manage all changes using GitHub PRs from feature branches onto main.
+Check for test success and do code reviews before approving PRs.</p></li>
+<li><p>To maintain linear history, require PRs to be up to date with main.
+This means that developers may need to rebase feature branches periodically.</p></li>
+<li><p>Try to keep PRs relatively small and self contained.
+This simplifies code reviews, and reduces the likelihood of rebasing hassles.</p></li>
+<li><p>Generally, squash feature branches when merging PRs,
+so that there’s a 1-to-1 correspondence between issues/PRs and commits.</p></li>
+<li><p>To enforce this strategy, use the following branch protections on main:</p>
+<ul>
+<li><p>Require pull request reviews before merging</p></li>
+<li><p>Dismiss stale pull request approvals when new commits are pushed</p></li>
+<li><p>Require status checks to pass before merging</p></li>
+<li><p>Require branches to be up to date before merging</p></li>
+<li><p>Require linear history</p></li>
+</ul>
+</li>
+<li><p>Because this is the real world, allow for exceptions to these rules in case of excessive misery!</p></li>
+</ul>
+</div>
+<div class="section" id="release-process">
+<h2><a class="toc-backref" href="#id6">Release Process</a><a class="headerlink" href="#release-process" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overview">
+<h3><a class="toc-backref" href="#id7">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>For every release, designate a Release Manager.
+This person is charged with performing the key tasks of the release process.
+Responsibility for this should be rotated to avoid burnout.</p></li>
+<li><p>Use semantic versioning to identify all releases:</p>
+<ul>
+<li><p>Golden master (GM) releases have a semantic version of the form <code class="docutils literal notranslate"><span class="pre">&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;</span></code>. For example, <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code>.</p></li>
+<li><p>Release candidate (RC) releases have a semantic version of the form <code class="docutils literal notranslate"><span class="pre">&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;-rc.&lt;NUM&gt;</span></code>,
+where &lt;NUM&gt; starts at 1. For example, <code class="docutils literal notranslate"><span class="pre">1.2.0-rc.1</span></code>.</p></li>
+<li><p>The versions of the Rust crates and the Python package (and any other language bindings) are always kept in sync,
+even if there are no changes in one or the other.
+For example, version <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code> will comprise Rust crates <code class="docutils literal notranslate"><span class="pre">opendp</span> <span class="pre">1.2.0</span></code> and <code class="docutils literal notranslate"><span class="pre">opendp-ffi</span> <span class="pre">1.2.0</span></code>,
+and Python package <code class="docutils literal notranslate"><span class="pre">opendp</span> <span class="pre">1.2.0</span></code>.</p></li>
+</ul>
+</li>
+<li><p>For major and minor releases, create a new release branch.
+Release branches have the naming scheme <code class="docutils literal notranslate"><span class="pre">release/&lt;MAJ&gt;.&lt;MIN&gt;.x</span></code> (where <code class="docutils literal notranslate"><span class="pre">x</span></code> is literal “<code class="docutils literal notranslate"><span class="pre">x</span></code>”).
+For example, version <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code> → branch <code class="docutils literal notranslate"><span class="pre">release/1.2.x</span></code>.
+Release branches remain alive as long as that minor version is supported.
+(Note: Release branch names <em>don’t</em> contain the <code class="docutils literal notranslate"><span class="pre">-rc.&lt;NUM&gt;</span></code> suffix, even when doing an RC release.
+All RC releases and the GM release use the same branch.)</p></li>
+<li><p>For patch releases, don’t create a new release branch.
+Use the existing branch for the corresponding major or minor version.
+For example, version = <code class="docutils literal notranslate"><span class="pre">1.2.1</span></code> → branch <code class="docutils literal notranslate"><span class="pre">release/1.2.x</span></code>.</p></li>
+<li><p>For all releases, create a tag. Tags have the naming scheme <code class="docutils literal notranslate"><span class="pre">v&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;[-rc.&lt;NUM&gt;]</span></code>.
+For example, for version = <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code>, tag = <code class="docutils literal notranslate"><span class="pre">v1.2.0</span></code>.
+(Note: Tag names <em>do</em> contain the <code class="docutils literal notranslate"><span class="pre">-rc.&lt;NUM&gt;</span></code> suffix, when doing an RC release.)</p></li>
+<li><p>Use RC releases to validate the system end-to-end before creating the GM release.
+There should be at least one successful RC release before creating the GM release.</p></li>
+<li><p>Use a GitHub Release to initiate each OpenDP release.
+This will run the GitHub Workflows that handle the build and publish process (see below).</p></li>
+</ul>
+</div>
+<div class="section" id="playbook">
+<h3><a class="toc-backref" href="#id8">Playbook</a><a class="headerlink" href="#playbook" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Identify names:</p>
+<table class="table">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 34%" />
+<col style="width: 18%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>base version</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.2.0</span></code></p></td>
+<td><p>base for RC and GM versions</p></td>
+</tr>
+<tr class="row-odd"><td><p>release branch</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">release/&lt;MAJ&gt;.&lt;MIN&gt;.x</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">release/1.2.x</span></code></p></td>
+<td><p>branch used for all iterations</p></td>
+</tr>
+<tr class="row-even"><td><p>RC version</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;-rc.&lt;NUM&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.2.0-rc.1</span></code></p></td>
+<td><p>incremented for each RC</p></td>
+</tr>
+<tr class="row-odd"><td><p>RC tag</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;-rc.&lt;NUM&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v1.2.0-rc.1</span></code></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>GM version</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.2.0</span></code></p></td>
+<td><p>same as base version</p></td>
+</tr>
+<tr class="row-odd"><td><p>GM tag</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v1.2.0</span></code></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> on <code class="docutils literal notranslate"><span class="pre">main</span></code> (based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>) .</p></li>
+<li><p>Create/update the release branch:</p>
+<ul class="simple">
+<li><p>Major or minor release ONLY: Create a <em>new</em> release branch, based on the desired point in <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p>Patch release ONLY: Use the <em>existing</em> branch from the previous major or minor release,
+and cherry-pick changes from <code class="docutils literal notranslate"><span class="pre">main</span></code> into the release branch.</p></li>
+</ul>
+</li>
+<li><p>Set the RC number to 1.</p></li>
+<li><p>Specify the version for this iteration: <code class="docutils literal notranslate"><span class="pre">&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;[-rc.&lt;NUM&gt;]</span></code></p></li>
+<li><p>Update the version field(s) in the following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VERSION</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rust/opendp/Cargo.toml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rust/opendp-ffi/Cargo.toml</span></code> (two entries!!!)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python/setup.cfg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/source/conf.py</span></code></p></li>
+</ul>
+</li>
+<li><p>Commit the version number changes to the release branch.</p></li>
+<li><p>Create a GitHub Release with the following parameters:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Tag version</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">v&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;[-rc.&lt;NUM&gt;]</span></code></p>
+</dd>
+<dt class="field-even">Target</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">release/&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;[-rc.&lt;NUM&gt;]</span></code></p>
+</dd>
+<dt class="field-odd">Release title</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">OpenDP</span> <span class="pre">&lt;MAJ&gt;.&lt;MIN&gt;.&lt;PAT&gt;[-rc.&lt;NUM&gt;]</span></code></p>
+</dd>
+<dt class="field-even">Describe this release</dt>
+<dd class="field-even"><p>(Changelog)[<a class="reference external" href="https://github.com/opendp/opendp/blob/main/CHANGELOG">https://github.com/opendp/opendp/blob/main/CHANGELOG</a>.md#&lt;MAJ&gt;&lt;MIN&gt;&lt;PAT&gt;—&lt;ISO-8601-DATE&gt;]</p>
+</dd>
+<dt class="field-odd">This is a pre-release</dt>
+<dd class="field-odd"><p>&lt;CHECKED IF RC&gt;</p>
+</dd>
+<dt class="field-even">Create a discussion…</dt>
+<dd class="field-even"><p>&lt;UNCHECKED&gt;</p>
+</dd>
+</dl>
+</li>
+<li><p>Build and publish process is triggered by the creation of the GitHub Release.</p></li>
+<li><p>If this is a GM release, you’re done!</p></li>
+<li><p>If this is an RC release, download and sanity check the Rust crates and Python package.
+(TODO: Release validation scripts – <a class="reference external" href="https://github.com/opendp/opendp/issues/251">https://github.com/opendp/opendp/issues/251</a>)</p></li>
+<li><p>If fixes are necessary, do development on regular feature branches and merge them to <code class="docutils literal notranslate"><span class="pre">main</span></code>,
+then cherry pick the fixes into the release branch.</p></li>
+<li><p>Increment the RC number</p></li>
+<li><p>Return to Step 4.</p></li>
+</ol>
+</div>
+<div class="section" id="release-workflows">
+<h3><a class="toc-backref" href="#id9">Release Workflows</a><a class="headerlink" href="#release-workflows" title="Permalink to this headline">¶</a></h3>
+<p>These are the GitHub workflows that support the release process.</p>
+<div class="section" id="sync-branches-yml">
+<h4><a class="toc-backref" href="#id10">sync-branches.yml</a><a class="headerlink" href="#sync-branches-yml" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Keeps the tracking branches <code class="docutils literal notranslate"><span class="pre">latest</span></code> and <code class="docutils literal notranslate"><span class="pre">stable</span></code> in sync with their targets.
+This is used when generating docs, so that we have a consistent path to each category.</p></li>
+<li><p>Triggered on every push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, or when release is published.</p></li>
+<li><p>Whenever there’s a push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, it advances <code class="docutils literal notranslate"><span class="pre">latest</span></code> to the same ref.</p></li>
+<li><p>Whenever a release is created, it advances <code class="docutils literal notranslate"><span class="pre">stable</span></code> to the release tag.</p></li>
+</ul>
+</div>
+<div class="section" id="release-yml">
+<h4><a class="toc-backref" href="#id11">release.yml</a><a class="headerlink" href="#release-yml" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Triggered whenever a GH Release is created.</p></li>
+<li><p>Rust library is compiled, creating shared libraries for Linux, macOS, Windows.</p></li>
+<li><p>Python package is created.</p></li>
+<li><p>Rust crates are uploaded to crates.io.</p></li>
+<li><p>Python packages are uploaded to PyPI.</p></li>
+</ul>
+</div>
+<div class="section" id="docs-yml">
+<h4><a class="toc-backref" href="#id12">docs.yml</a><a class="headerlink" href="#docs-yml" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Generates and publishes the docs to <a class="reference external" href="https://docs.opendp.org">https://docs.opendp.org</a></p></li>
+<li><p>Triggered whenever <code class="docutils literal notranslate"><span class="pre">sync-branches.html</span></code> completes (i.e., whenever <code class="docutils literal notranslate"><span class="pre">latest</span></code> or <code class="docutils literal notranslate"><span class="pre">stable</span></code> have changed).</p></li>
+<li><p>Runs <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">versions</span></code></p>
+<ul>
+<li><p>Generates Python API docs</p></li>
+<li><p>Generates Sphinx docs</p></li>
+</ul>
+</li>
+<li><p>Pushes HTML to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch, which is linked to <a class="reference external" href="https://docs.opendp.org">https://docs.opendp.org</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="developer-faq.html" title="previous page">Developer Frequently Asked Questions</a>
+    <a class='right-next' id="next-link" href="../opendp-commons/index.html" title="next page">OpenDP Commons</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

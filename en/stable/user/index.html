@@ -35,7 +35,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Introduction" href="intro.html" />
-    <link rel="prev" title="Quickstart" href="../quickstart/index.html" />
+    <link rel="prev" title="Quickstart" href="../quickstart.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -70,7 +70,7 @@
       <div class="navbar-center-item">
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../quickstart/index.html">
+ <a class="reference internal nav-link" href="../quickstart.html">
   Quickstart
  </a>
 </li>
@@ -82,7 +82,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../examples/index.html">
+ <a class="reference internal nav-link" href="../examples.html">
   Examples
  </a>
 </li>
@@ -100,7 +100,7 @@
 </li>
 
 <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../contact/index.html">
+ <a class="reference internal nav-link" href="../contact.html">
   Contact
  </a>
 </li>
@@ -184,23 +184,23 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="combinator-constructors.html">
+   Combinator Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation-constructors.html">
+   Transformation Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="measurement-constructors.html">
+   Measurement Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="application-structure.html">
    Application Structure
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="data-input-output.html">
-   Data Input and Output
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="type-conversions.html">
-   Type Conversions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="implementation-notes.html">
-   Implementation Notes
   </a>
  </li>
 </ul>
@@ -234,7 +234,9 @@
   <li><a href="../../v0.2.0-rc1/user/index.html">v0.2.0-rc1</a></li>
   <li><a href="../../v0.2.1/user/index.html">v0.2.1</a></li>
   <li><a href="../../v0.2.1-rc.1/user/index.html">v0.2.1-rc.1</a></li>
+  <li><a href="../../v0.2.2/user/index.html">v0.2.2</a></li>
   <li><a href="../../v0.2.2-rc.1/user/index.html">v0.2.2-rc.1</a></li>
+  <li><a href="../../v0.2.3/user/index.html">v0.2.3</a></li>
 </ul>
 
             </div>
@@ -271,7 +273,6 @@
                 
   <div class="section" id="user-guide">
 <h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
-<p><strong>Contents:</strong></p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
@@ -281,7 +282,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="limitations.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="limitations.html#privacy-concerns">Privacy Concerns</a></li>
 <li class="toctree-l2"><a class="reference internal" href="limitations.html#incomplete-privacy-proofs">Incomplete Privacy Proofs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="limitations.html#missing-functionality">Missing Functionality</a></li>
@@ -291,33 +291,67 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting-started.html#installing-opendp-from-pypi">Installing OpenDP from PyPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#platforms">Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#installing-opendp-for-python-from-pypi">Installing OpenDP for Python from PyPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#installing-opendp-for-rust-from-crates-io">Installing OpenDP for Rust from crates.io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#building-opendp-from-source">Building OpenDP from Source</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#hello-opendp">Hello, OpenDP!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#what-s-next">What’s Next?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="programming-framework.html">Programming Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="programming-framework.html">Programming Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="programming-framework.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming-framework.html#key-points">Key Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming-framework.html#implementation-differences">Implementation Differences</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="programming-framework.html#interactive-measurements">Interactive Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programming-framework.html#row-transforms">Row Transforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programming-framework.html#applying-the-concepts">Applying the Concepts</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="core-structures.html">Core Structures</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="core-structures.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-structures.html#measurement">Measurement</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-structures.html#transformation">Transformation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-structures.html#constructors-and-functions">Constructors and Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="core-structures.html#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="supporting-elements.html">Supporting Elements</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#function">Function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#domains">Domains</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#metrics-and-measures">Metrics and Measures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#distances">Distances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#measures">Measures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#relations">Relations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#distances">Distances</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="application-structure.html">Application Structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data-input-output.html">Data Input and Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="type-conversions.html">Type Conversions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation-notes.html">Implementation Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combinator-constructors.html">Combinator Constructors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="combinator-constructors.html#chaining">Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combinator-constructors.html#composition">Composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combinator-constructors.html#amplification">Amplification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transformation-constructors.html">Transformation Constructors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#dataframe">Dataframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#casting">Casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#imputation">Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#clamping">Clamping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#resizing">Resizing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#aggregators">Aggregators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="measurement-constructors.html">Measurement Constructors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="measurement-constructors.html#floating-point">Floating-Point</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="application-structure.html">Application Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="application-structure.html#parameter-search">Parameter Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application-structure.html#determining-accuracy">Determining Accuracy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application-structure.html#putting-it-together">Putting It Together</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -328,7 +362,7 @@
               
               <div class='prev-next-bottom'>
                 
-    <a class='left-prev' id="prev-link" href="../quickstart/index.html" title="previous page">Quickstart</a>
+    <a class='left-prev' id="prev-link" href="../quickstart.html" title="previous page">Quickstart</a>
     <a class='right-next' id="next-link" href="intro.html" title="next page">Introduction</a>
 
               </div>

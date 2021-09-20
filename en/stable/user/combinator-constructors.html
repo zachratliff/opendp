@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combinator Constructors &#8212; OpenDP</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Transformation Constructors" href="transformation-constructors.html" />
+    <link rel="prev" title="Supporting Elements" href="supporting-elements.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="limitations.html">
+   Limitations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="programming-framework.html">
+   Programming Framework
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="core-structures.html">
+   Core Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-elements.html">
+   Supporting Elements
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Combinator Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation-constructors.html">
+   Transformation Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="measurement-constructors.html">
+   Measurement Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="application-structure.html">
+   Application Structure
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+  <li><a href="../../latest/user/combinator-constructors.html">latest</a></li>
+  <li><a href="combinator-constructors.html">stable</a></li>
+</ul>
+
+
+<h6>Tags</h6>
+<ul>
+  <li><a href="../../v0.1.0/index.html">v0.1.0</a></li>
+  <li><a href="../../v0.1.0-rc.1/index.html">v0.1.0-rc.1</a></li>
+  <li><a href="../../v0.1.0-rc.2/index.html">v0.1.0-rc.2</a></li>
+  <li><a href="../../v0.1.0-rc.3/index.html">v0.1.0-rc.3</a></li>
+  <li><a href="../../v0.1.0-rc.4/index.html">v0.1.0-rc.4</a></li>
+  <li><a href="../../v0.1.0-rc.5/index.html">v0.1.0-rc.5</a></li>
+  <li><a href="../../v0.1.0-rc.6/index.html">v0.1.0-rc.6</a></li>
+  <li><a href="../../v0.1.0-rc.7/index.html">v0.1.0-rc.7</a></li>
+  <li><a href="../../v0.1.0-rc.8/index.html">v0.1.0-rc.8</a></li>
+  <li><a href="../../v0.2.0/index.html">v0.2.0</a></li>
+  <li><a href="../../v0.2.0-rc.2/index.html">v0.2.0-rc.2</a></li>
+  <li><a href="../../v0.2.0-rc.3/index.html">v0.2.0-rc.3</a></li>
+  <li><a href="../../v0.2.0-rc.4/index.html">v0.2.0-rc.4</a></li>
+  <li><a href="../../v0.2.0-rc.5/index.html">v0.2.0-rc.5</a></li>
+  <li><a href="../../v0.2.0-rc.6/index.html">v0.2.0-rc.6</a></li>
+  <li><a href="../../v0.2.0-rc1/index.html">v0.2.0-rc1</a></li>
+  <li><a href="../../v0.2.1/index.html">v0.2.1</a></li>
+  <li><a href="../../v0.2.1-rc.1/index.html">v0.2.1-rc.1</a></li>
+  <li><a href="../../v0.2.2/user/combinator-constructors.html">v0.2.2</a></li>
+  <li><a href="../../v0.2.2-rc.1/user/combinator-constructors.html">v0.2.2-rc.1</a></li>
+  <li><a href="../../v0.2.3/user/combinator-constructors.html">v0.2.3</a></li>
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chaining">
+   Chaining
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#composition">
+   Composition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#amplification">
+   Amplification
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="combinator-constructors">
+<span id="id1"></span><h1>Combinator Constructors<a class="headerlink" href="#combinator-constructors" title="Permalink to this headline">¶</a></h1>
+<p>Combinator constructors use transformations or measurements to produce new transformations or measurements.
+Combinators are an area of OpenDP that are still heavily in development,
+but the chainers in particular are foundational and well-tested.</p>
+<div class="section" id="chaining">
+<span id="id2"></span><h2>Chaining<a class="headerlink" href="#chaining" title="Permalink to this headline">¶</a></h2>
+<p>Two of the most essential constructors are the “chainers” that chain transformations with transformations, and transformations with measurements.
+Chainers are used to incrementally piece Transformations or Measurements together that represent longer computational pipelines.</p>
+<p>The <a class="reference internal" href="../api/python/opendp.comb.html#opendp.comb.make_chain_tt" title="opendp.comb.make_chain_tt"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.comb.make_chain_tt()</span></code></a> constructor creates a new Transformation by combining an inner and an outer Transformation.
+The resulting Transformation contains a function that sequentially executes the function of the constituent Transformations.
+It also contains a privacy relation that relates an input distance bound on the inner Transformation with an output distance bound on the outer transformation.</p>
+<p>The <a class="reference internal" href="../api/python/opendp.comb.html#opendp.comb.make_chain_mt" title="opendp.comb.make_chain_mt"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.comb.make_chain_mt()</span></code></a> constructor similarly creates a new Measurement by combining an inner Transformation with an outer Measurement.
+Notice that <cite>there is no</cite> <code class="docutils literal notranslate"><span class="pre">make_chain_mm</span></code> for chaining measurements together!
+Any computation beyond a measurement is postprocessing and need not be governed by relations.</p>
+<p>In the following example we chain <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_geometric" title="opendp.meas.make_base_geometric"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_geometric()</span></code></a> with <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_sum" title="opendp.trans.make_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_sum()</span></code></a>.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_bounded_sum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_geometric</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.comb</span> <span class="kn">import</span> <span class="n">make_chain_mt</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># call a constructor to produce a transformation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bounded_sum</span> <span class="o">=</span> <span class="n">make_bounded_sum</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># call a constructor to produce a measurement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base_geometric</span> <span class="o">=</span> <span class="n">make_base_geometric</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">noisy_sum</span> <span class="o">=</span> <span class="n">make_chain_mt</span><span class="p">(</span><span class="n">base_geometric</span><span class="p">,</span> <span class="n">bounded_sum</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># investigate the privacy relation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">symmetric_distance</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">noisy_sum</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">d_in</span><span class="o">=</span><span class="n">symmetric_distance</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># invoke the chained measurement&#39;s function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">release</span> <span class="o">=</span> <span class="n">noisy_sum</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In practice, these chainers are used so frequently that we’ve written a shorthand (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>).
+The syntax automatically chooses between <code class="xref py py-func docutils literal notranslate"><span class="pre">make_chain_mt</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">make_chain_tt</span></code>.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">noisy_sum</span> <span class="o">=</span> <span class="n">bounded_sum</span> <span class="o">&gt;&gt;</span> <span class="n">base_geometric</span>
+</pre></div>
+</div>
+<p id="chaining-mismatch">In this example the chaining was successful because:</p>
+<ul class="simple">
+<li><p>bounded_sum’s output domain is equivalent to base_geometric’s input domain</p></li>
+<li><p>bounded_sum’s output metric is equivalent to base_geometric’s input metric</p></li>
+</ul>
+<p>Chaining fails if we were to adjust the domains such that they won’t match.
+In the below example, the adjustment is subtle, but the bounds were adjusted to floats.
+<code class="docutils literal notranslate"><span class="pre">make_bounded_sum</span></code> is equally capable of summing floats,
+but the chaining fails because the sum emits floats and the geometric mechanism expects integers.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">OpenDPException</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">make_bounded_sum</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">base_geometric</span>
+<span class="gp">... </span><span class="k">except</span> <span class="n">OpenDPException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">message</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">Intermediate domains don&#39;t match. See https://github.com/opendp/opendp/discussions/297</span>
+<span class="go">    The structure of the intermediate domains are the same, but the types or parameters differ.</span>
+<span class="go">    shared_domain: AllDomain()</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">noisy_sum</span></code>’s input domain and input metric come from <code class="docutils literal notranslate"><span class="pre">bounded_sum</span></code>’s input domain and input metric.
+This is intended to enable further chaining with preprocessors like <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast" title="opendp.trans.make_cast"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_cast</span></code></a>, <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_impute_constant" title="opendp.trans.make_impute_constant"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_impute_constant</span></code></a>, <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_clamp" title="opendp.trans.make_clamp"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_clamp</span></code></a> and <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_resize" title="opendp.trans.make_bounded_resize"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_bounded_resize</span></code></a>.
+See the section on <a class="reference internal" href="transformation-constructors.html#transformation-constructors"><span class="std std-ref">Transformation Constructors</span></a> for more information on how to preprocess data in OpenDP.</p>
+</div>
+<div class="section" id="composition">
+<h2>Composition<a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h2>
+<p>OpenDP has a simple composition combinator for building a tuple of measurements out of two measurements.
+You can nest this composition combinator arbitrarily.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.comb</span> <span class="kn">import</span> <span class="n">make_basic_composition</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">noisy_sum_pair</span> <span class="o">=</span> <span class="n">make_basic_composition</span><span class="p">(</span><span class="n">noisy_sum</span><span class="p">,</span> <span class="n">noisy_sum</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Progress on more general composition constructors can be found in the following PR’s:</p>
+<dl class="field-list simple">
+<dt class="field-odd">#242</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://github.com/opendp/opendp/pull/242">sequential compositor w/ static distances</a></p>
+</dd>
+<dt class="field-even">#264</dt>
+<dd class="field-even"><p><a class="reference external" href="https://github.com/opendp/opendp/pull/264">f-DP</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="amplification">
+<h2>Amplification<a class="headerlink" href="#amplification" title="Permalink to this headline">¶</a></h2>
+<p>Population amplification based on sampling has an implementation but is not yet finalized.
+Progress on this can be found in the following PR:</p>
+<dl class="field-list simple">
+<dt class="field-odd">#233</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://github.com/opendp/opendp/pull/233">population amplification</a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="supporting-elements.html" title="previous page">Supporting Elements</a>
+    <a class='right-next' id="next-link" href="transformation-constructors.html" title="next page">Transformation Constructors</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
