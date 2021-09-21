@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Core Structures &#8212; OpenDP</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Supporting Elements" href="supporting-elements.html" />
+    <link rel="prev" title="Programming Framework" href="programming-framework.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="limitations.html">
+   Limitations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="programming-framework.html">
+   Programming Framework
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Core Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-elements.html">
+   Supporting Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="combinator-constructors.html">
+   Combinator Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation-constructors.html">
+   Transformation Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="measurement-constructors.html">
+   Measurement Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="application-structure.html">
+   Application Structure
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+  <li><a href="../../latest/user/core-structures.html">latest</a></li>
+  <li><a href="../../stable/user/core-structures.html">stable</a></li>
+</ul>
+
+
+<h6>Tags</h6>
+<ul>
+  <li><a href="../../v0.1.0/index.html">v0.1.0</a></li>
+  <li><a href="../../v0.1.0-rc.1/index.html">v0.1.0-rc.1</a></li>
+  <li><a href="../../v0.1.0-rc.2/index.html">v0.1.0-rc.2</a></li>
+  <li><a href="../../v0.1.0-rc.3/index.html">v0.1.0-rc.3</a></li>
+  <li><a href="../../v0.1.0-rc.4/index.html">v0.1.0-rc.4</a></li>
+  <li><a href="../../v0.1.0-rc.5/index.html">v0.1.0-rc.5</a></li>
+  <li><a href="../../v0.1.0-rc.6/index.html">v0.1.0-rc.6</a></li>
+  <li><a href="../../v0.1.0-rc.7/index.html">v0.1.0-rc.7</a></li>
+  <li><a href="../../v0.1.0-rc.8/index.html">v0.1.0-rc.8</a></li>
+  <li><a href="../../v0.2.0/user/core-structures.html">v0.2.0</a></li>
+  <li><a href="../../v0.2.0-rc.2/user/core-structures.html">v0.2.0-rc.2</a></li>
+  <li><a href="../../v0.2.0-rc.3/user/core-structures.html">v0.2.0-rc.3</a></li>
+  <li><a href="../../v0.2.0-rc.4/user/core-structures.html">v0.2.0-rc.4</a></li>
+  <li><a href="../../v0.2.0-rc.5/user/core-structures.html">v0.2.0-rc.5</a></li>
+  <li><a href="../../v0.2.0-rc.6/user/core-structures.html">v0.2.0-rc.6</a></li>
+  <li><a href="../../v0.2.0-rc1/user/core-structures.html">v0.2.0-rc1</a></li>
+  <li><a href="../../v0.2.1/user/core-structures.html">v0.2.1</a></li>
+  <li><a href="../../v0.2.1-rc.1/user/core-structures.html">v0.2.1-rc.1</a></li>
+  <li><a href="../../v0.2.2/user/core-structures.html">v0.2.2</a></li>
+  <li><a href="../../v0.2.2-rc.1/user/core-structures.html">v0.2.2-rc.1</a></li>
+  <li><a href="../../v0.2.3/user/core-structures.html">v0.2.3</a></li>
+  <li><a href="core-structures.html">v0.2.4</a></li>
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measurement">
+   Measurement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformation">
+   Transformation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constructors-and-functions">
+   Constructors and Functions
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="core-structures">
+<span id="id1"></span><h1>Core Structures<a class="headerlink" href="#core-structures" title="Permalink to this headline">¶</a></h1>
+<p>OpenDP is focused on creating computations with specific privacy characteristics.
+These computations are modeled with two core structures in OpenDP:
+<a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.mod.Transformation</span></code></a> and <a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.mod.Measurement</span></code></a>.
+These structures are in all OpenDP programs, regardless of the underlying algorithm or definition of privacy.
+By modeling computations in this abstract way, we’re able to combine them in flexible arrangements and reason about the resulting programs.</p>
+<p>A unifying perspective towards OpenDP is that OpenDP is a system for <cite>relating</cite>:</p>
+<ol class="arabic simple">
+<li><p>an upper bound on distance between neighboring function inputs (to)</p></li>
+<li><p>an upper bound on distance between respective function outputs (or distributions)</p></li>
+</ol>
+<p>OpenDP naturally captures the definition of privacy via <a class="reference internal" href="supporting-elements.html#relations"><span class="std std-ref">relations</span></a>,
+because the definition of privacy is an upper bound on distance between probability distributions.</p>
+<p>Each measurement or transformation is a self-contained structure with a relation, function, and supporting proof.</p>
+<div class="section" id="measurement">
+<span id="id2"></span><h2>Measurement<a class="headerlink" href="#measurement" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measurement</span></code></a> is a randomized mapping from datasets to outputs of an arbitrary type.
+Lets say we have an arbitrary instance of a Measurement, called <code class="docutils literal notranslate"><span class="pre">meas</span></code>, and a code snippet <code class="docutils literal notranslate"><span class="pre">meas.check(d_in,</span> <span class="pre">d_out)</span></code>.
+If the code snippet evaluates to True, then <code class="docutils literal notranslate"><span class="pre">meas</span></code> is <code class="docutils literal notranslate"><span class="pre">d_out</span></code>-DP on <code class="docutils literal notranslate"><span class="pre">d_in</span></code>-close inputs,
+or equivalently “(<code class="docutils literal notranslate"><span class="pre">d_in</span></code>, <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)-close”.
+The code snippet simply checks the privacy relation that comes bundled inside <code class="docutils literal notranslate"><span class="pre">meas</span></code>.</p>
+<p>The distances <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> are expressed in the units of the input metric and output measure.
+Depending on the context, <code class="docutils literal notranslate"><span class="pre">d_in</span></code> could be a distance bound to neighboring datasets or a global sensitivity,
+and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> may be <code class="docutils literal notranslate"><span class="pre">epsilon</span></code>, <code class="docutils literal notranslate"><span class="pre">(epsilon,</span> <span class="pre">delta)</span></code>, or some other measure of privacy.
+More information on distances is available <a class="reference internal" href="supporting-elements.html#distances"><span class="std std-ref">here</span></a>.</p>
+<p>Each invocation of the measurement’s function (via <code class="docutils literal notranslate"><span class="pre">meas.invoke(data)</span></code> or <code class="docutils literal notranslate"><span class="pre">meas(data)</span></code>) is a differentially private release.
+The privacy expenditure of each release is any <code class="docutils literal notranslate"><span class="pre">d_out</span></code> that makes the relation pass.</p>
+<p>A measurement structure contains the following internal fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">input_domain</dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="supporting-elements.html#domains"><span class="std std-ref">domain</span></a> that describes the set of all possible input values for the function.</p>
+</dd>
+<dt class="field-even">output_domain</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#domains"><span class="std std-ref">domain</span></a> that describes the set of all possible output values of the function.</p>
+</dd>
+<dt class="field-odd">function</dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="supporting-elements.html#functions"><span class="std std-ref">function</span></a> that computes a differentially-private release on private data.</p>
+</dd>
+<dt class="field-even">input_metric</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#metrics"><span class="std std-ref">metric</span></a> used to compute distance between two members of the input domain.</p>
+</dd>
+<dt class="field-odd">output_measure</dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="supporting-elements.html#measures"><span class="std std-ref">measure</span></a> used to measure distance between two distributions in the output domain.</p>
+</dd>
+<dt class="field-even">privacy_relation</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#relations"><span class="std std-ref">relation</span></a> that encapsulates the privacy characteristics of the function.</p>
+</dd>
+</dl>
+<p>The framework quantifies output distance bounds on measurements with a measure, instead of a metric,
+because measurements emit samples from a probability distribution,
+and measures can be used to quantify differences between probability distributions.
+This is the primary differentiating factor between measurements and transformations.</p>
+</div>
+<div class="section" id="transformation">
+<span id="id3"></span><h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a> is a (deterministic) mapping from datasets to datasets.
+Transformations are used to preprocess and aggregate data before chaining with a measurement.</p>
+<p>Similarly to <code class="docutils literal notranslate"><span class="pre">meas</span></code> above, let’s say we have an arbitrary instance of a Transformation, called <code class="docutils literal notranslate"><span class="pre">trans</span></code>,
+and a code snippet <code class="docutils literal notranslate"><span class="pre">trans.check(d_in,</span> <span class="pre">d_out)</span></code>.
+If the code snippet evaluates to True, then <code class="docutils literal notranslate"><span class="pre">trans</span></code> is <code class="docutils literal notranslate"><span class="pre">d_out</span></code>-close on <code class="docutils literal notranslate"><span class="pre">d_in</span></code>-close inputs,
+or equivalently “(<code class="docutils literal notranslate"><span class="pre">d_in</span></code>, <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)-close”.
+The code snippet simply checks the stability relation that comes bundled inside <code class="docutils literal notranslate"><span class="pre">trans</span></code>.
+In this context, the relation captures the stability of a transformation.</p>
+<p>The distances <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> are expressed in the units of the input metric and output metric.
+Depending on the context, <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> could be a distance bound to neighboring datasets or a global sensitivity.
+More information on distances is available <a class="reference internal" href="supporting-elements.html#distances"><span class="std std-ref">here</span></a>.</p>
+<p>Invoking the function (via <code class="docutils literal notranslate"><span class="pre">trans.invoke(data)</span></code> or <code class="docutils literal notranslate"><span class="pre">trans(data)</span></code>) transforms the data, but the output is not differentially private.
+Transformations need to be <a class="reference internal" href="combinator-constructors.html#chaining"><span class="std std-ref">chained</span></a> with a measurement before they can be used to create a differentially-private release.</p>
+<p>A transformation structure contains the following internal fields:</p>
+<dl class="field-list simple">
+<dt class="field-odd">input_domain</dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="supporting-elements.html#domains"><span class="std std-ref">domain</span></a> that describes the set of all possible input values for the function.</p>
+</dd>
+<dt class="field-even">output_domain</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#domains"><span class="std std-ref">domain</span></a> that describes the set of all possible output values of the function.</p>
+</dd>
+<dt class="field-odd">function</dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="supporting-elements.html#functions"><span class="std std-ref">function</span></a> that transforms data.</p>
+</dd>
+<dt class="field-even">input_metric</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#metrics"><span class="std std-ref">metric</span></a> used to compute distance between two members of the input domain.</p>
+</dd>
+<dt class="field-odd">output_metric</dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="supporting-elements.html#metrics"><span class="std std-ref">metric</span></a> used to measure distance between two members of the output domain.</p>
+</dd>
+<dt class="field-even">stability_relation</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#relations"><span class="std std-ref">relation</span></a> that encapsulates the stability characteristics of the function.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="constructors-and-functions">
+<span id="constructors"></span><h2>Constructors and Functions<a class="headerlink" href="#constructors-and-functions" title="Permalink to this headline">¶</a></h2>
+<p>In OpenDP, Measurements and Transformations are created by calling constructor functions.
+The majority of the library’s interface consists of these constructors.</p>
+<p>Because Measurements and Transformations are themselves like functions (they can be invoked on an input and return an output),
+you can think of constructors as higher-order functions:
+You call them to produce another function that you will then feed data.</p>
+<p>There’s a few top-level constructor listings:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="combinator-constructors.html#combinator-constructors"><span class="std std-ref">Combinator Constructors</span></a></p></li>
+<li><p><a class="reference internal" href="measurement-constructors.html#measurement-constructors"><span class="std std-ref">Measurement Constructors</span></a></p></li>
+<li><p><a class="reference internal" href="transformation-constructors.html#transformation-constructors"><span class="std std-ref">Transformation Constructors</span></a></p></li>
+</ul>
+<p>In this simplified example with the <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_geometric" title="opendp.meas.make_base_geometric"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_geometric()</span></code></a> constructor, we assume the data was properly preprocessed and aggregated such that the sensitivity (by absolute distance) is at most 1.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_geometric</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># call the constructor to produce a measurement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base_geometric</span> <span class="o">=</span> <span class="n">make_base_geometric</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># investigate the privacy relation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">absolute_distance</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">base_geometric</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">d_in</span><span class="o">=</span><span class="n">absolute_distance</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># feed some data/invoke the measurement as a function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aggregated</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">release</span> <span class="o">=</span> <span class="n">base_geometric</span><span class="p">(</span><span class="n">aggregated</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="programming-framework.html" title="previous page">Programming Framework</a>
+    <a class='right-next' id="next-link" href="supporting-elements.html" title="next page">Supporting Elements</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
