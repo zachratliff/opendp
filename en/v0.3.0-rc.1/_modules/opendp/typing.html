@@ -1,0 +1,584 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>opendp.typing &#8212; OpenDP</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../user/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+  <li><a href="../../../latest/index.html">latest</a></li>
+  <li><a href="../../../stable/index.html">stable</a></li>
+</ul>
+
+
+<h6>Releases</h6>
+<ul>
+  <li><a href="typing.html">v0.3.0-rc.1</a></li>
+  <li><a href="../../../v0.2.4/index.html">v0.2.4</a></li>
+  <li><a href="../../../v0.2.3/index.html">v0.2.3</a></li>
+  <li><a href="../../../v0.2.2/index.html">v0.2.2</a></li>
+  <li><a href="../../../v0.2.2-rc.1/index.html">v0.2.2-rc.1</a></li>
+  <li><a href="../../../v0.2.1/index.html">v0.2.1</a></li>
+  <li><a href="../../../v0.2.1-rc.1/index.html">v0.2.1-rc.1</a></li>
+  <li><a href="../../../v0.2.0-rc1/index.html">v0.2.0-rc1</a></li>
+  <li><a href="../../../v0.2.0/index.html">v0.2.0</a></li>
+  <li><a href="../../../v0.2.0-rc.6/index.html">v0.2.0-rc.6</a></li>
+  <li><a href="../../../v0.2.0-rc.5/index.html">v0.2.0-rc.5</a></li>
+  <li><a href="../../../v0.2.0-rc.4/index.html">v0.2.0-rc.4</a></li>
+  <li><a href="../../../v0.2.0-rc.3/index.html">v0.2.0-rc.3</a></li>
+  <li><a href="../../../v0.2.0-rc.2/index.html">v0.2.0-rc.2</a></li>
+  <li><a href="../../../v0.1.0/index.html">v0.1.0</a></li>
+  <li><a href="../../../v0.1.0-rc.8/index.html">v0.1.0-rc.8</a></li>
+  <li><a href="../../../v0.1.0-rc.7/index.html">v0.1.0-rc.7</a></li>
+  <li><a href="../../../v0.1.0-rc.6/index.html">v0.1.0-rc.6</a></li>
+  <li><a href="../../../v0.1.0-rc.5/index.html">v0.1.0-rc.5</a></li>
+  <li><a href="../../../v0.1.0-rc.4/index.html">v0.1.0-rc.4</a></li>
+  <li><a href="../../../v0.1.0-rc.3/index.html">v0.1.0-rc.3</a></li>
+  <li><a href="../../../v0.1.0-rc.2/index.html">v0.1.0-rc.2</a></li>
+  <li><a href="../../../v0.1.0-rc.1/index.html">v0.1.0-rc.1</a></li>
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for opendp.typing</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Hashable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">UnknownTypeException</span>
+<span class="kn">from</span> <span class="nn">opendp._lib</span> <span class="kn">import</span> <span class="n">ATOM_EQUIVALENCE_CLASSES</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">_GenericAlias</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">GenericMeta</span> <span class="k">as</span> <span class="n">_GenericAlias</span>
+
+<span class="n">ELEMENTARY_TYPES</span> <span class="o">=</span> <span class="p">{</span><span class="nb">int</span><span class="p">:</span> <span class="s1">&#39;i32&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">:</span> <span class="s1">&#39;f64&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">:</span> <span class="s1">&#39;String&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span><span class="p">}</span>
+
+<span class="c1"># all ways of providing type information</span>
+<span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
+    <span class="s2">&quot;RuntimeType&quot;</span><span class="p">,</span>  <span class="c1"># as the normalized type -- SubstituteDistance; RuntimeType.parse(&quot;i32&quot;)</span>
+    <span class="n">_GenericAlias</span><span class="p">,</span>  <span class="c1"># a python type hint from the std typing module -- List[int]</span>
+    <span class="nb">str</span><span class="p">,</span>  <span class="c1"># plaintext string in terms of rust types -- &quot;Vec&lt;i32&gt;&quot;</span>
+    <span class="n">Type</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Tuple</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]],</span>  <span class="c1"># using the python type class itself -- int, float</span>
+    <span class="nb">tuple</span><span class="p">,</span>  <span class="c1"># shorthand for tuples -- (float, &quot;f64&quot;); (SubstituteDistance, List[int])</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="RuntimeType"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.RuntimeType">[docs]</a><span class="k">class</span> <span class="nc">RuntimeType</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Utility for validating, manipulating, inferring and parsing/normalizing type information.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;origin must be a string&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="n">origin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">origin</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">origin</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">args</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">origin</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s1">&#39;Tuple&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">))</span><span class="si">}</span><span class="s1">)&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;&lt;</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">))</span><span class="si">}</span><span class="s1">&gt;&#39;</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+<div class="viewcode-block" id="RuntimeType.parse"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.RuntimeType.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">type_name</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span> <span class="n">generics</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;RuntimeType&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Parse type descriptor into a normalized rust type.</span>
+
+<span class="sd">        Type descriptor may be expressed as:</span>
+
+<span class="sd">        - python type hints from std typing module</span>
+<span class="sd">        - plaintext rust type strings for setting specific bit depth</span>
+<span class="sd">        - python type class - one of {int, str, float, bool}</span>
+<span class="sd">        - tuple of type information - for example: (float, float)</span>
+
+<span class="sd">        :param type_name: type specifier</span>
+<span class="sd">        :param generics: For internal use. List of type names to consider generic when parsing.</span>
+<span class="sd">        :type: List[str]</span>
+<span class="sd">        :return: Normalized type. If the type has subtypes, returns a RuntimeType, else a str.</span>
+<span class="sd">        :rtype: Union[&quot;RuntimeType&quot;, str]</span>
+<span class="sd">        :raises UnknownTypeError: if `type_name` fails to parse</span>
+
+<span class="sd">        :examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from opendp.typing import RuntimeType, L1Distance</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(int) == &quot;i32&quot;</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(&quot;i32&quot;) == &quot;i32&quot;</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(L1Distance[int]) == &quot;L1Distance&lt;i32&gt;&quot;</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(L1Distance[&quot;f32&quot;]) == &quot;L1Distance&lt;f32&gt;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">generics</span> <span class="o">=</span> <span class="n">generics</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">type_name</span>
+
+        <span class="c1"># parse type hints from the typing module</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="n">_GenericAlias</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;parsing type hint annotations are only supported in python 3.8 and above&quot;</span><span class="p">)</span>
+
+            <span class="n">origin</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">get_origin</span><span class="p">(</span><span class="n">type_name</span><span class="p">)</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="n">generics</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">typing</span><span class="o">.</span><span class="n">get_args</span><span class="p">(</span><span class="n">type_name</span><span class="p">)]</span> <span class="ow">or</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">origin</span> <span class="o">==</span> <span class="nb">tuple</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;Tuple&#39;</span>
+            <span class="k">if</span> <span class="n">origin</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="n">origin</span> <span class="o">=</span> <span class="s1">&#39;Vec&#39;</span>
+            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="n">generics</span><span class="p">),</span> <span class="n">args</span><span class="p">)</span>
+
+        <span class="c1"># parse a tuple of types-- (int, &quot;f64&quot;); (List[int], (int, bool))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="n">generics</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">type_name</span><span class="p">))</span>
+
+        <span class="c1"># parse a string-- &quot;Vec&lt;f32&gt;&quot;,</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">type_name</span> <span class="o">=</span> <span class="n">type_name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">type_name</span> <span class="ow">in</span> <span class="n">generics</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">GenericType</span><span class="p">(</span><span class="n">type_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">type_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">type_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_parse_args</span><span class="p">(</span><span class="n">type_name</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">generics</span><span class="o">=</span><span class="n">generics</span><span class="p">))</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">type_name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">),</span> <span class="n">type_name</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span>
+
+            <span class="c1"># attempt to upgrade strings to the metric/measure instance</span>
+            <span class="n">origin</span> <span class="o">=</span> <span class="n">type_name</span><span class="p">[:</span><span class="n">start</span><span class="p">]</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">start</span> <span class="k">else</span> <span class="n">type_name</span>
+            <span class="n">closeness</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;SubstituteDistance&#39;</span><span class="p">:</span> <span class="n">SubstituteDistance</span><span class="p">,</span>
+                <span class="s1">&#39;SymmetricDistance&#39;</span><span class="p">:</span> <span class="n">SymmetricDistance</span><span class="p">,</span>
+                <span class="s1">&#39;AbsoluteDistance&#39;</span><span class="p">:</span> <span class="n">AbsoluteDistance</span><span class="p">,</span>
+                <span class="s1">&#39;L1Distance&#39;</span><span class="p">:</span> <span class="n">L1Distance</span><span class="p">,</span>
+                <span class="s1">&#39;L2Distance&#39;</span><span class="p">:</span> <span class="n">L2Distance</span><span class="p">,</span>
+                <span class="s1">&#39;MaxDivergence&#39;</span><span class="p">:</span> <span class="n">MaxDivergence</span><span class="p">,</span>
+                <span class="s1">&#39;SmoothedMaxDivergence&#39;</span><span class="p">:</span> <span class="n">SmoothedMaxDivergence</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">closeness</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">closeness</span><span class="p">,</span> <span class="p">(</span><span class="n">SensitivityMetric</span><span class="p">,</span> <span class="n">PrivacyMeasure</span><span class="p">)):</span>
+                    <span class="k">return</span> <span class="n">closeness</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">_parse_args</span><span class="p">(</span><span class="n">type_name</span><span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span> <span class="n">end</span><span class="p">],</span> <span class="n">generics</span><span class="o">=</span><span class="n">generics</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="k">return</span> <span class="n">closeness</span>
+
+            <span class="n">domain</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;AllDomain&#39;</span><span class="p">:</span> <span class="n">AllDomain</span><span class="p">,</span>
+                <span class="s1">&#39;BoundedDomain&#39;</span><span class="p">:</span> <span class="n">BoundedDomain</span><span class="p">,</span>
+                <span class="s1">&#39;VectorDomain&#39;</span><span class="p">:</span> <span class="n">VectorDomain</span><span class="p">,</span>
+                <span class="s1">&#39;OptionNullDomain&#39;</span><span class="p">:</span> <span class="n">OptionNullDomain</span><span class="p">,</span>
+                <span class="s1">&#39;InherentNullDomain&#39;</span><span class="p">:</span> <span class="n">InherentNullDomain</span><span class="p">,</span>
+                <span class="s1">&#39;SizedDomain&#39;</span><span class="p">:</span> <span class="n">SizedDomain</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">origin</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">domain</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">domain</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">_parse_args</span><span class="p">(</span><span class="n">type_name</span><span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span> <span class="n">end</span><span class="p">],</span> <span class="n">generics</span><span class="o">=</span><span class="n">generics</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">end</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">type_name</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">_parse_args</span><span class="p">(</span><span class="n">type_name</span><span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span> <span class="n">end</span><span class="p">],</span> <span class="n">generics</span><span class="o">=</span><span class="n">generics</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="n">end</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">type_name</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">)</span> <span class="ow">and</span> <span class="n">type_name</span> <span class="ow">in</span> <span class="n">ELEMENTARY_TYPES</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ELEMENTARY_TYPES</span><span class="p">[</span><span class="n">type_name</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">type_name</span> <span class="o">==</span> <span class="nb">tuple</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;non-parameterized argument&quot;</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unable to parse type: </span><span class="si">{</span><span class="n">type_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_parse_args</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">re</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="n">generics</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,</span><span class="se">\\</span><span class="s2">s*(?![^()&lt;&gt;]*</span><span class="se">\\</span><span class="s2">))&quot;</span><span class="p">,</span> <span class="n">args</span><span class="p">)]</span>
+
+<div class="viewcode-block" id="RuntimeType.infer"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.RuntimeType.infer">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">infer</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">public_example</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;RuntimeType&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Infer the normalized type from a public example.</span>
+
+<span class="sd">        :param public_example: data used to infer the type</span>
+<span class="sd">        :return: Normalized type. If the type has subtypes, returns a RuntimeType, else a str.</span>
+<span class="sd">        :rtype: Union[&quot;RuntimeType&quot;, str]</span>
+<span class="sd">        :raises UnknownTypeException: if inference fails on `public_example`</span>
+
+<span class="sd">        :examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from opendp.typing import RuntimeType, L1Distance</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.infer(23) == &quot;i32&quot;</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.infer(12.) == &quot;f64&quot;</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.infer([&quot;A&quot;, &quot;B&quot;]) == &quot;Vec&lt;String&gt;&quot;</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.infer((12., True, &quot;A&quot;)) == &quot;(f64,  bool,String)&quot; # eq doesn&#39;t care about whitespace</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">public_example</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ELEMENTARY_TYPES</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ELEMENTARY_TYPES</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">public_example</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">public_example</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">,</span> <span class="n">public_example</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">public_example</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="p">[</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">public_example</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">public_example</span> <span class="k">else</span> <span class="n">UnknownType</span><span class="p">(</span>
+                    <span class="s2">&quot;cannot infer atomic type of empty list&quot;</span><span class="p">)</span>
+            <span class="p">])</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">public_example</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;HashMap&#39;</span><span class="p">,</span> <span class="p">[</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">public_example</span><span class="o">.</span><span class="n">keys</span><span class="p">()))),</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">public_example</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
+            <span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">public_example</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;Option&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">UnknownType</span><span class="p">(</span><span class="s2">&quot;Constructed Option from a None variant&quot;</span><span class="p">)])</span>
+
+        <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="n">public_example</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RuntimeType.parse_or_infer"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.RuntimeType.parse_or_infer">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse_or_infer</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="p">,</span>
+            <span class="n">type_name</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">public_example</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">generics</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;RuntimeType&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;If type_name is supplied, normalize it. Otherwise, infer the normalized type from a public example.</span>
+
+<span class="sd">        :param type_name: type specifier. See RuntimeType.parse for documentation on valid inputs</span>
+<span class="sd">        :param public_example: data used to infer the type</span>
+<span class="sd">        :return: Normalized type. If the type has subtypes, returns a RuntimeType, else a str.</span>
+<span class="sd">        :rtype: Union[&quot;RuntimeType&quot;, str]</span>
+<span class="sd">        :param generics: For internal use. List of type names to consider generic when parsing.</span>
+<span class="sd">        :type: List[str]</span>
+<span class="sd">        :raises ValueError: if `type_name` fails to parse</span>
+<span class="sd">        :raises UnknownTypeException: if inference fails on `public_example` or no args are supplied</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">type_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="n">generics</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">public_example</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">public_example</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="s2">&quot;either type_name or public_example must be passed&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RuntimeType.assert_is_similar"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.RuntimeType.assert_is_similar">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">assert_is_similar</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">inferred</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Assert that `inferred` is a member of the same equivalence class as `parsed`.</span>
+
+<span class="sd">        :param expected: the type that the data will be converted to</span>
+<span class="sd">        :param inferred: the type inferred from data</span>
+<span class="sd">        :raises AssertionError: if `expected` type differs significantly from `inferred` type</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">ERROR_URL_298</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/opendp/opendp/discussions/298&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inferred</span><span class="p">,</span> <span class="n">UnknownType</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inferred</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">inferred</span> <span class="ow">in</span> <span class="n">ATOM_EQUIVALENCE_CLASSES</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">expected</span> <span class="ow">in</span> <span class="n">ATOM_EQUIVALENCE_CLASSES</span><span class="p">[</span><span class="n">inferred</span><span class="p">],</span> \
+                    <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">. See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">inferred</span><span class="p">,</span> \
+                    <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">. See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inferred</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>
+            <span class="c1"># allow extra flexibility around options, as the inferred type of an Option::&lt;T&gt;::Some will just be T</span>
+            <span class="k">if</span> <span class="n">expected</span><span class="o">.</span><span class="n">origin</span> <span class="o">==</span> <span class="s2">&quot;Option&quot;</span> <span class="ow">and</span> <span class="n">inferred</span><span class="o">.</span><span class="n">origin</span> <span class="o">!=</span> <span class="s2">&quot;Option&quot;</span><span class="p">:</span>
+                <span class="n">expected</span> <span class="o">=</span> <span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="k">assert</span> <span class="n">expected</span><span class="o">.</span><span class="n">origin</span> <span class="o">==</span> <span class="n">inferred</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span> \
+                <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">. See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span>
+
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">inferred</span><span class="o">.</span><span class="n">args</span><span class="p">),</span> \
+                <span class="sa">f</span><span class="s2">&quot;inferred type has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">inferred</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2"> arg(s), expected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2"> arg(s). See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="n">arg_par</span><span class="p">,</span> <span class="n">arg_inf</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">inferred</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
+                <span class="n">RuntimeType</span><span class="o">.</span><span class="n">assert_is_similar</span><span class="p">(</span><span class="n">arg_par</span><span class="p">,</span> <span class="n">arg_inf</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># inferred type differs in structure</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">. See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RuntimeType.substitute"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.RuntimeType.substitute">[docs]</a>    <span class="k">def</span> <span class="nf">substitute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">GenericType</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="ow">and</span> <span class="p">[</span><span class="n">RuntimeType</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span></div></div>
+
+
+<div class="viewcode-block" id="GenericType"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.GenericType">[docs]</a><span class="k">class</span> <span class="nc">GenericType</span><span class="p">(</span><span class="n">RuntimeType</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attempted to create a type_name with an unknown generic: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UnknownType"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.UnknownType">[docs]</a><span class="k">class</span> <span class="nc">UnknownType</span><span class="p">(</span><span class="n">RuntimeType</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Indicator for a type that cannot be inferred. Typically the atomic type of an empty list.</span>
+<span class="sd">    RuntimeTypes containing UnknownType cannot be used in FFI, but still pass RuntimeType.assert_is_similar</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reason</span> <span class="o">=</span> <span class="n">reason</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attempted to create a type_name with an unknown type: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DatasetMetric"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.DatasetMetric">[docs]</a><span class="k">class</span> <span class="nc">DatasetMetric</span><span class="p">(</span><span class="n">RuntimeType</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;All dataset metric RuntimeTypes inherit from DatasetMetric.</span>
+<span class="sd">    Provides static type checking in user-code for dataset metrics.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<span class="n">SubstituteDistance</span> <span class="o">=</span> <span class="n">DatasetMetric</span><span class="p">(</span><span class="s1">&#39;SubstituteDistance&#39;</span><span class="p">)</span>
+<span class="n">SymmetricDistance</span> <span class="o">=</span> <span class="n">DatasetMetric</span><span class="p">(</span><span class="s1">&#39;SymmetricDistance&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SensitivityMetric"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.SensitivityMetric">[docs]</a><span class="k">class</span> <span class="nc">SensitivityMetric</span><span class="p">(</span><span class="n">RuntimeType</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;All sensitivity RuntimeTypes inherit from SensitivityMetric.</span>
+<span class="sd">    Provides static type checking in user-code for sensitivity metrics and a getitem interface like stdlib typing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">associated_type</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SensitivityMetric</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">associated_type</span><span class="p">)])</span></div>
+
+
+<span class="n">AbsoluteDistance</span> <span class="o">=</span> <span class="n">SensitivityMetric</span><span class="p">(</span><span class="s1">&#39;AbsoluteDistance&#39;</span><span class="p">)</span>
+<span class="n">L1Distance</span> <span class="o">=</span> <span class="n">SensitivityMetric</span><span class="p">(</span><span class="s1">&#39;L1Distance&#39;</span><span class="p">)</span>
+<span class="n">L2Distance</span> <span class="o">=</span> <span class="n">SensitivityMetric</span><span class="p">(</span><span class="s1">&#39;L2Distance&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PrivacyMeasure"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.PrivacyMeasure">[docs]</a><span class="k">class</span> <span class="nc">PrivacyMeasure</span><span class="p">(</span><span class="n">RuntimeType</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;All measure RuntimeTypes inherit from PrivacyMeasure.</span>
+<span class="sd">    Provides static type checking in user-code for privacy measures and a getitem interface like stdlib typing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">associated_type</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">PrivacyMeasure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">associated_type</span><span class="p">)])</span></div>
+
+
+<span class="n">MaxDivergence</span> <span class="o">=</span> <span class="n">PrivacyMeasure</span><span class="p">(</span><span class="s1">&#39;MaxDivergence&#39;</span><span class="p">)</span>
+<span class="n">SmoothedMaxDivergence</span> <span class="o">=</span> <span class="n">PrivacyMeasure</span><span class="p">(</span><span class="s1">&#39;SmoothedMaxDivergence&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Domain"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.Domain">[docs]</a><span class="k">class</span> <span class="nc">Domain</span><span class="p">(</span><span class="n">RuntimeType</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subdomain</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Domain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">subdomain</span><span class="p">)])</span></div>
+
+
+<span class="n">AllDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;AllDomain&#39;</span><span class="p">)</span>
+<span class="n">BoundedDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;BoundedDomain&#39;</span><span class="p">)</span>
+<span class="n">VectorDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;VectorDomain&#39;</span><span class="p">)</span>
+<span class="n">OptionNullDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;OptionNullDomain&#39;</span><span class="p">)</span>
+<span class="n">InherentNullDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;InherentNullDomain&#39;</span><span class="p">)</span>
+<span class="n">SizedDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;SizedDomain&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_domain_atom"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_domain_atom">[docs]</a><span class="k">def</span> <span class="nf">get_domain_atom</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
+    <span class="k">while</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">(</span><span class="n">UnknownType</span><span class="p">,</span> <span class="n">GenericType</span><span class="p">)):</span>
+            <span class="k">return</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">domain</span></div>
+
+
+<div class="viewcode-block" id="get_domain_atom_or_infer"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_domain_atom_or_infer">[docs]</a><span class="k">def</span> <span class="nf">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span> <span class="n">RuntimeType</span><span class="p">,</span> <span class="n">example</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">get_domain_atom</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span> <span class="ow">or</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">example</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_first"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_first">[docs]</a><span class="k">def</span> <span class="nf">get_first</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+</pre></div>
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
