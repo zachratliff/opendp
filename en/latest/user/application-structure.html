@@ -401,6 +401,8 @@ Our transformation will
 <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_resize" title="opendp.trans.make_bounded_resize"><code class="xref py py-func docutils literal notranslate"><span class="pre">resize</span></code></a> and then aggregate with the
 <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_mean" title="opendp.trans.make_sized_bounded_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">mean</span></code></a>.</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">enable_features</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enable_features</span><span class="p">(</span><span class="s1">&#39;contrib&#39;</span><span class="p">)</span> <span class="c1"># we are using un-vetted constructors</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">num_tests</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># d_in=symmetric distance; we are told this is public knowledge</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">budget</span> <span class="o">=</span> <span class="mf">1.</span> <span class="c1"># d_out=epsilon</span>

@@ -300,7 +300,8 @@ The privacy relation maps from an input metric to an output measure.</p>
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">Measurement</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">Measurement</span><span class="p">,</span> <span class="n">enable_features</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enable_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># create an instance of Measurement using a constructor from the meas module</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_geometric</span>
@@ -434,7 +435,8 @@ The stability relation maps from an input metric to an output metric.</p>
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">Transformation</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">Transformation</span><span class="p">,</span> <span class="n">enable_features</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enable_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># create an instance of Transformation using a constructor from the trans module</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_count</span>
@@ -634,7 +636,7 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_chain</span><span class="p">,</span> <span class="n">enable_features</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_clamp</span><span class="p">,</span> <span class="n">make_bounded_resize</span><span class="p">,</span> <span class="n">make_sized_bounded_mean</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_laplace</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">enable_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">enable_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">,</span> <span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># The majority of the chain only needs to be defined once.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span> <span class="o">=</span> <span class="p">(</span>
@@ -673,7 +675,7 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <dd class="field-odd"><p>Union[float, int]</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_param</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_param</span><span class="p">,</span> <span class="n">enable_features</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_laplace</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>

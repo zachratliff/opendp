@@ -226,9 +226,6 @@
     <span class="sd">&quot;&quot;&quot;Make a Measurement that adds noise from the laplace(`scale`) distribution to a scalar value.</span>
 <span class="sd">    Adjust D to noise vector-valued data.</span>
 <span class="sd">    </span>
-<span class="sd">    </span>
-<span class="sd">    `This constructor is supported by the linked proof. &lt;https://www.overleaf.com/read/brvrprjhrhwb&gt;`_</span>
-<span class="sd">    </span>
 <span class="sd">    :param scale: Noise scale parameter of the laplace distribution.</span>
 <span class="sd">    :param D: Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</span>
 <span class="sd">    :type D: RuntimeTypeDescriptor</span>
@@ -238,7 +235,7 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">)</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">,</span> <span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">D</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
@@ -273,7 +270,7 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">)</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">,</span> <span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">D</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
@@ -314,6 +311,8 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">D</span><span class="p">)</span>
     <span class="n">QO</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">QO</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
@@ -360,7 +359,7 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">)</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">,</span> <span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
