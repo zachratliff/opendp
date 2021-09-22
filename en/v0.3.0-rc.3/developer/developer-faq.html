@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developer Frequently Asked Questions &#8212; OpenDP</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Maintainer Notes" href="maintainer-notes.html" />
+    <link rel="prev" title="Code Structure" href="code-structure.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../user/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resources/index.html">
+   Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../faq.html">
+   Frequently Asked Questions
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Developer Guide
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="getting-involved.html">
+     Getting Involved
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contribution-process.html">
+     Contribution Process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="development-environment.html">
+     Development Environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="code-structure.html">
+     Code Structure
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Developer Frequently Asked Questions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="maintainer-notes.html">
+     Maintainer Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../opendp-commons/index.html">
+   OpenDP Commons
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+  <li><a href="../../latest/developer/developer-faq.html">latest</a></li>
+  <li><a href="../../stable/developer/developer-faq.html">stable</a></li>
+</ul>
+
+
+<h6>Releases</h6>
+<ul>
+  <li><a href="developer-faq.html">v0.3.0-rc.3</a></li>
+  <li><a href="../../v0.3.0-rc.2/developer/developer-faq.html">v0.3.0-rc.2</a></li>
+  <li><a href="../../v0.3.0-rc.1/developer/developer-faq.html">v0.3.0-rc.1</a></li>
+  <li><a href="../../v0.2.4/developer/developer-faq.html">v0.2.4</a></li>
+  <li><a href="../../v0.2.3/developer/developer-faq.html">v0.2.3</a></li>
+  <li><a href="../../v0.2.2/developer/developer-faq.html">v0.2.2</a></li>
+  <li><a href="../../v0.2.2-rc.1/developer/developer-faq.html">v0.2.2-rc.1</a></li>
+  <li><a href="../../v0.2.1/index.html">v0.2.1</a></li>
+  <li><a href="../../v0.2.1-rc.1/index.html">v0.2.1-rc.1</a></li>
+  <li><a href="../../v0.2.0-rc1/index.html">v0.2.0-rc1</a></li>
+  <li><a href="../../v0.2.0/index.html">v0.2.0</a></li>
+  <li><a href="../../v0.2.0-rc.6/index.html">v0.2.0-rc.6</a></li>
+  <li><a href="../../v0.2.0-rc.5/index.html">v0.2.0-rc.5</a></li>
+  <li><a href="../../v0.2.0-rc.4/index.html">v0.2.0-rc.4</a></li>
+  <li><a href="../../v0.2.0-rc.3/index.html">v0.2.0-rc.3</a></li>
+  <li><a href="../../v0.2.0-rc.2/index.html">v0.2.0-rc.2</a></li>
+  <li><a href="../../v0.1.0/index.html">v0.1.0</a></li>
+  <li><a href="../../v0.1.0-rc.8/index.html">v0.1.0-rc.8</a></li>
+  <li><a href="../../v0.1.0-rc.7/index.html">v0.1.0-rc.7</a></li>
+  <li><a href="../../v0.1.0-rc.6/index.html">v0.1.0-rc.6</a></li>
+  <li><a href="../../v0.1.0-rc.5/index.html">v0.1.0-rc.5</a></li>
+  <li><a href="../../v0.1.0-rc.4/index.html">v0.1.0-rc.4</a></li>
+  <li><a href="../../v0.1.0-rc.3/index.html">v0.1.0-rc.3</a></li>
+  <li><a href="../../v0.1.0-rc.2/index.html">v0.1.0-rc.2</a></li>
+  <li><a href="../../v0.1.0-rc.1/index.html">v0.1.0-rc.1</a></li>
+</ul>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compilation-error-windows-gmp">
+   Compilation Error: Windows GMP
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compilation-error-error-e0658-const-generics-are-unstable">
+   Compilation Error: “error[E0658]: const generics are unstable”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#runtime-error-no-match-for-concrete-type-you-ve-got-a-debug-binary">
+   Runtime Error: “No match for concrete type; You’ve got a debug binary!”
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#runtime-error-attributeerror-module-enum-has-no-attribute-intflag">
+   Runtime Error: “AttributeError: module ‘enum’ has no attribute ‘IntFlag’”
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="developer-frequently-asked-questions">
+<span id="developer-faq"></span><h1>Developer Frequently Asked Questions<a class="headerlink" href="#developer-frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
+<p>This is a list of common issues developers may encounter.
+The general <a class="reference internal" href="../faq.html#faq"><span class="std std-ref">Frequently Asked Questions</span></a> will be more relevant if you are not a developer.</p>
+<div class="section" id="compilation-error-windows-gmp">
+<h2>Compilation Error: Windows GMP<a class="headerlink" href="#compilation-error-windows-gmp" title="Permalink to this headline">¶</a></h2>
+<p>If you are on a Windows platform and get the error:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>thread <span class="s1">&#39;main&#39;</span> panicked at <span class="s1">&#39;Program failed with code 2: &quot;make&quot; &quot;-j&quot; &quot;12&quot; &quot;check&quot;&#39;</span>
+</pre></div>
+</div>
+<p>Refer to <a class="reference external" href="https://github.com/opendp/opendp/tree/main/windows">the windows build instructions</a>.</p>
+</div>
+<div class="section" id="compilation-error-error-e0658-const-generics-are-unstable">
+<h2>Compilation Error: “error[E0658]: const generics are unstable”<a class="headerlink" href="#compilation-error-error-e0658-const-generics-are-unstable" title="Permalink to this headline">¶</a></h2>
+<p>You have an out-of-date Rust compiler.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">rustup update</span>
+</pre></div></div></div>
+<div class="section" id="runtime-error-no-match-for-concrete-type-you-ve-got-a-debug-binary">
+<h2>Runtime Error: “No match for concrete type; You’ve got a debug binary!”<a class="headerlink" href="#runtime-error-no-match-for-concrete-type-you-ve-got-a-debug-binary" title="Permalink to this headline">¶</a></h2>
+<p>If the built FFI library doesn’t support a data type, you get the error:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>No match for concrete type {} ({:?}). You&#39;ve got a debug binary!
+</pre></div>
+</div>
+<p>The FFI layer creates many copies of generic functions with specific concrete data types (monomorphization).
+When you call the FFI layer with a concrete type argument,
+the FFI layer invokes the copy of the generic function that was monomorphized with that type.</p>
+<p>In order to speed the development process,
+FFI library debug builds monomorphize a smaller set of types than a release build.</p>
+<ol class="arabic">
+<li><p>The easy solution is to build the library with the additional <code class="docutils literal notranslate"><span class="pre">--release</span></code> flag.
+If you are using python, you will also need to set <code class="docutils literal notranslate"><span class="pre">OPENDP_TEST_RELEASE=1</span></code> before importing opendp.</p></li>
+<li><p>If you are doing significant debugging on an algorithm, you could instead choose one of the below to speed things up:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Don’t build the FFI crate, only build the OpenDP crate.
+Do your debugging via tests or make your own tiny crate that depends on OpenDP.</p></li>
+<li><p>If you need FFI to debug, consider changing your data type to one of the debug data types in <a class="reference external" href="https://github.com/opendp/opendp/blob/main/rust/opendp-ffi/src/dispatch.rs">dispatch.rs</a>,
+or temporarily adjust the FFI dispatch for your constructor.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="runtime-error-attributeerror-module-enum-has-no-attribute-intflag">
+<h2>Runtime Error: “AttributeError: module ‘enum’ has no attribute ‘IntFlag’”<a class="headerlink" href="#runtime-error-attributeerror-module-enum-has-no-attribute-intflag" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://stackoverflow.com/a/45716067">This solution</a> resolves the root issue.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip3 uninstall -y enum34</span>
+</pre></div></div></div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="code-structure.html" title="previous page">Code Structure</a>
+    <a class='right-next' id="next-link" href="maintainer-notes.html" title="next page">Maintainer Notes</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
