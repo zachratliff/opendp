@@ -1,7 +1,7 @@
 use std::clone::Clone;
+use std::collections::{BTreeMap, BTreeSet};
 use std::convert::TryFrom;
 use std::iter::IntoIterator;
-use std::collections::{BTreeMap, BTreeSet};
 use std::ops::Mul;
 
 // We only deal with int and rationals here
@@ -197,14 +197,14 @@ impl Mul for &PLDistribution {
 
 impl Default for PLDistribution {
     fn default() -> Self {
-        PLDistribution::new([(Rational::from(1),Rational::from(1))])
+        PLDistribution::new(vec![(Rational::from(1), Rational::from(1))].into_iter())
     }
 }
 
 impl<Q> From<Vec<(Q,Q)>> for PLDistribution
 where Rational: TryFrom<Q> {
     fn from(exp_privacy_loss_probabilities: Vec<(Q,Q)>) -> PLDistribution {
-        let rational_exp_privacy_loss_probabilities: Vec<(Rational,Rational)> = exp_privacy_loss_probabilities.into_iter().map(|(epl, p)| 
+        let rational_exp_privacy_loss_probabilities: Vec<(Rational,Rational)> = exp_privacy_loss_probabilities.into_iter().map(|(epl, p)|
             (Rational::try_from(epl).unwrap_or_default(), Rational::try_from(p).unwrap_or_default())
         ).collect();
         PLDistribution::new(rational_exp_privacy_loss_probabilities)
