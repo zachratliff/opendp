@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Limitations &#8212; OpenDP</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.f8312eac34e2432659a6ef7e609c047e.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,10 +24,10 @@
 
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.c258f241e0e9126fa012.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,7 +38,10 @@
     <link rel="next" title="Getting Started" href="getting-started.html" />
     <link rel="prev" title="Introduction" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -383,12 +387,12 @@
               
               <div>
                 
-  <div class="section" id="limitations">
+  <section id="limitations">
 <span id="id1"></span><h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h1>
 <p>OpenDP is early in its development history.
 We aim to work with the community to make it <em>the</em> trustworthy implementation of differential privacy algorithms, but that will take some time.
 OpenDP already can be used to build some applications, but please be aware of the following limitations when deploying it.</p>
-<div class="section" id="privacy-concerns">
+<section id="privacy-concerns">
 <h2>Privacy Concerns<a class="headerlink" href="#privacy-concerns" title="Permalink to this headline">¶</a></h2>
 <p>As a work in progress, OpenDP has some known privacy concerns.
 These vulnerabilities may have an impact on some applications, depending on how they operate.</p>
@@ -406,8 +410,8 @@ These may make it possible for an attacker who interacts with the system running
 the intended interfaces, potentially violating differential privacy.</p></li>
 </ul>
 <p>Please carefully consider the implications of these limitations if you are building a privacy-critical application.</p>
-</div>
-<div class="section" id="incomplete-privacy-proofs">
+</section>
+<section id="incomplete-privacy-proofs">
 <h2>Incomplete Privacy Proofs<a class="headerlink" href="#incomplete-privacy-proofs" title="Permalink to this headline">¶</a></h2>
 <p>An important element of the OpenDP Project is a formal vetting process that all library components must undergo, to verify their privacy characteristics.
 This process involves supplying mathematical proofs of the privacy properties of all algorithms and validating that all code faithfully implements
@@ -417,39 +421,50 @@ Through the vetting process, we expect to uncover bugs in code and proofs and ma
 privacy-relevant properties.
 As components complete the vetting process, they will drop the <code class="docutils literal notranslate"><span class="pre">contrib</span></code> feature flag, and will be accessible without explicitly opting into
 unvetted components.</p>
-</div>
-<div class="section" id="missing-functionality">
+</section>
+<section id="missing-functionality">
 <h2>Missing Functionality<a class="headerlink" href="#missing-functionality" title="Permalink to this headline">¶</a></h2>
 <p>There are some elements of the OpenDP Programming Framework, the conceptual basis for OpenDP, that are not yet implemented.
 Foremost among these is the concept of interactive measurements.
 (There is an initial prototype, implemented in Rust only, but it’s not fully fleshed out).
 These elements are on our roadmap, but applications will have to wait to use them.</p>
-</div>
-<div class="section" id="api-stability">
+</section>
+<section id="api-stability">
 <h2>API Stability<a class="headerlink" href="#api-stability" title="Permalink to this headline">¶</a></h2>
 <p>The APIs of OpenDP are still in flux, and subject to change.
 We’ve iterated a lot on these interfaces, and feel like the general shape is working well, but it’s likely that many details will change in backwards-incompatible ways.
 This early flexibility is important to evolve the library, and we appreciate your understanding and feedback on improvements.</p>
 <p>When we release OpenDP 1.0.0, we’ll begin to offer API stability within <a class="reference external" href="https://semver.org">major versions</a>.
 Until then, please don’t depend on interfaces remaining the same across releases of OpenDP.</p>
-</div>
-<div class="section" id="software-quality">
+</section>
+<section id="software-quality">
 <h2>Software Quality<a class="headerlink" href="#software-quality" title="Permalink to this headline">¶</a></h2>
 <p>Like any software project, OpenDP likely has bugs. Because it’s still an early project, it likely has many bugs!
 We strive to make high quality software, but if you encounter issues, <a class="reference external" href="https://github.com/opendp/opendp/issues">please let us know</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
               
               
-              <div class='prev-next-bottom'>
-                
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Introduction</a>
-    <a class='right-next' id="next-link" href="getting-started.html" title="next page">Getting Started</a>
-
-              </div>
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">Previous</p>
+            <p class="prev-next-title">Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="getting-started.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">Next</p>
+        <p class="prev-next-title">Getting Started</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
               
           </main>
           
@@ -457,20 +472,19 @@ We strive to make high quality software, but if you encounter issues, <a class="
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  <footer class="footer mt-5 mt-md-0">
+  <script src="../_static/js/index.c258f241e0e9126fa012.js"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021.<br/>
+    &copy; Copyright 2021.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
 </p>
     </div>
     

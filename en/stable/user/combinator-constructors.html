@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Combinator Constructors &#8212; OpenDP</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.f8312eac34e2432659a6ef7e609c047e.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,10 +24,10 @@
 
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.c258f241e0e9126fa012.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,7 +38,10 @@
     <link rel="next" title="Transformation Constructors" href="transformation-constructors.html" />
     <link rel="prev" title="Supporting Elements" href="supporting-elements.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -373,12 +377,12 @@
               
               <div>
                 
-  <div class="section" id="combinator-constructors">
+  <section id="combinator-constructors">
 <span id="id1"></span><h1>Combinator Constructors<a class="headerlink" href="#combinator-constructors" title="Permalink to this headline">¶</a></h1>
 <p>Combinator constructors use transformations or measurements to produce new transformations or measurements.
 Combinators are an area of OpenDP that are still heavily in development,
 but the chainers in particular are foundational and well-tested.</p>
-<div class="section" id="chaining">
+<section id="chaining">
 <span id="id2"></span><h2>Chaining<a class="headerlink" href="#chaining" title="Permalink to this headline">¶</a></h2>
 <p>Two of the most essential constructors are the “chainers” that chain transformations with transformations, and transformations with measurements.
 Chainers are used to incrementally piece Transformations or Measurements together that represent longer computational pipelines.</p>
@@ -436,8 +440,8 @@ but the chaining fails because the sum emits floats and the geometric mechanism 
 <p>Note that <code class="docutils literal notranslate"><span class="pre">noisy_sum</span></code>’s input domain and input metric come from <code class="docutils literal notranslate"><span class="pre">bounded_sum</span></code>’s input domain and input metric.
 This is intended to enable further chaining with preprocessors like <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast" title="opendp.trans.make_cast"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_cast</span></code></a>, <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_impute_constant" title="opendp.trans.make_impute_constant"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_impute_constant</span></code></a>, <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_clamp" title="opendp.trans.make_clamp"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_clamp</span></code></a> and <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_resize" title="opendp.trans.make_bounded_resize"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_bounded_resize</span></code></a>.
 See the section on <a class="reference internal" href="transformation-constructors.html#transformation-constructors"><span class="std std-ref">Transformation Constructors</span></a> for more information on how to preprocess data in OpenDP.</p>
-</div>
-<div class="section" id="composition">
+</section>
+<section id="composition">
 <h2>Composition<a class="headerlink" href="#composition" title="Permalink to this headline">¶</a></h2>
 <p>OpenDP has a simple composition combinator for building a tuple of measurements out of two measurements.
 You can nest this composition combinator arbitrarily.</p>
@@ -454,8 +458,8 @@ You can nest this composition combinator arbitrarily.</p>
 <dd class="field-even"><p><a class="reference external" href="https://github.com/opendp/opendp/pull/264">f-DP</a></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="amplification">
+</section>
+<section id="amplification">
 <h2>Amplification<a class="headerlink" href="#amplification" title="Permalink to this headline">¶</a></h2>
 <p>Population amplification based on sampling has an implementation but is not yet finalized.
 Progress on this can be found in the following PR:</p>
@@ -464,19 +468,30 @@ Progress on this can be found in the following PR:</p>
 <dd class="field-odd"><p><a class="reference external" href="https://github.com/opendp/opendp/pull/233">population amplification</a></p>
 </dd>
 </dl>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
               
               
-              <div class='prev-next-bottom'>
-                
-    <a class='left-prev' id="prev-link" href="supporting-elements.html" title="previous page">Supporting Elements</a>
-    <a class='right-next' id="next-link" href="transformation-constructors.html" title="next page">Transformation Constructors</a>
-
-              </div>
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="supporting-elements.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">Previous</p>
+            <p class="prev-next-title">Supporting Elements</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="transformation-constructors.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">Next</p>
+        <p class="prev-next-title">Transformation Constructors</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
               
           </main>
           
@@ -484,20 +499,19 @@ Progress on this can be found in the following PR:</p>
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  <footer class="footer mt-5 mt-md-0">
+  <script src="../_static/js/index.c258f241e0e9126fa012.js"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021.<br/>
+    &copy; Copyright 2021.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
 </p>
     </div>
     

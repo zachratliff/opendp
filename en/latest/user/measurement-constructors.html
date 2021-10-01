@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Measurement Constructors &#8212; OpenDP</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.f8312eac34e2432659a6ef7e609c047e.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,10 +24,10 @@
 
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.c258f241e0e9126fa012.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,7 +38,10 @@
     <link rel="next" title="Application Structure" href="application-structure.html" />
     <link rel="prev" title="Transformation Constructors" href="transformation-constructors.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -363,7 +367,7 @@
               
               <div>
                 
-  <div class="section" id="measurement-constructors">
+  <section id="measurement-constructors">
 <span id="id1"></span><h1>Measurement Constructors<a class="headerlink" href="#measurement-constructors" title="Permalink to this headline">¶</a></h1>
 <p>This section gives a high-level overview of the measurements that are available in the library.
 Refer to the <a class="reference internal" href="core-structures.html#measurement"><span class="std std-ref">Measurement</span></a> section for an explanation of what a measurement is.</p>
@@ -431,7 +435,7 @@ You can choose whether to construct scalar or vector-valued versions by setting 
 </tr>
 </tbody>
 </table>
-<div class="section" id="floating-point">
+<section id="floating-point">
 <span id="id2"></span><h2>Floating-Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h2>
 <p>Given the context of measurements, this section goes into greater detail than <a class="reference internal" href="limitations.html#limitations"><span class="std std-ref">Limitations</span></a> on floating-point issues.
 Be warned that <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_laplace" title="opendp.meas.make_base_laplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_laplace()</span></code></a>, <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_gaussian" title="opendp.meas.make_base_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_gaussian()</span></code></a> and <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_stability" title="opendp.meas.make_base_stability"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_stability()</span></code></a>
@@ -448,19 +452,30 @@ but our noise postprocessing re-introduces artifacts.
 We are developing alternative mechanisms for answering continuous queries.</p>
 <p>We acknowledge the snapping mechanism and have an implementation of it <a class="reference external" href="https://github.com/opendp/opendp/pull/84">in PR #84</a>.</p>
 <p>We are also working towards adding support for fixed-point data types <a class="reference external" href="https://github.com/opendp/opendp/pull/184">in PR #184</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
               
               
-              <div class='prev-next-bottom'>
-                
-    <a class='left-prev' id="prev-link" href="transformation-constructors.html" title="previous page">Transformation Constructors</a>
-    <a class='right-next' id="next-link" href="application-structure.html" title="next page">Application Structure</a>
-
-              </div>
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="transformation-constructors.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">Previous</p>
+            <p class="prev-next-title">Transformation Constructors</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="application-structure.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">Next</p>
+        <p class="prev-next-title">Application Structure</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
               
           </main>
           
@@ -468,20 +483,19 @@ We are developing alternative mechanisms for answering continuous queries.</p>
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  <footer class="footer mt-5 mt-md-0">
+  <script src="../_static/js/index.c258f241e0e9126fa012.js"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021.<br/>
+    &copy; Copyright 2021.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
 </p>
     </div>
     

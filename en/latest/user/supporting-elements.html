@@ -4,11 +4,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Supporting Elements &#8212; OpenDP</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.f8312eac34e2432659a6ef7e609c047e.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,10 +24,10 @@
 
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.c258f241e0e9126fa012.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,7 +38,10 @@
     <link rel="next" title="Combinator Constructors" href="combinator-constructors.html" />
     <link rel="prev" title="Core Structures" href="core-structures.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -388,18 +392,18 @@
               
               <div>
                 
-  <div class="section" id="supporting-elements">
+  <section id="supporting-elements">
 <h1>Supporting Elements<a class="headerlink" href="#supporting-elements" title="Permalink to this headline">¶</a></h1>
 <p>This section builds on the <a class="reference internal" href="core-structures.html#core-structures"><span class="std std-ref">Core Structures</span></a> documentation to expand on the constituent pieces of Measurements and Transformations.</p>
-<div class="section" id="function">
+<section id="function">
 <span id="functions"></span><h2>Function<a class="headerlink" href="#function" title="Permalink to this headline">¶</a></h2>
 <p>As one would expect, all data processing is handled via a function.
 The function member stored in a Transformation or Measurement struct is straightforward representation of an idealized mathematical function.
 A mathematical function is a binary relation between two sets
 that associates each value in the input set with a value in the output set.
 In OpenDP, we capture these sets with domains…</p>
-</div>
-<div class="section" id="domains">
+</section>
+<section id="domains">
 <span id="id1"></span><h2>Domains<a class="headerlink" href="#domains" title="Permalink to this headline">¶</a></h2>
 <p>A domain describes the set of all possible input values of a function, or all possible output values of a function.
 Two domains (<code class="docutils literal notranslate"><span class="pre">input_domain</span></code> and <code class="docutils literal notranslate"><span class="pre">output_domain</span></code>) are bundled within each Transformation or Measurement to describe all possible inputs and outputs of the function.</p>
@@ -450,8 +454,8 @@ which makes use of a <code class="docutils literal notranslate"><span class="pre
 For instance, chainer constructors check that intermediate domains are equivalent
 to guarantee that the output of the interior function is always a valid input to the exterior function.</p></li>
 </ol>
-</div>
-<div class="section" id="metrics">
+</section>
+<section id="metrics">
 <span id="id2"></span><h2>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h2>
 <p>A metric is a function that computes the distance between two elements of a set.</p>
 <p id="symmetric-distance">A concrete example of a metric in opendp is <code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code>, or “the symmetric distance metric <code class="docutils literal notranslate"><span class="pre">|A</span> <span class="pre">△</span> <span class="pre">B|</span> <span class="pre">=</span> <span class="pre">|(A\B)</span> <span class="pre">∪</span> <span class="pre">(B\A)|</span></code>.”
@@ -466,8 +470,8 @@ This metric is used to represent global sensitivities
 In practice, most users will not have a need to provide global sensitivities to privacy relations,
 because they are a midway distance bound encountered while relating dataset distances and privacy distances.
 However, there are situations where constructors accept a metric for specifying the metric for sensitivities.</p>
-</div>
-<div class="section" id="measures">
+</section>
+<section id="measures">
 <span id="id3"></span><h2>Measures<a class="headerlink" href="#measures" title="Permalink to this headline">¶</a></h2>
 <p>In OpenDP, a measure is a function for measuring the distance between probability distributions.</p>
 <p id="max-divergence">A concrete example is <code class="docutils literal notranslate"><span class="pre">MaxDivergence&lt;f64&gt;</span></code>,
@@ -477,8 +481,8 @@ The max divergence measure has distances that correspond to <code class="docutil
 The smoothed max divergence measure corresponds to approximate differential privacy,
 where distances are <code class="docutils literal notranslate"><span class="pre">(epsilon,</span> <span class="pre">delta)</span></code> tuples.</p>
 <p>Every Measurement (<a class="reference internal" href="measurement-constructors.html#measurement-constructors"><span class="std std-ref">see listing</span></a>) contains an output_measure, and compositors are always typed by a Measure.</p>
-</div>
-<div class="section" id="relations">
+</section>
+<section id="relations">
 <span id="id4"></span><h2>Relations<a class="headerlink" href="#relations" title="Permalink to this headline">¶</a></h2>
 <p>We assert the privacy properties of a Transformation or Measurement’s function via a relation.
 Relations accept a <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and a <code class="docutils literal notranslate"><span class="pre">d_out</span></code> and return a boolean.
@@ -517,8 +521,8 @@ This is an incredibly useful observation, as we will see in the <a class="refere
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">clamp</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">d_in</span><span class="o">=</span><span class="n">in_symmetric_distance</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="distances">
+</section>
+<section id="distances">
 <span id="id5"></span><h2>Distances<a class="headerlink" href="#distances" title="Permalink to this headline">¶</a></h2>
 <p>You can determine what units <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> are expressed in based on the <code class="docutils literal notranslate"><span class="pre">input_metric</span></code>, and <code class="docutils literal notranslate"><span class="pre">output_metric</span></code> or <code class="docutils literal notranslate"><span class="pre">output_measure</span></code>.
 Follow the links into the example metrics and measures to get more detail on what the distances mean for that kind of metric or measure.</p>
@@ -536,19 +540,30 @@ The framework does not evaluate these because it only needs to relate a user-pro
 Even the user should not directly compute input and output distances:
 they are <a class="reference internal" href="application-structure.html#determining-accuracy"><span class="std std-ref">solved-for</span></a>, <a class="reference internal" href="application-structure.html#parameter-search"><span class="std std-ref">bisected</span></a>, or even <a class="reference internal" href="application-structure.html#putting-together"><span class="std std-ref">contextual</span></a>.</p>
 <p>Be careful: even a dataset query to determine the greatest number of contributions made by any one individual can itself be private information.</p>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
               
               
-              <div class='prev-next-bottom'>
-                
-    <a class='left-prev' id="prev-link" href="core-structures.html" title="previous page">Core Structures</a>
-    <a class='right-next' id="next-link" href="combinator-constructors.html" title="next page">Combinator Constructors</a>
-
-              </div>
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="core-structures.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">Previous</p>
+            <p class="prev-next-title">Core Structures</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="combinator-constructors.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">Next</p>
+        <p class="prev-next-title">Combinator Constructors</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
               
           </main>
           
@@ -556,20 +571,19 @@ they are <a class="reference internal" href="application-structure.html#determin
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-
-  <footer class="footer mt-5 mt-md-0">
+  <script src="../_static/js/index.c258f241e0e9126fa012.js"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
       <p class="copyright">
-    &copy; Copyright 2021.<br/>
+    &copy; Copyright 2021.<br>
 </p>
     </div>
     
     <div class="footer-item">
       <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br/>
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
 </p>
     </div>
     
