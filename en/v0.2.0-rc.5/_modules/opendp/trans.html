@@ -8,7 +8,7 @@
     <title>opendp.trans &#8212; OpenDP</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.f8312eac34e2432659a6ef7e609c047e.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.c258f241e0e9126fa012.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -317,6 +317,9 @@
     <span class="s2">&quot;make_impute_constant&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_drop_null&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_impute_uniform_float&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_find&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_find_bin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_index&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_sized_bounded_mean&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_resize&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_bounded_resize&quot;</span><span class="p">,</span>
@@ -1051,6 +1054,109 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="make_find"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_find">[docs]</a><span class="k">def</span> <span class="nf">make_find</span><span class="p">(</span>
+    <span class="n">categories</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Find the index of a data value in a set of categories.</span>
+<span class="sd">    </span>
+<span class="sd">    :param categories: The set of categories to find indexes from.</span>
+<span class="sd">    :type categories: Any</span>
+<span class="sd">    :param TIA: categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</span>
+<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :return: A find step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">categories</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">TIA</span><span class="p">]))</span>
+    <span class="n">TIA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TIA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_find</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">TIA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_find_bin"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_find_bin">[docs]</a><span class="k">def</span> <span class="nf">make_find_bin</span><span class="p">(</span>
+    <span class="n">edges</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Find the bin index from a monotonically increasing vector of edges.</span>
+<span class="sd">    </span>
+<span class="sd">    :param edges: The set of edges to split bins by.</span>
+<span class="sd">    :type edges: Any</span>
+<span class="sd">    :param TIA: numerical input type. Input data must be Vec&lt;TIA&gt;.</span>
+<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :return: A find_bin step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">edges</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">TIA</span><span class="p">]))</span>
+    <span class="n">TIA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TIA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_find_bin</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">TIA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_index"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_index">[docs]</a><span class="k">def</span> <span class="nf">make_index</span><span class="p">(</span>
+    <span class="n">categories</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">null</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">TOA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Index into a vector of categories.</span>
+<span class="sd">    </span>
+<span class="sd">    :param categories: The set of categories to index into.</span>
+<span class="sd">    :type categories: Any</span>
+<span class="sd">    :param null: Category to return if the index is out-of-range of the category set.</span>
+<span class="sd">    :type null: Any</span>
+<span class="sd">    :param TOA: atomic output type. Output data will be Vec&lt;TIA&gt;.</span>
+<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
+<span class="sd">    :return: A index step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">TOA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">categories</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">TOA</span><span class="p">]))</span>
+    <span class="n">null</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">)</span>
+    <span class="n">TOA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TOA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_index</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">TOA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
 <div class="viewcode-block" id="make_sized_bounded_mean"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_mean">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_mean</span><span class="p">(</span>
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
@@ -1296,7 +1402,7 @@
       </div>
     </div>
   
-  <script src="../../_static/js/index.c258f241e0e9126fa012.js"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 <footer class="footer mt-5 mt-md-0">
   <div class="container">
     
