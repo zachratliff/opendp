@@ -340,12 +340,15 @@
 
 <div class="viewcode-block" id="make_base_gaussian"><a class="viewcode-back" href="../../api/python/opendp.meas.html#opendp.meas.make_base_gaussian">[docs]</a><span class="k">def</span> <span class="nf">make_base_gaussian</span><span class="p">(</span>
     <span class="n">scale</span><span class="p">,</span>
+    <span class="n">analytic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">D</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;AllDomain&lt;T&gt;&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Measurement that adds noise from the gaussian(`scale`) distribution to the input.</span>
 <span class="sd">    Adjust D to noise vector-valued data.</span>
 <span class="sd">    </span>
 <span class="sd">    :param scale: noise scale parameter to the gaussian distribution</span>
+<span class="sd">    :param analytic: enable to use a privacy relation corresponding to the analytic gaussian mechanism</span>
+<span class="sd">    :type analytic: bool</span>
 <span class="sd">    :param D: Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</span>
 <span class="sd">    :type D: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A base_gaussian step.</span>
@@ -363,14 +366,15 @@
     
     <span class="c1"># Convert arguments to c types.</span>
     <span class="n">scale</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">analytic</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">analytic</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">)</span>
     <span class="n">D</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_meas__make_base_gaussian</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">D</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">analytic</span><span class="p">,</span> <span class="n">D</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_base_geometric"><a class="viewcode-back" href="../../api/python/opendp.meas.html#opendp.meas.make_base_geometric">[docs]</a><span class="k">def</span> <span class="nf">make_base_geometric</span><span class="p">(</span>
