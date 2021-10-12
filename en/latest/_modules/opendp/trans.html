@@ -997,7 +997,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that drops null values.</span>
 <span class="sd">    </span>
-<span class="sd">    :param DA: domain of data being imputed. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</span>
+<span class="sd">    :param DA: atomic domain of input data that contains nulls. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</span>
 <span class="sd">    :type DA: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A drop_null step.</span>
 <span class="sd">    :rtype: Transformation</span>

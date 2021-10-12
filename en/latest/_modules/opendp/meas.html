@@ -299,6 +299,8 @@
     <span class="s2">&quot;make_base_laplace&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_base_gaussian&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_base_geometric&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_randomized_response_bool&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_randomized_response&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_base_stability&quot;</span>
 <span class="p">]</span>
 
@@ -419,6 +421,87 @@
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">QO</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_randomized_response_bool"><a class="viewcode-back" href="../../api/python/opendp.meas.html#opendp.meas.make_randomized_response_bool">[docs]</a><span class="k">def</span> <span class="nf">make_randomized_response_bool</span><span class="p">(</span>
+    <span class="n">prob</span><span class="p">,</span>
+    <span class="n">constant_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">Q</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Measurement that implements randomized response on a boolean value.</span>
+<span class="sd">    </span>
+<span class="sd">    :param prob: Probability of returning the correct answer. Must be in [0.5, 1)</span>
+<span class="sd">    :param constant_time: Set to true to enable constant time</span>
+<span class="sd">    :type constant_time: bool</span>
+<span class="sd">    :param Q: Data type of probability and budget.</span>
+<span class="sd">    :type Q: RuntimeTypeDescriptor</span>
+<span class="sd">    :return: A randomized_response_bool step.</span>
+<span class="sd">    :rtype: Measurement</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">Q</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">Q</span><span class="p">)</span>
+    <span class="n">constant_time</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">constant_time</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">)</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_meas__make_randomized_response_bool</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">constant_time</span><span class="p">,</span> <span class="n">Q</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_randomized_response"><a class="viewcode-back" href="../../api/python/opendp.meas.html#opendp.meas.make_randomized_response">[docs]</a><span class="k">def</span> <span class="nf">make_randomized_response</span><span class="p">(</span>
+    <span class="n">categories</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="n">prob</span><span class="p">,</span>
+    <span class="n">constant_time</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">Q</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Measurement that implements randomized response on a categorical value.</span>
+<span class="sd">    </span>
+<span class="sd">    :param categories: Set of valid outcomes</span>
+<span class="sd">    :type categories: Any</span>
+<span class="sd">    :param prob: Probability of returning the correct answer. Must be in [1/num_categories, 1)</span>
+<span class="sd">    :param constant_time: Set to true to enable constant time</span>
+<span class="sd">    :type constant_time: bool</span>
+<span class="sd">    :param T: Data type of a category.</span>
+<span class="sd">    :type T: RuntimeTypeDescriptor</span>
+<span class="sd">    :param Q: Data type of probability and budget.</span>
+<span class="sd">    :type Q: RuntimeTypeDescriptor</span>
+<span class="sd">    :return: A randomized_response step.</span>
+<span class="sd">    :rtype: Measurement</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">categories</span><span class="p">))</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">Q</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">prob</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">]))</span>
+    <span class="n">prob</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">Q</span><span class="p">)</span>
+    <span class="n">constant_time</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">constant_time</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">)</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_meas__make_randomized_response</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_bool</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">prob</span><span class="p">,</span> <span class="n">constant_time</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Q</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_base_stability"><a class="viewcode-back" href="../../api/python/opendp.meas.html#opendp.meas.make_base_stability">[docs]</a><span class="k">def</span> <span class="nf">make_base_stability</span><span class="p">(</span>
