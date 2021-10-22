@@ -456,22 +456,20 @@ Adjust D to noise vector-valued data.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="opendp.meas.make_base_stability">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_stability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIC</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_stability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_stability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a Measurement that implements a stability-based filtering and noising.</p>
+<dt class="sig sig-object py" id="opendp.meas.make_count_by_ptr">
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_count_by_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOC</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_count_by_ptr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_count_by_ptr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a Measurement that uses propose-test-release to count by an unknown set of categories.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>size</strong> (<em>int</em>) – Number of records in the input vector.</p></li>
 <li><p><strong>scale</strong> – Noise scale parameter.</p></li>
 <li><p><strong>threshold</strong> – Exclude counts that are less than this minimum value.</p></li>
-<li><p><strong>MI</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.SensitivityMetric" title="opendp.typing.SensitivityMetric"><em>SensitivityMetric</em></a>) – Input metric.</p></li>
-<li><p><strong>TIK</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of input key- must be hashable/categorical.</p></li>
-<li><p><strong>TIC</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of input count- must be integral.</p></li>
+<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic type of input data- must be hashable/categorical.</p></li>
+<li><p><strong>TOC</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of output count- must be float.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A base_stability step.</p>
+<dd class="field-even"><p>A count_by_ptr step.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>
