@@ -34,7 +34,7 @@ cargo_build:
 	cargo build ${RUST_BUILD_FLAG} --manifest-path=${RUSTDIR}/Cargo.toml ${RUST_FEATURE_FLAG}
 
 	# When cargo build is run, rust/opendp-ffi/build/main.rs is executed
-    # That build script parses the rust crate and generates opendp_ffi.h.
+	# That build script parses the rust crate and generates opendp_ffi.h.
 	# Copy that header file over to `R/src/` so that it can be included when building `opendp.so`
 	cp ${RUSTDIR}/opendp-ffi/opendp_ffi.h .
 

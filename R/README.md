@@ -13,8 +13,10 @@ Work-in-progress R bindings for OpenDP.
     # - builds libopendp_ffi.a and opendp_ffi.h
     # - copies opendp_ffi.h into src/
     # - compiles wrapper.c, which includes the two .h files and statically links with libopendp_ffi.a
-    # - outputs src/opendp.so, 
+    # - outputs src/opendp.so, which contains the extern function `slice_as_object__wrapper`
     pkgbuild::compile_dll()
+    # - uses roxygen to generate `R/man` pages from #' comments
+    # - loads the library into the current env  
     devtools::document() 
     ```
 
@@ -40,7 +42,7 @@ There are a couple solutions:
    - Would have to be a relative link to work with git, which similarly breaks on install  
    - Would cause cross platform issues w/ windows  
 1. Copy the /rust into /R/src  
-   - Slow to copy and easily gets desynchronized  
+   - Slow to copy and easily gets de-synchronized  
 1. Only copy /rust into /R/src when deploying the package  
    - The typical dev loop is `devtools::load_all()`. 
    - Never install the dev package  
@@ -52,12 +54,14 @@ There are a couple solutions:
 The python library is generally a pretty good model for how this can be implemented.
 
 1. Low-level type conversions between the bindings language and Rust  
-    `python/src/_convert.py` -> `R/src/wrapper.c` or `R/src/convert.c`
+    `python/src/_convert.py` -> `R/src/wrapper.c` or `R/src/convert.c`  
+    The bulk of this is wrapping and unwrapping SEXPR types
 2. Codegen for R constructor functions  
     `rust/opendp-ffi/build/python` -> `rust/opendp-ffi/build/R`  
     Constructor functions in `meas.py`, `trans.py`, `data.py` and `comb.py`
     are all generated from bootstrap.json metadata.
-    Similarly in R, `meas.R`, `trans.R`, etc. can be generated into `R/inst`
+    Similarly in R, `meas.R`, `trans.R`, etc. can be generated into `R/inst`  
+    It's best to implement a number of these constructors by hand first.
 3. Tools for manipulating types idiomatically in R  
    `python/src/typing.py` -> `R/src/typing.R`
 4. Adjust smoke-test.yml CI to automatically run testthat R/tests
