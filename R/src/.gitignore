@@ -1,0 +1,8 @@
+*.o
+*.so
+*.dll
+
+opendp.so
+wrapper.o
+libopendp_ffi.a
+opendp_ffi.h

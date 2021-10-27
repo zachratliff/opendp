@@ -24,6 +24,7 @@ default-features = false
 serde_json = { version = "1.0.64", features = ["preserve_order"] }
 serde = { version = "1.0.126", features = ["derive"] }
 indexmap = { version = "1.6.2", features = ["serde"] }
+cbindgen = "0.20.0"
 
 [features]
 default = ["use-openssl", "use-mpfr"]
@@ -39,7 +40,7 @@ use-mpfr = ["opendp/use-mpfr"]
 use-system-libs = ["opendp/use-system-libs"]
 
 [lib]
-crate-type = ["rlib", "cdylib"]
+crate-type = ["rlib", "cdylib", "staticlib"]
 
 
 [dev-dependencies]

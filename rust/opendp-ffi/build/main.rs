@@ -6,6 +6,7 @@ use std::path::{Path, PathBuf};
 use indexmap::map::IndexMap;
 use serde::{Deserialize, Deserializer};
 use serde_json::Value;
+use cbindgen::{Config, Language};
 
 pub mod python;
 
@@ -136,6 +137,15 @@ fn main() {
         .collect::<IndexMap<String, Module>>();
 
     write_bindings(python::generate_bindings(_modules));
+
+    let crate_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
+    let mut config = Config::default();
+    config.language = Language::C;
+    match cbindgen::generate_with_config(&crate_dir, config) {
+        Ok(bindings) => bindings.write_to_file("opendp_ffi.h"),
+        Err(cbindgen::Error::ParseSyntaxError { .. }) => return, // ignore in favor of cargo's syntax check
+        Err(err) => panic!("{:?}", err)
+    };
 }
 
 #[allow(dead_code)]
