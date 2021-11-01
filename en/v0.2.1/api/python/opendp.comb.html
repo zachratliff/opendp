@@ -459,6 +459,33 @@
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.comb.make_population_amplification">
+<span class="sig-prename descclassname"><span class="pre">opendp.comb.</span></span><span class="sig-name descname"><span class="pre">make_population_amplification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">population_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/comb.html#make_population_amplification"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.comb.make_population_amplification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct an amplified measurement from a <cite>measurement</cite> with privacy amplification by subsampling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measurement</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>Measurement</em></a>) – The measurement to amplify.</p></li>
+<li><p><strong>population_size</strong> (<em>int</em>) – Number of records in population.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>New measurement with the same function, but an adjusted privacy relation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 

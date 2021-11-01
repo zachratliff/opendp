@@ -298,7 +298,8 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;make_chain_mt&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_chain_tt&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_basic_composition&quot;</span>
+    <span class="s2">&quot;make_basic_composition&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_population_amplification&quot;</span>
 <span class="p">]</span>
 
 
@@ -393,6 +394,35 @@
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement0</span><span class="p">,</span> <span class="n">measurement1</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_population_amplification"><a class="viewcode-back" href="../../api/python/opendp.comb.html#opendp.comb.make_population_amplification">[docs]</a><span class="k">def</span> <span class="nf">make_population_amplification</span><span class="p">(</span>
+    <span class="n">measurement</span><span class="p">:</span> <span class="n">Measurement</span><span class="p">,</span>
+    <span class="n">population_size</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Construct an amplified measurement from a `measurement` with privacy amplification by subsampling.</span>
+<span class="sd">    </span>
+<span class="sd">    :param measurement: The measurement to amplify.</span>
+<span class="sd">    :type measurement: Measurement</span>
+<span class="sd">    :param population_size: Number of records in population.</span>
+<span class="sd">    :type population_size: int</span>
+<span class="sd">    :return: New measurement with the same function, but an adjusted privacy relation.</span>
+<span class="sd">    :rtype: Measurement</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># No type arguments to standardize.</span>
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">measurement</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">Measurement</span><span class="p">)</span>
+    <span class="n">population_size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">population_size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_comb__make_population_amplification</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Measurement</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">population_size</span><span class="p">),</span> <span class="n">Measurement</span><span class="p">))</span></div>
 </pre></div>
 
               </div>
