@@ -610,7 +610,7 @@
 <span class="sd">    </span>
 <span class="sd">    :param TIA: Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</span>
 <span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
-<span class="sd">    :param TO: Output Type. Must be an integer.</span>
+<span class="sd">    :param TO: Output Type. Must be numeric.</span>
 <span class="sd">    :type TO: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A count step.</span>
 <span class="sd">    :rtype: Transformation</span>
@@ -644,7 +644,7 @@
 <span class="sd">    </span>
 <span class="sd">    :param TIA: Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</span>
 <span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
-<span class="sd">    :param TO: Output Type. Must be an integer.</span>
+<span class="sd">    :param TO: Output Type. Must be numeric.</span>
 <span class="sd">    :type TO: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A count_distinct step.</span>
 <span class="sd">    :rtype: Transformation</span>
@@ -732,7 +732,7 @@
 <span class="sd">    :type MO: SensitivityMetric</span>
 <span class="sd">    :param TIA: categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</span>
 <span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
-<span class="sd">    :param TOA: express counts in terms of this integral type</span>
+<span class="sd">    :param TOA: express counts in terms of this numeric type</span>
 <span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A count_by_categories step.</span>
 <span class="sd">    :rtype: Transformation</span>
