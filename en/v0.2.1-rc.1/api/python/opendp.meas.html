@@ -379,15 +379,43 @@
   <section id="module-opendp.meas">
 <span id="opendp-meas-module"></span><h1>opendp.meas module<a class="headerlink" href="#module-opendp.meas" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
+<dt class="sig sig-object py" id="opendp.meas.make_base_analytic_gaussian">
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_analytic_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_analytic_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_analytic_gaussian" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a Measurement that adds noise from the gaussian(<cite>scale</cite>) distribution to the input.
+Adjust D to noise vector-valued data.
+The privacy relation is based on the analytic gaussian mechanism.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> – noise scale parameter to the gaussian distribution</p></li>
+<li><p><strong>D</strong> (<em>RuntimeTypeDescriptor</em>) – Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A base_analytic_gaussian step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_base_gaussian">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analytic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_gaussian" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_gaussian" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a Measurement that adds noise from the gaussian(<cite>scale</cite>) distribution to the input.
 Adjust D to noise vector-valued data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scale</strong> – noise scale parameter to the gaussian distribution</p></li>
-<li><p><strong>analytic</strong> (<em>bool</em>) – enable to use a privacy relation corresponding to the analytic gaussian mechanism</p></li>
 <li><p><strong>D</strong> (<em>RuntimeTypeDescriptor</em>) – Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</p></li>
 </ul>
 </dd>
