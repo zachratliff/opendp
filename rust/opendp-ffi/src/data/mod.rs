@@ -13,7 +13,7 @@ use crate::core::{FfiError, FfiResult, FfiSlice};
 use crate::util;
 use crate::util::{c_bool, Type, TypeContents};
 use opendp::traits::{MeasureDistance, MetricDistance};
-use std::fmt::Formatter;
+use std::fmt::{Debug, Formatter};
 use std::hash::Hash;
 
 
@@ -106,9 +106,10 @@ pub extern "C" fn opendp_data__slice_as_object(raw: *const FfiSlice, T: *const c
         unimplemented!()
     }
     #[allow(clippy::unnecessary_wraps)]
-    fn raw_to_vec<T: 'static + Clone>(raw: &FfiSlice) -> Fallible<AnyObject> {
+    fn raw_to_vec<T: 'static + Clone + Debug>(raw: &FfiSlice) -> Fallible<AnyObject> {
         let slice = unsafe { slice::from_raw_parts(raw.ptr as *const T, raw.len) };
         let vec = slice.to_vec();
+        println!("Data inside rust: {:?}", vec);
         Ok(AnyObject::new(vec))
     }
     fn raw_to_tuple<T0: 'static + Clone, T1: 'static + Clone>(raw: &FfiSlice) -> Fallible<AnyObject> {

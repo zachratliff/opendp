@@ -9,6 +9,9 @@ Work-in-progress R bindings for OpenDP.
 2. Install OpenDP R package:
 
     ```R
+    # - If you've already built, and only made changes to the rust code, compile_dll will do nothing
+    # - This removes existing dll's, so that compile_dll will run again
+    pkgbuild::clean_dll()
     # - runs src/Makevars
     # - builds libopendp_ffi.a and opendp_ffi.h
     # - copies opendp_ffi.h into src/
@@ -16,18 +19,35 @@ Work-in-progress R bindings for OpenDP.
     # - outputs src/opendp.so, which contains the extern function `slice_as_object__wrapper`
     pkgbuild::compile_dll()
     # - uses roxygen to generate `R/man` pages from #' comments
-    # - loads the library into the current env  
+    # - loads the library into the current env
+    # - must be done after every compile_dll(), or else the package will be stale  
     devtools::document() 
     ```
 
 3. Call into the rust OpenDP library:
 
     ```R
-    opendp::slice_to_object("ignored data")
+    data <- c(1.2, 2.3)
+    opendp::slice_as_object(data)
+    opendp::slice_as_object(as.integer(data))
     ```
 
     This should emit:
-    > Success or error: 0[1] "ignored data"
+    > REALSXP
+    > Data inside rust: [1.2, 2.3]
+    > Success or error: 0
+    > [1] 1.2 2.3
+    > INTSXP
+    > Data inside rust: [1, 2]
+    > Success or error: 0
+    > [1] 1 2
+
+    Each call to slice_as_object first prints the typename, if recognized.
+    It then extracts the data from the SEXP into an FfiSlice, and passes the FfiSlice into a function in the OpenDP library.
+    The OpenDP library rust code reads the FfiSlice, interprets the contents based on the typename, prints the interpreted data, 
+        packages the data into an AnyObject (or error) and returns the AnyObject (or error).
+    The execution returns to wrapper.c, where the resulting structure is checked for an error.
+    wrapper.c finally returns the input SEXP unmodified, which gets printed out into the repl. 
 
 The following command currently fails:
 

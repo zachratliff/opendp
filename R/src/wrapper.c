@@ -9,19 +9,38 @@
 #include "opendp_ffi_base.h"
 #include "opendp_ffi.h"
 
+// returns a void* to the underlying data, and saves the typename
+void *extract_pointer(SEXP val, char *typename) {
+
+    switch( TYPEOF(val) ) {
+        case INTSXP:
+            strcpy(typename, "Vec<i32>\0");
+            printf("INTSXP\n");
+            return INTEGER(val);
+        case REALSXP:
+            strcpy(typename, "Vec<f64>\0");
+            printf("REALSXP\n");
+            return REAL(val);
+        default:
+            return NULL;
+    }
+}
+
 SEXP slice_as_object__wrapper(SEXP data) {
-    // TODO: unwrap data, translate into ffislice. See _convert.py for direction
-    double data2 = 1.;
-    uintptr_t len = 1;
-    FfiSlice slice = { &data2, len};
 
-    char *typename = malloc(4);
-    strcpy(typename, "f64\0");
+    // This choice of size is the longest currently-supported typename.
+    char *typename = malloc(9);
 
+    // construct an FfiSlice containing the data
+    FfiSlice slice = { extract_pointer(data, typename), LENGTH(data)};
+
+    // convert the FfiSlice to an AnyObject (or error).
+    // An AnyObject is an opaque C struct that contains the data in a rust-specific representation
+    // AnyObjects may be used interchangeably in the majority of library APIs
     FfiResult_____AnyObject result = opendp_data__slice_as_object(&slice, typename);
 
     // TODO: result unwrapping and return opaque AnyObject struct
-    printf("Success or error: %d", result.tag);
+    printf("Success or error: %d\n", result.tag);
 
     // the function returns the input just so that the code compiles
     return data;
