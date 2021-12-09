@@ -443,6 +443,16 @@ You can choose whether to construct scalar or vector-valued versions by setting 
 <td><p><code class="docutils literal notranslate"><span class="pre">L1Distance&lt;T&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SmoothedMaxDivergence&lt;T&gt;</span></code></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_randomized_response_bool" title="opendp.meas.make_randomized_response_bool"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_randomized_response_bool()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;bool&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MaxDivergence&lt;T&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_randomized_response" title="opendp.meas.make_randomized_response"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_randomized_response()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MaxDivergence&lt;T&gt;</span></code></p></td>
+</tr>
 </tbody>
 </table>
 <section id="floating-point">
@@ -457,9 +467,12 @@ depend on continuous distributions that are poorly approximated by finite comput
 </div>
 <p>The canonical paper on this and introduction of the snapping mechanism is here:
 <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/10/lsbs.pdf">On Significance of the Least Significant Bits For Differential Privacy</a>.</p>
-<p>Precautions have been made to sample noise using the MPFR library, to avoid artifacts in noise,
-but our noise postprocessing re-introduces artifacts.
-We are developing alternative mechanisms for answering continuous queries.</p>
+<p>Precautions have been made to sample noise using the GNU MPFR library in a way
+that provides cryptographically secure, non-porous noise at standard scale.
+Noise at arbitrary scale is achieved through a combination of preprocessing and postprocessing
+that preserves the properties of differential privacy.</p>
+<p>Precautions have also been made to explicitly specify floating-point rounding modes
+in such a way that the privacy budget is always slightly overestimated.</p>
 <p>We acknowledge the snapping mechanism and have an implementation of it <a class="reference external" href="https://github.com/opendp/opendp/pull/84">in PR #84</a>.</p>
 <p>We are also working towards adding support for fixed-point data types <a class="reference external" href="https://github.com/opendp/opendp/pull/184">in PR #184</a>.</p>
 </section>

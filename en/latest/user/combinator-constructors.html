@@ -461,13 +461,33 @@ You can nest this composition combinator arbitrarily.</p>
 </section>
 <section id="amplification">
 <h2>Amplification<a class="headerlink" href="#amplification" title="Permalink to this headline">¶</a></h2>
-<p>Population amplification based on sampling has an implementation but is not yet finalized.
-Progress on this can be found in the following PR:</p>
-<dl class="field-list simple">
-<dt class="field-odd">#233</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://github.com/opendp/opendp/pull/233">population amplification</a></p>
-</dd>
-</dl>
+<p>If your dataset is a simple sample from a larger population,
+you can make the privacy relation more permissive by wrapping your measurement with a privacy amplification combinator.</p>
+<p>In order to demonstrate this API, we’ll first create a measurement with a sized input domain.
+The resulting measurement expects the size of the input dataset to be 10.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_sized_bounded_mean</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_laplace</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meas</span> <span class="o">=</span> <span class="n">make_sized_bounded_mean</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">make_base_laplace</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;standard mean:&quot;</span><span class="p">,</span> <span class="n">amplified</span><span class="p">([</span><span class="mf">1.</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">))</span> <span class="c1"># -&gt; 1.03 </span>
+</pre></div>
+</div>
+<p>We can now use the amplification combinator to construct an amplified measurement.
+The function on the amplified measurement is identical to the standard measurement.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.comb</span> <span class="kn">import</span> <span class="n">make_population_amplification</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">amplified</span> <span class="o">=</span> <span class="n">make_population_amplification</span><span class="p">(</span><span class="n">meas</span><span class="p">,</span> <span class="n">population_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;amplified mean:&quot;</span><span class="p">,</span> <span class="n">amplified</span><span class="p">([</span><span class="mf">1.</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">))</span> <span class="c1"># -&gt; .97 </span>
+</pre></div>
+</div>
+<p>The privacy relation on the amplified measurement takes into account that the input dataset of size 10
+is a simple sample of individuals from a theoretical larger dataset that captures the entire population, with 100 rows.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Where we once had a privacy utilization of 2 epsilon...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">meas</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># ...we now have a privacy utilization of ~.4941 epsilon.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">amplified</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">.4941</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The efficacy of this combinator improves as n gets larger.</p>
 </section>
 </section>
 
