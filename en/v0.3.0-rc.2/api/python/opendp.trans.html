@@ -599,23 +599,19 @@ If datum is greater than upper, let datum be upper.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_count_by">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_by" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_by" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a Transformation that computes the count of each unique value in data. 
-This assumes that the category set is unknown. 
-This uses a restricted-sensitivity proof that takes advantage of known dataset size. 
-Use <cite>make_resize</cite> to establish dataset size. 
-This transformation depends on a measurement that has not yet been implemented.</p>
+This assumes that the category set is unknown.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
 <li><p><strong>MO</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.SensitivityMetric" title="opendp.typing.SensitivityMetric"><em>SensitivityMetric</em></a>) – Output Metric.</p></li>
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic Input Type. Categorical/hashable input data type. Input data must be Vec&lt;TI&gt;.</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic Output Type. Express counts in terms of this integral type.</p></li>
+<li><p><strong>TK</strong> (<em>RuntimeTypeDescriptor</em>) – Type of Key. Categorical/hashable input data type. Input data must be Vec&lt;TK&gt;.</p></li>
+<li><p><strong>TV</strong> (<em>RuntimeTypeDescriptor</em>) – Type of Value. Express counts in terms of this integral type.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The carrier type is HashMap&lt;TI, TO&gt;- the counts for each unique data input.</p>
+<dd class="field-even"><p>The carrier type is HashMap&lt;TK, TV&gt;, a hashmap of the count (TV) for each unique data input (TK).</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
