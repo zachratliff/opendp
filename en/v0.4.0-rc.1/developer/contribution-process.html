@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Contribution Process &#8212; OpenDP</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Development Environment" href="development-environment.html" />
+    <link rel="prev" title="Getting Involved" href="getting-involved.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../user/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resources/index.html">
+   Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../faq.html">
+   Frequently Asked Questions
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Developer Guide
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="getting-involved.html">
+     Getting Involved
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Contribution Process
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="development-environment.html">
+     Development Environment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="code-structure.html">
+     Code Structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="developer-faq.html">
+     Developer Frequently Asked Questions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="maintainer-notes.html">
+     Maintainer Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../opendp-commons/index.html">
+   OpenDP Commons
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+    <li><a href="../../latest/developer/contribution-process.html" style="font-weight: normal">latest</a></li>
+    <li><a href="../../stable/developer/contribution-process.html" style="font-weight: normal">stable</a></li>
+</ul>
+
+
+<h6 id="releases_header">Releases
+    <div id="releases_symbol" style="float:right"></div>
+</h6>
+<ul id="releases_content">
+    <li><a href="contribution-process.html" style="font-weight: bold">v0.4.0-rc.1</a></li>
+    <li><a href="../../v0.3.0/developer/contribution-process.html" style="font-weight: normal">v0.3.0</a></li>
+    <li><a href="../../v0.3.0-rc.3/developer/contribution-process.html" style="font-weight: normal">v0.3.0-rc.3</a></li>
+    <li><a href="../../v0.3.0-rc.2/developer/contribution-process.html" style="font-weight: normal">v0.3.0-rc.2</a></li>
+    <li><a href="../../v0.3.0-rc.1/developer/contribution-process.html" style="font-weight: normal">v0.3.0-rc.1</a></li>
+    <li><a href="../../v0.2.4/developer/contribution-process.html" style="font-weight: normal">v0.2.4</a></li>
+    <li><a href="../../v0.2.3/developer/contribution-process.html" style="font-weight: normal">v0.2.3</a></li>
+    <li><a href="../../v0.2.2/developer/contribution-process.html" style="font-weight: normal">v0.2.2</a></li>
+    <li><a href="../../v0.2.2-rc.1/developer/contribution-process.html" style="font-weight: normal">v0.2.2-rc.1</a></li>
+    <li><a href="../../v0.2.1/index.html" style="font-weight: normal">v0.2.1</a></li>
+    <li><a href="../../v0.2.1-rc.1/index.html" style="font-weight: normal">v0.2.1-rc.1</a></li>
+    <li><a href="../../v0.2.0-rc1/index.html" style="font-weight: normal">v0.2.0-rc1</a></li>
+    <li><a href="../../v0.2.0/index.html" style="font-weight: normal">v0.2.0</a></li>
+    <li><a href="../../v0.2.0-rc.6/index.html" style="font-weight: normal">v0.2.0-rc.6</a></li>
+    <li><a href="../../v0.2.0-rc.5/index.html" style="font-weight: normal">v0.2.0-rc.5</a></li>
+    <li><a href="../../v0.2.0-rc.4/index.html" style="font-weight: normal">v0.2.0-rc.4</a></li>
+    <li><a href="../../v0.2.0-rc.3/index.html" style="font-weight: normal">v0.2.0-rc.3</a></li>
+    <li><a href="../../v0.2.0-rc.2/index.html" style="font-weight: normal">v0.2.0-rc.2</a></li>
+    <li><a href="../../v0.1.0/index.html" style="font-weight: normal">v0.1.0</a></li>
+    <li><a href="../../v0.1.0-rc.8/index.html" style="font-weight: normal">v0.1.0-rc.8</a></li>
+    <li><a href="../../v0.1.0-rc.7/index.html" style="font-weight: normal">v0.1.0-rc.7</a></li>
+    <li><a href="../../v0.1.0-rc.6/index.html" style="font-weight: normal">v0.1.0-rc.6</a></li>
+    <li><a href="../../v0.1.0-rc.5/index.html" style="font-weight: normal">v0.1.0-rc.5</a></li>
+    <li><a href="../../v0.1.0-rc.4/index.html" style="font-weight: normal">v0.1.0-rc.4</a></li>
+    <li><a href="../../v0.1.0-rc.3/index.html" style="font-weight: normal">v0.1.0-rc.3</a></li>
+    <li><a href="../../v0.1.0-rc.2/index.html" style="font-weight: normal">v0.1.0-rc.2</a></li>
+    <li><a href="../../v0.1.0-rc.1/index.html" style="font-weight: normal">v0.1.0-rc.1</a></li>
+</ul>
+<script>
+    let expanded = !!JSON.parse(localStorage.getItem('expanded'));
+
+    let releasesHeader = document.getElementById("releases_header");
+    let releasesSymbol = document.getElementById("releases_symbol");
+    let releasesContent = document.getElementById("releases_content");
+
+    function setReleasesState() {
+        localStorage.setItem("expanded", JSON.stringify(expanded))
+        releasesContent.style.display = expanded ? "block" : "none";
+        releasesSymbol.classList.add(expanded ? 'minus' : 'plus')
+        releasesSymbol.classList.remove(expanded ? 'plus' : 'minus')
+    }
+
+    setReleasesState()
+    releasesHeader.addEventListener("click", function() {
+        expanded = !expanded;
+        setReleasesState()
+    })
+</script>
+<style>
+    .plus {
+        position: relative;
+        width:20px;
+        height:20px;
+        background:#676767;
+    }
+
+    .plus:before,
+    .plus:after {
+        content: "";
+        position:absolute;
+        background:#fff;
+    }
+
+    .plus:before {
+        left:50%;
+        top:4px;
+        bottom:4px;
+        width:3px;
+        transform:translateX(-50%);
+    }
+
+    .plus:after {
+        top:50%;
+        left:4px;
+        right:4px;
+        height:3px;
+        transform:translateY(-50%);
+    }
+
+
+
+    .minus {
+        position: relative;
+        width:20px;
+        height:20px;
+        background:#676767;
+    }
+
+    .minus:before,
+    .minus:after {
+        content: "";
+        position:absolute;
+        background:#fff;
+    }
+
+    .minus:after {
+        top:50%;
+        left:4px;
+        right:4px;
+        height:3px;
+        transform:translateY(-50%);
+    }
+</style>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#development-setup">
+   Development Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   Implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-process">
+   Review Process
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merge">
+   Merge
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="contribution-process">
+<span id="id1"></span><h1>Contribution Process<a class="headerlink" href="#contribution-process" title="Permalink to this headline">¶</a></h1>
+<p>There’s no need to fear, because our contribution process is human!
+We’re aiming to keep this process approachable to people of all skill levels.
+Without compromising the integrity of the library,
+there is reasonable variation in how strictly we adhere to this process in accordance to the depth of your contribution.</p>
+<section id="development-setup">
+<h2>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this headline">¶</a></h2>
+<p>The first task to tackle is setting up the development environment.
+We have detailed instructions in the <a class="reference internal" href="development-environment.html#development-environment"><span class="std std-ref">Development Environment</span></a> section.</p>
+<p>Checkout to a new feature branch when you are ready to work on your issue.
+Your branch should have a name that includes the issue number followed by a short description such as <code class="docutils literal notranslate"><span class="pre">123-typo-in-readme</span></code>.</p>
+<p>At this point, make commits to your branch and push periodically as you see fit.
+If new commits have been added to the main branch, please rebase to help maintain a clean history.</p>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The programming framework suggests <a class="reference external" href="https://projects.iq.harvard.edu/files/opendp/files/opendp_programming_framework_11may2020_1_01.pdf#section.10">many types of contributions</a>,
+but this guide focuses on constructor contributions (types 1-3) for brevity.
+The process involved for other kinds of code contribution will share similarities.</p>
+<p>The <a class="reference internal" href="code-structure.html#code-structure"><span class="std std-ref">Code Structure</span></a> section contains information about the various components you may be involved with:
+the proof, constructor and FFI.</p>
+<ul class="simple">
+<li><p>If you are adding a new constructor, all three components are relevant.</p></li>
+<li><p>If you are resolving an issue, your work may be isolated to specific component(s).
+Even if you don’t need to make changes to another component,
+be intentional about checking that your changes are consistent with the other components.</p></li>
+</ul>
+<p>Submit your pull request once you are ready for feedback and/or review.
+<a class="reference external" href="https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork">GitHub has thorough documentation for this process when you are working with a fork</a>.
+You can use draft mode for PRs to make the state of your PR less ambiguous.
+When you are ready for the review process, make sure your PR is undrafted and indicate that you are ready to begin.</p>
+</section>
+<section id="review-process">
+<h2>Review Process<a class="headerlink" href="#review-process" title="Permalink to this headline">¶</a></h2>
+<p>Reviewers will be checking that the requirements mentioned in <a class="reference internal" href="code-structure.html#code-structure"><span class="std std-ref">Code Structure</span></a> are met,
+so please be mindful of these to avoid snags in the review process.</p>
+<p>After making your pull request, please check back for feedback from the core developers.</p>
+<p>On the OpenDP side, the review process for the proof goes as follows:</p>
+<ol class="arabic simple">
+<li><p>Reviewers are assigned.</p></li>
+<li><p>Reviewer confirms the privacy claims of the proof.</p></li>
+<li><p>Reviewer validates the pseudo-code against the proof.</p></li>
+<li><p>Reviewer validates the Rust code against the pseudo-code.</p></li>
+</ol>
+<p>Please be patient— this process may take several iterations as issues come up in the review process.</p>
+</section>
+<section id="merge">
+<h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h2>
+<p>Once the review process is successful, your PR will be merged into the <cite>main</cite> branch.
+Your contribution and credit will be added to the release notes,
+and your changes will appear on crates.io and PyPi on our next library release.</p>
+</section>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="getting-involved.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Getting Involved</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="development-environment.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Development Environment</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
