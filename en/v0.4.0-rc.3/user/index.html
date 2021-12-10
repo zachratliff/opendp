@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>User Guide &#8212; OpenDP</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction" href="intro.html" />
+    <link rel="prev" title="Quickstart" href="../quickstart.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="limitations.html">
+   Limitations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="programming-framework.html">
+   Programming Framework
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="core-structures.html">
+   Core Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-elements.html">
+   Supporting Elements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="combinator-constructors.html">
+   Combinator Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation-constructors.html">
+   Transformation Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="measurement-constructors.html">
+   Measurement Constructors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="application-structure.html">
+   Application Structure
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+    <li><a href="../../latest/user/index.html" style="font-weight: normal">latest</a></li>
+    <li><a href="../../stable/user/index.html" style="font-weight: normal">stable</a></li>
+</ul>
+
+
+<h6 id="releases_header">Releases
+    <div id="releases_symbol" style="float:right"></div>
+</h6>
+<ul id="releases_content">
+    <li><a href="index.html" style="font-weight: bold">v0.4.0-rc.3</a></li>
+    <li><a href="../../v0.4.0-rc.2/user/index.html" style="font-weight: normal">v0.4.0-rc.2</a></li>
+    <li><a href="../../v0.4.0-rc.1/user/index.html" style="font-weight: normal">v0.4.0-rc.1</a></li>
+    <li><a href="../../v0.3.0/user/index.html" style="font-weight: normal">v0.3.0</a></li>
+    <li><a href="../../v0.3.0-rc.3/user/index.html" style="font-weight: normal">v0.3.0-rc.3</a></li>
+    <li><a href="../../v0.3.0-rc.2/user/index.html" style="font-weight: normal">v0.3.0-rc.2</a></li>
+    <li><a href="../../v0.3.0-rc.1/user/index.html" style="font-weight: normal">v0.3.0-rc.1</a></li>
+    <li><a href="../../v0.2.4/user/index.html" style="font-weight: normal">v0.2.4</a></li>
+    <li><a href="../../v0.2.3/user/index.html" style="font-weight: normal">v0.2.3</a></li>
+    <li><a href="../../v0.2.2/user/index.html" style="font-weight: normal">v0.2.2</a></li>
+    <li><a href="../../v0.2.2-rc.1/user/index.html" style="font-weight: normal">v0.2.2-rc.1</a></li>
+    <li><a href="../../v0.2.1/user/index.html" style="font-weight: normal">v0.2.1</a></li>
+    <li><a href="../../v0.2.1-rc.1/user/index.html" style="font-weight: normal">v0.2.1-rc.1</a></li>
+    <li><a href="../../v0.2.0-rc1/user/index.html" style="font-weight: normal">v0.2.0-rc1</a></li>
+    <li><a href="../../v0.2.0/user/index.html" style="font-weight: normal">v0.2.0</a></li>
+    <li><a href="../../v0.2.0-rc.6/user/index.html" style="font-weight: normal">v0.2.0-rc.6</a></li>
+    <li><a href="../../v0.2.0-rc.5/user/index.html" style="font-weight: normal">v0.2.0-rc.5</a></li>
+    <li><a href="../../v0.2.0-rc.4/user/index.html" style="font-weight: normal">v0.2.0-rc.4</a></li>
+    <li><a href="../../v0.2.0-rc.3/user/index.html" style="font-weight: normal">v0.2.0-rc.3</a></li>
+    <li><a href="../../v0.2.0-rc.2/user/index.html" style="font-weight: normal">v0.2.0-rc.2</a></li>
+    <li><a href="../../v0.1.0/user/index.html" style="font-weight: normal">v0.1.0</a></li>
+    <li><a href="../../v0.1.0-rc.8/user/index.html" style="font-weight: normal">v0.1.0-rc.8</a></li>
+    <li><a href="../../v0.1.0-rc.7/user/index.html" style="font-weight: normal">v0.1.0-rc.7</a></li>
+    <li><a href="../../v0.1.0-rc.6/user/index.html" style="font-weight: normal">v0.1.0-rc.6</a></li>
+    <li><a href="../../v0.1.0-rc.5/user/index.html" style="font-weight: normal">v0.1.0-rc.5</a></li>
+    <li><a href="../../v0.1.0-rc.4/user/index.html" style="font-weight: normal">v0.1.0-rc.4</a></li>
+    <li><a href="../../v0.1.0-rc.3/user/index.html" style="font-weight: normal">v0.1.0-rc.3</a></li>
+    <li><a href="../../v0.1.0-rc.2/user/index.html" style="font-weight: normal">v0.1.0-rc.2</a></li>
+    <li><a href="../../v0.1.0-rc.1/user/index.html" style="font-weight: normal">v0.1.0-rc.1</a></li>
+</ul>
+<script>
+    let expanded = !!JSON.parse(localStorage.getItem('expanded'));
+
+    let releasesHeader = document.getElementById("releases_header");
+    let releasesSymbol = document.getElementById("releases_symbol");
+    let releasesContent = document.getElementById("releases_content");
+
+    function setReleasesState() {
+        localStorage.setItem("expanded", JSON.stringify(expanded))
+        releasesContent.style.display = expanded ? "block" : "none";
+        releasesSymbol.classList.add(expanded ? 'minus' : 'plus')
+        releasesSymbol.classList.remove(expanded ? 'plus' : 'minus')
+    }
+
+    setReleasesState()
+    releasesHeader.addEventListener("click", function() {
+        expanded = !expanded;
+        setReleasesState()
+    })
+</script>
+<style>
+    .plus {
+        position: relative;
+        width:20px;
+        height:20px;
+        background:#676767;
+    }
+
+    .plus:before,
+    .plus:after {
+        content: "";
+        position:absolute;
+        background:#fff;
+    }
+
+    .plus:before {
+        left:50%;
+        top:4px;
+        bottom:4px;
+        width:3px;
+        transform:translateX(-50%);
+    }
+
+    .plus:after {
+        top:50%;
+        left:4px;
+        right:4px;
+        height:3px;
+        transform:translateY(-50%);
+    }
+
+
+
+    .minus {
+        position: relative;
+        width:20px;
+        height:20px;
+        background:#676767;
+    }
+
+    .minus:before,
+    .minus:after {
+        content: "";
+        position:absolute;
+        background:#fff;
+    }
+
+    .minus:after {
+        top:50%;
+        left:4px;
+        right:4px;
+        height:3px;
+        transform:translateY(-50%);
+    }
+</style>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#what-is-opendp">What is OpenDP?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#who-should-read-this-guide">Who Should Read This Guide?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="limitations.html">Limitations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="limitations.html#privacy-concerns">Privacy Concerns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limitations.html#incomplete-privacy-proofs">Incomplete Privacy Proofs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limitations.html#missing-functionality">Missing Functionality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limitations.html#api-stability">API Stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="limitations.html#software-quality">Software Quality</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#platforms">Platforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#installing-opendp-for-python-from-pypi">Installing OpenDP for Python from PyPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#installing-opendp-for-rust-from-crates-io">Installing OpenDP for Rust from crates.io</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started.html#building-opendp-from-source">Building OpenDP from Source</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#hello-opendp">Hello, OpenDP!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#what-s-next">What’s Next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="programming-framework.html">Programming Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="programming-framework.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming-framework.html#key-points">Key Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming-framework.html#implementation-differences">Implementation Differences</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="programming-framework.html#interactive-measurements">Interactive Measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programming-framework.html#row-transforms">Row Transforms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programming-framework.html#applying-the-concepts">Applying the Concepts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core-structures.html">Core Structures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core-structures.html#measurement">Measurement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core-structures.html#transformation">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core-structures.html#constructors-and-functions">Constructors and Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="supporting-elements.html">Supporting Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#function">Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#domains">Domains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#measures">Measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#relations">Relations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supporting-elements.html#distances">Distances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="combinator-constructors.html">Combinator Constructors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="combinator-constructors.html#chaining">Chaining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combinator-constructors.html#composition">Composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="combinator-constructors.html#amplification">Amplification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transformation-constructors.html">Transformation Constructors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#dataframe">Dataframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#casting">Casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#imputation">Imputation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#indexing">Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#clamping">Clamping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#resizing">Resizing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation-constructors.html#aggregators">Aggregators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="measurement-constructors.html">Measurement Constructors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="measurement-constructors.html#floating-point">Floating-Point</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="application-structure.html">Application Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="application-structure.html#parameter-search">Parameter Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application-structure.html#determining-accuracy">Determining Accuracy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application-structure.html#putting-it-together">Putting It Together</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../quickstart.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Quickstart</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="intro.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
