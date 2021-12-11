@@ -222,6 +222,7 @@
     <div id="releases_symbol" style="float:right"></div>
 </h6>
 <ul id="releases_content">
+    <li><a href="../../v0.4.0/user/application-structure.html" style="font-weight: normal">v0.4.0</a></li>
     <li><a href="../../v0.4.0-rc.4/user/application-structure.html" style="font-weight: normal">v0.4.0-rc.4</a></li>
     <li><a href="../../v0.4.0-rc.3/user/application-structure.html" style="font-weight: normal">v0.4.0-rc.3</a></li>
     <li><a href="../../v0.4.0-rc.2/user/application-structure.html" style="font-weight: normal">v0.4.0-rc.2</a></li>
@@ -443,14 +444,13 @@ or derive the necessary noise scale to meet a given target accuracy and statisti
 <div class="line">Applies to any L1 noise addition mechanism.</div>
 <div class="line"><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_laplace" title="opendp.meas.make_base_laplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_base_laplace()</span></code></a></div>
 <div class="line"><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_geometric" title="opendp.meas.make_base_geometric"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_base_geometric()</span></code></a></div>
-<div class="line"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_base_stability(MI=L1Distance[T])</span></code></div>
+<div class="line"><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_ptr" title="opendp.meas.make_base_ptr"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_base_ptr()</span></code></a></div>
 </div>
 </dd>
 <dt class="field-even">gaussian</dt>
 <dd class="field-even"><div class="line-block">
 <div class="line">Applies to any L2 noise addition mechanism.</div>
 <div class="line"><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_gaussian" title="opendp.meas.make_base_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_base_gaussian()</span></code></a></div>
-<div class="line"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_base_stability(MI=L2Distance[T])</span></code></div>
 </div>
 </dd>
 </dl>
@@ -562,7 +562,7 @@ can be used to convert the earlier discovered noise scale parameter into an accu
 <span class="gp">... </span> <span class="sa">f</span><span class="s2">&quot;the DP estimate differs from the true value by no more than </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2"> &quot;</span>
 <span class="gp">... </span> <span class="sa">f</span><span class="s2">&quot;at a statistical significance level alpha of </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">, &quot;</span>
 <span class="gp">... </span> <span class="sa">f</span><span class="s2">&quot;or with (1 - </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">)100% = </span><span class="si">{</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="si">}</span><span class="s2">% confidence.&quot;</span><span class="p">)</span>
-<span class="go">&#39;When the laplace scale is 1.33333333581686, the DP estimate differs from the true value by no more than 3.9943097055119687 at a statistical significance level alpha of 0.05, or with (1 - 0.05)100% = 95.0% confidence.&#39;</span>
+<span class="go">&#39;When the laplace scale is 2.00000000745058, the DP estimate differs from the true value by no more than 5.991464569427925 at a statistical significance level alpha of 0.05, or with (1 - 0.05)100% = 95.0% confidence.&#39;</span>
 </pre></div>
 </div>
 <p>Please be aware that the preprocessing (impute, clamp, resize) can introduce bias that the accuracy estimate cannot account for.

@@ -222,6 +222,7 @@
     <div id="releases_symbol" style="float:right"></div>
 </h6>
 <ul id="releases_content">
+    <li><a href="../../v0.4.0/user/measurement-constructors.html" style="font-weight: normal">v0.4.0</a></li>
     <li><a href="../../v0.4.0-rc.4/user/measurement-constructors.html" style="font-weight: normal">v0.4.0-rc.4</a></li>
     <li><a href="../../v0.4.0-rc.3/user/measurement-constructors.html" style="font-weight: normal">v0.4.0-rc.3</a></li>
     <li><a href="../../v0.4.0-rc.2/user/measurement-constructors.html" style="font-weight: normal">v0.4.0-rc.2</a></li>
@@ -432,17 +433,37 @@ You can choose whether to construct scalar or vector-valued versions by setting 
 <td><p><code class="docutils literal notranslate"><span class="pre">L2Distance&lt;T&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SmoothedMaxDivergence&lt;T&gt;</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_stability()</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;MapDomain&lt;AllDomain&lt;TIA&gt;,</span> <span class="pre">AllDomain&lt;TOA&gt;&gt;&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">L1Distance&lt;T&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">L2Distance&lt;T&gt;</span></code></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_analytic_gaussian" title="opendp.meas.make_base_analytic_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_analytic_gaussian()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;T&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SmoothedMaxDivergence&lt;T&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_analytic_gaussian" title="opendp.meas.make_base_analytic_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_analytic_gaussian()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;T&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">L2Distance&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SmoothedMaxDivergence&lt;T&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_ptr" title="opendp.meas.make_base_ptr"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_ptr()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MapDomain&lt;AllDomain&lt;TIA&gt;,</span> <span class="pre">AllDomain&lt;TOA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">L1Distance&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SmoothedMaxDivergence&lt;T&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_randomized_response_bool" title="opendp.meas.make_randomized_response_bool"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_randomized_response_bool()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;bool&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MaxDivergence&lt;T&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_randomized_response" title="opendp.meas.make_randomized_response"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_randomized_response()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MaxDivergence&lt;T&gt;</span></code></p></td>
 </tr>
 </tbody>
 </table>
 <section id="floating-point">
 <span id="id2"></span><h2>Floating-Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h2>
 <p>Given the context of measurements, this section goes into greater detail than <a class="reference internal" href="limitations.html#limitations"><span class="std std-ref">Limitations</span></a> on floating-point issues.
-Be warned that <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_laplace" title="opendp.meas.make_base_laplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_laplace()</span></code></a>, <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_gaussian" title="opendp.meas.make_base_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_gaussian()</span></code></a> and <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_stability()</span></code>
+Be warned that <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_laplace" title="opendp.meas.make_base_laplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_laplace()</span></code></a>, <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_gaussian" title="opendp.meas.make_base_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_gaussian()</span></code></a> and <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_ptr" title="opendp.meas.make_base_ptr"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_ptr()</span></code></a>
 depend on continuous distributions that are poorly approximated by finite computers.</p>
 <p>At this time these mechanisms are present in the library, but require explicit opt-in:</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">enable_features</span>
@@ -451,9 +472,12 @@ depend on continuous distributions that are poorly approximated by finite comput
 </div>
 <p>The canonical paper on this and introduction of the snapping mechanism is here:
 <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/10/lsbs.pdf">On Significance of the Least Significant Bits For Differential Privacy</a>.</p>
-<p>Precautions have been made to sample noise using the MPFR library, to avoid artifacts in noise,
-but our noise postprocessing re-introduces artifacts.
-We are developing alternative mechanisms for answering continuous queries.</p>
+<p>Precautions have been made to sample noise using the GNU MPFR library in a way
+that provides cryptographically secure, non-porous noise at standard scale.
+Noise at arbitrary scale is achieved through a combination of preprocessing and postprocessing
+that preserves the properties of differential privacy.</p>
+<p>Precautions have also been made to explicitly specify floating-point rounding modes
+in such a way that the privacy budget is always slightly overestimated.</p>
 <p>We acknowledge the snapping mechanism and have an implementation of it <a class="reference external" href="https://github.com/opendp/opendp/pull/84">in PR #84</a>.</p>
 <p>We are also working towards adding support for fixed-point data types <a class="reference external" href="https://github.com/opendp/opendp/pull/184">in PR #184</a>.</p>
 </section>

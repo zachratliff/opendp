@@ -1,0 +1,624 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>opendp.typing module &#8212; OpenDP</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="More…" href="../../more.html" />
+    <link rel="prev" title="opendp.trans module" href="opendp.trans.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/opendp-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../quickstart.html">
+  Quickstart
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../user/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../examples.html">
+  Examples
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  API
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../more.html">
+  More…
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../contact.html">
+  Contact
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/opendp_org" rel="noopener" target="_blank" title="Twitter">
+            <span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/opendp/opendp/discussions" rel="noopener" target="_blank" title="GitHub Discussions">
+            <span><i class="far fa-comments"></i></span>
+            <label class="sr-only">GitHub Discussions</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Python API
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="opendp.html">
+     opendp package
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="opendp.accuracy.html">
+       opendp.accuracy module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="opendp.comb.html">
+       opendp.comb module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="opendp.core.html">
+       opendp.core module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="opendp.meas.html">
+       opendp.meas module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="opendp.mod.html">
+       opendp.mod module
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="opendp.trans.html">
+       opendp.trans module
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       opendp.typing module
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://docs.rs/opendp">
+   Rust API
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+<h6>Branches</h6>
+<ul>
+    <li><a href="../../../latest/index.html" style="font-weight: normal">latest</a></li>
+    <li><a href="../../../stable/index.html" style="font-weight: normal">stable</a></li>
+</ul>
+
+
+<h6 id="releases_header">Releases
+    <div id="releases_symbol" style="float:right"></div>
+</h6>
+<ul id="releases_content">
+    <li><a href="opendp.typing.html" style="font-weight: bold">v0.4.0</a></li>
+    <li><a href="../../../v0.4.0-rc.4/index.html" style="font-weight: normal">v0.4.0-rc.4</a></li>
+    <li><a href="../../../v0.4.0-rc.3/index.html" style="font-weight: normal">v0.4.0-rc.3</a></li>
+    <li><a href="../../../v0.4.0-rc.2/index.html" style="font-weight: normal">v0.4.0-rc.2</a></li>
+    <li><a href="../../../v0.4.0-rc.1/index.html" style="font-weight: normal">v0.4.0-rc.1</a></li>
+    <li><a href="../../../v0.3.0/index.html" style="font-weight: normal">v0.3.0</a></li>
+    <li><a href="../../../v0.3.0-rc.3/index.html" style="font-weight: normal">v0.3.0-rc.3</a></li>
+    <li><a href="../../../v0.3.0-rc.2/index.html" style="font-weight: normal">v0.3.0-rc.2</a></li>
+    <li><a href="../../../v0.3.0-rc.1/index.html" style="font-weight: normal">v0.3.0-rc.1</a></li>
+    <li><a href="../../../v0.2.4/index.html" style="font-weight: normal">v0.2.4</a></li>
+    <li><a href="../../../v0.2.3/index.html" style="font-weight: normal">v0.2.3</a></li>
+    <li><a href="../../../v0.2.2/index.html" style="font-weight: normal">v0.2.2</a></li>
+    <li><a href="../../../v0.2.2-rc.1/index.html" style="font-weight: normal">v0.2.2-rc.1</a></li>
+    <li><a href="../../../v0.2.1/index.html" style="font-weight: normal">v0.2.1</a></li>
+    <li><a href="../../../v0.2.1-rc.1/index.html" style="font-weight: normal">v0.2.1-rc.1</a></li>
+    <li><a href="../../../v0.2.0-rc1/index.html" style="font-weight: normal">v0.2.0-rc1</a></li>
+    <li><a href="../../../v0.2.0/index.html" style="font-weight: normal">v0.2.0</a></li>
+    <li><a href="../../../v0.2.0-rc.6/index.html" style="font-weight: normal">v0.2.0-rc.6</a></li>
+    <li><a href="../../../v0.2.0-rc.5/index.html" style="font-weight: normal">v0.2.0-rc.5</a></li>
+    <li><a href="../../../v0.2.0-rc.4/index.html" style="font-weight: normal">v0.2.0-rc.4</a></li>
+    <li><a href="../../../v0.2.0-rc.3/index.html" style="font-weight: normal">v0.2.0-rc.3</a></li>
+    <li><a href="../../../v0.2.0-rc.2/index.html" style="font-weight: normal">v0.2.0-rc.2</a></li>
+    <li><a href="../../../v0.1.0/index.html" style="font-weight: normal">v0.1.0</a></li>
+    <li><a href="../../../v0.1.0-rc.8/index.html" style="font-weight: normal">v0.1.0-rc.8</a></li>
+    <li><a href="../../../v0.1.0-rc.7/index.html" style="font-weight: normal">v0.1.0-rc.7</a></li>
+    <li><a href="../../../v0.1.0-rc.6/index.html" style="font-weight: normal">v0.1.0-rc.6</a></li>
+    <li><a href="../../../v0.1.0-rc.5/index.html" style="font-weight: normal">v0.1.0-rc.5</a></li>
+    <li><a href="../../../v0.1.0-rc.4/index.html" style="font-weight: normal">v0.1.0-rc.4</a></li>
+    <li><a href="../../../v0.1.0-rc.3/index.html" style="font-weight: normal">v0.1.0-rc.3</a></li>
+    <li><a href="../../../v0.1.0-rc.2/index.html" style="font-weight: normal">v0.1.0-rc.2</a></li>
+    <li><a href="../../../v0.1.0-rc.1/index.html" style="font-weight: normal">v0.1.0-rc.1</a></li>
+</ul>
+<script>
+    let expanded = !!JSON.parse(localStorage.getItem('expanded'));
+
+    let releasesHeader = document.getElementById("releases_header");
+    let releasesSymbol = document.getElementById("releases_symbol");
+    let releasesContent = document.getElementById("releases_content");
+
+    function setReleasesState() {
+        localStorage.setItem("expanded", JSON.stringify(expanded))
+        releasesContent.style.display = expanded ? "block" : "none";
+        releasesSymbol.classList.add(expanded ? 'minus' : 'plus')
+        releasesSymbol.classList.remove(expanded ? 'plus' : 'minus')
+    }
+
+    setReleasesState()
+    releasesHeader.addEventListener("click", function() {
+        expanded = !expanded;
+        setReleasesState()
+    })
+</script>
+<style>
+    .plus {
+        position: relative;
+        width:20px;
+        height:20px;
+        background:#676767;
+    }
+
+    .plus:before,
+    .plus:after {
+        content: "";
+        position:absolute;
+        background:#fff;
+    }
+
+    .plus:before {
+        left:50%;
+        top:4px;
+        bottom:4px;
+        width:3px;
+        transform:translateX(-50%);
+    }
+
+    .plus:after {
+        top:50%;
+        left:4px;
+        right:4px;
+        height:3px;
+        transform:translateY(-50%);
+    }
+
+
+
+    .minus {
+        position: relative;
+        width:20px;
+        height:20px;
+        background:#676767;
+    }
+
+    .minus:before,
+    .minus:after {
+        content: "";
+        position:absolute;
+        background:#fff;
+    }
+
+    .minus:after {
+        top:50%;
+        left:4px;
+        right:4px;
+        height:3px;
+        transform:translateY(-50%);
+    }
+</style>
+
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <section id="module-opendp.typing">
+<span id="opendp-typing-module"></span><h1>opendp.typing module<a class="headerlink" href="#module-opendp.typing" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="opendp.typing.DatasetMetric">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">DatasetMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#DatasetMetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.DatasetMetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.typing.RuntimeType</span></code></a></p>
+<p>All dataset metric RuntimeTypes inherit from DatasetMetric.
+Provides static type checking in user-code for dataset metrics.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opendp.typing.Domain">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">Domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#Domain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.Domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.typing.RuntimeType</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opendp.typing.GenericType">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">GenericType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#GenericType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.GenericType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.typing.RuntimeType</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opendp.typing.PrivacyMeasure">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">PrivacyMeasure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#PrivacyMeasure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.PrivacyMeasure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.typing.RuntimeType</span></code></a></p>
+<p>All measure RuntimeTypes inherit from PrivacyMeasure.
+Provides static type checking in user-code for privacy measures and a getitem interface like stdlib typing.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opendp.typing.RuntimeType">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">RuntimeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#RuntimeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.RuntimeType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Utility for validating, manipulating, inferring and parsing/normalizing type information.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opendp.typing.RuntimeType.assert_is_similar">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">assert_is_similar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expected</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inferred</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#RuntimeType.assert_is_similar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.RuntimeType.assert_is_similar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert that <cite>inferred</cite> is a member of the same equivalence class as <cite>parsed</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>expected</strong> – the type that the data will be converted to</p></li>
+<li><p><strong>inferred</strong> – the type inferred from data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – if <cite>expected</cite> type differs significantly from <cite>inferred</cite> type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opendp.typing.RuntimeType.infer">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">infer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_example</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#RuntimeType.infer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.RuntimeType.infer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Infer the normalized type from a public example.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>public_example</strong> (<em>Any</em>) – data used to infer the type</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Normalized type. If the type has subtypes, returns a RuntimeType, else a str.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[“RuntimeType”, str]</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.UnknownTypeException" title="opendp.mod.UnknownTypeException"><strong>UnknownTypeException</strong></a> – if inference fails on <cite>public_example</cite></p>
+</dd>
+<dt class="field-odd">Examples</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="n">RuntimeType</span><span class="p">,</span> <span class="n">L1Distance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;i32&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="mf">12.</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;f64&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;Vec&lt;String&gt;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">((</span><span class="mf">12.</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="s2">&quot;(f64,  bool,String)&quot;</span> <span class="c1"># eq doesn&#39;t care about whitespace</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opendp.typing.RuntimeType.parse">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#RuntimeType.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.RuntimeType.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse type descriptor into a normalized rust type.</p>
+<p>Type descriptor may be expressed as:</p>
+<ul class="simple">
+<li><p>python type hints from std typing module</p></li>
+<li><p>plaintext rust type strings for setting specific bit depth</p></li>
+<li><p>python type class - one of {int, str, float, bool}</p></li>
+<li><p>tuple of type information - for example: (float, float)</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type_name</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><em>opendp.typing.RuntimeType</em></a><em>, </em><em>_GenericAlias</em><em>, </em><em>str</em><em>, </em><em>Type</em><em>[</em><em>Union</em><em>[</em><em>List</em><em>, </em><em>Tuple</em><em>, </em><em>int</em><em>, </em><em>float</em><em>, </em><em>str</em><em>, </em><em>bool</em><em>]</em><em>]</em><em>, </em><em>tuple</em><em>]</em>) – type specifier</p></li>
+<li><p><strong>generics</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – For internal use. List of type names to consider generic when parsing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Normalized type. If the type has subtypes, returns a RuntimeType, else a str.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[“RuntimeType”, str]</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>UnknownTypeError</strong> – if <cite>type_name</cite> fails to parse</p>
+</dd>
+<dt class="field-even">Examples</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="n">RuntimeType</span><span class="p">,</span> <span class="n">L1Distance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;i32&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;i32&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;i32&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">L1Distance</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;L1Distance&lt;i32&gt;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">L1Distance</span><span class="p">[</span><span class="s2">&quot;f32&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;L1Distance&lt;f32&gt;&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opendp.typing.RuntimeType.parse_or_infer">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">parse_or_infer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public_example</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#RuntimeType.parse_or_infer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.RuntimeType.parse_or_infer" title="Permalink to this definition">¶</a></dt>
+<dd><p>If type_name is supplied, normalize it. Otherwise, infer the normalized type from a public example.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type_name</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><em>opendp.typing.RuntimeType</em></a><em>, </em><em>_GenericAlias</em><em>, </em><em>str</em><em>, </em><em>Type</em><em>[</em><em>Union</em><em>[</em><em>List</em><em>, </em><em>Tuple</em><em>, </em><em>int</em><em>, </em><em>float</em><em>, </em><em>str</em><em>, </em><em>bool</em><em>]</em><em>]</em><em>, </em><em>tuple</em><em>]</em><em>]</em>) – type specifier. See RuntimeType.parse for documentation on valid inputs</p></li>
+<li><p><strong>public_example</strong> (<em>Optional</em><em>[</em><em>Any</em><em>]</em>) – data used to infer the type</p></li>
+<li><p><strong>generics</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – For internal use. List of type names to consider generic when parsing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Normalized type. If the type has subtypes, returns a RuntimeType, else a str.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[“RuntimeType”, str]</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ValueError</strong> – if <cite>type_name</cite> fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.UnknownTypeException" title="opendp.mod.UnknownTypeException"><strong>UnknownTypeException</strong></a> – if inference fails on <cite>public_example</cite> or no args are supplied</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="opendp.typing.RuntimeType.substitute">
+<span class="sig-name descname"><span class="pre">substitute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#RuntimeType.substitute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.RuntimeType.substitute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opendp.typing.SensitivityMetric">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">SensitivityMetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#SensitivityMetric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.SensitivityMetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.typing.RuntimeType</span></code></a></p>
+<p>All sensitivity RuntimeTypes inherit from SensitivityMetric.
+Provides static type checking in user-code for sensitivity metrics and a getitem interface like stdlib typing.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opendp.typing.UnknownType">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">UnknownType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reason</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#UnknownType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.UnknownType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.typing.RuntimeType</span></code></a></p>
+<p>Indicator for a type that cannot be inferred. Typically the atomic type of an empty list.
+RuntimeTypes containing UnknownType cannot be used in FFI, but still pass RuntimeType.assert_is_similar</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.typing.get_domain_atom">
+<span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">get_domain_atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#get_domain_atom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.get_domain_atom" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.typing.get_domain_atom_or_infer">
+<span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">get_domain_atom_or_infer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">example</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#get_domain_atom_or_infer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.get_domain_atom_or_infer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>domain</strong> (<a class="reference internal" href="#opendp.typing.RuntimeType" title="opendp.typing.RuntimeType"><em>opendp.typing.RuntimeType</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.typing.get_first">
+<span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">get_first</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#get_first"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.get_first" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="opendp.trans.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">opendp.trans module</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../../more.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">More…</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

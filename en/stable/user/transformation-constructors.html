@@ -222,6 +222,7 @@
     <div id="releases_symbol" style="float:right"></div>
 </h6>
 <ul id="releases_content">
+    <li><a href="../../v0.4.0/user/transformation-constructors.html" style="font-weight: normal">v0.4.0</a></li>
     <li><a href="../../v0.4.0-rc.4/user/transformation-constructors.html" style="font-weight: normal">v0.4.0-rc.4</a></li>
     <li><a href="../../v0.4.0-rc.3/user/transformation-constructors.html" style="font-weight: normal">v0.4.0-rc.3</a></li>
     <li><a href="../../v0.4.0-rc.2/user/transformation-constructors.html" style="font-weight: normal">v0.4.0-rc.2</a></li>
@@ -358,6 +359,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imputation">
    Imputation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indexing">
+   Indexing
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -550,6 +556,70 @@ so long as you pass the DA (atomic domain) type argument.</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_drop_null" title="opendp.trans.make_drop_null"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_drop_null()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_drop_null" title="opendp.trans.make_drop_null"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_drop_null()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="indexing">
+<h2>Indexing<a class="headerlink" href="#indexing" title="Permalink to this headline">¶</a></h2>
+<p>Indexing operations provide a way to relabel categorical data, or bin numeric data into categorical data.
+These operations work with <cite>usize</cite> data types: an integral data type representing an index.
+<a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_find" title="opendp.trans.make_find"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_find()</span></code></a> finds the index of each input datum in a set of categories.
+In other words, it transforms a categorical data vector to a vector of numeric indices.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">finder</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="n">make_find</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">])</span> <span class="o">&gt;&gt;</span>
+<span class="gp">... </span>    <span class="c1"># impute any input datum that are not a part of the categories list as 3</span>
+<span class="gp">... </span>    <span class="n">make_impute_constant</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">DA</span><span class="o">=</span><span class="n">OptionNullDomain</span><span class="p">[</span><span class="n">AllDomain</span><span class="p">[</span><span class="s2">&quot;usize&quot;</span><span class="p">]])</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">finder</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">])</span>
+<span class="go">[0, 1, 2, 0, 3]</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_find_bin" title="opendp.trans.make_find_bin"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_find_bin()</span></code></a> is a binning operation that transforms numerical input data to a vector of bin indices.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">binner</span> <span class="o">=</span> <span class="n">make_find_bin</span><span class="p">(</span><span class="n">edges</span><span class="o">=</span><span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">binner</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">15.</span><span class="p">])</span>
+<span class="go">[0, 1, 2, 3]</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_index" title="opendp.trans.make_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_index()</span></code></a> uses each indicial input datum as an index into a category set.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">indexer</span> <span class="o">=</span> <span class="n">make_index</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],</span> <span class="n">null</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">indexer</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2342</span><span class="p">])</span>
+<span class="go">[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;D&#39;]</span>
+</pre></div>
+</div>
+<p>You can use combinations of the indicial transformers to map hashable data to integers, bin numeric types, relabel hashable types, and label bins.</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Indexer</p></th>
+<th class="head"><p>Input Domain</p></th>
+<th class="head"><p>Output Domain</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_find" title="opendp.trans.make_find"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_find()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;OptionNullDomain&lt;AllDomain&lt;usize&gt;&gt;&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_find_bin" title="opendp.trans.make_find_bin"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_find_bin()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;usize&gt;&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_index" title="opendp.trans.make_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_index()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;usize&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TOA&gt;&gt;</span></code></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -625,15 +695,15 @@ We intend to merge these in the future.</p>
 </section>
 <section id="aggregators">
 <span id="id2"></span><h2>Aggregators<a class="headerlink" href="#aggregators" title="Permalink to this headline">¶</a></h2>
-<p>Aggregators compute a summary statistic computed on individual-level data.</p>
+<p>Aggregators compute a summary statistic on individual-level data.</p>
 <p>Aggregators that produce scalar-valued statistics have a output_metric of <code class="docutils literal notranslate"><span class="pre">AbsoluteDistance[TO]</span></code>.
 This output metric can be chained with most noise-addition measurements interchangeably.</p>
 <p>However, aggregators that produce vector-valued statistics like <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count_by_categories" title="opendp.trans.make_count_by_categories"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_by_categories()</span></code></a>
 provide the option to choose the output metric: <code class="docutils literal notranslate"><span class="pre">L1Distance[TOA]</span></code> or <code class="docutils literal notranslate"><span class="pre">L2Distance[TOA]</span></code>.
-These default to <code class="docutils literal notranslate"><span class="pre">L1Distance[TOA]</span></code>, which chains with L1 noise mechanisms like <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_base_geometric()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_base_laplace()</span></code>.
-If you set the output metric to <code class="docutils literal notranslate"><span class="pre">L2Distance[TOA]</span></code>, you can chain with L2 mechanisms like <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_base_gaussian()</span></code>.</p>
-<p>The <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count_by" title="opendp.trans.make_count_by"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_by()</span></code></a> transformation stands out;
-it is currently the only transformation that pairs with <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_base_stability()</span></code>.</p>
+These default to <code class="docutils literal notranslate"><span class="pre">L1Distance[TOA]</span></code>, which chains with L1 noise mechanisms like <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_geometric" title="opendp.meas.make_base_geometric"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_geometric()</span></code></a> and <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_laplace" title="opendp.meas.make_base_laplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_laplace()</span></code></a>.
+If you set the output metric to <code class="docutils literal notranslate"><span class="pre">L2Distance[TOA]</span></code>, you can chain with L2 mechanisms like <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_gaussian" title="opendp.meas.make_base_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_gaussian()</span></code></a>.</p>
+<p>The constructor <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_count_by()</span></code> does a similar aggregation as <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_by_categories</span></code>,
+but does not need a category set (you instead chain with <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_ptr" title="opendp.meas.make_base_ptr"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_ptr()</span></code></a>, which uses the propose-test-release framework).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">make_sized_bounded_covariance</span></code> aggregator is Rust-only at this time because data loaders for data of type <code class="docutils literal notranslate"><span class="pre">Vec&lt;(T,</span> <span class="pre">T)&gt;</span></code> are not implemented.</p>
 <table class="table">
 <colgroup>
@@ -657,12 +727,12 @@ it is currently the only transformation that pairs with <code class="xref py py-
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count_by_categories" title="opendp.trans.make_count_by_categories"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_by_categories()</span></code></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;TIA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TOA&gt;&gt;</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count_by" title="opendp.trans.make_count_by"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_by()</span></code></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;TIA&gt;&gt;&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;MapDomain&lt;AllDomain&lt;TIA&gt;,AllDomain&lt;TOA&gt;&gt;&gt;</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_count_by()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TI&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MapDomain&lt;AllDomain&lt;TI&gt;,AllDomain&lt;TO&gt;&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_sum" title="opendp.trans.make_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_sum()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;</span></code></p></td>
