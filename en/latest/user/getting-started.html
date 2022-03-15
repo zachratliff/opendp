@@ -471,7 +471,10 @@ This is only required if you want to build OpenDP from scratch, or if you’re i
 <p>Assuming your base environment is ready, start by cloning the <a class="reference external" href="https://github.com/opendp/opendp">opendp git repo</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone git@github.com:opendp/opendp.git</span>
 <span class="prompt1"><span class="nb">cd</span> opendp</span>
-</pre></div></div><p>Next, you’ll need to build the Rust binaries. This is done by running <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code> in the <code class="docutils literal notranslate"><span class="pre">rust</span></code> subdirectory of the repo:</p>
+</pre></div></div><p>If you get the error <code class="docutils literal notranslate"><span class="pre">git&#64;github.com:</span> <span class="pre">Permission</span> <span class="pre">denied</span> <span class="pre">(publickey)</span></code>,
+then either <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">set up an SSH key</a>
+or clone with https: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/opendp/opendp.git</span></code>.</p>
+<p>Next, you’ll need to build the Rust binaries. This is done by running <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code> in the <code class="docutils literal notranslate"><span class="pre">rust</span></code> subdirectory of the repo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> rust</span>
 <span class="prompt1">cargo build</span>
 </pre></div></div><div class="admonition note">
