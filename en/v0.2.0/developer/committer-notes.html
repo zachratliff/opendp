@@ -8,27 +8,24 @@
 
     <title>Committer Notes &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -362,7 +359,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -456,7 +453,7 @@
               <div>
                 
   <section id="committer-notes">
-<h1>Committer Notes<a class="headerlink" href="#committer-notes" title="Permalink to this headline">¶</a></h1>
+<h1>Committer Notes<a class="headerlink" href="#committer-notes" title="Permalink to this headline">#</a></h1>
 <p>This section maps out development logistics for core team of OpenDP developers.</p>
 <div class="contents local topic" id="toctitle">
 <p class="topic-title">Contents:</p>
@@ -485,14 +482,14 @@
 </ul>
 </div>
 <section id="summary">
-<h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Base all code on a long-lived branch called <code class="docutils literal notranslate"><span class="pre">main</span></code>, where we enforce a linear history.</p></li>
 <li><p>Do development on short-lived feature branches, which are merged to <code class="docutils literal notranslate"><span class="pre">main</span></code> with squash commits.</p></li>
 <li><p>Generate new versions via GitHub Releases, using long-lived release branches.</p></li>
 </ul>
 <section id="rationale">
-<h3><a class="toc-backref" href="#id2">Rationale</a><a class="headerlink" href="#rationale" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id2">Rationale</a><a class="headerlink" href="#rationale" title="Permalink to this headline">#</a></h3>
 <p>Our process should be as simple as feasible – but not simpler! We need to balance developer friendliness with the special requirements of privacy-sensitive software.</p>
 <p>We want a clean <code class="docutils literal notranslate"><span class="pre">main</span></code> branch that is always in a known good state. It should always be usable for development, and all tests should pass. This allows us to create releases easily, using the most up-to-date code.</p>
 <p>We need linear code history, without unanticipated changes introduced by merge commits. This is important so that contributions are validated using the exact code that will land on <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
@@ -501,7 +498,7 @@
 </section>
 </section>
 <section id="task-tracking">
-<h2><a class="toc-backref" href="#id3">Task Tracking</a><a class="headerlink" href="#task-tracking" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Task Tracking</a><a class="headerlink" href="#task-tracking" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Use GitHub Issues to track all tasks. This is helpful to know who’s working on what.</p></li>
 <li><p>Use the <a class="reference external" href="https://github.com/orgs/opendp/projects/1?card_filter_query=label%3A%22opendp+core%22">OpenDP Development GitHub Project</a> to organize work and prioritize tasks for development.</p></li>
@@ -509,7 +506,7 @@
 </ul>
 </section>
 <section id="code-hygiene">
-<h2><a class="toc-backref" href="#id4">Code Hygiene</a><a class="headerlink" href="#code-hygiene" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Code Hygiene</a><a class="headerlink" href="#code-hygiene" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Follow the Rust guidelines for coding style. Code should be formatted using the default settings of rustfmt. (TODO: Automatic marking of style issues on PRs – <a class="reference external" href="https://github.com/opendp/opendp/issues/256">https://github.com/opendp/opendp/issues/256</a>)</p></li>
 <li><p>Write API docs for all public and significant private APIs. We use inline comments to explain complicated code.</p></li>
@@ -518,7 +515,7 @@
 </ul>
 </section>
 <section id="branching-strategy">
-<h2><a class="toc-backref" href="#id5">Branching Strategy</a><a class="headerlink" href="#branching-strategy" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Branching Strategy</a><a class="headerlink" href="#branching-strategy" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Use a single, long-lived branch named <code class="docutils literal notranslate"><span class="pre">main</span></code> for core project history.</p></li>
 <li><p>Maintain a linear history on <code class="docutils literal notranslate"><span class="pre">main</span></code>, meaning every commit is based only on the previous commit. Don’t do merge commits onto <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
@@ -540,9 +537,9 @@
 </ul>
 </section>
 <section id="release-process">
-<h2><a class="toc-backref" href="#id6">Release Process</a><a class="headerlink" href="#release-process" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Release Process</a><a class="headerlink" href="#release-process" title="Permalink to this headline">#</a></h2>
 <section id="overview">
-<h3><a class="toc-backref" href="#id7">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>For every release, designate a Release Manager. This person is charged with performing the key tasks of the release process. Responsibility for this should be rotated to avoid burnout.</p></li>
 <li><p>Use semantic versioning to identify all releases:</p>
@@ -560,7 +557,7 @@
 </ul>
 </section>
 <section id="playbook">
-<h3><a class="toc-backref" href="#id8">Playbook</a><a class="headerlink" href="#playbook" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Playbook</a><a class="headerlink" href="#playbook" title="Permalink to this headline">#</a></h3>
 <ol class="arabic">
 <li><p>Identify names:</p>
 <table class="table">
@@ -661,10 +658,10 @@
 </ol>
 </section>
 <section id="release-workflows">
-<h3><a class="toc-backref" href="#id9">Release Workflows</a><a class="headerlink" href="#release-workflows" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Release Workflows</a><a class="headerlink" href="#release-workflows" title="Permalink to this headline">#</a></h3>
 <p>These are the GitHub workflows that support the release process.</p>
 <section id="sync-branches-yml">
-<h4><a class="toc-backref" href="#id10">sync-branches.yml</a><a class="headerlink" href="#sync-branches-yml" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id10">sync-branches.yml</a><a class="headerlink" href="#sync-branches-yml" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Keeps the tracking branches <code class="docutils literal notranslate"><span class="pre">latest</span></code> and <code class="docutils literal notranslate"><span class="pre">stable</span></code> in sync with their targets. This is used when generating docs, so that we have a consistent path to each category.</p></li>
 <li><p>Triggered on every push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, or when release is published.</p></li>
@@ -673,7 +670,7 @@
 </ul>
 </section>
 <section id="release-yml">
-<h4><a class="toc-backref" href="#id11">release.yml</a><a class="headerlink" href="#release-yml" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id11">release.yml</a><a class="headerlink" href="#release-yml" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Triggered whenever a GH Release is created.</p></li>
 <li><p>Rust library is compiled, creating shared libraries for Linux, macOS, Windows.</p></li>
@@ -683,7 +680,7 @@
 </ul>
 </section>
 <section id="docs-yml">
-<h4><a class="toc-backref" href="#id12">docs.yml</a><a class="headerlink" href="#docs-yml" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id12">docs.yml</a><a class="headerlink" href="#docs-yml" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>Generates and publishes the docs to <a class="reference external" href="https://docs.opendp.org">https://docs.opendp.org</a></p></li>
 <li><p>Triggered whenever <code class="docutils literal notranslate"><span class="pre">sync-branches.html</span></code> completes (i.e., whenever <code class="docutils literal notranslate"><span class="pre">latest</span></code> or <code class="docutils literal notranslate"><span class="pre">stable</span></code> have changed).</p></li>
@@ -728,8 +725,9 @@
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

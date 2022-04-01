@@ -8,27 +8,24 @@
 
     <title>Examples &#8212; OpenDP</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -286,7 +283,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -334,9 +331,9 @@
               <div>
                 
   <section id="examples">
-<span id="id1"></span><h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h1>
 <section id="python-docs">
-<h2>Python Docs<a class="headerlink" href="#python-docs" title="Permalink to this headline">¶</a></h2>
+<h2>Python Docs<a class="headerlink" href="#python-docs" title="Permalink to this headline">#</a></h2>
 <p>There are a few useful examples embedded in the user guide and API docs:</p>
 <ul class="simple">
 <li><p>Don’t miss the <a class="reference internal" href="user/application-structure.html#putting-together"><span class="std std-ref">conclusion of the user-guide</span></a>!</p></li>
@@ -347,19 +344,19 @@
 </ul>
 </section>
 <section id="python-notebooks">
-<span id="notebooks"></span><h2>Python Notebooks<a class="headerlink" href="#python-notebooks" title="Permalink to this headline">¶</a></h2>
+<span id="notebooks"></span><h2>Python Notebooks<a class="headerlink" href="#python-notebooks" title="Permalink to this headline">#</a></h2>
 <p>Example notebooks can be found in <a class="reference external" href="https://github.com/opendp/opendp/tree/main/python/example">python/example</a> in the OpenDP library source tree.</p>
 <p>You can open and run these notebooks online in <a class="reference external" href="https://mybinder.org/v2/gh/opendp/opendp/HEAD">Binder</a> (navigate to <code class="docutils literal notranslate"><span class="pre">python/example</span></code>).</p>
 </section>
 <section id="rust-examples">
-<h2>Rust Examples<a class="headerlink" href="#rust-examples" title="Permalink to this headline">¶</a></h2>
+<h2>Rust Examples<a class="headerlink" href="#rust-examples" title="Permalink to this headline">#</a></h2>
 <p>See the <a class="reference external" href="https://docs.rs/opendp/">OpenDP rust documentation</a> for examples on how to use the Rust API.</p>
 <p>The Rust API is nearly identical to the Python API,
 except that explicit type arguments in the python API are generics.</p>
 <p>There is also a <a class="reference external" href="https://github.com/opendp/opendp/commit/8561d7e57e960eb72fffa9f24e2dbe54bb6084bb">tiny demo crate</a> for wiring up your own FFI language bindings.</p>
 </section>
 <section id="applications">
-<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">#</a></h2>
 <p>DPCreator, a part of the <a class="reference internal" href="opendp-commons/index.html#opendp-commons"><span class="std std-ref">OpenDP Commons</span></a>, is based on the OpenDP library.</p>
 <p>Please <a class="reference internal" href="contact.html#contact"><span class="std std-ref">let us know</span></a> if you are building applications with the library.</p>
 </section>
@@ -393,8 +390,9 @@ except that explicit type arguments in the python API are generics.</p>
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

@@ -8,27 +8,24 @@
 
     <title>Getting Started &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -333,7 +330,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -378,7 +375,7 @@
               <div>
                 
   <section id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h1>
 <div class="contents local topic" id="toctitle">
 <p class="topic-title">Contents:</p>
 <ul class="simple">
@@ -391,10 +388,10 @@
 </ul>
 </div>
 <section id="installation">
-<h2><a class="toc-backref" href="#id1">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
 <p>The first step in using OpenDP is to install the OpenDP library.</p>
 <section id="installing-opendp-from-pypi">
-<h3><a class="toc-backref" href="#id2">Installing OpenDP from PyPI</a><a class="headerlink" href="#installing-opendp-from-pypi" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id2">Installing OpenDP from PyPI</a><a class="headerlink" href="#installing-opendp-from-pypi" title="Permalink to this headline">#</a></h3>
 <p>A package for OpenDP is available from <a class="reference external" href="https://pypi.org/project/opendp/">PyPI</a>. You can install it using <code class="docutils literal notranslate"><span class="pre">pip</span></code> or other package management tool:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>% pip install opendp
 </pre></div>
@@ -403,7 +400,7 @@
 </section>
 </section>
 <section id="hello-opendp">
-<h2><a class="toc-backref" href="#id3">Hello, OpenDP!</a><a class="headerlink" href="#hello-opendp" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Hello, OpenDP!</a><a class="headerlink" href="#hello-opendp" title="Permalink to this headline">#</a></h2>
 <p>Once you’ve installed OpenDP, you can write your first program. In the example below, we’ll construct an identity <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>, then invoke it on a string.</p>
 <div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_identity</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="n">SubstituteDistance</span>
@@ -444,8 +441,9 @@
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

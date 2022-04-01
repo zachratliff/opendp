@@ -8,27 +8,24 @@
 
     <title>opendp.trans module &#8212; OpenDP</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -380,10 +377,10 @@
               <div>
                 
   <section id="module-opendp.trans">
-<span id="opendp-trans-module"></span><h1>opendp.trans module<a class="headerlink" href="#module-opendp.trans" title="Permalink to this headline">¶</a></h1>
+<span id="opendp-trans-module"></span><h1>opendp.trans module<a class="headerlink" href="#module-opendp.trans" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_bounded_resize">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_resize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_resize" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that either truncates or imputes records with <cite>constant</cite> in a Vec&lt;<cite>TA</cite>&gt; to match a provided <cite>size</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -412,7 +409,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_bounded_sum">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_sum" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_sum" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the sum of bounded data. 
 Use <cite>make_clamp</cite> to bound data.</p>
 <dl class="field-list simple">
@@ -440,7 +437,7 @@ Use <cite>make_clamp</cite> to bound data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_cast">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_cast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_cast" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_cast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_cast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_cast" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that casts a vector of data from type <cite>TIA</cite> to type <cite>TOA</cite>. 
 Failure to parse results in None, else Some&lt;TOA&gt;.</p>
 <dl class="field-list simple">
@@ -468,7 +465,7 @@ Failure to parse results in None, else Some&lt;TOA&gt;.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_cast_default">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_cast_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_cast_default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_cast_default" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_cast_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_cast_default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_cast_default" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that casts a vector of data from type <cite>TIA</cite> to type <cite>TOA</cite>. If cast fails, fill with default.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -495,7 +492,7 @@ Failure to parse results in None, else Some&lt;TOA&gt;.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_cast_inherent">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_cast_inherent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_cast_inherent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_cast_inherent" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_cast_inherent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_cast_inherent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_cast_inherent" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that casts a vector of data from type <cite>TI</cite> to a type that can represent nullity <cite>TO</cite>. 
 If cast fails, fill with <cite>TO</cite>’s null value.</p>
 <dl class="field-list simple">
@@ -523,7 +520,7 @@ If cast fails, fill with <cite>TO</cite>’s null value.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_cast_metric">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_cast_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_cast_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_cast_metric" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_cast_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_cast_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_cast_metric" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that converts the dataset metric from type <cite>MI</cite> to type <cite>MO</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -551,7 +548,7 @@ If cast fails, fill with <cite>TO</cite>’s null value.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_clamp">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_clamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_clamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_clamp" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_clamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_clamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_clamp" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that clamps numeric data in Vec&lt;<cite>T</cite>&gt; to <cite>bounds</cite>. 
 If datum is less than lower, let datum be lower. 
 If datum is greater than upper, let datum be upper.</p>
@@ -580,7 +577,7 @@ If datum is greater than upper, let datum be upper.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_count">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes a count of the number of records in data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -607,7 +604,7 @@ If datum is greater than upper, let datum be upper.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_count_by">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_by" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_by" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the count of each unique value in data. 
 This assumes that the category set is unknown.</p>
 <dl class="field-list simple">
@@ -636,7 +633,7 @@ This assumes that the category set is unknown.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_count_by_categories">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_by_categories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'L1Distance&lt;i32&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_by_categories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_by_categories" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_by_categories</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'L1Distance&lt;i32&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_by_categories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_by_categories" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the number of times each category appears in the data. 
 This assumes that the category set is known.</p>
 <dl class="field-list simple">
@@ -666,7 +663,7 @@ This assumes that the category set is known.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_count_distinct">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_distinct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_distinct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_distinct" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_distinct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_distinct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_distinct" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes a count of the number of unique, distinct records in data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -693,7 +690,7 @@ This assumes that the category set is known.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_create_dataframe">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_create_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_create_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_create_dataframe" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_create_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_create_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_create_dataframe" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that constructs a dataframe from a Vec&lt;Vec&lt;String&gt;&gt;.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -720,7 +717,7 @@ This assumes that the category set is known.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_drop_null">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_drop_null</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_drop_null"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_drop_null" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_drop_null</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_drop_null"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_drop_null" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that drops null values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -744,7 +741,7 @@ This assumes that the category set is known.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_find">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_find" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_find" title="Permalink to this definition">#</a></dt>
 <dd><p>Find the index of a data value in a set of categories.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -771,7 +768,7 @@ This assumes that the category set is known.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_find_bin">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_find_bin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_find_bin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_find_bin" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_find_bin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_find_bin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_find_bin" title="Permalink to this definition">#</a></dt>
 <dd><p>Find the bin index from a monotonically increasing vector of edges.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -798,7 +795,7 @@ This assumes that the category set is known.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_identity">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_identity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_identity" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">D</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_identity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_identity" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that simply passes the data through.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -825,7 +822,7 @@ This assumes that the category set is known.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_impute_constant">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_impute_constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_impute_constant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_impute_constant" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_impute_constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_impute_constant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_impute_constant" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that replaces null/None data with <cite>constant</cite>.
 By default, the input type is Vec&lt;Option&lt;TA&gt;&gt;, as emitted by make_cast. 
 Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputing on types that have an inherent representation of nullity, like floats.</p>
@@ -854,7 +851,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_impute_uniform_float">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_impute_uniform_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_impute_uniform_float"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_impute_uniform_float" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_impute_uniform_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_impute_uniform_float"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_impute_uniform_float" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that replaces null/None data in Vec&lt;<cite>TA</cite>&gt; with uniformly distributed floats within <cite>bounds</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -881,7 +878,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_index">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_index" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_index" title="Permalink to this definition">#</a></dt>
 <dd><p>Index into a vector of categories.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -909,7 +906,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_is_equal">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_is_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_is_equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_is_equal" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_is_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_is_equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_is_equal" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that checks if each element is equal to <cite>value</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -936,7 +933,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_is_null">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_is_null</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DIA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_is_null"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_is_null" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_is_null</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DIA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_is_null"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_is_null" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that checks if each element in a vector is null.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -960,7 +957,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_resize">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_resize" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_resize" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that either truncates or imputes records with <cite>constant</cite> in a Vec&lt;<cite>TA</cite>&gt; to match a provided <cite>size</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -988,7 +985,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_select_column">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_select_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_select_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_select_column" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_select_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_select_column"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_select_column" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that retrieves the column <cite>key</cite> from a dataframe as Vec&lt;<cite>TOA</cite>&gt;.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1016,7 +1013,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_mean">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_mean" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_mean" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the mean of bounded data. 
 This uses a restricted-sensitivity proof that takes advantage of known dataset size. 
 Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> to establish dataset size.</p>
@@ -1046,7 +1043,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_sum">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_sum" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_sum" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the sum of bounded data with known dataset size. 
 This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. 
 Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> to establish dataset size.</p>
@@ -1076,7 +1073,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_variance">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_variance" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_variance" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the variance of bounded data. 
 This uses a restricted-sensitivity proof that takes advantage of known dataset size. 
 Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> to establish dataset size.</p>
@@ -1107,7 +1104,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_split_dataframe">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_split_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">separator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_split_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_split_dataframe" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_split_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">separator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_split_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_split_dataframe" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that splits each record in a String into a Vec&lt;Vec&lt;String&gt;&gt;,
 and loads the resulting table into a dataframe keyed by <cite>col_names</cite>.</p>
 <dl class="field-list simple">
@@ -1136,7 +1133,7 @@ and loads the resulting table into a dataframe keyed by <cite>col_names</cite>.<
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_split_lines">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_split_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_split_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_split_lines" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_split_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_split_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_split_lines" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that takes a string and splits it into a Vec&lt;String&gt; of its lines.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1157,7 +1154,7 @@ and loads the resulting table into a dataframe keyed by <cite>col_names</cite>.<
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_split_records">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_split_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">separator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_split_records"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_split_records" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_split_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">separator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_split_records"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_split_records" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that splits each record in a Vec&lt;String&gt; into a Vec&lt;Vec&lt;String&gt;&gt;.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1181,7 +1178,7 @@ and loads the resulting table into a dataframe keyed by <cite>col_names</cite>.<
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_unclamp">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_unclamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_unclamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_unclamp" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_unclamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_unclamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_unclamp" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that unclamps a VectorDomain&lt;BoundedDomain&lt;T&gt;&gt; to a VectorDomain&lt;AllDomain&lt;T&gt;&gt;.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1236,8 +1233,9 @@ and loads the resulting table into a dataframe keyed by <cite>col_names</cite>.<
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

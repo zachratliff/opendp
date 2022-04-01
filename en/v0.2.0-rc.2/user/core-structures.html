@@ -8,27 +8,24 @@
 
     <title>Core Structures &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -333,7 +330,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -386,7 +383,7 @@
               <div>
                 
   <section id="core-structures">
-<h1>Core Structures<a class="headerlink" href="#core-structures" title="Permalink to this headline">¶</a></h1>
+<h1>Core Structures<a class="headerlink" href="#core-structures" title="Permalink to this headline">#</a></h1>
 <div class="contents local topic" id="toctitle">
 <p class="topic-title">Contents:</p>
 <ul class="simple">
@@ -398,23 +395,23 @@
 </ul>
 </div>
 <section id="overview">
-<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
 <p>OpenDP is focused on creating computations with specific privacy characteristics. These computations are modeled with two core structures in OpenDP: Transformations and Measurements. These structures are in all OpenDP programs, regardless of the underlying algorithm or definition of privacy. By modeling computations in this abstract way, we’re able to combine them in flexible arrangements and reason about the resulting programs.</p>
 </section>
 <section id="measurement">
-<h2><a class="toc-backref" href="#id2">Measurement</a><a class="headerlink" href="#measurement" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Measurement</a><a class="headerlink" href="#measurement" title="Permalink to this headline">#</a></h2>
 <p>A Measurement is a randomized mapping from datasets to outputs of an arbitrary type.</p>
 </section>
 <section id="transformation">
-<h2><a class="toc-backref" href="#id3">Transformation</a><a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Transformation</a><a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
 <p>A Transformation is a (deterministic) mapping from datasets to datasets.</p>
 </section>
 <section id="constructors-and-functions">
-<h2><a class="toc-backref" href="#id4">Constructors and Functions</a><a class="headerlink" href="#constructors-and-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Constructors and Functions</a><a class="headerlink" href="#constructors-and-functions" title="Permalink to this headline">#</a></h2>
 <p>In OpenDP, Measurements and Transformations are created by calling constructor functions. Because Measurements and Transformations are themselves like functions (they can be invoked on an input and return an output), you can think of constructors as higher-order functions: You call them to produce another function, that you will then feed some data.</p>
 </section>
 <section id="examples">
-<h2><a class="toc-backref" href="#id5">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
@@ -446,8 +443,9 @@
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

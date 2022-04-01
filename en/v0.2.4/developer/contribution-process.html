@@ -8,27 +8,24 @@
 
     <title>Contribution Process &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -345,7 +342,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -393,13 +390,13 @@
               <div>
                 
   <section id="contribution-process">
-<span id="id1"></span><h1>Contribution Process<a class="headerlink" href="#contribution-process" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Contribution Process<a class="headerlink" href="#contribution-process" title="Permalink to this headline">#</a></h1>
 <p>There’s no need to fear, because our contribution process is human!
 We’re aiming to keep this process approachable to people of all skill levels.
 Without compromising the integrity of the library,
 there is reasonable variation in how strictly we adhere to this process in accordance to the depth of your contribution.</p>
 <section id="development-setup">
-<h2>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this headline">¶</a></h2>
+<h2>Development Setup<a class="headerlink" href="#development-setup" title="Permalink to this headline">#</a></h2>
 <p>The first task to tackle is setting up the development environment.
 We have detailed instructions in the <a class="reference internal" href="development-environment.html#development-environment"><span class="std std-ref">Development Environment</span></a> section.</p>
 <p>Checkout to a new feature branch when you are ready to work on your issue.
@@ -408,7 +405,7 @@ Your branch should have a name that includes the issue number followed by a shor
 If new commits have been added to the main branch, please rebase to help maintain a clean history.</p>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">#</a></h2>
 <p>The programming framework suggests <a class="reference external" href="https://projects.iq.harvard.edu/files/opendp/files/opendp_programming_framework_11may2020_1_01.pdf#section.10">many types of contributions</a>,
 but this guide focuses on constructor contributions (types 1-3) for brevity.
 The process involved for other kinds of code contribution will share similarities.</p>
@@ -426,7 +423,7 @@ You can use draft mode for PRs to make the state of your PR less ambiguous.
 When you are ready for the review process, make sure your PR is undrafted and indicate that you are ready to begin.</p>
 </section>
 <section id="review-process">
-<h2>Review Process<a class="headerlink" href="#review-process" title="Permalink to this headline">¶</a></h2>
+<h2>Review Process<a class="headerlink" href="#review-process" title="Permalink to this headline">#</a></h2>
 <p>Reviewers will be checking that the requirements mentioned in <a class="reference internal" href="code-structure.html#code-structure"><span class="std std-ref">Code Structure</span></a> are met,
 so please be mindful of these to avoid snags in the review process.</p>
 <p>After making your pull request, please check back for feedback from the core developers.</p>
@@ -440,7 +437,7 @@ so please be mindful of these to avoid snags in the review process.</p>
 <p>Please be patient— this process may take several iterations as issues come up in the review process.</p>
 </section>
 <section id="merge">
-<h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h2>
+<h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">#</a></h2>
 <p>Once the review process is successful, your PR will be merged into the <cite>main</cite> branch.
 Your contribution and credit will be added to the release notes,
 and your changes will appear on crates.io and PyPi on our next library release.</p>
@@ -475,8 +472,9 @@ and your changes will appear on crates.io and PyPi on our next library release.<
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

@@ -8,27 +8,24 @@
 
     <title>Development Environment &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -345,7 +342,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -439,18 +436,18 @@
               <div>
                 
   <section id="development-environment">
-<span id="id1"></span><h1>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Development Environment<a class="headerlink" href="#development-environment" title="Permalink to this headline">#</a></h1>
 <p>Follow the steps below to get an OpenDP development environment set up, including the ability to run tests in both Rust and Python.</p>
 <section id="install-rust">
-<h2>Install Rust<a class="headerlink" href="#install-rust" title="Permalink to this headline">¶</a></h2>
+<h2>Install Rust<a class="headerlink" href="#install-rust" title="Permalink to this headline">#</a></h2>
 <p>Download Rust from the <a class="reference external" href="https://www.rust-lang.org">Rust website</a>.</p>
 </section>
 <section id="install-python">
-<h2>Install Python<a class="headerlink" href="#install-python" title="Permalink to this headline">¶</a></h2>
+<h2>Install Python<a class="headerlink" href="#install-python" title="Permalink to this headline">#</a></h2>
 <p>Download Python from the <a class="reference external" href="https://www.python.org">Python website</a>.</p>
 </section>
 <section id="clone-the-opendp-repo">
-<h2>Clone the OpenDP Repo<a class="headerlink" href="#clone-the-opendp-repo" title="Permalink to this headline">¶</a></h2>
+<h2>Clone the OpenDP Repo<a class="headerlink" href="#clone-the-opendp-repo" title="Permalink to this headline">#</a></h2>
 <p>If you don’t have write access to the OpenDP repository, you will first need to make a fork.
 <a class="reference external" href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">The GitHub documentation explains this process well</a>.</p>
 <p>Clone the repo (or your fork) and change into the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> directory that’s created.</p>
@@ -461,9 +458,9 @@
 </section>
 </section>
 <section id="building-opendp">
-<h1>Building OpenDP<a class="headerlink" href="#building-opendp" title="Permalink to this headline">¶</a></h1>
+<h1>Building OpenDP<a class="headerlink" href="#building-opendp" title="Permalink to this headline">#</a></h1>
 <section id="build-opendp">
-<h2>Build OpenDP<a class="headerlink" href="#build-opendp" title="Permalink to this headline">¶</a></h2>
+<h2>Build OpenDP<a class="headerlink" href="#build-opendp" title="Permalink to this headline">#</a></h2>
 <p>Change to the <code class="docutils literal notranslate"><span class="pre">rust</span></code> directory before attempting a build, run the tests, and then return to the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> rust
 cargo build
@@ -475,7 +472,7 @@ cargo <span class="nb">test</span>
 Refer to the <a class="reference internal" href="developer-faq.html#developer-faq"><span class="std std-ref">Developer Frequently Asked Questions</span></a> section if you run into compilation problems.</p>
 </section>
 <section id="install-python-dependencies">
-<h2>Install Python Dependencies<a class="headerlink" href="#install-python-dependencies" title="Permalink to this headline">¶</a></h2>
+<h2>Install Python Dependencies<a class="headerlink" href="#install-python-dependencies" title="Permalink to this headline">#</a></h2>
 <p>Change to the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory, create a Python virtual environment, activate it, install dependencies, and then install the Python OpenDP library itself.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> python
 python3 -m venv venv
@@ -488,7 +485,7 @@ pip install -e .
 <p>The developer install will not work if you don’t use the <cite>-e</cite> flag when installing with pip!</p>
 </section>
 <section id="run-the-tests">
-<h2>Run the Tests<a class="headerlink" href="#run-the-tests" title="Permalink to this headline">¶</a></h2>
+<h2>Run the Tests<a class="headerlink" href="#run-the-tests" title="Permalink to this headline">#</a></h2>
 <p>From the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory, set an environment variable to the location of the OpenDP library you built. Then run the tests.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">OPENDP_LIB_DIR</span><span class="o">=</span>../rust/target/debug
 pytest -v
@@ -497,18 +494,18 @@ pytest -v
 </section>
 </section>
 <section id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">#</a></h1>
 <section id="documentation-source">
-<h2>Documentation Source<a class="headerlink" href="#documentation-source" title="Permalink to this headline">¶</a></h2>
+<h2>Documentation Source<a class="headerlink" href="#documentation-source" title="Permalink to this headline">#</a></h2>
 <p>The source for this documentation can be found in the “docs” directory at <a class="reference external" href="https://github.com/opendp/opendp">https://github.com/opendp/opendp</a></p>
 </section>
 <section id="building-the-docs">
-<h2>Building the Docs<a class="headerlink" href="#building-the-docs" title="Permalink to this headline">¶</a></h2>
+<h2>Building the Docs<a class="headerlink" href="#building-the-docs" title="Permalink to this headline">#</a></h2>
 <p>The docs are built using Sphinx and the steps are listed in the README in the “docs” directory.</p>
 </section>
 </section>
 <section id="tooling">
-<h1>Tooling<a class="headerlink" href="#tooling" title="Permalink to this headline">¶</a></h1>
+<h1>Tooling<a class="headerlink" href="#tooling" title="Permalink to this headline">#</a></h1>
 <p>There are many development environments that work with Rust. Here are a few:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://plugins.jetbrains.com/plugin/8182-rust">Intellij IDEA</a></p></li>
@@ -557,8 +554,9 @@ and talk through issues.</p>
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

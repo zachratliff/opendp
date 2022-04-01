@@ -8,27 +8,24 @@
 
     <title>Limitations &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -338,7 +335,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -396,7 +393,7 @@
               <div>
                 
   <section id="limitations">
-<h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h1>
+<h1>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">#</a></h1>
 <div class="contents local topic" id="toctitle">
 <p class="topic-title">Contents:</p>
 <ul class="simple">
@@ -409,11 +406,11 @@
 </ul>
 </div>
 <section id="overview">
-<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
 <p>OpenDP is early in its development history. We aim to build <em>the</em> trusted implementation of differential privacy algorithms, but we’re not there yet. We feel that OpenDP already can be used to build some useful applications, but please be aware of the following limitations.</p>
 </section>
 <section id="privacy-concerns">
-<h2><a class="toc-backref" href="#id2">Privacy Concerns</a><a class="headerlink" href="#privacy-concerns" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Privacy Concerns</a><a class="headerlink" href="#privacy-concerns" title="Permalink to this headline">#</a></h2>
 <p>As a work in progress, OpenDP has some known privacy concerns. These vulnerabilities can have a significant impact on some applications, so you should carefully consider them when using OpenDP.</p>
 <ul class="simple">
 <li><p>Floating point issues: There are situations where OpenDP generates noise using native machine representations. This has the known issue of porous floating point output, resulting in <a class="reference external" href="https://www.microsoft.com/en-us/research/wp-content/uploads/2012/10/lsbs.pdf">attacks</a> where privacy can be violated.</p></li>
@@ -422,22 +419,22 @@
 <p>We know that these issues are critical for a privacy library, and are formulating plans to address them. Until then, <em>we strongly recommend that you not yet use OpenDP for any privacy-critical applications</em>.</p>
 </section>
 <section id="incomplete-privacy-proofs">
-<h2><a class="toc-backref" href="#id3">Incomplete Privacy Proofs</a><a class="headerlink" href="#incomplete-privacy-proofs" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Incomplete Privacy Proofs</a><a class="headerlink" href="#incomplete-privacy-proofs" title="Permalink to this headline">#</a></h2>
 <p>An important element of the OpenDP project is a formal vetting process that all library components must undergo, to verify their privacy characteristics. This process involves supplying mathematical proofs of the privacy properties of all algorithms and validating that all code faithfully implements the specified algorithms.</p>
 <p>For the most part, the code in OpenDP hasn’t yet undergone that vetting. This process is underway, but will take time. Therefore, we can’t yet properly vouch for the privacy claims of the implemented algorithms. If mathematical verifiability is important to you, then you shouldn’t yet rely on the code in OpenDP.</p>
 </section>
 <section id="missing-functionality">
-<h2><a class="toc-backref" href="#id4">Missing Functionality</a><a class="headerlink" href="#missing-functionality" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Missing Functionality</a><a class="headerlink" href="#missing-functionality" title="Permalink to this headline">#</a></h2>
 <p>There are some elements of the OpenDP Programming Framework, the conceptual basis for OpenDP, that are not yet implemented. Foremost among these is the concept of interactive measurements. (There is an initial prototype, implemented in Rust only, but it’s not fully fleshed out). These elements are on our roadmap, but applications will have to wait to use them.</p>
 </section>
 <section id="api-stability">
-<h2><a class="toc-backref" href="#id5">API Stability</a><a class="headerlink" href="#api-stability" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">API Stability</a><a class="headerlink" href="#api-stability" title="Permalink to this headline">#</a></h2>
 <p>The APIs of OpenDP are still in flux, and subject to change. We’ve iterated a lot on these interfaces, and feel like the general shape is working well, but it’s likely that many details will change in backwards-incompatible ways. This
 early flexibility is important to evolve the library, and we appreciate your understanding and feedback on improvements.</p>
 <p>When we release OpenDP 1.0.0, we’ll begin to offer API stability within <a class="reference external" href="https://semver.org">major versions</a>. Until then, please don’t depend on interfaces remaining the same across releases of OpenDP.</p>
 </section>
 <section id="software-quality">
-<h2><a class="toc-backref" href="#id6">Software Quality</a><a class="headerlink" href="#software-quality" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Software Quality</a><a class="headerlink" href="#software-quality" title="Permalink to this headline">#</a></h2>
 <p>Like any software project, OpenDP likely has bugs. Because it’s still an early project, it likely has many bugs! We strive to make high quality software, but if you encounter issues, <a class="reference external" href="https://github.com/opendp/opendp/issues">please let us know</a>.</p>
 </section>
 </section>
@@ -470,8 +467,9 @@ early flexibility is important to evolve the library, and we appreciate your und
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

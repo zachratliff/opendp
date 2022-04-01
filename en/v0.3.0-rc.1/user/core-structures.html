@@ -8,27 +8,24 @@
 
     <title>Core Structures &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -338,7 +335,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -381,7 +378,7 @@
               <div>
                 
   <section id="core-structures">
-<span id="id1"></span><h1>Core Structures<a class="headerlink" href="#core-structures" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Core Structures<a class="headerlink" href="#core-structures" title="Permalink to this headline">#</a></h1>
 <p>OpenDP is focused on creating computations with specific privacy characteristics.
 These computations are modeled with two core structures in OpenDP:
 <a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.mod.Transformation</span></code></a> and <a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.mod.Measurement</span></code></a>.
@@ -396,7 +393,7 @@ By modeling computations in this abstract way, we’re able to combine them in f
 because the definition of privacy is an upper bound on distance between probability distributions.</p>
 <p>Each measurement or transformation is a self-contained structure with a relation, function, and supporting proof.</p>
 <section id="measurement">
-<span id="id2"></span><h2>Measurement<a class="headerlink" href="#measurement" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Measurement<a class="headerlink" href="#measurement" title="Permalink to this headline">#</a></h2>
 <p>A <a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><code class="xref py py-class docutils literal notranslate"><span class="pre">Measurement</span></code></a> is a randomized mapping from datasets to outputs of an arbitrary type.
 Lets say we have an arbitrary instance of a Measurement, called <code class="docutils literal notranslate"><span class="pre">meas</span></code>, and a code snippet <code class="docutils literal notranslate"><span class="pre">meas.check(d_in,</span> <span class="pre">d_out)</span></code>.
 If the code snippet evaluates to True, then <code class="docutils literal notranslate"><span class="pre">meas</span></code> is <code class="docutils literal notranslate"><span class="pre">d_out</span></code>-DP on <code class="docutils literal notranslate"><span class="pre">d_in</span></code>-close inputs,
@@ -435,7 +432,7 @@ and measures can be used to quantify differences between probability distributio
 This is the primary differentiating factor between measurements and transformations.</p>
 </section>
 <section id="transformation">
-<span id="id3"></span><h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
 <p>A <a class="reference internal" href="../api/python/opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a> is a (deterministic) mapping from datasets to datasets.
 Transformations are used to preprocess and aggregate data before chaining with a measurement.</p>
 <p>Similarly to <code class="docutils literal notranslate"><span class="pre">meas</span></code> above, let’s say we have an arbitrary instance of a Transformation, called <code class="docutils literal notranslate"><span class="pre">trans</span></code>,
@@ -472,7 +469,7 @@ Transformations need to be <a class="reference internal" href="combinator-constr
 </dl>
 </section>
 <section id="constructors-and-functions">
-<span id="constructors"></span><h2>Constructors and Functions<a class="headerlink" href="#constructors-and-functions" title="Permalink to this headline">¶</a></h2>
+<span id="constructors"></span><h2>Constructors and Functions<a class="headerlink" href="#constructors-and-functions" title="Permalink to this headline">#</a></h2>
 <p>In OpenDP, Measurements and Transformations are created by calling constructor functions.
 The majority of the library’s interface consists of these constructors.</p>
 <p>Because Measurements and Transformations are themselves like functions (they can be invoked on an input and return an output),
@@ -531,8 +528,9 @@ You call them to produce another function that you will then feed data.</p>
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

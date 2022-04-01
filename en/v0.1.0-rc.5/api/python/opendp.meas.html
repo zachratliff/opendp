@@ -8,27 +8,24 @@
 
     <title>opendp.meas module &#8212; OpenDP</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -370,10 +367,10 @@
               <div>
                 
   <section id="module-opendp.meas">
-<span id="opendp-meas-module"></span><h1>opendp.meas module<a class="headerlink" href="#module-opendp.meas" title="Permalink to this headline">¶</a></h1>
+<span id="opendp-meas-module"></span><h1>opendp.meas module<a class="headerlink" href="#module-opendp.meas" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_base_analytic_gaussian">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_analytic_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_analytic_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_analytic_gaussian" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_analytic_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_analytic_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_analytic_gaussian" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that adds noise from the gaussian(<cite>scale</cite>) distribution to the input.
 Adjust D to noise vector-valued data.
 The privacy relation is based on the analytic gaussian mechanism.</p>
@@ -402,7 +399,7 @@ The privacy relation is based on the analytic gaussian mechanism.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_base_gaussian">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_gaussian" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_gaussian" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that adds noise from the gaussian(<cite>scale</cite>) distribution to the input.
 Adjust D to noise vector-valued data.</p>
 <dl class="field-list simple">
@@ -430,7 +427,7 @@ Adjust D to noise vector-valued data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_base_geometric">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_geometric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;i32&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_geometric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_geometric" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_geometric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;i32&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">QO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_geometric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_geometric" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that adds noise from the geometric(<cite>scale</cite>) distribution to the input.
 Adjust D to noise vector-valued data.</p>
 <dl class="field-list simple">
@@ -460,7 +457,7 @@ Adjust D to noise vector-valued data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_base_laplace">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_laplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_laplace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_laplace" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_laplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_laplace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_laplace" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that adds noise from the laplace(<cite>scale</cite>) distribution to a scalar value.
 Adjust D to noise vector-valued data.</p>
 <dl class="field-list simple">
@@ -488,7 +485,7 @@ Adjust D to noise vector-valued data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_base_ptr">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_ptr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_ptr" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_ptr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_ptr" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that uses propose-test-release to privatize a hashmap of counts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -517,7 +514,7 @@ Adjust D to noise vector-valued data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_randomized_response">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_randomized_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_randomized_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_randomized_response" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_randomized_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_randomized_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_randomized_response" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that implements randomized response on a categorical value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -547,7 +544,7 @@ Adjust D to noise vector-valued data.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_randomized_response_bool">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_randomized_response_bool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_randomized_response_bool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_randomized_response_bool" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_randomized_response_bool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_randomized_response_bool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_randomized_response_bool" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that implements randomized response on a boolean value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -603,8 +600,9 @@ Adjust D to noise vector-valued data.</p>
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

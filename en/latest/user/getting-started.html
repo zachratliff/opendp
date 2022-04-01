@@ -8,27 +8,24 @@
 
     <title>Getting Started &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -338,7 +335,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -403,14 +400,14 @@
               <div>
                 
   <section id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h1>
 <p>This section will walk you through the process of getting started with OpenDP. By the end, you should have a working OpenDP installation, and you’ll be ready to explore OpenDP programming.</p>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
 <p>OpenDP is built with a layered architecture. The core consists of a native library, implemented in Rust. On top of this core are bindings for using OpenDP from other languages (currently only Python, but we hope to add bindings for more languages in the future).</p>
 <p>In order to use OpenDP in your applications, the first step is installing the library so that it’s accessible to your local environment. Depending on how you intend to use OpenDP, these steps may vary.</p>
 <section id="platforms">
-<h3>Platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">¶</a></h3>
+<h3>Platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">#</a></h3>
 <p>OpenDP is built for the following platforms:</p>
 <ul class="simple">
 <li><p>Python 3.6-3.9</p></li>
@@ -421,7 +418,7 @@
 <p>Other platforms may work, but will require <a class="reference external" href="#building-opendp-from-source">building from source</a>.</p>
 </section>
 <section id="installing-opendp-for-python-from-pypi">
-<h3>Installing OpenDP for Python from PyPI<a class="headerlink" href="#installing-opendp-for-python-from-pypi" title="Permalink to this headline">¶</a></h3>
+<h3>Installing OpenDP for Python from PyPI<a class="headerlink" href="#installing-opendp-for-python-from-pypi" title="Permalink to this headline">#</a></h3>
 <p>OpenDP is distributed as a <a class="reference external" href="https://pypi.org/project/opendp/">Python package on PyPI</a>. You can install it using <code class="docutils literal notranslate"><span class="pre">pip</span></code> or another package management tool:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -438,7 +435,7 @@ span.prompt1:before {
 </div>
 </section>
 <section id="installing-opendp-for-rust-from-crates-io">
-<h3>Installing OpenDP for Rust from crates.io<a class="headerlink" href="#installing-opendp-for-rust-from-crates-io" title="Permalink to this headline">¶</a></h3>
+<h3>Installing OpenDP for Rust from crates.io<a class="headerlink" href="#installing-opendp-for-rust-from-crates-io" title="Permalink to this headline">#</a></h3>
 <p>OpenDP is also available as a <a class="reference external" href="https://crates.io/crates/opendp">Rust crate</a>.
 This is not as common, as most people will use OpenDP through one of the other language bindings.
 But if you need to use the Rust interface of OpenDP directly, you can just reference the <code class="docutils literal notranslate"><span class="pre">opendp</span></code> crate in your <code class="docutils literal notranslate"><span class="pre">Cargo.toml</span></code> file:</p>
@@ -459,7 +456,7 @@ Continuous noise samplers require explicit opt-in and are behind the “floating
 </div>
 </section>
 <section id="building-opendp-from-source">
-<h3>Building OpenDP from Source<a class="headerlink" href="#building-opendp-from-source" title="Permalink to this headline">¶</a></h3>
+<h3>Building OpenDP from Source<a class="headerlink" href="#building-opendp-from-source" title="Permalink to this headline">#</a></h3>
 <p>Under special circumstances, it may be necessary to install OpenDP directly from the source files.
 This is only required if you want to build OpenDP from scratch, or if you’re interested in <a class="reference internal" href="../developer/index.html"><span class="doc">contributing to OpenDP</span></a>.</p>
 <p>For this to work, you’ll need some prerequisites:</p>
@@ -496,7 +493,7 @@ or clone with https: <code class="docutils literal notranslate"><span class="pre
 </section>
 </section>
 <section id="hello-opendp">
-<span id="id1"></span><h2>Hello, OpenDP!<a class="headerlink" href="#hello-opendp" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Hello, OpenDP!<a class="headerlink" href="#hello-opendp" title="Permalink to this headline">#</a></h2>
 <p>Once you’ve installed OpenDP, you can write your first program.</p>
 <p>Be aware that the vetting process is currently underway for the code in the OpenDP Library.
 Any code that has not completed the vetting process is marked as “contrib” and will not run unless you opt-in.
@@ -529,7 +526,7 @@ and <code class="docutils literal notranslate"><span class="pre">M=SymmetricDist
 Don’t worry if some of the concepts don’t make sense because they’ll be explained later in this guide.</p>
 </section>
 <section id="what-s-next">
-<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<h2>What’s Next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">#</a></h2>
 <p>Now that you’ve had a taste of OpenDP, you can start exploring the library in more depth.
 The remainder of this guide will walk you through the concepts that underlie OpenDP,
 starting with its conceptual underpinnings, known as the <a class="reference internal" href="programming-framework.html"><span class="doc">OpenDP Programming Framework</span></a>.</p>
@@ -566,8 +563,9 @@ starting with its conceptual underpinnings, known as the <a class="reference int
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

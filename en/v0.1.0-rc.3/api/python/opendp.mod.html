@@ -8,27 +8,24 @@
 
     <title>opendp.mod module &#8212; OpenDP</title>
     
-    <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -370,10 +367,10 @@
               <div>
                 
   <section id="module-opendp.mod">
-<span id="opendp-mod-module"></span><h1>opendp.mod module<a class="headerlink" href="#module-opendp.mod" title="Permalink to this headline">¶</a></h1>
+<span id="opendp-mod-module"></span><h1>opendp.mod module<a class="headerlink" href="#module-opendp.mod" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="opendp.mod.Measurement">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">Measurement</span></span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">Measurement</span></span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.mod.LP_AnyMeasurement</span></code></p>
 <p>A differentially private unit of computation.
 A measurement contains a function and a privacy relation.
@@ -414,7 +411,7 @@ The privacy relation maps from an input metric to an output measure.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="opendp.mod.Measurement.check">
-<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement.check" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement.check" title="Permalink to this definition">#</a></dt>
 <dd><p>Check if the measurement satisfies the privacy relation at <cite>d_in</cite>, <cite>d_out</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -435,7 +432,7 @@ The privacy relation maps from an input metric to an output measure.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="opendp.mod.Measurement.input_carrier_type">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">input_carrier_type</span></span><a class="headerlink" href="#opendp.mod.Measurement.input_carrier_type" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">input_carrier_type</span></span><a class="headerlink" href="#opendp.mod.Measurement.input_carrier_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Retrieve the carrier type of the input domain.
 Any member of the input domain is a member of the carrier type.</p>
 <dl class="field-list simple">
@@ -447,7 +444,7 @@ Any member of the input domain is a member of the carrier type.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="opendp.mod.Measurement.input_distance_type">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">input_distance_type</span></span><a class="headerlink" href="#opendp.mod.Measurement.input_distance_type" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">input_distance_type</span></span><a class="headerlink" href="#opendp.mod.Measurement.input_distance_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Retrieve the distance type of the input metric.
 This may be any integral type for dataset metrics, or any numeric type for sensitivity metrics.</p>
 <dl class="field-list simple">
@@ -459,7 +456,7 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py method">
 <dt class="sig sig-object py" id="opendp.mod.Measurement.invoke">
-<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement.invoke" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement.invoke" title="Permalink to this definition">#</a></dt>
 <dd><p>Create a differentially-private release with <cite>arg</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -476,7 +473,7 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py property">
 <dt class="sig sig-object py" id="opendp.mod.Measurement.output_distance_type">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">output_distance_type</span></span><a class="headerlink" href="#opendp.mod.Measurement.output_distance_type" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">output_distance_type</span></span><a class="headerlink" href="#opendp.mod.Measurement.output_distance_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Retrieve the distance type of the output measure.
 This is the type that the budget is expressed in.</p>
 <dl class="field-list simple">
@@ -490,7 +487,7 @@ This is the type that the budget is expressed in.</p>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="opendp.mod.OpenDPException">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">OpenDPException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_traceback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#OpenDPException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.OpenDPException" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">OpenDPException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_traceback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#OpenDPException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.OpenDPException" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>General exception for errors originating from the underlying OpenDP library.
 The variant attribute corresponds to <a class="reference external" href="https://github.com/opendp/opendp/blob/53ec58d01762ca5ceee08590d7e7b725bbdafcf6/rust/opendp/src/error.rs#L46-L87">one of the following variants</a> and can be matched on.
@@ -508,7 +505,7 @@ Error variants may change in library updates.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="opendp.mod.Transformation">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">Transformation</span></span><a class="reference internal" href="../../_modules/opendp/mod.html#Transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Transformation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">Transformation</span></span><a class="reference internal" href="../../_modules/opendp/mod.html#Transformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Transformation" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">opendp.mod.LP_AnyTransformation</span></code></p>
 <p>A non-differentially private unit of computation.
 A transformation contains a function and a stability relation.
@@ -549,7 +546,7 @@ The stability relation maps from an input metric to an output metric.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="opendp.mod.Transformation.check">
-<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Transformation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Transformation.check" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Transformation.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Transformation.check" title="Permalink to this definition">#</a></dt>
 <dd><p>Check if the transformation satisfies the stability relation at <cite>d_in</cite>, <cite>d_out</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -573,7 +570,7 @@ The stability relation maps from an input metric to an output metric.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="opendp.mod.Transformation.input_carrier_type">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">input_carrier_type</span></span><a class="headerlink" href="#opendp.mod.Transformation.input_carrier_type" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">input_carrier_type</span></span><a class="headerlink" href="#opendp.mod.Transformation.input_carrier_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Retrieve the carrier type of the input domain.
 Any member of the input domain is a member of the carrier type.</p>
 <dl class="field-list simple">
@@ -585,7 +582,7 @@ Any member of the input domain is a member of the carrier type.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="opendp.mod.Transformation.input_distance_type">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">input_distance_type</span></span><a class="headerlink" href="#opendp.mod.Transformation.input_distance_type" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">input_distance_type</span></span><a class="headerlink" href="#opendp.mod.Transformation.input_distance_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Retrieve the distance type of the input metric.
 This may be any integral type for dataset metrics, or any numeric type for sensitivity metrics.</p>
 <dl class="field-list simple">
@@ -597,7 +594,7 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py method">
 <dt class="sig sig-object py" id="opendp.mod.Transformation.invoke">
-<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Transformation.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Transformation.invoke" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Transformation.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Transformation.invoke" title="Permalink to this definition">#</a></dt>
 <dd><p>Execute a non-differentially-private query with <cite>arg</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -614,7 +611,7 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py property">
 <dt class="sig sig-object py" id="opendp.mod.Transformation.output_distance_type">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">output_distance_type</span></span><a class="headerlink" href="#opendp.mod.Transformation.output_distance_type" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">output_distance_type</span></span><a class="headerlink" href="#opendp.mod.Transformation.output_distance_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Retrieve the distance type of the output metric.
 This may be any integral type for dataset metrics, or any numeric type for sensitivity metrics.</p>
 <dl class="field-list simple">
@@ -628,13 +625,13 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="opendp.mod.UnknownTypeException">
-<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">UnknownTypeException</span></span><a class="reference internal" href="../../_modules/opendp/mod.html#UnknownTypeException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.UnknownTypeException" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">UnknownTypeException</span></span><a class="reference internal" href="../../_modules/opendp/mod.html#UnknownTypeException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.UnknownTypeException" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.assert_features">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">assert_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#assert_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.assert_features" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">assert_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#assert_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.assert_features" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>features</strong> (<em>str</em>) – </p>
@@ -647,7 +644,7 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.binary_search">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predicate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predicate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search" title="Permalink to this definition">#</a></dt>
 <dd><p>Find the closest passing value to the decision boundary of <cite>predicate</cite> within float or integer <cite>bounds</cite>.</p>
 <p>If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <dl class="field-list simple">
@@ -688,7 +685,7 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.binary_search_chain">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">make_chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search_chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search_chain" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">make_chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search_chain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search_chain" title="Permalink to this definition">#</a></dt>
 <dd><p>Optimizes a parameterized chain <cite>make_chain</cite> within float or integer <cite>bounds</cite>,
 subject to the chained relation being (<cite>d_in</cite>, <cite>d_out</cite>)-close.</p>
 <p><cite>bounds</cite> defaults to (0., MAX_FINITE_FLOAT).
@@ -740,7 +737,7 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.binary_search_param">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">make_chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search_param" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">binary_search_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">make_chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#binary_search_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.binary_search_param" title="Permalink to this definition">#</a></dt>
 <dd><p>Optimizes a parameterized chain <cite>make_chain</cite> within float or integer <cite>bounds</cite>,
 subject to the chained relation being (<cite>d_in</cite>, <cite>d_out</cite>)-close.</p>
 <p><cite>bounds</cite> defaults to (0., MAX_FINITE_FLOAT).
@@ -795,7 +792,7 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.disable_features">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">disable_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#disable_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.disable_features" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">disable_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#disable_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.disable_features" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>features</strong> (<em>str</em>) – </p>
@@ -808,7 +805,7 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.mod.enable_features">
-<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">enable_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#enable_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.enable_features" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">enable_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#enable_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.enable_features" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>features</strong> (<em>str</em>) – </p>
@@ -849,8 +846,9 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
       </div>
     </div>
   
-    <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">

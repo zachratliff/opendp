@@ -8,27 +8,24 @@
 
     <title>Measurement Constructors &#8212; OpenDP</title>
     
-    <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
     
-    <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -44,7 +41,7 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -338,7 +335,7 @@
               
               <div class="toc-item">
                 
-<div class="tocsection onthispage pt-5 pb-3">
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
 
@@ -371,7 +368,7 @@
               <div>
                 
   <section id="measurement-constructors">
-<span id="id1"></span><h1>Measurement Constructors<a class="headerlink" href="#measurement-constructors" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Measurement Constructors<a class="headerlink" href="#measurement-constructors" title="Permalink to this headline">#</a></h1>
 <p>This section gives a high-level overview of the measurements that are available in the library.
 Refer to the <a class="reference internal" href="core-structures.html#measurement"><span class="std std-ref">Measurement</span></a> section for an explanation of what a measurement is.</p>
 <p>As covered in the <a class="reference internal" href="combinator-constructors.html#chaining"><span class="std std-ref">Chaining</span></a> section, the intermediate domains and metrics need to match when chaining.
@@ -439,7 +436,7 @@ You can choose whether to construct scalar or vector-valued versions by setting 
 </tbody>
 </table>
 <section id="floating-point">
-<span id="id2"></span><h2>Floating-Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Floating-Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">#</a></h2>
 <p>Given the context of measurements, this section goes into greater detail than <a class="reference internal" href="limitations.html#limitations"><span class="std std-ref">Limitations</span></a> on floating-point issues.
 Be warned that <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_laplace" title="opendp.meas.make_base_laplace"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_laplace()</span></code></a>, <a class="reference internal" href="../api/python/opendp.meas.html#opendp.meas.make_base_gaussian" title="opendp.meas.make_base_gaussian"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_gaussian()</span></code></a> and <code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_base_stability()</span></code>
 depend on continuous distributions that are poorly approximated by finite computers.</p>
@@ -486,8 +483,9 @@ We are developing alternative mechanisms for answering continuous queries.</p>
       </div>
     </div>
   
-    <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  <footer class="footer mt-5 mt-md-0">
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
   <div class="container">
     
     <div class="footer-item">
