@@ -295,13 +295,6 @@
 <span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;laplacian_scale_to_accuracy&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;accuracy_to_laplacian_scale&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;gaussian_scale_to_accuracy&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;accuracy_to_gaussian_scale&quot;</span>
-<span class="p">]</span>
-
 
 <div class="viewcode-block" id="laplacian_scale_to_accuracy"><a class="viewcode-back" href="../../api/python/opendp.accuracy.html#opendp.accuracy.laplacian_scale_to_accuracy">[docs]</a><span class="k">def</span> <span class="nf">laplacian_scale_to_accuracy</span><span class="p">(</span>
     <span class="n">scale</span><span class="p">,</span>
@@ -311,7 +304,7 @@
     <span class="sd">&quot;&quot;&quot;Convert a laplacian scale into an accuracy estimate.</span>
 <span class="sd">    </span>
 <span class="sd">    :param scale: Laplacian noise scale.</span>
-<span class="sd">    :param alpha: Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1].</span>
+<span class="sd">    :param alpha: Level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1].</span>
 <span class="sd">    :param T: Data type of scale and alpha</span>
 <span class="sd">    :type T: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: Accuracy estimate at a level-alpha.</span>
@@ -377,7 +370,7 @@
     <span class="sd">&quot;&quot;&quot;Convert a gaussian scale into an accuracy estimate.</span>
 <span class="sd">    </span>
 <span class="sd">    :param scale: Gaussian noise scale.</span>
-<span class="sd">    :param alpha: Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1].</span>
+<span class="sd">    :param alpha: Level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1].</span>
 <span class="sd">    :param T: Data type of scale and alpha</span>
 <span class="sd">    :type T: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: Accuracy estimate at a level-alpha.</span>

@@ -390,30 +390,30 @@ The privacy relation maps from an input metric to an output measure.</p>
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">Measurement</span><span class="p">,</span> <span class="n">enable_features</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">enable_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-<span class="gp">...</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">Measurement</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># create an instance of Measurement using a constructor from the meas module</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_geometric</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">base_geometric</span><span class="p">:</span> <span class="n">Measurement</span> <span class="o">=</span> <span class="n">make_base_geometric</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">2.</span><span class="p">)</span>
-<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base_geometric</span><span class="p">:</span> <span class="n">Measurement</span> <span class="o">=</span> <span class="n">make_base_geometric</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># invoke the measurement (invoke and __call__ are equivalent)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">base_geometric</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># -&gt; 101   </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">base_geometric</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># -&gt; 99           </span>
-<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base_geometric</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># -&gt; 101</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base_geometric</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># -&gt; 99</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># check the measurement&#39;s relation at</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#     (1, 0.5): (AbsoluteDistance&lt;u32&gt;, MaxDivergence)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">base_geometric</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="gp">...</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># chain with a transformation from the trans module</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_count</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="n">SubstituteDistance</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chained</span> <span class="o">=</span> <span class="p">(</span>
-<span class="gp">... </span>    <span class="n">make_count</span><span class="p">(</span><span class="n">TIA</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
-<span class="gp">... </span>    <span class="n">base_geometric</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">make_count</span><span class="p">(</span><span class="n">MI</span><span class="o">=</span><span class="n">SubstituteDistance</span><span class="p">,</span> <span class="n">TI</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">base_geometric</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># the resulting measurement has the same features</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">chained</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># -&gt; 4     </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chained</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># -&gt; 4</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># check the chained measurement&#39;s relation at</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#     (1, 0.5): (SubstituteDistance, MaxDivergence)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">chained</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
@@ -525,32 +525,31 @@ The stability relation maps from an input metric to an output metric.</p>
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">Transformation</span><span class="p">,</span> <span class="n">enable_features</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">enable_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-<span class="gp">...</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">Transformation</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># create an instance of Transformation using a constructor from the trans module</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_count</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">count</span><span class="p">:</span> <span class="n">Transformation</span> <span class="o">=</span> <span class="n">make_count</span><span class="p">(</span><span class="n">TIA</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">count</span><span class="p">:</span> <span class="n">Transformation</span> <span class="o">=</span> <span class="n">make_count</span><span class="p">(</span><span class="n">MI</span><span class="o">=</span><span class="n">SymmetricDistance</span><span class="p">,</span> <span class="n">TI</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># invoke the transformation (invoke and __call__ are equivalent)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">count</span><span class="o">.</span><span class="n">invoke</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># -&gt; 3  </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">count</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># -&gt; 3         </span>
-<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">count</span><span class="o">.</span><span class="n">invoke</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># -&gt; 3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">count</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># -&gt; 3</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># check the transformation&#39;s relation at</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#     (1, 1): (SymmetricDistance, AbsoluteDistance&lt;u32&gt;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">count</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gp">...</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># chain with more transformations from the trans module</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_split_lines</span><span class="p">,</span> <span class="n">make_cast</span><span class="p">,</span> <span class="n">make_impute_constant</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_split_lines</span><span class="p">,</span> <span class="n">make_cast</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="n">SymmetricDistance</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chained</span> <span class="o">=</span> <span class="p">(</span>
-<span class="gp">... </span>    <span class="n">make_split_lines</span><span class="p">()</span> <span class="o">&gt;&gt;</span>
-<span class="gp">... </span>    <span class="n">make_cast</span><span class="p">(</span><span class="n">TIA</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">TOA</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
-<span class="gp">... </span>    <span class="n">make_impute_constant</span><span class="p">(</span><span class="n">constant</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
-<span class="gp">... </span>    <span class="n">count</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">make_split_lines</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="n">SymmetricDistance</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">make_cast</span><span class="p">(</span><span class="n">M</span><span class="o">=</span><span class="n">SymmetricDistance</span><span class="p">,</span> <span class="n">TI</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">TO</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">count</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># the resulting transformation has the same features</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">chained</span><span class="p">(</span><span class="s2">&quot;1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3&quot;</span><span class="p">)</span>  <span class="c1"># -&gt; 3 </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chained</span><span class="p">(</span><span class="s2">&quot;1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">3&quot;</span><span class="p">)</span>  <span class="c1"># -&gt; 3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">chained</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># both chained transformations were 1-stable</span>
 </pre></div>
 </div>
@@ -702,6 +701,36 @@ subject to the chained relation being (<cite>d_in</cite>, <cite>d_out</cite>)-cl
 If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <p>See <cite>binary_search_param</cite> to retrieve the discovered parameter instead of the complete computation chain.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>make_chain</strong> (<em>Callable</em><em>[</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>Union</em><em>[</em><a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>opendp.mod.Transformation</em></a><em>, </em><a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>opendp.mod.Measurement</em></a><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>bounds</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Union[<a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation">opendp.mod.Transformation</a>, <a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement">opendp.mod.Measurement</a>]</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_chain</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_clamp</span><span class="p">,</span> <span class="n">make_bounded_resize</span><span class="p">,</span> <span class="n">make_sized_bounded_mean</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_laplace</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The majority of the chain only needs to be defined once.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">make_clamp</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">make_bounded_resize</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">make_sized_bounded_mean</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The lambda function returns the complete computation chain when given a single numeric parameter.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chain</span> <span class="o">=</span> <span class="n">binary_search_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">pre</span> <span class="o">&gt;&gt;</span> <span class="n">make_base_laplace</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">s</span><span class="p">),</span> <span class="n">d_in</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The resulting computation chain is always (`d_in`, `d_out`)-close, but we can still double-check:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">chain</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>make_chain</strong> (<em>Callable</em><em>[</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>Union</em><em>[</em><a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>opendp.mod.Transformation</em></a><em>, </em><a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>opendp.mod.Measurement</em></a><em>]</em><em>]</em>) – a unary function that maps from a number to a Transformation or Measurement</p></li>
@@ -717,32 +746,10 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>AssertionError</strong> – if the arguments are ill-formed (type issues, decision boundary not within <cite>bounds</cite>)</p>
 </dd>
-<dt class="field-even">Example</dt>
-<dd class="field-even"><p></p></dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Union[<a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation">opendp.mod.Transformation</a>, <a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement">opendp.mod.Measurement</a>]</p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Union[<a class="reference internal" href="#opendp.mod.Transformation" title="opendp.mod.Transformation">opendp.mod.Transformation</a>, <a class="reference internal" href="#opendp.mod.Measurement" title="opendp.mod.Measurement">opendp.mod.Measurement</a>]</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_chain</span><span class="p">,</span> <span class="n">enable_features</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.trans</span> <span class="kn">import</span> <span class="n">make_clamp</span><span class="p">,</span> <span class="n">make_bounded_resize</span><span class="p">,</span> <span class="n">make_sized_bounded_mean</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_laplace</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">enable_features</span><span class="p">(</span><span class="s2">&quot;floating-point&quot;</span><span class="p">,</span> <span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The majority of the chain only needs to be defined once.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span> <span class="o">=</span> <span class="p">(</span>
-<span class="gp">... </span>    <span class="n">make_clamp</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">))</span> <span class="o">&gt;&gt;</span>
-<span class="gp">... </span>    <span class="n">make_bounded_resize</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">),</span> <span class="n">constant</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
-<span class="gp">... </span>    <span class="n">make_sized_bounded_mean</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">))</span>
-<span class="gp">... </span><span class="p">)</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The lambda function returns the complete computation chain when given a single numeric parameter.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">chain</span> <span class="o">=</span> <span class="n">binary_search_chain</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">pre</span> <span class="o">&gt;&gt;</span> <span class="n">make_base_laplace</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">s</span><span class="p">),</span> <span class="n">d_in</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d_out</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The resulting computation chain is always (`d_in`, `d_out`)-close, but we can still double-check:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">chain</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py function">
@@ -765,9 +772,9 @@ If <cite>bounds</cite> are float, <cite>tolerance</cite> defaults to 1e-8.</p>
 <dd class="field-odd"><p>Union[float, int]</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_param</span><span class="p">,</span> <span class="n">enable_features</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="n">binary_search_param</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.meas</span> <span class="kn">import</span> <span class="n">make_base_laplace</span>
-<span class="gp">...</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># The first argument is any function that returns your complete computation chain</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#     when passed a single numeric parameter.</span>

@@ -303,31 +303,6 @@
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">GenericMeta</span> <span class="k">as</span> <span class="n">_GenericAlias</span>
 
 <span class="n">ELEMENTARY_TYPES</span> <span class="o">=</span> <span class="p">{</span><span class="nb">int</span><span class="p">:</span> <span class="s1">&#39;i32&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">:</span> <span class="s1">&#39;f64&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">:</span> <span class="s1">&#39;String&#39;</span><span class="p">,</span> <span class="nb">bool</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span><span class="p">}</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-    <span class="c1"># https://numpy.org/doc/stable/reference/arrays.scalars.html#sized-aliases</span>
-    <span class="n">ELEMENTARY_TYPES</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-        <span class="c1"># np.bytes_: &#39;&amp;[u8]&#39;,  # np.string_ # not used in OpenDP</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">str_</span><span class="p">:</span> <span class="s1">&#39;String&#39;</span><span class="p">,</span>  <span class="c1"># np.unicode_</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">bool8</span><span class="p">:</span> <span class="s1">&#39;bool&#39;</span><span class="p">,</span>  <span class="c1"># np.bool_</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">:</span> <span class="s1">&#39;i8&#39;</span><span class="p">,</span>  <span class="c1"># np.byte</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">:</span> <span class="s1">&#39;i16&#39;</span><span class="p">,</span>  <span class="c1"># np.short</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">:</span> <span class="s1">&#39;i32&#39;</span><span class="p">,</span>  <span class="c1"># np.intc</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">:</span> <span class="s1">&#39;i64&#39;</span><span class="p">,</span>  <span class="c1"># np.int_</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">longlong</span><span class="p">:</span> <span class="s1">&#39;i128&#39;</span><span class="p">,</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">:</span> <span class="s1">&#39;u8&#39;</span><span class="p">,</span>  <span class="c1"># np.ubyte</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">:</span> <span class="s1">&#39;u16&#39;</span><span class="p">,</span>  <span class="c1"># np.ushort</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">:</span> <span class="s1">&#39;u32&#39;</span><span class="p">,</span>  <span class="c1"># np.uintc</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">:</span> <span class="s1">&#39;u64&#39;</span><span class="p">,</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">ulonglong</span><span class="p">:</span> <span class="s1">&#39;u128&#39;</span><span class="p">,</span>
-        <span class="c1"># np.intp: &#39;isize&#39;,  # not used in OpenDP</span>
-        <span class="c1"># np.uintp: &#39;usize&#39;, # an alias for one of np.uint* that would overwrite the respective key</span>
-        <span class="c1"># np.float16: &#39;f16&#39;,  # not used in OpenDP</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span> <span class="s1">&#39;f32&#39;</span><span class="p">,</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span> <span class="s1">&#39;f64&#39;</span><span class="p">,</span>  <span class="c1"># np.double, np.float_</span>
-    <span class="p">})</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="n">np</span> <span class="o">=</span> <span class="kc">None</span>
 
 <span class="c1"># all ways of providing type information</span>
 <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
@@ -387,6 +362,8 @@
 <span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(&quot;i32&quot;) == &quot;i32&quot;</span>
 <span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(L1Distance[int]) == &quot;L1Distance&lt;i32&gt;&quot;</span>
 <span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(L1Distance[&quot;f32&quot;]) == &quot;L1Distance&lt;f32&gt;&quot;</span>
+<span class="sd">        &gt;&gt;&gt; from typing import List</span>
+<span class="sd">        &gt;&gt;&gt; assert RuntimeType.parse(List[int]) == &quot;Vec&lt;int&gt;&quot;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">generics</span> <span class="o">=</span> <span class="n">generics</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>
@@ -436,7 +413,7 @@
 
             <span class="n">domain</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s1">&#39;AllDomain&#39;</span><span class="p">:</span> <span class="n">AllDomain</span><span class="p">,</span>
-                <span class="s1">&#39;BoundedDomain&#39;</span><span class="p">:</span> <span class="n">BoundedDomain</span><span class="p">,</span>
+                <span class="s1">&#39;IntervalDomain&#39;</span><span class="p">:</span> <span class="n">IntervalDomain</span><span class="p">,</span>
                 <span class="s1">&#39;VectorDomain&#39;</span><span class="p">:</span> <span class="n">VectorDomain</span><span class="p">,</span>
                 <span class="s1">&#39;OptionNullDomain&#39;</span><span class="p">:</span> <span class="n">OptionNullDomain</span><span class="p">,</span>
                 <span class="s1">&#39;InherentNullDomain&#39;</span><span class="p">:</span> <span class="n">InherentNullDomain</span><span class="p">,</span>
@@ -492,28 +469,10 @@
                     <span class="s2">&quot;cannot infer atomic type of empty list&quot;</span><span class="p">)</span>
             <span class="p">])</span>
 
-        <span class="k">if</span> <span class="n">np</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">public_example</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">public_example</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">public_example</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
-
-            <span class="k">if</span> <span class="n">public_example</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">inner_type</span> <span class="o">=</span> <span class="n">ELEMENTARY_TYPES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">public_example</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">inner_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown numpy array dtype: </span><span class="si">{</span><span class="n">public_example</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">inner_type</span><span class="p">])</span>
-
-            <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="s2">&quot;arrays with greater than one axis are not yet supported&quot;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">public_example</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;HashMap&#39;</span><span class="p">,</span> <span class="p">[</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">public_example</span><span class="o">.</span><span class="n">keys</span><span class="p">()))),</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">public_example</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
-            <span class="p">])</span>
-
         <span class="k">if</span> <span class="n">public_example</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">RuntimeType</span><span class="p">(</span><span class="s1">&#39;Option&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">UnknownType</span><span class="p">(</span><span class="s2">&quot;Constructed Option from a None variant&quot;</span><span class="p">)])</span>
 
-        <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">public_example</span><span class="p">))</span></div>
+        <span class="k">raise</span> <span class="n">UnknownTypeException</span><span class="p">(</span><span class="n">public_example</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RuntimeType.parse_or_infer"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.RuntimeType.parse_or_infer">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">parse_or_infer</span><span class="p">(</span>
@@ -547,17 +506,15 @@
 <span class="sd">        :param inferred: the type inferred from data</span>
 <span class="sd">        :raises AssertionError: if `expected` type differs significantly from `inferred` type</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">ERROR_URL_298</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/opendp/opendp/discussions/298&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inferred</span><span class="p">,</span> <span class="n">UnknownType</span><span class="p">):</span>
             <span class="k">return</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inferred</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">inferred</span> <span class="ow">in</span> <span class="n">ATOM_EQUIVALENCE_CLASSES</span><span class="p">:</span>
                 <span class="k">assert</span> <span class="n">expected</span> <span class="ow">in</span> <span class="n">ATOM_EQUIVALENCE_CLASSES</span><span class="p">[</span><span class="n">inferred</span><span class="p">],</span> \
-                    <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">. See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">inferred</span><span class="p">,</span> \
-                    <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">. See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">&quot;</span>
 
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inferred</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>
             <span class="c1"># allow extra flexibility around options, as the inferred type of an Option::&lt;T&gt;::Some will just be T</span>
@@ -565,16 +522,15 @@
                 <span class="n">expected</span> <span class="o">=</span> <span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="k">assert</span> <span class="n">expected</span><span class="o">.</span><span class="n">origin</span> <span class="o">==</span> <span class="n">inferred</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span> \
-                <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">. See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="o">.</span><span class="n">origin</span><span class="si">}</span><span class="s2">&quot;</span>
 
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">inferred</span><span class="o">.</span><span class="n">args</span><span class="p">),</span> \
-                <span class="sa">f</span><span class="s2">&quot;inferred type has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">inferred</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2"> arg(s), expected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2"> arg(s). See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;inferred type has </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">inferred</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2"> arg(s), expected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2"> arg(s)&quot;</span>
 
             <span class="k">for</span> <span class="p">(</span><span class="n">arg_par</span><span class="p">,</span> <span class="n">arg_inf</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">inferred</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
                 <span class="n">RuntimeType</span><span class="o">.</span><span class="n">assert_is_similar</span><span class="p">(</span><span class="n">arg_par</span><span class="p">,</span> <span class="n">arg_inf</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># inferred type differs in structure</span>
-            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inferred type is </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">, expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">. See </span><span class="si">{</span><span class="n">ERROR_URL_298</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;args are not similar because they have differing depths. Expected: </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">. Inferred: </span><span class="si">{</span><span class="n">inferred</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RuntimeType.substitute"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.RuntimeType.substitute">[docs]</a>    <span class="k">def</span> <span class="nf">substitute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">GenericType</span><span class="p">):</span>
@@ -644,7 +600,7 @@
 
 
 <span class="n">AllDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;AllDomain&#39;</span><span class="p">)</span>
-<span class="n">BoundedDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;BoundedDomain&#39;</span><span class="p">)</span>
+<span class="n">IntervalDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;IntervalDomain&#39;</span><span class="p">)</span>
 <span class="n">VectorDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;VectorDomain&#39;</span><span class="p">)</span>
 <span class="n">OptionNullDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;OptionNullDomain&#39;</span><span class="p">)</span>
 <span class="n">InherentNullDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;InherentNullDomain&#39;</span><span class="p">)</span>
@@ -661,10 +617,6 @@
 
 <div class="viewcode-block" id="get_domain_atom_or_infer"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_domain_atom_or_infer">[docs]</a><span class="k">def</span> <span class="nf">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span> <span class="n">RuntimeType</span><span class="p">,</span> <span class="n">example</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">get_domain_atom</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span> <span class="ow">or</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">example</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="get_first"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_first">[docs]</a><span class="k">def</span> <span class="nf">get_first</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
 </pre></div>
 
               </div>

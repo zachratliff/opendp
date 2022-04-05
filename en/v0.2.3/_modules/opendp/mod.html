@@ -303,8 +303,7 @@
 
 <span class="sd">    :example:</span>
 
-<span class="sd">    &gt;&gt;&gt; from opendp.mod import Measurement, enable_features</span>
-<span class="sd">    &gt;&gt;&gt; enable_features(&quot;contrib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.mod import Measurement</span>
 <span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; # create an instance of Measurement using a constructor from the meas module</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_geometric</span>
@@ -414,8 +413,7 @@
 
 <span class="sd">    :example:</span>
 
-<span class="sd">    &gt;&gt;&gt; from opendp.mod import Transformation, enable_features</span>
-<span class="sd">    &gt;&gt;&gt; enable_features(&quot;contrib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.mod import Transformation</span>
 <span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; # create an instance of Transformation using a constructor from the trans module</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.trans import make_count</span>
@@ -570,7 +568,7 @@
 
 <div class="viewcode-block" id="assert_features"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.assert_features">[docs]</a><span class="k">def</span> <span class="nf">assert_features</span><span class="p">(</span><span class="o">*</span><span class="n">features</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">GLOBAL_FEATURES</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Attempted to use function that requires </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">, but </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2"> is not enabled. See https://github.com/opendp/opendp/discussions/304, then call enable_features(</span><span class="se">\&quot;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">)&quot;</span></div>
+        <span class="k">assert</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">GLOBAL_FEATURES</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Attempted to use function that requires </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">, but </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2"> is not enabled. Check the documentation for the feature, then call enable_features(</span><span class="se">\&quot;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">)&quot;</span></div>
 
 
 <div class="viewcode-block" id="binary_search_chain"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.binary_search_chain">[docs]</a><span class="k">def</span> <span class="nf">binary_search_chain</span><span class="p">(</span>
@@ -600,7 +598,7 @@
 <span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search_chain, enable_features</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.trans import make_clamp, make_bounded_resize, make_sized_bounded_mean</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_laplace</span>
-<span class="sd">    &gt;&gt;&gt; enable_features(&quot;floating-point&quot;, &quot;contrib&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; enable_features(&quot;floating-point&quot;)</span>
 <span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; # The majority of the chain only needs to be defined once.</span>
 <span class="sd">    &gt;&gt;&gt; pre = (</span>
@@ -632,7 +630,7 @@
 
 <span class="sd">    :example:</span>
 
-<span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search_param, enable_features</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search_param</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_laplace</span>
 <span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; # Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>

@@ -490,6 +490,8 @@ Provides static type checking in user-code for privacy measures and a getitem in
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;i32&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;i32&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">L1Distance</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;L1Distance&lt;i32&gt;&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">L1Distance</span><span class="p">[</span><span class="s2">&quot;f32&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;L1Distance&lt;f32&gt;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&quot;Vec&lt;int&gt;&quot;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -561,11 +563,6 @@ RuntimeTypes containing UnknownType cannot be used in FFI, but still pass Runtim
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="opendp.typing.get_first">
-<span class="sig-prename descclassname"><span class="pre">opendp.typing.</span></span><span class="sig-name descname"><span class="pre">get_first</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/typing.html#get_first"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.typing.get_first" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
 
 </section>
 

@@ -290,7 +290,7 @@
                 
   <h1>Source code for opendp.mod</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ctypes</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">opendp._lib</span> <span class="kn">import</span> <span class="n">AnyMeasurement</span><span class="p">,</span> <span class="n">AnyTransformation</span>
 
@@ -303,30 +303,30 @@
 
 <span class="sd">    :example:</span>
 
-<span class="sd">    &gt;&gt;&gt; from opendp.mod import Measurement, enable_features</span>
-<span class="sd">    &gt;&gt;&gt; enable_features(&quot;contrib&quot;)</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.mod import Measurement</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # create an instance of Measurement using a constructor from the meas module</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_geometric</span>
-<span class="sd">    &gt;&gt;&gt; base_geometric: Measurement = make_base_geometric(scale=2.)</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; base_geometric: Measurement = make_base_geometric(scale=2., lower=0, upper=20)</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # invoke the measurement (invoke and __call__ are equivalent)</span>
-<span class="sd">    &gt;&gt;&gt; base_geometric.invoke(100)  # -&gt; 101   # doctest: +SKIP</span>
-<span class="sd">    &gt;&gt;&gt; base_geometric(100)  # -&gt; 99           # doctest: +SKIP</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; base_geometric.invoke(100)  # -&gt; 101</span>
+<span class="sd">    &gt;&gt;&gt; base_geometric(100)  # -&gt; 99</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # check the measurement&#39;s relation at</span>
 <span class="sd">    &gt;&gt;&gt; #     (1, 0.5): (AbsoluteDistance&lt;u32&gt;, MaxDivergence)</span>
 <span class="sd">    &gt;&gt;&gt; assert base_geometric.check(1, 0.5)</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # chain with a transformation from the trans module</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.trans import make_count</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.typing import SubstituteDistance</span>
 <span class="sd">    &gt;&gt;&gt; chained = (</span>
-<span class="sd">    ...     make_count(TIA=int) &gt;&gt;</span>
-<span class="sd">    ...     base_geometric</span>
-<span class="sd">    ... )</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt;     make_count(MI=SubstituteDistance, TI=int) &gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt;     base_geometric</span>
+<span class="sd">    &gt;&gt;&gt; )</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # the resulting measurement has the same features</span>
-<span class="sd">    &gt;&gt;&gt; chained([1, 2, 3])  # -&gt; 4     # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; chained([1, 2, 3])  # -&gt; 4</span>
 <span class="sd">    &gt;&gt;&gt; # check the chained measurement&#39;s relation at</span>
 <span class="sd">    &gt;&gt;&gt; #     (1, 0.5): (SubstituteDistance, MaxDivergence)</span>
 <span class="sd">    &gt;&gt;&gt; assert chained.check(1, 0.5)</span>
@@ -414,32 +414,31 @@
 
 <span class="sd">    :example:</span>
 
-<span class="sd">    &gt;&gt;&gt; from opendp.mod import Transformation, enable_features</span>
-<span class="sd">    &gt;&gt;&gt; enable_features(&quot;contrib&quot;)</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.mod import Transformation</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # create an instance of Transformation using a constructor from the trans module</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.trans import make_count</span>
-<span class="sd">    &gt;&gt;&gt; count: Transformation = make_count(TIA=int)</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; count: Transformation = make_count(MI=SymmetricDistance, TI=int)</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # invoke the transformation (invoke and __call__ are equivalent)</span>
-<span class="sd">    &gt;&gt;&gt; count.invoke([1, 2, 3])  # -&gt; 3  # doctest: +SKIP</span>
-<span class="sd">    &gt;&gt;&gt; count([1, 2, 3])  # -&gt; 3         # doctest: +SKIP</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; count.invoke([1, 2, 3])  # -&gt; 3</span>
+<span class="sd">    &gt;&gt;&gt; count([1, 2, 3])  # -&gt; 3</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # check the transformation&#39;s relation at</span>
 <span class="sd">    &gt;&gt;&gt; #     (1, 1): (SymmetricDistance, AbsoluteDistance&lt;u32&gt;)</span>
 <span class="sd">    &gt;&gt;&gt; assert count.check(1, 1)</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # chain with more transformations from the trans module</span>
-<span class="sd">    &gt;&gt;&gt; from opendp.trans import make_split_lines, make_cast, make_impute_constant</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.trans import make_split_lines, make_cast</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.typing import SymmetricDistance</span>
 <span class="sd">    &gt;&gt;&gt; chained = (</span>
-<span class="sd">    ...     make_split_lines() &gt;&gt;</span>
-<span class="sd">    ...     make_cast(TIA=str, TOA=int) &gt;&gt;</span>
-<span class="sd">    ...     make_impute_constant(constant=0) &gt;&gt;</span>
-<span class="sd">    ...     count</span>
-<span class="sd">    ... )</span>
-<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt;     make_split_lines(M=SymmetricDistance) &gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt;     make_cast(M=SymmetricDistance, TI=str, TO=int) &gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt;     count</span>
+<span class="sd">    &gt;&gt;&gt; )</span>
+<span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # the resulting transformation has the same features</span>
-<span class="sd">    &gt;&gt;&gt; chained(&quot;1\\n2\\n3&quot;)  # -&gt; 3 # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; chained(&quot;1\\n2\\n3&quot;)  # -&gt; 3</span>
 <span class="sd">    &gt;&gt;&gt; assert chained.check(1, 1)  # both chained transformations were 1-stable</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_type_</span> <span class="o">=</span> <span class="n">AnyTransformation</span>
@@ -482,11 +481,11 @@
 
     <span class="k">def</span> <span class="fm">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Measurement&quot;</span><span class="p">,</span> <span class="s2">&quot;Transformation&quot;</span><span class="p">]):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">):</span>
-            <span class="kn">from</span> <span class="nn">opendp.comb</span> <span class="kn">import</span> <span class="n">make_chain_mt</span>
+            <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">make_chain_mt</span>
             <span class="k">return</span> <span class="n">make_chain_mt</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">):</span>
-            <span class="kn">from</span> <span class="nn">opendp.comb</span> <span class="kn">import</span> <span class="n">make_chain_tt</span>
+            <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">make_chain_tt</span>
             <span class="k">return</span> <span class="n">make_chain_tt</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
 
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;rshift expected a measurement or transformation, got </span><span class="si">{</span><span class="n">other</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -525,11 +524,8 @@
         <span class="k">return</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">transformation_input_carrier_type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">_transformation_free</span>
-            <span class="n">_transformation_free</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-            <span class="k">pass</span></div>
+        <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">_transformation_free</span>
+        <span class="n">_transformation_free</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="UnknownTypeException"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.UnknownTypeException">[docs]</a><span class="k">class</span> <span class="nc">UnknownTypeException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -555,158 +551,6 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_traceback</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_traceback</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">response</span></div>
-
-
-<span class="n">GLOBAL_FEATURES</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-
-
-<div class="viewcode-block" id="enable_features"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.enable_features">[docs]</a><span class="k">def</span> <span class="nf">enable_features</span><span class="p">(</span><span class="o">*</span><span class="n">features</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">GLOBAL_FEATURES</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">features</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="disable_features"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.disable_features">[docs]</a><span class="k">def</span> <span class="nf">disable_features</span><span class="p">(</span><span class="o">*</span><span class="n">features</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">GLOBAL_FEATURES</span><span class="o">.</span><span class="n">difference_update</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">features</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="assert_features"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.assert_features">[docs]</a><span class="k">def</span> <span class="nf">assert_features</span><span class="p">(</span><span class="o">*</span><span class="n">features</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">GLOBAL_FEATURES</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Attempted to use function that requires </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">, but </span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2"> is not enabled. See https://github.com/opendp/opendp/discussions/304, then call enable_features(</span><span class="se">\&quot;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">)&quot;</span></div>
-
-
-<div class="viewcode-block" id="binary_search_chain"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.binary_search_chain">[docs]</a><span class="k">def</span> <span class="nf">binary_search_chain</span><span class="p">(</span>
-        <span class="n">make_chain</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">Union</span><span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">]],</span>
-        <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span>
-        <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Optimizes a parameterized chain `make_chain` within float or integer `bounds`,</span>
-<span class="sd">    subject to the chained relation being (`d_in`, `d_out`)-close.</span>
-
-<span class="sd">    `bounds` defaults to (0., MAX_FINITE_FLOAT).</span>
-<span class="sd">    If `bounds` are float, `tolerance` defaults to 1e-8.</span>
-
-<span class="sd">    See `binary_search_param` to retrieve the discovered parameter instead of the complete computation chain.</span>
-
-<span class="sd">    :param make_chain: a unary function that maps from a number to a Transformation or Measurement</span>
-<span class="sd">    :param d_in: desired input distance of the computation chain</span>
-<span class="sd">    :param d_out: desired output distance of the computation chain</span>
-<span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `make_chain`</span>
-<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
-<span class="sd">    :return: a chain parameterized at the nearest passing value to the decision point of the relation</span>
-<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
-
-
-<span class="sd">    :example:</span>
-
-<span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search_chain, enable_features</span>
-<span class="sd">    &gt;&gt;&gt; from opendp.trans import make_clamp, make_bounded_resize, make_sized_bounded_mean</span>
-<span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_laplace</span>
-<span class="sd">    &gt;&gt;&gt; enable_features(&quot;floating-point&quot;, &quot;contrib&quot;)</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; # The majority of the chain only needs to be defined once.</span>
-<span class="sd">    &gt;&gt;&gt; pre = (</span>
-<span class="sd">    ...     make_clamp(bounds=(0., 1.)) &gt;&gt;</span>
-<span class="sd">    ...     make_bounded_resize(size=10, bounds=(0., 1.), constant=0.) &gt;&gt;</span>
-<span class="sd">    ...     make_sized_bounded_mean(size=10, bounds=(0., 1.))</span>
-<span class="sd">    ... )</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; # Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>
-<span class="sd">    &gt;&gt;&gt; # The lambda function returns the complete computation chain when given a single numeric parameter.</span>
-<span class="sd">    &gt;&gt;&gt; chain = binary_search_chain(lambda s: pre &gt;&gt; make_base_laplace(scale=s), d_in=1, d_out=1.)</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; # The resulting computation chain is always (`d_in`, `d_out`)-close, but we can still double-check:</span>
-<span class="sd">    &gt;&gt;&gt; assert chain.check(1, 1.)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">make_chain</span><span class="p">(</span><span class="n">binary_search_param</span><span class="p">(</span><span class="n">make_chain</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="binary_search_param"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.binary_search_param">[docs]</a><span class="k">def</span> <span class="nf">binary_search_param</span><span class="p">(</span>
-        <span class="n">make_chain</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">Union</span><span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">]],</span>
-        <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span>
-        <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Optimizes a parameterized chain `make_chain` within float or integer `bounds`,</span>
-<span class="sd">    subject to the chained relation being (`d_in`, `d_out`)-close.</span>
-
-<span class="sd">    `bounds` defaults to (0., MAX_FINITE_FLOAT).</span>
-<span class="sd">    If `bounds` are float, `tolerance` defaults to 1e-8.</span>
-
-<span class="sd">    :example:</span>
-
-<span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search_param, enable_features</span>
-<span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_laplace</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; # Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>
-<span class="sd">    &gt;&gt;&gt; # The first argument is any function that returns your complete computation chain</span>
-<span class="sd">    &gt;&gt;&gt; #     when passed a single numeric parameter.</span>
-<span class="sd">    &gt;&gt;&gt; scale = binary_search_param(make_base_laplace, d_in=0.1, d_out=1.)</span>
-<span class="sd">    &gt;&gt;&gt; # The discovered scale differs by at most `tolerance` from the ideal scale (0.1).</span>
-<span class="sd">    &gt;&gt;&gt; assert scale - 0.1 &lt; 1e-8</span>
-<span class="sd">    &gt;&gt;&gt; # Constructing the same chain with the discovered parameter will always be (0.1, 1.)-close.</span>
-<span class="sd">    &gt;&gt;&gt; assert make_base_laplace(scale).check(0.1, 1.)</span>
-
-<span class="sd">    :param make_chain: a unary function that maps from a number to a Transformation or Measurement</span>
-<span class="sd">    :param d_in: desired input distance of the computation chain</span>
-<span class="sd">    :param d_out: desired output distance of the computation chain</span>
-<span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `make_chain`</span>
-<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
-<span class="sd">    :return: the nearest passing value to the decision point of the relation</span>
-<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">sys</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="k">lambda</span> <span class="n">param</span><span class="p">:</span> <span class="n">make_chain</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">),</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="binary_search"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.binary_search">[docs]</a><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span>
-        <span class="n">predicate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">],</span>
-        <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
-        <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find the closest passing value to the decision boundary of `predicate` within float or integer `bounds`.</span>
-
-<span class="sd">    If `bounds` are float, `tolerance` defaults to 1e-8.</span>
-
-<span class="sd">    :example:</span>
-
-<span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search</span>
-<span class="sd">    &gt;&gt;&gt; # Integer binary search</span>
-<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt; 5, bounds=(0, 10)) == 6</span>
-<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &lt; 5, bounds=(0, 10)) == 4</span>
-<span class="sd">    &gt;&gt;&gt; # Float binary search</span>
-<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt; 5., bounds=(0., 10.)) - 5. &lt; 1e-8</span>
-<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt; 5., bounds=(0., 10.)) - 5. &gt; -1e-8</span>
-
-<span class="sd">    :param predicate: a monotonic unary function from a number to a boolean</span>
-<span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `predicate`</span>
-<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
-<span class="sd">    :return: the discovered parameter within the bounds</span>
-<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;bounds must share the same type&quot;</span>
-    <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
-
-    <span class="n">maximize</span> <span class="o">=</span> <span class="n">predicate</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span>  <span class="c1"># if the lower bound passes, we should maximize</span>
-    <span class="n">minimize</span> <span class="o">=</span> <span class="n">predicate</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span>  <span class="c1"># if the upper bound passes, we should minimize</span>
-    <span class="k">assert</span> <span class="n">maximize</span> <span class="o">!=</span> <span class="n">minimize</span><span class="p">,</span> <span class="s2">&quot;the decision boundary of the predicate is outside the bounds&quot;</span>
-
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="n">tolerance</span> <span class="o">=</span> <span class="mf">1.0e-8</span> <span class="k">if</span> <span class="n">tolerance</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">tolerance</span>
-        <span class="n">half</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">2.</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="n">tolerance</span> <span class="o">=</span> <span class="n">tolerance</span> <span class="ow">or</span> <span class="mi">1</span>  <span class="c1"># the lower and upper bounds never meet due to int truncation</span>
-        <span class="n">half</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">//</span> <span class="mi">2</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;bounds must be either float or int&quot;</span><span class="p">)</span>
-
-    <span class="k">while</span> <span class="n">upper</span> <span class="o">-</span> <span class="n">lower</span> <span class="o">&gt;</span> <span class="n">tolerance</span><span class="p">:</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="n">lower</span> <span class="o">+</span> <span class="n">half</span><span class="p">(</span><span class="n">upper</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span>  <span class="c1"># avoid overflow</span>
-        <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span> <span class="o">==</span> <span class="n">minimize</span><span class="p">:</span>
-            <span class="n">upper</span> <span class="o">=</span> <span class="n">mid</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">lower</span> <span class="o">=</span> <span class="n">mid</span>
-
-    <span class="c1"># one bound is always false, the other true. Return the truthy bound</span>
-    <span class="k">return</span> <span class="n">upper</span> <span class="k">if</span> <span class="n">minimize</span> <span class="k">else</span> <span class="n">lower</span></div>
 </pre></div>
 
               </div>

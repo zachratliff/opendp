@@ -374,35 +374,6 @@
   <section id="module-opendp.meas">
 <span id="opendp-meas-module"></span><h1>opendp.meas module<a class="headerlink" href="#module-opendp.meas" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="opendp.meas.make_base_analytic_gaussian">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_analytic_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_analytic_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_analytic_gaussian" title="Permalink to this definition">#</a></dt>
-<dd><p>Make a Measurement that adds noise from the gaussian(<cite>scale</cite>) distribution to the input.
-Adjust D to noise vector-valued data.
-The privacy relation is based on the analytic gaussian mechanism.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scale</strong> – noise scale parameter to the gaussian distribution</p></li>
-<li><p><strong>D</strong> (<em>RuntimeTypeDescriptor</em>) – Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A base_analytic_gaussian step.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
-<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
-<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="opendp.meas.make_base_gaussian">
 <span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_gaussian" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that adds noise from the gaussian(<cite>scale</cite>) distribution to the input.
@@ -465,6 +436,7 @@ Adjust D to noise vector-valued data.</p>
 <span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_laplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_laplace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_laplace" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Measurement that adds noise from the laplace(<cite>scale</cite>) distribution to a scalar value.
 Adjust D to noise vector-valued data.</p>
+<p><a class="reference external" href="https://www.overleaf.com/read/brvrprjhrhwb">This constructor is supported by the linked proof.</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -489,78 +461,22 @@ Adjust D to noise vector-valued data.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="opendp.meas.make_base_ptr">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_ptr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_ptr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_ptr" title="Permalink to this definition">#</a></dt>
-<dd><p>Make a Measurement that uses propose-test-release to privatize a hashmap of counts.</p>
+<dt class="sig sig-object py" id="opendp.meas.make_base_stability">
+<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_base_stability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIC</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_base_stability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_base_stability" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Measurement that implements a stability-based filtering and noising.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of records in the input vector.</p></li>
 <li><p><strong>scale</strong> – Noise scale parameter.</p></li>
 <li><p><strong>threshold</strong> – Exclude counts that are less than this minimum value.</p></li>
-<li><p><strong>TK</strong> (<em>RuntimeTypeDescriptor</em>) – Type of Key. Must be hashable/categorical.</p></li>
-<li><p><strong>TV</strong> (<em>RuntimeTypeDescriptor</em>) – Type of Value. Must be float.</p></li>
+<li><p><strong>MI</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.SensitivityMetric" title="opendp.typing.SensitivityMetric"><em>SensitivityMetric</em></a>) – Input metric.</p></li>
+<li><p><strong>TIK</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of input key- must be hashable/categorical.</p></li>
+<li><p><strong>TIC</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of input count- must be integral.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A base_ptr step.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
-<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
-<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="opendp.meas.make_randomized_response">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_randomized_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_randomized_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_randomized_response" title="Permalink to this definition">#</a></dt>
-<dd><p>Make a Measurement that implements randomized response on a categorical value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>categories</strong> (<em>Any</em>) – Set of valid outcomes</p></li>
-<li><p><strong>prob</strong> – Probability of returning the correct answer. Must be in [1/num_categories, 1)</p></li>
-<li><p><strong>constant_time</strong> (<em>bool</em>) – Set to true to enable constant time</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of a category.</p></li>
-<li><p><strong>Q</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of probability and budget.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A randomized_response step.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
-<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
-<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="opendp.meas.make_randomized_response_bool">
-<span class="sig-prename descclassname"><span class="pre">opendp.meas.</span></span><span class="sig-name descname"><span class="pre">make_randomized_response_bool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/meas.html#make_randomized_response_bool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.meas.make_randomized_response_bool" title="Permalink to this definition">#</a></dt>
-<dd><p>Make a Measurement that implements randomized response on a boolean value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>prob</strong> – Probability of returning the correct answer. Must be in [0.5, 1)</p></li>
-<li><p><strong>constant_time</strong> (<em>bool</em>) – Set to true to enable constant time</p></li>
-<li><p><strong>Q</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of probability and budget.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A randomized_response_bool step.</p>
+<dd class="field-even"><p>A base_stability step.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>

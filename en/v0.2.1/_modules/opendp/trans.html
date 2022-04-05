@@ -295,39 +295,6 @@
 <span class="kn">from</span> <span class="nn">opendp.mod</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">opendp.typing</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;make_cast&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_cast_default&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_is_equal&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_is_null&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_cast_inherent&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_cast_metric&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_clamp&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_unclamp&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_count&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_count_distinct&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_count_by&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_count_by_categories&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_split_lines&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_split_records&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_create_dataframe&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_split_dataframe&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_select_column&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_identity&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_impute_constant&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_drop_null&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_impute_uniform_float&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_find&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_find_bin&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_index&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_sized_bounded_mean&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_resize&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_bounded_resize&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_bounded_sum&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_sized_bounded_sum&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_sized_bounded_variance&quot;</span>
-<span class="p">]</span>
-
 
 <div class="viewcode-block" id="make_cast"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_cast">[docs]</a><span class="k">def</span> <span class="nf">make_cast</span><span class="p">(</span>
     <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
@@ -346,8 +313,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">)</span>
     <span class="n">TOA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">)</span>
@@ -380,8 +345,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">)</span>
     <span class="n">TOA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">)</span>
@@ -414,8 +377,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
     
@@ -444,8 +405,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">DIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">DIA</span><span class="p">)</span>
     
@@ -477,8 +436,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">)</span>
     <span class="n">TOA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">)</span>
@@ -514,8 +471,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
     <span class="n">MO</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MO</span><span class="p">)</span>
@@ -552,8 +507,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
@@ -585,8 +538,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
@@ -610,7 +561,7 @@
 <span class="sd">    </span>
 <span class="sd">    :param TIA: Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</span>
 <span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
-<span class="sd">    :param TO: Output Type. Must be numeric.</span>
+<span class="sd">    :param TO: Output Type. Must be an integer.</span>
 <span class="sd">    :type TO: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A count step.</span>
 <span class="sd">    :rtype: Transformation</span>
@@ -618,8 +569,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">)</span>
     <span class="n">TO</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TO</span><span class="p">)</span>
@@ -644,7 +593,7 @@
 <span class="sd">    </span>
 <span class="sd">    :param TIA: Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</span>
 <span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
-<span class="sd">    :param TO: Output Type. Must be numeric.</span>
+<span class="sd">    :param TO: Output Type. Must be an integer.</span>
 <span class="sd">    :type TO: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A count_distinct step.</span>
 <span class="sd">    :rtype: Transformation</span>
@@ -652,8 +601,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">)</span>
     <span class="n">TO</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TO</span><span class="p">)</span>
@@ -671,48 +618,51 @@
 
 
 <div class="viewcode-block" id="make_count_by"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_count_by">[docs]</a><span class="k">def</span> <span class="nf">make_count_by</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">MO</span><span class="p">:</span> <span class="n">SensitivityMetric</span><span class="p">,</span>
-    <span class="n">TK</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
-    <span class="n">TV</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;i32&quot;</span>
+    <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
+    <span class="n">TOA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;i32&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the count of each unique value in data. </span>
-<span class="sd">    This assumes that the category set is unknown.</span>
+<span class="sd">    This assumes that the category set is unknown. </span>
+<span class="sd">    Use make_base_stability to release this query.</span>
 <span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
 <span class="sd">    :param MO: Output Metric.</span>
 <span class="sd">    :type MO: SensitivityMetric</span>
-<span class="sd">    :param TK: Type of Key. Categorical/hashable input data type. Input data must be Vec&lt;TK&gt;.</span>
-<span class="sd">    :type TK: RuntimeTypeDescriptor</span>
-<span class="sd">    :param TV: Type of Value. Express counts in terms of this integral type.</span>
-<span class="sd">    :type TV: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: The carrier type is HashMap&lt;TK, TV&gt;, a hashmap of the count (TV) for each unique data input (TK).</span>
+<span class="sd">    :param TIA: Atomic Input Type. Categorical/hashable input data type. Input data must be Vec&lt;TI&gt;.</span>
+<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :param TOA: Atomic Output Type. Express counts in terms of this integral type.</span>
+<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
+<span class="sd">    :return: The carrier type is HashMap&lt;TI, TO&gt;- the counts for each unique data input.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">MO</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MO</span><span class="p">)</span>
-    <span class="n">TK</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TK</span><span class="p">)</span>
-    <span class="n">TV</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TV</span><span class="p">)</span>
+    <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">)</span>
+    <span class="n">TOA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
     <span class="n">MO</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MO</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
-    <span class="n">TK</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TK</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
-    <span class="n">TV</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TV</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">TIA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TIA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">TOA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TOA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_count_by</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">MO</span><span class="p">,</span> <span class="n">TK</span><span class="p">,</span> <span class="n">TV</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">MO</span><span class="p">,</span> <span class="n">TIA</span><span class="p">,</span> <span class="n">TOA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_count_by_categories"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_count_by_categories">[docs]</a><span class="k">def</span> <span class="nf">make_count_by_categories</span><span class="p">(</span>
     <span class="n">categories</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">MO</span><span class="p">:</span> <span class="n">SensitivityMetric</span> <span class="o">=</span> <span class="s2">&quot;L1Distance&lt;i32&gt;&quot;</span><span class="p">,</span>
+    <span class="n">MO</span><span class="p">:</span> <span class="n">SensitivityMetric</span><span class="p">,</span>
     <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">TOA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;i32&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
@@ -725,7 +675,7 @@
 <span class="sd">    :type MO: SensitivityMetric</span>
 <span class="sd">    :param TIA: categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</span>
 <span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
-<span class="sd">    :param TOA: express counts in terms of this numeric type</span>
+<span class="sd">    :param TOA: express counts in terms of this integral type</span>
 <span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
 <span class="sd">    :return: A count_by_categories step.</span>
 <span class="sd">    :rtype: Transformation</span>
@@ -733,8 +683,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">MO</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MO</span><span class="p">)</span>
     <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">categories</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
@@ -766,8 +714,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># No type arguments to standardize.</span>
     <span class="c1"># No arguments to convert to c types.</span>
     <span class="c1"># Call library function.</span>
@@ -791,8 +737,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># No type arguments to standardize.</span>
     <span class="c1"># Convert arguments to c types.</span>
     <span class="n">separator</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">separator</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
@@ -821,8 +765,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">col_names</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
     
@@ -843,7 +785,7 @@
     <span class="n">col_names</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">K</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Make a Transformation that splits each record in a String into a Vec&lt;Vec&lt;String&gt;&gt;,</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that splits each record in a Vec&lt;String&gt; into a Vec&lt;Vec&lt;String&gt;&gt;,</span>
 <span class="sd">    and loads the resulting table into a dataframe keyed by `col_names`.</span>
 <span class="sd">    </span>
 <span class="sd">    :param separator: The token(s) that separate entries in each record.</span>
@@ -858,8 +800,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">col_names</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
     
@@ -895,8 +835,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">K</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
     <span class="n">TOA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">)</span>
@@ -915,37 +853,35 @@
 
 
 <div class="viewcode-block" id="make_identity"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_identity">[docs]</a><span class="k">def</span> <span class="nf">make_identity</span><span class="p">(</span>
-    <span class="n">D</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
-    <span class="n">M</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
+    <span class="n">M</span><span class="p">:</span> <span class="n">DatasetMetric</span><span class="p">,</span>
+    <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that simply passes the data through.</span>
 <span class="sd">    </span>
-<span class="sd">    :param D: Domain of the identity function. Must be VectorDomain&lt;AllDomain&lt;_&gt;&gt; or AllDomain&lt;_&gt;</span>
-<span class="sd">    :type D: RuntimeTypeDescriptor</span>
-<span class="sd">    :param M: metric. Must be a dataset metric if D is a VectorDomain or a sensitivity metric if D is an AllDomain</span>
-<span class="sd">    :type M: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: A transformation where the input and output domain are D and the input and output metric are M</span>
+<span class="sd">    :param M: dataset metric</span>
+<span class="sd">    :type M: DatasetMetric</span>
+<span class="sd">    :param TA: Type of data passed to the identity function.</span>
+<span class="sd">    :type TA: RuntimeTypeDescriptor</span>
+<span class="sd">    :return: A identity step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
-    <span class="n">D</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">D</span><span class="p">)</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">M</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">D</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_identity</span>
     <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">M</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_impute_constant"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_impute_constant">[docs]</a><span class="k">def</span> <span class="nf">make_impute_constant</span><span class="p">(</span>
@@ -966,8 +902,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">DA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">DA</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TA&quot;</span><span class="p">])</span>
     <span class="n">TA</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">DA</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
@@ -983,35 +917,6 @@
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">DA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="make_drop_null"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_drop_null">[docs]</a><span class="k">def</span> <span class="nf">make_drop_null</span><span class="p">(</span>
-    <span class="n">DA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Make a Transformation that drops null values.</span>
-<span class="sd">    </span>
-<span class="sd">    :param DA: atomic domain of input data that contains nulls. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</span>
-<span class="sd">    :type DA: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: A drop_null step.</span>
-<span class="sd">    :rtype: Transformation</span>
-<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
-<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
-<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Standardize type arguments.</span>
-    <span class="n">DA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">DA</span><span class="p">)</span>
-    
-    <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">DA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">DA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
-    
-    <span class="c1"># Call library function.</span>
-    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_drop_null</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
-    
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">DA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_impute_uniform_float"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_impute_uniform_float">[docs]</a><span class="k">def</span> <span class="nf">make_impute_uniform_float</span><span class="p">(</span>
@@ -1030,8 +935,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
@@ -1047,117 +950,13 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_find"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_find">[docs]</a><span class="k">def</span> <span class="nf">make_find</span><span class="p">(</span>
-    <span class="n">categories</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Find the index of a data value in a set of categories.</span>
-<span class="sd">    </span>
-<span class="sd">    :param categories: The set of categories to find indexes from.</span>
-<span class="sd">    :type categories: Any</span>
-<span class="sd">    :param TIA: categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: A find step.</span>
-<span class="sd">    :rtype: Transformation</span>
-<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
-<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
-<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Standardize type arguments.</span>
-    <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">categories</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
-    
-    <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">categories</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">TIA</span><span class="p">]))</span>
-    <span class="n">TIA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TIA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
-    
-    <span class="c1"># Call library function.</span>
-    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_find</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
-    
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">TIA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="make_find_bin"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_find_bin">[docs]</a><span class="k">def</span> <span class="nf">make_find_bin</span><span class="p">(</span>
-    <span class="n">edges</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">TIA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Find the bin index from a monotonically increasing vector of edges.</span>
-<span class="sd">    </span>
-<span class="sd">    :param edges: The set of edges to split bins by.</span>
-<span class="sd">    :type edges: Any</span>
-<span class="sd">    :param TIA: numerical input type. Input data must be Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: A find_bin step.</span>
-<span class="sd">    :rtype: Transformation</span>
-<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
-<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
-<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Standardize type arguments.</span>
-    <span class="n">TIA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TIA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">edges</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
-    
-    <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">edges</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">TIA</span><span class="p">]))</span>
-    <span class="n">TIA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TIA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
-    
-    <span class="c1"># Call library function.</span>
-    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_find_bin</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
-    
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">TIA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="make_index"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_index">[docs]</a><span class="k">def</span> <span class="nf">make_index</span><span class="p">(</span>
-    <span class="n">categories</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">null</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">TOA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Index into a vector of categories.</span>
-<span class="sd">    </span>
-<span class="sd">    :param categories: The set of categories to index into.</span>
-<span class="sd">    :type categories: Any</span>
-<span class="sd">    :param null: Category to return if the index is out-of-range of the category set.</span>
-<span class="sd">    :type null: Any</span>
-<span class="sd">    :param TOA: atomic output type. Output data will be Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: A index step.</span>
-<span class="sd">    :rtype: Transformation</span>
-<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
-<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
-<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
-    <span class="c1"># Standardize type arguments.</span>
-    <span class="n">TOA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">categories</span><span class="p">),</span> <span class="kc">None</span><span class="p">))</span>
-    
-    <span class="c1"># Convert arguments to c types.</span>
-    <span class="n">categories</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Vec&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">TOA</span><span class="p">]))</span>
-    <span class="n">null</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">TOA</span><span class="p">)</span>
-    <span class="n">TOA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TOA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
-    
-    <span class="c1"># Call library function.</span>
-    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_index</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
-    
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">TOA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
-
-
 <div class="viewcode-block" id="make_sized_bounded_mean"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_mean">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_mean</span><span class="p">(</span>
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the mean of bounded data. </span>
-<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size. </span>
-<span class="sd">    Use `make_clamp` to bound data and `make_bounded_resize` to establish dataset size.</span>
+<span class="sd">    Use make_clamp to bound data.</span>
 <span class="sd">    </span>
 <span class="sd">    :param size: Number of records in input data.</span>
 <span class="sd">    :type size: int</span>
@@ -1171,8 +970,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
@@ -1194,7 +991,7 @@
     <span class="n">constant</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Make a Transformation that either truncates or imputes records with `constant` in a Vec&lt;`TA`&gt; to match a provided `size`.</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that either truncates or imputes records with `constant` in a Vec&lt;`TA`&gt; to match a provided `size`.\nWARNING: This function is pending change. It will accept an additional domain argument.</span>
 <span class="sd">    </span>
 <span class="sd">    :param size: Number of records in output data.</span>
 <span class="sd">    :type size: int</span>
@@ -1208,8 +1005,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">constant</span><span class="p">)</span>
     
@@ -1232,7 +1027,7 @@
     <span class="n">constant</span><span class="p">,</span>
     <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Make a Transformation that either truncates or imputes records with `constant` in a Vec&lt;`TA`&gt; to match a provided `size`.</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that either truncates or imputes records with `constant` in a Vec&lt;`TA`&gt; to match a provided `size`.\nWARNING: This function is temporary. It will be replaced by a more general make_resize that accepts domains</span>
 <span class="sd">    </span>
 <span class="sd">    :param size: Number of records in output data.</span>
 <span class="sd">    :type size: int</span>
@@ -1247,8 +1042,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
@@ -1271,7 +1064,7 @@
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded data. </span>
-<span class="sd">    Use `make_clamp` to bound data.</span>
+<span class="sd">    Use make_clamp to bound data.</span>
 <span class="sd">    </span>
 <span class="sd">    :param bounds: Tuple of lower and upper bounds for data in the input domain</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
@@ -1283,8 +1076,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
@@ -1305,9 +1096,9 @@
     <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded data with known dataset size. </span>
-<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. </span>
-<span class="sd">    Use `make_clamp` to bound data and `make_bounded_resize` to establish dataset size.</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded data with known length. </span>
+<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known N for better utility. </span>
+<span class="sd">    Use make_clamp to bound data.</span>
 <span class="sd">    </span>
 <span class="sd">    :param size: Number of records in input data.</span>
 <span class="sd">    :type size: int</span>
@@ -1321,8 +1112,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
@@ -1346,8 +1135,7 @@
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the variance of bounded data. </span>
-<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size. </span>
-<span class="sd">    Use `make_clamp` to bound data and `make_bounded_resize` to establish dataset size.</span>
+<span class="sd">    Use make_clamp to bound data.</span>
 <span class="sd">    </span>
 <span class="sd">    :param size: Number of records in input data.</span>
 <span class="sd">    :type size: int</span>
@@ -1363,8 +1151,6 @@
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
 <span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
-    
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     

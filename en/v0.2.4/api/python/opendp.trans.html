@@ -578,7 +578,7 @@ If datum is greater than upper, let datum be upper.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</p></li>
-<li><p><strong>TO</strong> (<em>RuntimeTypeDescriptor</em>) – Output Type. Must be numeric.</p></li>
+<li><p><strong>TO</strong> (<em>RuntimeTypeDescriptor</em>) – Output Type. Must be an integer.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -599,19 +599,23 @@ If datum is greater than upper, let datum be upper.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_count_by">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TK</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TV</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_by" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_count_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'i32'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_count_by"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_count_by" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the count of each unique value in data. 
-This assumes that the category set is unknown.</p>
+This assumes that the category set is unknown. 
+This uses a restricted-sensitivity proof that takes advantage of known dataset size. 
+Use <cite>make_resize</cite> to establish dataset size.
+Use meas.make_base_stability to release this query.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
 <li><p><strong>MO</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.SensitivityMetric" title="opendp.typing.SensitivityMetric"><em>SensitivityMetric</em></a>) – Output Metric.</p></li>
-<li><p><strong>TK</strong> (<em>RuntimeTypeDescriptor</em>) – Type of Key. Categorical/hashable input data type. Input data must be Vec&lt;TK&gt;.</p></li>
-<li><p><strong>TV</strong> (<em>RuntimeTypeDescriptor</em>) – Type of Value. Express counts in terms of this integral type.</p></li>
+<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic Input Type. Categorical/hashable input data type. Input data must be Vec&lt;TI&gt;.</p></li>
+<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic Output Type. Express counts in terms of this integral type.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The carrier type is HashMap&lt;TK, TV&gt;, a hashmap of the count (TV) for each unique data input (TK).</p>
+<dd class="field-even"><p>The carrier type is HashMap&lt;TI, TO&gt;- the counts for each unique data input.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
@@ -637,7 +641,7 @@ This assumes that the category set is known.</p>
 <li><p><strong>categories</strong> (<em>Any</em>) – The set of categories to compute counts for.</p></li>
 <li><p><strong>MO</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.SensitivityMetric" title="opendp.typing.SensitivityMetric"><em>SensitivityMetric</em></a>) – output sensitivity metric</p></li>
 <li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – express counts in terms of this numeric type</p></li>
+<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – express counts in terms of this integral type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -664,7 +668,7 @@ This assumes that the category set is known.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</p></li>
-<li><p><strong>TO</strong> (<em>RuntimeTypeDescriptor</em>) – Output Type. Must be numeric.</p></li>
+<li><p><strong>TO</strong> (<em>RuntimeTypeDescriptor</em>) – Output Type. Must be an integer.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -696,84 +700,6 @@ This assumes that the category set is known.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A create_dataframe step.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
-<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
-<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="opendp.trans.make_drop_null">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_drop_null</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DA</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_drop_null"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_drop_null" title="Permalink to this definition">#</a></dt>
-<dd><p>Make a Transformation that drops null values.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>DA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic domain of input data that contains nulls. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A drop_null step.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
-<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
-<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="opendp.trans.make_find">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_find" title="Permalink to this definition">#</a></dt>
-<dd><p>Find the index of a data value in a set of categories.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>categories</strong> (<em>Any</em>) – The set of categories to find indexes from.</p></li>
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A find step.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
-<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
-<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="opendp.trans.make_find_bin">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_find_bin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TIA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_find_bin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_find_bin" title="Permalink to this definition">#</a></dt>
-<dd><p>Find the bin index from a monotonically increasing vector of edges.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>edges</strong> (<em>Any</em>) – The set of edges to split bins by.</p></li>
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – numerical input type. Input data must be Vec&lt;TIA&gt;.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A find_bin step.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
@@ -857,34 +783,6 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A impute_uniform_float step.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
-<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
-<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="opendp.trans.make_index">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categories</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TOA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_index" title="Permalink to this definition">#</a></dt>
-<dd><p>Index into a vector of categories.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>categories</strong> (<em>Any</em>) – The set of categories to index into.</p></li>
-<li><p><strong>null</strong> (<em>Any</em>) – Category to return if the index is out-of-range of the category set.</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic output type. Output data will be Vec&lt;TIA&gt;.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A index step.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>

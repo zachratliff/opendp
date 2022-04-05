@@ -369,6 +369,87 @@
   <section id="module-opendp.core">
 <span id="opendp-core-module"></span><h1>opendp.core module<a class="headerlink" href="#module-opendp.core" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
+<dt class="sig sig-object py" id="opendp.core.make_basic_composition">
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">make_basic_composition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurement1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#make_basic_composition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.make_basic_composition" title="Permalink to this definition">#</a></dt>
+<dd><p>Construct the DP composition (<cite>measurement0</cite>, <cite>measurement1</cite>). Returns a Measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measurement0</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>Measurement</em></a>) – The left member of the resulting 2-tuple.</p></li>
+<li><p><strong>measurement1</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>Measurement</em></a>) – The right member of the resulting 2-tuple.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Measurement representing the composed transformations.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.core.make_chain_mt">
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">make_chain_mt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#make_chain_mt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.make_chain_mt" title="Permalink to this definition">#</a></dt>
+<dd><p>Construct the functional composition (<cite>measurement</cite> ○ <cite>transformation</cite>). Returns a Measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measurement</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>Measurement</em></a>) – outer privatizer</p></li>
+<li><p><strong>transformation</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>Transformation</em></a>) – inner query</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Measurement representing the chained computation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement">Measurement</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.core.make_chain_tt">
+<span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">make_chain_tt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transformation0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#make_chain_tt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.make_chain_tt" title="Permalink to this definition">#</a></dt>
+<dd><p>Construct the functional composition (<cite>transformation1</cite> ○ <cite>transformation0</cite>). Returns a Tranformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transformation1</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>Transformation</em></a>) – outer transformation</p></li>
+<li><p><strong>transformation0</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>Transformation</em></a>) – inner transformation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Transformation representing the chained computation.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="opendp.core.measurement_check">
 <span class="sig-prename descclassname"><span class="pre">opendp.core.</span></span><span class="sig-name descname"><span class="pre">measurement_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurement</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_out</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/core.html#measurement_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.core.measurement_check" title="Permalink to this definition">#</a></dt>
 <dd><p>Check the privacy relation of the <cite>measurement</cite> at the given <cite>d_in</cite>, <cite>d_out</cite>.</p>
@@ -376,8 +457,8 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>measurement</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Measurement" title="opendp.mod.Measurement"><em>Measurement</em></a>) – Measurement to check the privacy relation of.</p></li>
-<li><p><strong>d_in</strong> (<em>Any</em>) – Distance in terms of the input metric.</p></li>
-<li><p><strong>d_out</strong> (<em>Any</em>) – Distance in terms of the output measure.</p></li>
+<li><p><strong>d_in</strong> – Distance in terms of the input metric.</p></li>
+<li><p><strong>d_out</strong> – Distance in terms of the output measure.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -494,8 +575,8 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>transformation</strong> (<a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation"><em>Transformation</em></a>) – Transformation to check the stability relation of.</p></li>
-<li><p><strong>d_in</strong> (<em>Any</em>) – Distance in terms of the input metric.</p></li>
-<li><p><strong>d_out</strong> (<em>Any</em>) – Distance in terms of the output metric.</p></li>
+<li><p><strong>d_in</strong> – Distance in terms of the input metric.</p></li>
+<li><p><strong>d_out</strong> – Distance in terms of the output metric.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
