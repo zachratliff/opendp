@@ -383,7 +383,7 @@
 <li><p><strong>size</strong> (<em>int</em>) – Number of records in output data.</p></li>
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for data in the input domain</p></li>
 <li><p><strong>constant</strong> – Value to impute with.</p></li>
-<li><p><strong>TA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic type. If not passed, TA is inferred from the lower bound.</p></li>
+<li><p><strong>TA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Atomic type. If not passed, TA is inferred from the lower bound.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -411,7 +411,7 @@ Use <cite>make_clamp</cite> to bound data.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for data in the input domain</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – atomic type of data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -438,8 +438,8 @@ Failure to parse results in None, else Some&lt;TOA&gt;.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic input data type to cast from</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic data type to cast into</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic input data type to cast from</p></li>
+<li><p><strong>TOA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type to cast into</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -465,8 +465,8 @@ Failure to parse results in None, else Some&lt;TOA&gt;.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic input data type to cast from</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic data type to cast into</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic input data type to cast from</p></li>
+<li><p><strong>TOA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type to cast into</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -493,8 +493,8 @@ If cast fails, fill with <cite>TO</cite>’s null value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – input data type to cast from</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – data type to cast into</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – input data type to cast from</p></li>
+<li><p><strong>TOA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – data type to cast into</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -522,7 +522,7 @@ If cast fails, fill with <cite>TO</cite>’s null value.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>MI</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.DatasetMetric" title="opendp.typing.DatasetMetric"><em>DatasetMetric</em></a>) – input dataset metric</p></li>
 <li><p><strong>MO</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.DatasetMetric" title="opendp.typing.DatasetMetric"><em>DatasetMetric</em></a>) – output dataset metric</p></li>
-<li><p><strong>TA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic type of data</p></li>
+<li><p><strong>TA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -551,7 +551,7 @@ If datum is greater than upper, let datum be upper.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of inclusive lower and upper bounds.</p></li>
-<li><p><strong>TA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic data type</p></li>
+<li><p><strong>TA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -577,8 +577,8 @@ If datum is greater than upper, let datum be upper.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</p></li>
-<li><p><strong>TO</strong> (<em>RuntimeTypeDescriptor</em>) – Output Type. Must be numeric.</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</p></li>
+<li><p><strong>TO</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Output Type. Must be numeric.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -606,8 +606,8 @@ This assumes that the category set is unknown.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>MO</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.SensitivityMetric" title="opendp.typing.SensitivityMetric"><em>SensitivityMetric</em></a>) – Output Metric.</p></li>
-<li><p><strong>TK</strong> (<em>RuntimeTypeDescriptor</em>) – Type of Key. Categorical/hashable input data type. Input data must be Vec&lt;TK&gt;.</p></li>
-<li><p><strong>TV</strong> (<em>RuntimeTypeDescriptor</em>) – Type of Value. Express counts in terms of this integral type.</p></li>
+<li><p><strong>TK</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Type of Key. Categorical/hashable input data type. Input data must be Vec&lt;TK&gt;.</p></li>
+<li><p><strong>TV</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Type of Value. Express counts in terms of this integral type.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -636,8 +636,8 @@ This assumes that the category set is known.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>categories</strong> (<em>Any</em>) – The set of categories to compute counts for.</p></li>
 <li><p><strong>MO</strong> (<a class="reference internal" href="opendp.typing.html#opendp.typing.SensitivityMetric" title="opendp.typing.SensitivityMetric"><em>SensitivityMetric</em></a>) – output sensitivity metric</p></li>
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – express counts in terms of this numeric type</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</p></li>
+<li><p><strong>TOA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – express counts in terms of this numeric type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -663,8 +663,8 @@ This assumes that the category set is known.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</p></li>
-<li><p><strong>TO</strong> (<em>RuntimeTypeDescriptor</em>) – Output Type. Must be numeric.</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</p></li>
+<li><p><strong>TO</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Output Type. Must be numeric.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -691,7 +691,7 @@ This assumes that the category set is known.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>col_names</strong> (<em>Any</em>) – Column names for each record entry.</p></li>
-<li><p><strong>K</strong> (<em>RuntimeTypeDescriptor</em>) – categorical/hashable data type of column names</p></li>
+<li><p><strong>K</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – categorical/hashable data type of column names</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -716,7 +716,7 @@ This assumes that the category set is known.</p>
 <dd><p>Make a Transformation that drops null values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>DA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic domain of input data that contains nulls. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</p>
+<dd class="field-odd"><p><strong>DA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic domain of input data that contains nulls. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A drop_null step.</p>
@@ -742,7 +742,7 @@ This assumes that the category set is known.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>categories</strong> (<em>Any</em>) – The set of categories to find indexes from.</p></li>
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -769,7 +769,7 @@ This assumes that the category set is known.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>edges</strong> (<em>Any</em>) – The set of edges to split bins by.</p></li>
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – numerical input type. Input data must be Vec&lt;TIA&gt;.</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – numerical input type. Input data must be Vec&lt;TIA&gt;.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -795,8 +795,8 @@ This assumes that the category set is known.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>D</strong> (<em>RuntimeTypeDescriptor</em>) – Domain of the identity function. Must be VectorDomain&lt;AllDomain&lt;_&gt;&gt; or AllDomain&lt;_&gt;</p></li>
-<li><p><strong>M</strong> (<em>RuntimeTypeDescriptor</em>) – metric. Must be a dataset metric if D is a VectorDomain or a sensitivity metric if D is an AllDomain</p></li>
+<li><p><strong>D</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Domain of the identity function. Must be VectorDomain&lt;AllDomain&lt;_&gt;&gt; or AllDomain&lt;_&gt;</p></li>
+<li><p><strong>M</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – metric. Must be a dataset metric if D is a VectorDomain or a sensitivity metric if D is an AllDomain</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -825,7 +825,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>constant</strong> (<em>Any</em>) – Value to replace nulls with.</p></li>
-<li><p><strong>DA</strong> (<em>RuntimeTypeDescriptor</em>) – domain of data being imputed. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</p></li>
+<li><p><strong>DA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – domain of data being imputed. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -852,7 +852,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of inclusive lower and upper bounds.</p></li>
-<li><p><strong>TA</strong> (<em>RuntimeTypeDescriptor</em>) – type of data being imputed</p></li>
+<li><p><strong>TA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – type of data being imputed</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -880,7 +880,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>categories</strong> (<em>Any</em>) – The set of categories to index into.</p></li>
 <li><p><strong>null</strong> (<em>Any</em>) – Category to return if the index is out-of-range of the category set.</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic output type. Output data will be Vec&lt;TIA&gt;.</p></li>
+<li><p><strong>TOA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic output type. Output data will be Vec&lt;TIA&gt;.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -907,7 +907,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> (<em>Any</em>) – value to check against</p></li>
-<li><p><strong>TIA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic input data type</p></li>
+<li><p><strong>TIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic input data type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -932,7 +932,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 <dd><p>Make a Transformation that checks if each element in a vector is null.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>DIA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic input domain</p>
+<dd class="field-odd"><p><strong>DIA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic input domain</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A is_null step.</p>
@@ -959,7 +959,7 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – Number of records in output data.</p></li>
 <li><p><strong>constant</strong> (<em>Any</em>) – Value to impute with.</p></li>
-<li><p><strong>TA</strong> (<em>RuntimeTypeDescriptor</em>) – Atomic type.</p></li>
+<li><p><strong>TA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Atomic type.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -986,8 +986,8 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>key</strong> (<em>Any</em>) – categorical/hashable data type of the key/column name</p></li>
-<li><p><strong>K</strong> (<em>RuntimeTypeDescriptor</em>) – data type of the key</p></li>
-<li><p><strong>TOA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic data type to downcast to</p></li>
+<li><p><strong>K</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – data type of the key</p></li>
+<li><p><strong>TOA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type to downcast to</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1017,7 +1017,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of inclusive lower and upper bounds of the input data.</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – atomic data type</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1047,7 +1047,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – atomic type of data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1078,7 +1078,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 <li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
 <li><p><strong>ddof</strong> (<em>int</em>) – Delta degrees of freedom. Set to 0 if not a sample, 1 for sample estimate.</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – atomic data type</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1107,7 +1107,7 @@ and loads the resulting table into a dataframe keyed by <cite>col_names</cite>.<
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>separator</strong> (<em>str</em>) – The token(s) that separate entries in each record.</p></li>
 <li><p><strong>col_names</strong> (<em>Any</em>) – Column names for each record entry.</p></li>
-<li><p><strong>K</strong> (<em>RuntimeTypeDescriptor</em>) – categorical/hashable data type of column names</p></li>
+<li><p><strong>K</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – categorical/hashable data type of column names</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1179,7 +1179,7 @@ and loads the resulting table into a dataframe keyed by <cite>col_names</cite>.<
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of inclusive lower and upper bounds.</p></li>
-<li><p><strong>TA</strong> (<em>RuntimeTypeDescriptor</em>) – atomic data type</p></li>
+<li><p><strong>TA</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

@@ -313,9 +313,9 @@
     <span class="sd">&quot;&quot;&quot;Make a Measurement that adds noise from the laplace(`scale`) distribution to a scalar value.</span>
 <span class="sd">    Adjust D to noise vector-valued data.</span>
 <span class="sd">    </span>
-<span class="sd">    :param scale: Noise scale parameter of the laplace distribution.</span>
+<span class="sd">    :param scale: Noise scale parameter for the laplace distribution. `scale` == sqrt(2) * standard_deviation.</span>
 <span class="sd">    :param D: Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</span>
-<span class="sd">    :type D: RuntimeTypeDescriptor</span>
+<span class="sd">    :type D: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A base_laplace step.</span>
 <span class="sd">    :rtype: Measurement</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -347,10 +347,12 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Measurement that adds noise from the gaussian(`scale`) distribution to the input.</span>
 <span class="sd">    Adjust D to noise vector-valued data.</span>
+<span class="sd">    The output epsilon may be no greater than one.</span>
+<span class="sd">    Use make_base_analytic_gaussian for a tighter analysis that supports epsilon &gt; 1.</span>
 <span class="sd">    </span>
-<span class="sd">    :param scale: noise scale parameter to the gaussian distribution</span>
+<span class="sd">    :param scale: noise scale parameter for the gaussian distribution. `scale` == standard_deviation.</span>
 <span class="sd">    :param D: Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</span>
-<span class="sd">    :type D: RuntimeTypeDescriptor</span>
+<span class="sd">    :type D: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A base_gaussian step.</span>
 <span class="sd">    :rtype: Measurement</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -384,9 +386,9 @@
 <span class="sd">    Adjust D to noise vector-valued data.</span>
 <span class="sd">    The privacy relation is based on the analytic gaussian mechanism.</span>
 <span class="sd">    </span>
-<span class="sd">    :param scale: noise scale parameter to the gaussian distribution</span>
+<span class="sd">    :param scale: noise scale parameter for the gaussian distribution. `scale` == standard_deviation.</span>
 <span class="sd">    :param D: Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</span>
-<span class="sd">    :type D: RuntimeTypeDescriptor</span>
+<span class="sd">    :type D: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A base_analytic_gaussian step.</span>
 <span class="sd">    :rtype: Measurement</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -421,13 +423,13 @@
     <span class="sd">&quot;&quot;&quot;Make a Measurement that adds noise from the geometric(`scale`) distribution to the input.</span>
 <span class="sd">    Adjust D to noise vector-valued data.</span>
 <span class="sd">    </span>
-<span class="sd">    :param scale: noise scale parameter to the geometric distribution</span>
+<span class="sd">    :param scale: noise scale parameter for the geometric distribution. `scale` == sqrt(2) * standard_deviation.</span>
 <span class="sd">    :param bounds: Set bounds on the count to make the algorithm run in constant-time.</span>
 <span class="sd">    :type bounds: Any</span>
 <span class="sd">    :param D: Domain of the data type to be privatized. Valid values are VectorDomain&lt;AllDomain&lt;T&gt;&gt; or AllDomain&lt;T&gt;</span>
-<span class="sd">    :type D: RuntimeTypeDescriptor</span>
+<span class="sd">    :type D: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param QO: Data type of the sensitivity, scale, and budget.</span>
-<span class="sd">    :type QO: RuntimeTypeDescriptor</span>
+<span class="sd">    :type QO: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A base_geometric step.</span>
 <span class="sd">    :rtype: Measurement</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -467,7 +469,7 @@
 <span class="sd">    :param constant_time: Set to true to enable constant time</span>
 <span class="sd">    :type constant_time: bool</span>
 <span class="sd">    :param Q: Data type of probability and budget.</span>
-<span class="sd">    :type Q: RuntimeTypeDescriptor</span>
+<span class="sd">    :type Q: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A randomized_response_bool step.</span>
 <span class="sd">    :rtype: Measurement</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -507,9 +509,9 @@
 <span class="sd">    :param constant_time: Set to true to enable constant time</span>
 <span class="sd">    :type constant_time: bool</span>
 <span class="sd">    :param T: Data type of a category.</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param Q: Data type of probability and budget.</span>
-<span class="sd">    :type Q: RuntimeTypeDescriptor</span>
+<span class="sd">    :type Q: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A randomized_response step.</span>
 <span class="sd">    :rtype: Measurement</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -545,12 +547,12 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Measurement</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Measurement that uses propose-test-release to privatize a hashmap of counts.</span>
 <span class="sd">    </span>
-<span class="sd">    :param scale: Noise scale parameter.</span>
+<span class="sd">    :param scale: Noise scale parameter for the laplace distribution. `scale` == sqrt(2) * standard_deviation.</span>
 <span class="sd">    :param threshold: Exclude counts that are less than this minimum value.</span>
 <span class="sd">    :param TK: Type of Key. Must be hashable/categorical.</span>
-<span class="sd">    :type TK: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TK: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TV: Type of Value. Must be float.</span>
-<span class="sd">    :type TV: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TV: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A base_ptr step.</span>
 <span class="sd">    :rtype: Measurement</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>

@@ -403,6 +403,15 @@
 Refer to the <a class="reference internal" href="core-structures.html#transformation"><span class="std std-ref">Transformation</span></a> section for an explanation of what a transformation is.</p>
 <p>As covered in the <a class="reference internal" href="combinator-constructors.html#chaining"><span class="std std-ref">Chaining</span></a> section, the intermediate <a class="reference internal" href="supporting-elements.html#domains"><span class="std std-ref">domains</span></a> need to match when chaining.
 Each transformation has a carefully chosen input domain and output domain that supports their relation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you pass information collected directly from the dataset into constructors, the privacy budget will be underestimated.
+Constructor arguments should be either:</p>
+<ul class="simple">
+<li><p>Public information, like information from a codebook or prior domain expertise</p></li>
+<li><p>Other DP releases on the data</p></li>
+</ul>
+</div>
 <p>Preprocessing is the series of transformations that shape the data into a domain that is conformable with the aggregator.</p>
 <p>You will need to choose the proper transformations from the sections below in order to chain with the aggregator you intend to use.
 The sections below are in the order you would typically chain transformations together,
@@ -419,36 +428,43 @@ you’ll probably want to use <a class="reference internal" href="../api/python/
 You need to chain with <code class="docutils literal notranslate"><span class="pre">make_select_column</span></code> first.</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Preprocessor</p></th>
 <th class="head"><p>Input Domain</p></th>
 <th class="head"><p>Output Domain</p></th>
+<th class="head"><p>Input/Output Metric</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_split_dataframe" title="opendp.trans.make_split_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_split_dataframe()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;String&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">DataFrameDomain&lt;K&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_select_column" title="opendp.trans.make_select_column"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_select_column()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">DataFrameDomain&lt;K&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TOA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_split_lines" title="opendp.trans.make_split_lines"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_split_lines()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;String&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;String&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_split_records" title="opendp.trans.make_split_records"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_split_records()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;String&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;VectorDomain&lt;AllDomain&lt;String&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_create_dataframe" title="opendp.trans.make_create_dataframe"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_create_dataframe()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;VectorDomain&lt;AllDomain&lt;String&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">DataFrameDomain&lt;K&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -464,40 +480,48 @@ If you are more comfortable working with substitution distances,
 you can chain this caster at the start of a computation pipeline to make <code class="docutils literal notranslate"><span class="pre">d_in</span></code> a substitution distance instead of a symmetric distance.</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Caster</p></th>
 <th class="head"><p>Input Domain</p></th>
 <th class="head"><p>Output Domain</p></th>
+<th class="head"><p>Input/Output Metric</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast" title="opendp.trans.make_cast"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_cast()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;OptionNullDomain&lt;AllDomain&lt;TOA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast_default" title="opendp.trans.make_cast_default"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_cast_default()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TOA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast_inherent" title="opendp.trans.make_cast_inherent"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_cast_inherent()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;InherentNullDomain&lt;AllDomain&lt;TOA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_is_equal" title="opendp.trans.make_is_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_is_equal()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;bool&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_is_null" title="opendp.trans.make_is_null"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_is_null()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;bool&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast_metric" title="opendp.trans.make_cast_metric"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_cast_metric()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MI/MO</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -528,36 +552,43 @@ In this case, you should start your chain with an imputer if the floats are pote
 so long as you pass the DA (atomic domain) type argument.</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Imputer</p></th>
 <th class="head"><p>Input Domain</p></th>
 <th class="head"><p>Output Domain</p></th>
+<th class="head"><p>Input/Output Metric</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_impute_constant" title="opendp.trans.make_impute_constant"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_impute_constant()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_impute_constant" title="opendp.trans.make_impute_constant"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_impute_constant()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_impute_uniform_float" title="opendp.trans.make_impute_uniform_float"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_impute_uniform_float()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_drop_null" title="opendp.trans.make_drop_null"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_drop_null()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_drop_null" title="opendp.trans.make_drop_null"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_drop_null()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -592,28 +623,33 @@ In other words, it transforms a categorical data vector to a vector of numeric i
 <p>You can use combinations of the indicial transformers to map hashable data to integers, bin numeric types, relabel hashable types, and label bins.</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Indexer</p></th>
 <th class="head"><p>Input Domain</p></th>
 <th class="head"><p>Output Domain</p></th>
+<th class="head"><p>Input/Output Metric</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_find" title="opendp.trans.make_find"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_find()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;OptionNullDomain&lt;AllDomain&lt;usize&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_find_bin" title="opendp.trans.make_find_bin"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_find_bin()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;usize&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_index" title="opendp.trans.make_index"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_index()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;usize&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TOA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -629,24 +665,28 @@ In these kinds of aggregators the relations make use of the clamping bounds <cod
 Only chain with a clamp transformation if the aggregator you intend to use needs bounded data.</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Clamper</p></th>
 <th class="head"><p>Input Domain</p></th>
 <th class="head"><p>Output Domain</p></th>
+<th class="head"><p>Input/Output Metric</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_clamp" title="opendp.trans.make_clamp"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_clamp()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_unclamp" title="opendp.trans.make_unclamp"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_unclamp()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -666,24 +706,28 @@ one that works on unbounded data, and one that works on bounded data.
 We intend to merge these in the future.</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Resizer</p></th>
 <th class="head"><p>Input Domain</p></th>
 <th class="head"><p>Output Domain</p></th>
+<th class="head"><p>Input/Output Metric</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_resize" title="opendp.trans.make_resize"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_resize()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_resize" title="opendp.trans.make_bounded_resize"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_resize()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -702,52 +746,74 @@ but does not need a category set (you instead chain with <a class="reference int
 <p>The <code class="docutils literal notranslate"><span class="pre">make_sized_bounded_covariance</span></code> aggregator is Rust-only at this time because data loaders for data of type <code class="docutils literal notranslate"><span class="pre">Vec&lt;(T,</span> <span class="pre">T)&gt;</span></code> are not implemented.</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Aggregator</p></th>
 <th class="head"><p>Input Domain</p></th>
 <th class="head"><p>Output Domain</p></th>
+<th class="head"><p>Input Metric</p></th>
+<th class="head"><p>Output Metric</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count" title="opendp.trans.make_count"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;TO&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count_distinct" title="opendp.trans.make_count_distinct"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_distinct()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;TO&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count_by_categories" title="opendp.trans.make_count_by_categories"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_by_categories()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TOA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">L1Distance&lt;TOA&gt;/L2Distance&lt;TOA&gt;</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_count_by()</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TI&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">MapDomain&lt;AllDomain&lt;TI&gt;,AllDomain&lt;TO&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_sum" title="opendp.trans.make_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_sum()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_sum" title="opendp.trans.make_sized_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_sum()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_mean" title="opendp.trans.make_sized_bounded_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_mean()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_variance" title="opendp.trans.make_sized_bounded_variance"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_variance()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>make_sized_bounded_covariance (Rust only)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;(T,T)&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 </tbody>
 </table>

@@ -432,7 +432,13 @@ This is extremely powerful!</p>
 <span id="id2"></span><h2>Determining Accuracy<a class="headerlink" href="#determining-accuracy" title="Permalink to this headline">#</a></h2>
 <p>The library contains utilities to estimate accuracy at a given noise scale and statistical significance level
 or derive the necessary noise scale to meet a given target accuracy and statistical significance level.</p>
-<p>The noise scale may be either laplace or gaussian.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This confidence interval is specifically for the input to the noise addition mechanism.
+We cannot privately compensate for the bias introduced from clipping or other preprocessing.
+<a class="reference external" href="https://github.com/opendp/opendp/blob/main/python/example/accuracy_pitfalls.ipynb">There is a notebook demonstrating this limitation.</a></p>
+</div>
+<p>The noise distribution may be either laplace or gaussian.</p>
 <dl class="field-list">
 <dt class="field-odd">laplacian</dt>
 <dd class="field-odd"><div class="line-block">
@@ -449,15 +455,23 @@ or derive the necessary noise scale to meet a given target accuracy and statisti
 </div>
 </dd>
 </dl>
-<p>The library provides the following functions for converting to and from noise scales:</p>
+<p>The library provides the following functions for converting between noise scale and accuracy:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../api/python/opendp.accuracy.html#opendp.accuracy.laplacian_scale_to_accuracy" title="opendp.accuracy.laplacian_scale_to_accuracy"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.accuracy.laplacian_scale_to_accuracy()</span></code></a></p></li>
 <li><p><a class="reference internal" href="../api/python/opendp.accuracy.html#opendp.accuracy.accuracy_to_laplacian_scale" title="opendp.accuracy.accuracy_to_laplacian_scale"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.accuracy.accuracy_to_laplacian_scale()</span></code></a></p></li>
 <li><p><a class="reference internal" href="../api/python/opendp.accuracy.html#opendp.accuracy.gaussian_scale_to_accuracy" title="opendp.accuracy.gaussian_scale_to_accuracy"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.accuracy.gaussian_scale_to_accuracy()</span></code></a></p></li>
 <li><p><a class="reference internal" href="../api/python/opendp.accuracy.html#opendp.accuracy.accuracy_to_gaussian_scale" title="opendp.accuracy.accuracy_to_gaussian_scale"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.accuracy.accuracy_to_gaussian_scale()</span></code></a></p></li>
 </ul>
-<p>These functions take either scale or accuracy, and alpha, a statistical significance parameter.</p>
-<p>You can generally plug the distribution, scale, accuracy and alpha
+<p>To demonstrate, the following snippet finds the necessary gaussian scale such that the input to
+<code class="code docutils literal notranslate"><span class="pre">make_base_gaussian(scale=1.)</span></code> differs from the release by no more than 2 with 95% confidence.</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">opendp.accuracy</span> <span class="kn">import</span> <span class="n">accuracy_to_gaussian_scale</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">confidence</span> <span class="o">=</span> <span class="mi">95</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">accuracy_to_gaussian_scale</span><span class="p">(</span><span class="n">accuracy</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">confidence</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">1.020426913849308</span>
+</pre></div>
+</div>
+<p>There is another example of building a confidence interval at the end of the page.</p>
+<p>You can generally plug the distribution (laplace or gaussian), scale, accuracy and alpha
 into the following statement to interpret these functions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s2">&quot;When the </span><span class="si">{</span><span class="n">distribution</span><span class="si">}</span><span class="s2"> scale is </span><span class="si">{</span><span class="n">scale</span><span class="si">}</span><span class="s2">, &quot;</span>
 <span class="sa">f</span><span class="s2">&quot;the DP estimate differs from the true value by no more than </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2"> &quot;</span>

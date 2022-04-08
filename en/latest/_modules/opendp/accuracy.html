@@ -308,13 +308,13 @@
     <span class="n">alpha</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Convert a laplacian scale into an accuracy estimate.</span>
+    <span class="sd">&quot;&quot;&quot;Convert a laplacian scale into an accuracy estimate (tolerance) at a statistical significance level `alpha`.</span>
 <span class="sd">    </span>
 <span class="sd">    :param scale: Laplacian noise scale.</span>
-<span class="sd">    :param alpha: Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1].</span>
-<span class="sd">    :param T: Data type of scale and alpha</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: Accuracy estimate at a level-alpha.</span>
+<span class="sd">    :param alpha: Statistical significance, level-`alpha`, or (1. - `alpha`)100% confidence. Must be within (0, 1].</span>
+<span class="sd">    :param T: Data type of `scale` and `alpha`</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: Accuracy estimate. Maximum amount a value is expected to diverge at the given level-`alpha`.</span>
 <span class="sd">    :rtype: Any</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
@@ -341,13 +341,13 @@
     <span class="n">alpha</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Convert a desired accuracy into a laplacian noise scale.</span>
+    <span class="sd">&quot;&quot;&quot;Convert a desired `accuracy` (tolerance) into a laplacian noise scale at a statistical significance level `alpha`.</span>
 <span class="sd">    </span>
-<span class="sd">    :param accuracy: Desired accuracy.</span>
-<span class="sd">    :param alpha: Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1).</span>
-<span class="sd">    :param T: Data type of accuracy and alpha</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: Laplacian noise scale that meets the accuracy requirement at a level-alpha.</span>
+<span class="sd">    :param accuracy: Desired accuracy. A tolerance for how far values may diverge from the input to the mechanism.</span>
+<span class="sd">    :param alpha: Statistical significance, level-`alpha`, or (1. - `alpha`)100% confidence. Must be within (0, 1].</span>
+<span class="sd">    :param T: Data type of `accuracy` and `alpha`</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: Laplacian noise scale that meets the `accuracy` requirement at a given level-`alpha`.</span>
 <span class="sd">    :rtype: Any</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
@@ -374,13 +374,13 @@
     <span class="n">alpha</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Convert a gaussian scale into an accuracy estimate.</span>
+    <span class="sd">&quot;&quot;&quot;Convert a gaussian scale into an accuracy estimate (tolerance) at a statistical significance level `alpha`.</span>
 <span class="sd">    </span>
 <span class="sd">    :param scale: Gaussian noise scale.</span>
-<span class="sd">    :param alpha: Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1].</span>
-<span class="sd">    :param T: Data type of scale and alpha</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: Accuracy estimate at a level-alpha.</span>
+<span class="sd">    :param alpha: Statistical significance, level-`alpha`, or (1. - `alpha`)100% confidence. Must be within (0, 1].</span>
+<span class="sd">    :param T: Data type of `scale` and `alpha`</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: Accuracy estimate. Maximum amount a value is expected to diverge at the given level-`alpha`.</span>
 <span class="sd">    :rtype: Any</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
@@ -407,13 +407,13 @@
     <span class="n">alpha</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Convert a desired accuracy into a gaussian noise scale.</span>
+    <span class="sd">&quot;&quot;&quot;Convert a desired `accuracy` (tolerance) into a gaussian noise scale at a statistical significance level `alpha`.</span>
 <span class="sd">    </span>
-<span class="sd">    :param accuracy: Desired accuracy.</span>
-<span class="sd">    :param alpha: Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1).</span>
-<span class="sd">    :param T: Data type of accuracy and alpha</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
-<span class="sd">    :return: Gaussian noise scale that meets the accuracy requirement at a level-alpha.</span>
+<span class="sd">    :param accuracy: Desired accuracy. A tolerance for how far values may diverge from the input to the mechanism.</span>
+<span class="sd">    :param alpha: Statistical significance, level-`alpha`, or (1. - `alpha`)100% confidence. Must be within (0, 1).</span>
+<span class="sd">    :param T: Data type of `accuracy` and `alpha`</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: Gaussian noise scale that meets the `accuracy` requirement at a given level-`alpha`.</span>
 <span class="sd">    :rtype: Any</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>

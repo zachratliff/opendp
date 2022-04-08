@@ -339,6 +339,8 @@
 
 <div class="viewcode-block" id="Measurement.invoke"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.Measurement.invoke">[docs]</a>    <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a differentially-private release with `arg`.</span>
+
+<span class="sd">        If `self` is (d_in, d_out)-close, then each invocation of this function is a d_out-DP release. </span>
 <span class="sd">        </span>
 <span class="sd">        :param arg: Input to the measurement.</span>
 <span class="sd">        :return: differentially-private release</span>
@@ -348,7 +350,9 @@
         <span class="k">return</span> <span class="n">measurement_invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Measurement.check"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.Measurement.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Check if the measurement satisfies the privacy relation at `d_in`, `d_out`.</span>
+        <span class="sd">&quot;&quot;&quot;Check if the measurement is (`d_in`, `d_out`)-close.</span>
+<span class="sd">        If true, implies that if the distance between inputs is at most `d_in`, then the privacy usage is at most `d_out`.</span>
+<span class="sd">        See also :func:`~Transformation.check`, a similar check for transformations.</span>
 <span class="sd">        </span>
 <span class="sd">        :param d_in: Distance in terms of the input metric.</span>
 <span class="sd">        :param d_out: Distance in terms of the output measure.</span>
@@ -459,7 +463,9 @@
         <span class="k">return</span> <span class="n">transformation_invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Transformation.check"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.Transformation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Check if the transformation satisfies the stability relation at `d_in`, `d_out`.</span>
+        <span class="sd">&quot;&quot;&quot;Check if the transformation is (`d_in`, `d_out`)-close.</span>
+<span class="sd">        If true, implies that if the distance between inputs is at most `d_in`, then the distance between outputs is at most `d_out`.</span>
+<span class="sd">        See also :func:`~Measurement.check`, a similar check for measurements.</span>
 
 <span class="sd">        :param d_in: Distance in terms of the input metric.</span>
 <span class="sd">        :param d_out: Distance in terms of the output metric.</span>
@@ -541,19 +547,34 @@
 <span class="sd">    The variant attribute corresponds to `one of the following variants &lt;https://github.com/opendp/opendp/blob/53ec58d01762ca5ceee08590d7e7b725bbdafcf6/rust/opendp/src/error.rs#L46-L87&gt;`_ and can be matched on.</span>
 <span class="sd">    Error variants may change in library updates.</span>
 
-<span class="sd">    .. todo:: Link to generated rust documentation for ErrorVariant.</span>
+<span class="sd">    See `Rust ErrorVariant &lt;https://docs.rs/opendp/latest/opendp/error/enum.ErrorVariant.html&gt;`_ for values variant may take on.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variant</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">inner_traceback</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variant</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">raw_traceback</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">variant</span> <span class="o">=</span> <span class="n">variant</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inner_traceback</span> <span class="o">=</span> <span class="n">inner_traceback</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw_traceback</span> <span class="o">=</span> <span class="n">raw_traceback</span>
+
+<div class="viewcode-block" id="OpenDPException.raw_frames"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.OpenDPException.raw_frames">[docs]</a>    <span class="k">def</span> <span class="nf">raw_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">re</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s*[0-9]+: &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_traceback</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="OpenDPException.frames"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.OpenDPException.frames">[docs]</a>    <span class="k">def</span> <span class="nf">frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">format_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">format_frame</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_frames</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;opendp&quot;</span><span class="p">)]</span></div>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variant</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_traceback</span><span class="p">:</span>
+            <span class="c1"># join and split by newlines because frames may be multi-line</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">+=</span> <span class="s2">&quot;Continued Rust stack trace:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;    &#39;</span> <span class="o">+</span> <span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">variant</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;(&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s1">&quot;)&#39;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_traceback</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inner_traceback</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
+            
         <span class="k">return</span> <span class="n">response</span></div>
 
 
@@ -578,7 +599,9 @@
         <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span>
         <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Optimizes a parameterized chain `make_chain` within float or integer `bounds`,</span>
+    <span class="sd">&quot;&quot;&quot;Useful to find the Transformation or Measurement parameterized with the ideal constructor argument.</span>
+<span class="sd">    </span>
+<span class="sd">    Optimizes a parameterized chain `make_chain` within float or integer `bounds`,</span>
 <span class="sd">    subject to the chained relation being (`d_in`, `d_out`)-close.</span>
 
 <span class="sd">    `bounds` defaults to (0., MAX_FINITE_FLOAT).</span>
@@ -592,10 +615,13 @@
 <span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `make_chain`</span>
 <span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
 <span class="sd">    :return: a chain parameterized at the nearest passing value to the decision point of the relation</span>
+<span class="sd">    :rtype: Union[Transformation, Measurement]</span>
 <span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
 
 
-<span class="sd">    :example:</span>
+<span class="sd">    :examples:</span>
+
+<span class="sd">    Find a base_laplace measurement with the smallest noise scale that is still (d_in, d_out)-close.</span>
 
 <span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search_chain, enable_features</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.trans import make_clamp, make_bounded_resize, make_sized_bounded_mean</span>
@@ -615,6 +641,21 @@
 <span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; # The resulting computation chain is always (`d_in`, `d_out`)-close, but we can still double-check:</span>
 <span class="sd">    &gt;&gt;&gt; assert chain.check(1, 1.)</span>
+
+
+<span class="sd">    Build a (2 neighboring, 1. epsilon)-close sized bounded sum with geometric(100.) noise.</span>
+<span class="sd">    It should have the widest possible admissible clamping bounds (-b, b).</span>
+
+<span class="sd">    &gt;&gt;&gt; from opendp.trans import make_sized_bounded_sum</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_geometric</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; def make_sum(b):</span>
+<span class="sd">    ...     return make_sized_bounded_sum(10_000, (-b, b)) &gt;&gt; make_base_geometric(100.)</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; # `meas` is a Measurement with the widest possible clamping bounds.</span>
+<span class="sd">    &gt;&gt;&gt; meas = binary_search_chain(make_sum, d_in=2, d_out=1., bounds=(0, 10_000))</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; # If you want the discovered clamping bound, use `binary_search_param` instead.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">make_chain</span><span class="p">(</span><span class="n">binary_search_param</span><span class="p">(</span><span class="n">make_chain</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">))</span></div>
 
@@ -624,13 +665,27 @@
         <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span>
         <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Optimizes a parameterized chain `make_chain` within float or integer `bounds`,</span>
+    <span class="sd">&quot;&quot;&quot;Useful to solve for the ideal constructor argument.</span>
+<span class="sd">    </span>
+<span class="sd">    Optimizes a parameterized chain `make_chain` within float or integer `bounds`,</span>
 <span class="sd">    subject to the chained relation being (`d_in`, `d_out`)-close.</span>
 
 <span class="sd">    `bounds` defaults to (0., MAX_FINITE_FLOAT).</span>
 <span class="sd">    If `bounds` are float, `tolerance` defaults to 1e-8.</span>
 
-<span class="sd">    :example:</span>
+<span class="sd">    :param make_chain: a unary function that maps from a number to a Transformation or Measurement</span>
+<span class="sd">    :param d_in: desired input distance of the computation chain</span>
+<span class="sd">    :param d_out: desired output distance of the computation chain</span>
+<span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `make_chain`</span>
+<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
+<span class="sd">    :return: the nearest passing value to the decision point of the relation</span>
+<span class="sd">    :rtype: Union[float, int]</span>
+<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
+
+
+<span class="sd">    :examples:</span>
+
+<span class="sd">    Find the smallest noise scale for a base_laplace measurement that is still (d_in, d_out)-close.</span>
 
 <span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search_param, enable_features</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_laplace</span>
@@ -644,13 +699,30 @@
 <span class="sd">    &gt;&gt;&gt; # Constructing the same chain with the discovered parameter will always be (0.1, 1.)-close.</span>
 <span class="sd">    &gt;&gt;&gt; assert make_base_laplace(scale).check(0.1, 1.)</span>
 
-<span class="sd">    :param make_chain: a unary function that maps from a number to a Transformation or Measurement</span>
-<span class="sd">    :param d_in: desired input distance of the computation chain</span>
-<span class="sd">    :param d_out: desired output distance of the computation chain</span>
-<span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `make_chain`</span>
-<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
-<span class="sd">    :return: the nearest passing value to the decision point of the relation</span>
-<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
+
+<span class="sd">    A policy research organization wants to know the smallest sample size necessary to release an &quot;accurate&quot; epsilon=1 DP mean income. </span>
+<span class="sd">    Determine the smallest dataset size such that, with 95% confidence, </span>
+<span class="sd">    the DP release differs from the clipped dataset&#39;s mean by no more than 1000. </span>
+<span class="sd">    Assume that neighboring datasets have a symmetric distance at most 2. </span>
+<span class="sd">    Also assume a clipping bound of 500,000.</span>
+
+<span class="sd">    &gt;&gt;&gt; # we first work out the necessary noise scale to satisfy the above constraints.</span>
+<span class="sd">    &gt;&gt;&gt; from opendp.accuracy import accuracy_to_laplacian_scale</span>
+<span class="sd">    &gt;&gt;&gt; necessary_scale = accuracy_to_laplacian_scale(accuracy=1000., alpha=.05)</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; # we then write a function that make a computation chain with a given data size</span>
+<span class="sd">    &gt;&gt;&gt; def make_mean(data_size):</span>
+<span class="sd">    ...    return (</span>
+<span class="sd">    ...        make_sized_bounded_mean(data_size, (0., 500_000.)) &gt;&gt; </span>
+<span class="sd">    ...        make_base_laplace(necessary_scale)</span>
+<span class="sd">    ...    )</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; # solve for the smallest dataset size that admits a (2 neighboring, 1. epsilon)-close measurement</span>
+<span class="sd">    &gt;&gt;&gt; binary_search_param(</span>
+<span class="sd">    ...     make_mean, </span>
+<span class="sd">    ...     d_in=2, d_out=1.,</span>
+<span class="sd">    ...     bounds=(1, 1000000))</span>
+<span class="sd">    1498</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">sys</span>
@@ -666,21 +738,56 @@
 
 <span class="sd">    If `bounds` are float, `tolerance` defaults to 1e-8.</span>
 
-<span class="sd">    :example:</span>
+<span class="sd">    :param predicate: a monotonic unary function from a number to a boolean</span>
+<span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `predicate`</span>
+<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
+<span class="sd">    :return: the discovered parameter within the bounds</span>
+<span class="sd">    :rtype: Union[float, int]</span>
+<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
+
+
+<span class="sd">    :examples:</span>
 
 <span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search</span>
 <span class="sd">    &gt;&gt;&gt; # Integer binary search</span>
 <span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt; 5, bounds=(0, 10)) == 6</span>
 <span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &lt; 5, bounds=(0, 10)) == 4</span>
 <span class="sd">    &gt;&gt;&gt; # Float binary search</span>
-<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt; 5., bounds=(0., 10.)) - 5. &lt; 1e-8</span>
-<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt; 5., bounds=(0., 10.)) - 5. &gt; -1e-8</span>
+<span class="sd">    &gt;&gt;&gt; assert 0.000 &lt; binary_search(lambda x: x &gt; 5., bounds=(0., 10.)) - 5. &lt; 1e-8</span>
+<span class="sd">    &gt;&gt;&gt; assert -1e-8 &lt; binary_search(lambda x: x &lt; 5., bounds=(0., 10.)) - 5. &lt; 0.00</span>
 
-<span class="sd">    :param predicate: a monotonic unary function from a number to a boolean</span>
-<span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `predicate`</span>
-<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
-<span class="sd">    :return: the discovered parameter within the bounds</span>
-<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
+
+<span class="sd">    Find epsilon usage of the gaussian(scale=1.) mechanism applied on a dp mean.</span>
+<span class="sd">    Assume neighboring datasets differ by up to three additions/removals, and fix delta to 1e-8.</span>
+
+<span class="sd">    .. testsetup:: *</span>
+
+<span class="sd">        from opendp.typing import L2Distance, VectorDomain, AllDomain</span>
+<span class="sd">        from opendp.trans import make_sized_bounded_mean</span>
+<span class="sd">        from opendp.meas import make_base_gaussian</span>
+<span class="sd">        from opendp.mod import enable_features</span>
+<span class="sd">        enable_features(&quot;contrib&quot;, &quot;floating-point&quot;)</span>
+
+<span class="sd">    &gt;&gt;&gt; # build a histogram that emits float counts</span>
+<span class="sd">    &gt;&gt;&gt; dp_mean = (</span>
+<span class="sd">    ...     make_sized_bounded_mean(1000, bounds=(0., 100.)) &gt;&gt;</span>
+<span class="sd">    ...     make_base_gaussian(1.)</span>
+<span class="sd">    ... )</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; binary_search(</span>
+<span class="sd">    ...     lambda d_out: dp_mean.check(3, (d_out, 1e-8)), </span>
+<span class="sd">    ...     bounds = (0., 1.))</span>
+<span class="sd">    0.6105625927448273</span>
+
+<span class="sd">    Find the L2 distance sensitivity of a histogram when neighboring datasets differ by up to 3 additions/removals.</span>
+
+<span class="sd">    &gt;&gt;&gt; from opendp.trans import make_count_by_categories</span>
+<span class="sd">    &gt;&gt;&gt; histogram = make_count_by_categories(categories=[&quot;a&quot;], MO=L2Distance[int])</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; binary_search(</span>
+<span class="sd">    ...     lambda d_out: histogram.check(3, d_out), </span>
+<span class="sd">    ...     bounds = (0, 100))</span>
+<span class="sd">    3</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;bounds must share the same type&quot;</span>
     <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>

@@ -376,17 +376,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.accuracy.accuracy_to_gaussian_scale">
 <span class="sig-prename descclassname"><span class="pre">opendp.accuracy.</span></span><span class="sig-name descname"><span class="pre">accuracy_to_gaussian_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">accuracy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/accuracy.html#accuracy_to_gaussian_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.accuracy.accuracy_to_gaussian_scale" title="Permalink to this definition">#</a></dt>
-<dd><p>Convert a desired accuracy into a gaussian noise scale.</p>
+<dd><p>Convert a desired <cite>accuracy</cite> (tolerance) into a gaussian noise scale at a statistical significance level <cite>alpha</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>accuracy</strong> – Desired accuracy.</p></li>
-<li><p><strong>alpha</strong> – Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1).</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of accuracy and alpha</p></li>
+<li><p><strong>accuracy</strong> – Desired accuracy. A tolerance for how far values may diverge from the input to the mechanism.</p></li>
+<li><p><strong>alpha</strong> – Statistical significance, level-<cite>alpha</cite>, or (1. - <cite>alpha</cite>)100% confidence. Must be within (0, 1).</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Data type of <cite>accuracy</cite> and <cite>alpha</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Gaussian noise scale that meets the accuracy requirement at a level-alpha.</p>
+<dd class="field-even"><p>Gaussian noise scale that meets the <cite>accuracy</cite> requirement at a given level-<cite>alpha</cite>.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Any</p>
@@ -404,17 +404,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.accuracy.accuracy_to_laplacian_scale">
 <span class="sig-prename descclassname"><span class="pre">opendp.accuracy.</span></span><span class="sig-name descname"><span class="pre">accuracy_to_laplacian_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">accuracy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/accuracy.html#accuracy_to_laplacian_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.accuracy.accuracy_to_laplacian_scale" title="Permalink to this definition">#</a></dt>
-<dd><p>Convert a desired accuracy into a laplacian noise scale.</p>
+<dd><p>Convert a desired <cite>accuracy</cite> (tolerance) into a laplacian noise scale at a statistical significance level <cite>alpha</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>accuracy</strong> – Desired accuracy.</p></li>
-<li><p><strong>alpha</strong> – Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1).</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of accuracy and alpha</p></li>
+<li><p><strong>accuracy</strong> – Desired accuracy. A tolerance for how far values may diverge from the input to the mechanism.</p></li>
+<li><p><strong>alpha</strong> – Statistical significance, level-<cite>alpha</cite>, or (1. - <cite>alpha</cite>)100% confidence. Must be within (0, 1].</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Data type of <cite>accuracy</cite> and <cite>alpha</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Laplacian noise scale that meets the accuracy requirement at a level-alpha.</p>
+<dd class="field-even"><p>Laplacian noise scale that meets the <cite>accuracy</cite> requirement at a given level-<cite>alpha</cite>.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Any</p>
@@ -432,17 +432,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.accuracy.gaussian_scale_to_accuracy">
 <span class="sig-prename descclassname"><span class="pre">opendp.accuracy.</span></span><span class="sig-name descname"><span class="pre">gaussian_scale_to_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/accuracy.html#gaussian_scale_to_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.accuracy.gaussian_scale_to_accuracy" title="Permalink to this definition">#</a></dt>
-<dd><p>Convert a gaussian scale into an accuracy estimate.</p>
+<dd><p>Convert a gaussian scale into an accuracy estimate (tolerance) at a statistical significance level <cite>alpha</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scale</strong> – Gaussian noise scale.</p></li>
-<li><p><strong>alpha</strong> – Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1].</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of scale and alpha</p></li>
+<li><p><strong>alpha</strong> – Statistical significance, level-<cite>alpha</cite>, or (1. - <cite>alpha</cite>)100% confidence. Must be within (0, 1].</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Data type of <cite>scale</cite> and <cite>alpha</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Accuracy estimate at a level-alpha.</p>
+<dd class="field-even"><p>Accuracy estimate. Maximum amount a value is expected to diverge at the given level-<cite>alpha</cite>.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Any</p>
@@ -460,17 +460,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.accuracy.laplacian_scale_to_accuracy">
 <span class="sig-prename descclassname"><span class="pre">opendp.accuracy.</span></span><span class="sig-name descname"><span class="pre">laplacian_scale_to_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/accuracy.html#laplacian_scale_to_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.accuracy.laplacian_scale_to_accuracy" title="Permalink to this definition">#</a></dt>
-<dd><p>Convert a laplacian scale into an accuracy estimate.</p>
+<dd><p>Convert a laplacian scale into an accuracy estimate (tolerance) at a statistical significance level <cite>alpha</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scale</strong> – Laplacian noise scale.</p></li>
-<li><p><strong>alpha</strong> – Statistical significance, level-alpha, or (1. - alpha)100% confidence. Must be within (0, 1].</p></li>
-<li><p><strong>T</strong> (<em>RuntimeTypeDescriptor</em>) – Data type of scale and alpha</p></li>
+<li><p><strong>alpha</strong> – Statistical significance, level-<cite>alpha</cite>, or (1. - <cite>alpha</cite>)100% confidence. Must be within (0, 1].</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Data type of <cite>scale</cite> and <cite>alpha</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Accuracy estimate at a level-alpha.</p>
+<dd class="field-even"><p>Accuracy estimate. Maximum amount a value is expected to diverge at the given level-<cite>alpha</cite>.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Any</p>

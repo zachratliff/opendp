@@ -337,9 +337,9 @@
 <span class="sd">    Failure to parse results in None, else Some&lt;TOA&gt;.</span>
 <span class="sd">    </span>
 <span class="sd">    :param TIA: atomic input data type to cast from</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TOA: atomic data type to cast into</span>
-<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TOA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A cast step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -371,9 +371,9 @@
     <span class="sd">&quot;&quot;&quot;Make a Transformation that casts a vector of data from type `TIA` to type `TOA`. If cast fails, fill with default.</span>
 <span class="sd">    </span>
 <span class="sd">    :param TIA: atomic input data type to cast from</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TOA: atomic data type to cast into</span>
-<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TOA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A cast_default step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -407,7 +407,7 @@
 <span class="sd">    :param value: value to check against</span>
 <span class="sd">    :type value: Any</span>
 <span class="sd">    :param TIA: atomic input data type</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A is_equal step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -437,7 +437,7 @@
     <span class="sd">&quot;&quot;&quot;Make a Transformation that checks if each element in a vector is null.</span>
 <span class="sd">    </span>
 <span class="sd">    :param DIA: atomic input domain</span>
-<span class="sd">    :type DIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type DIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A is_null step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -468,9 +468,9 @@
 <span class="sd">    If cast fails, fill with `TO`&#39;s null value.</span>
 <span class="sd">    </span>
 <span class="sd">    :param TIA: input data type to cast from</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TOA: data type to cast into</span>
-<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TOA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A cast_inherent step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -507,7 +507,7 @@
 <span class="sd">    :param MO: output dataset metric</span>
 <span class="sd">    :type MO: DatasetMetric</span>
 <span class="sd">    :param TA: atomic type of data</span>
-<span class="sd">    :type TA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A cast_metric step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -545,7 +545,7 @@
 <span class="sd">    :param bounds: Tuple of inclusive lower and upper bounds.</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
 <span class="sd">    :param TA: atomic data type</span>
-<span class="sd">    :type TA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A clamp step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -578,7 +578,7 @@
 <span class="sd">    :param bounds: Tuple of inclusive lower and upper bounds.</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
 <span class="sd">    :param TA: atomic data type</span>
-<span class="sd">    :type TA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A unclamp step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -609,9 +609,9 @@
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes a count of the number of records in data.</span>
 <span class="sd">    </span>
 <span class="sd">    :param TIA: Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TO: Output Type. Must be numeric.</span>
-<span class="sd">    :type TO: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TO: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A count step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -643,9 +643,9 @@
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes a count of the number of unique, distinct records in data.</span>
 <span class="sd">    </span>
 <span class="sd">    :param TIA: Atomic Input Type. Input data is expected to be of the form Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TO: Output Type. Must be numeric.</span>
-<span class="sd">    :type TO: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TO: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A count_distinct step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -681,9 +681,9 @@
 <span class="sd">    :param MO: Output Metric.</span>
 <span class="sd">    :type MO: SensitivityMetric</span>
 <span class="sd">    :param TK: Type of Key. Categorical/hashable input data type. Input data must be Vec&lt;TK&gt;.</span>
-<span class="sd">    :type TK: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TK: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TV: Type of Value. Express counts in terms of this integral type.</span>
-<span class="sd">    :type TV: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TV: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: The carrier type is HashMap&lt;TK, TV&gt;, a hashmap of the count (TV) for each unique data input (TK).</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -724,9 +724,9 @@
 <span class="sd">    :param MO: output sensitivity metric</span>
 <span class="sd">    :type MO: SensitivityMetric</span>
 <span class="sd">    :param TIA: categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TOA: express counts in terms of this numeric type</span>
-<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TOA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A count_by_categories step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -814,7 +814,7 @@
 <span class="sd">    :param col_names: Column names for each record entry.</span>
 <span class="sd">    :type col_names: Any</span>
 <span class="sd">    :param K: categorical/hashable data type of column names</span>
-<span class="sd">    :type K: RuntimeTypeDescriptor</span>
+<span class="sd">    :type K: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A create_dataframe step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -851,7 +851,7 @@
 <span class="sd">    :param col_names: Column names for each record entry.</span>
 <span class="sd">    :type col_names: Any</span>
 <span class="sd">    :param K: categorical/hashable data type of column names</span>
-<span class="sd">    :type K: RuntimeTypeDescriptor</span>
+<span class="sd">    :type K: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A split_dataframe step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -886,9 +886,9 @@
 <span class="sd">    :param key: categorical/hashable data type of the key/column name</span>
 <span class="sd">    :type key: Any</span>
 <span class="sd">    :param K: data type of the key</span>
-<span class="sd">    :type K: RuntimeTypeDescriptor</span>
+<span class="sd">    :type K: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param TOA: atomic data type to downcast to</span>
-<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TOA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A select_column step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -921,9 +921,9 @@
     <span class="sd">&quot;&quot;&quot;Make a Transformation that simply passes the data through.</span>
 <span class="sd">    </span>
 <span class="sd">    :param D: Domain of the identity function. Must be VectorDomain&lt;AllDomain&lt;_&gt;&gt; or AllDomain&lt;_&gt;</span>
-<span class="sd">    :type D: RuntimeTypeDescriptor</span>
+<span class="sd">    :type D: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param M: metric. Must be a dataset metric if D is a VectorDomain or a sensitivity metric if D is an AllDomain</span>
-<span class="sd">    :type M: RuntimeTypeDescriptor</span>
+<span class="sd">    :type M: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A transformation where the input and output domain are D and the input and output metric are M</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -959,7 +959,7 @@
 <span class="sd">    :param constant: Value to replace nulls with.</span>
 <span class="sd">    :type constant: Any</span>
 <span class="sd">    :param DA: domain of data being imputed. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</span>
-<span class="sd">    :type DA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type DA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A impute_constant step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -991,7 +991,7 @@
     <span class="sd">&quot;&quot;&quot;Make a Transformation that drops null values.</span>
 <span class="sd">    </span>
 <span class="sd">    :param DA: atomic domain of input data that contains nulls. This is OptionNullDomain&lt;AllDomain&lt;TA&gt;&gt; or InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt;</span>
-<span class="sd">    :type DA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type DA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A drop_null step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1023,7 +1023,7 @@
 <span class="sd">    :param bounds: Tuple of inclusive lower and upper bounds.</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
 <span class="sd">    :param TA: type of data being imputed</span>
-<span class="sd">    :type TA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A impute_uniform_float step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1056,7 +1056,7 @@
 <span class="sd">    :param categories: The set of categories to find indexes from.</span>
 <span class="sd">    :type categories: Any</span>
 <span class="sd">    :param TIA: categorical/hashable input type. Input data must be Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A find step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1089,7 +1089,7 @@
 <span class="sd">    :param edges: The set of edges to split bins by.</span>
 <span class="sd">    :type edges: Any</span>
 <span class="sd">    :param TIA: numerical input type. Input data must be Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TIA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TIA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A find_bin step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1125,7 +1125,7 @@
 <span class="sd">    :param null: Category to return if the index is out-of-range of the category set.</span>
 <span class="sd">    :type null: Any</span>
 <span class="sd">    :param TOA: atomic output type. Output data will be Vec&lt;TIA&gt;.</span>
-<span class="sd">    :type TOA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TOA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A index step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1164,7 +1164,7 @@
 <span class="sd">    :param bounds: Tuple of inclusive lower and upper bounds of the input data.</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
 <span class="sd">    :param T: atomic data type</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A sized_bounded_mean step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1201,7 +1201,7 @@
 <span class="sd">    :param constant: Value to impute with.</span>
 <span class="sd">    :type constant: Any</span>
 <span class="sd">    :param TA: Atomic type.</span>
-<span class="sd">    :type TA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A vector of the same type `TA`, but with the provided `size`.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1240,7 +1240,7 @@
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
 <span class="sd">    :param constant: Value to impute with.</span>
 <span class="sd">    :param TA: Atomic type. If not passed, TA is inferred from the lower bound.</span>
-<span class="sd">    :type TA: RuntimeTypeDescriptor</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A vector of the same type `TA`, but with the provided `size`.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1276,7 +1276,7 @@
 <span class="sd">    :param bounds: Tuple of lower and upper bounds for data in the input domain</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
 <span class="sd">    :param T: atomic type of data</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A bounded_sum step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1314,7 +1314,7 @@
 <span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
 <span class="sd">    :param T: atomic type of data</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A sized_bounded_sum step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -1356,7 +1356,7 @@
 <span class="sd">    :param ddof: Delta degrees of freedom. Set to 0 if not a sample, 1 for sample estimate.</span>
 <span class="sd">    :type ddof: int</span>
 <span class="sd">    :param T: atomic data type</span>
-<span class="sd">    :type T: RuntimeTypeDescriptor</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A sized_bounded_variance step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
