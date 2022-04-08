@@ -8,6 +8,21 @@ use std::fmt::{Debug, Formatter};
 // default type for distances between datasets
 pub type IntDistance = u32;
 
+#[derive(Clone, PartialEq, Default)]
+pub struct AgnosticMetric;
+
+impl Debug for AgnosticMetric {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), std::fmt::Error> {
+        write!(f, "AgnosticMetric()")
+    }
+}
+
+impl Metric for AgnosticMetric {
+    type Distance = ();
+}
+
+
+
 /// Measures
 #[derive(Clone)]
 pub struct MaxDivergence<Q>(PhantomData<Q>);
