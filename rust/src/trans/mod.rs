@@ -29,6 +29,11 @@ pub mod mean;
 pub use crate::trans::mean::*;
 
 #[cfg(feature="contrib")]
+pub mod quantile_discrete_exponential;
+#[cfg(feature="contrib")]
+pub use crate::trans::quantile_discrete_exponential::*;
+
+#[cfg(feature="contrib")]
 pub mod variance;
 #[cfg(feature="contrib")]
 pub use crate::trans::variance::*;
