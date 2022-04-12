@@ -290,7 +290,7 @@
                 
   <h1>Source code for opendp.mod</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">ctypes</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">opendp._lib</span> <span class="kn">import</span> <span class="n">AnyMeasurement</span><span class="p">,</span> <span class="n">AnyTransformation</span>
 
@@ -598,14 +598,11 @@
         <span class="n">make_chain</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">Union</span><span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">]],</span>
         <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span>
         <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">]:</span>
+        <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Useful to find the Transformation or Measurement parameterized with the ideal constructor argument.</span>
 <span class="sd">    </span>
 <span class="sd">    Optimizes a parameterized chain `make_chain` within float or integer `bounds`,</span>
 <span class="sd">    subject to the chained relation being (`d_in`, `d_out`)-close.</span>
-
-<span class="sd">    `bounds` defaults to (0., MAX_FINITE_FLOAT).</span>
-<span class="sd">    If `bounds` are float, `tolerance` defaults to 1e-8.</span>
 
 <span class="sd">    See `binary_search_param` to retrieve the discovered parameter instead of the complete computation chain.</span>
 
@@ -613,10 +610,11 @@
 <span class="sd">    :param d_in: desired input distance of the computation chain</span>
 <span class="sd">    :param d_out: desired output distance of the computation chain</span>
 <span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `make_chain`</span>
-<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
+<span class="sd">    :param T: type of argument to `make_chain`, one of {float, int}</span>
 <span class="sd">    :return: a chain parameterized at the nearest passing value to the decision point of the relation</span>
 <span class="sd">    :rtype: Union[Transformation, Measurement]</span>
-<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
+<span class="sd">    :raises TypeError: if the type is not inferrable (pass T) or the type is invalid</span>
+<span class="sd">    :raises ValueError: if the predicate function is constant, bounds cannot be inferred, or decision boundary is not within `bounds`.</span>
 
 
 <span class="sd">    :examples:</span>
@@ -635,7 +633,7 @@
 <span class="sd">    ...     make_sized_bounded_mean(size=10, bounds=(0., 1.))</span>
 <span class="sd">    ... )</span>
 <span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; # Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>
+<span class="sd">    &gt;&gt;&gt; # Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain nearest the decision boundary.</span>
 <span class="sd">    &gt;&gt;&gt; # The lambda function returns the complete computation chain when given a single numeric parameter.</span>
 <span class="sd">    &gt;&gt;&gt; chain = binary_search_chain(lambda s: pre &gt;&gt; make_base_laplace(scale=s), d_in=1, d_out=1.)</span>
 <span class="sd">    ...</span>
@@ -657,48 +655,40 @@
 <span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; # If you want the discovered clamping bound, use `binary_search_param` instead.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">make_chain</span><span class="p">(</span><span class="n">binary_search_param</span><span class="p">(</span><span class="n">make_chain</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">make_chain</span><span class="p">(</span><span class="n">binary_search_param</span><span class="p">(</span><span class="n">make_chain</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="binary_search_param"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.binary_search_param">[docs]</a><span class="k">def</span> <span class="nf">binary_search_param</span><span class="p">(</span>
         <span class="n">make_chain</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">Union</span><span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">Measurement</span><span class="p">]],</span>
         <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span>
         <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Useful to solve for the ideal constructor argument.</span>
 <span class="sd">    </span>
 <span class="sd">    Optimizes a parameterized chain `make_chain` within float or integer `bounds`,</span>
 <span class="sd">    subject to the chained relation being (`d_in`, `d_out`)-close.</span>
 
-<span class="sd">    `bounds` defaults to (0., MAX_FINITE_FLOAT).</span>
-<span class="sd">    If `bounds` are float, `tolerance` defaults to 1e-8.</span>
-
 <span class="sd">    :param make_chain: a unary function that maps from a number to a Transformation or Measurement</span>
 <span class="sd">    :param d_in: desired input distance of the computation chain</span>
 <span class="sd">    :param d_out: desired output distance of the computation chain</span>
 <span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `make_chain`</span>
-<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
+<span class="sd">    :param T: type of argument to `make_chain`, one of {float, int}</span>
 <span class="sd">    :return: the nearest passing value to the decision point of the relation</span>
-<span class="sd">    :rtype: Union[float, int]</span>
-<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
+<span class="sd">    :raises TypeError: if the type is not inferrable (pass T) or the type is invalid</span>
+<span class="sd">    :raises ValueError: if the predicate function is constant, bounds cannot be inferred, or decision boundary is not within `bounds`.</span>
 
-
-<span class="sd">    :examples:</span>
-
-<span class="sd">    Find the smallest noise scale for a base_laplace measurement that is still (d_in, d_out)-close.</span>
+<span class="sd">    :example:</span>
 
 <span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search_param, enable_features</span>
 <span class="sd">    &gt;&gt;&gt; from opendp.meas import make_base_laplace</span>
 <span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; # Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain within `tolerance` of the decision boundary.</span>
+<span class="sd">    &gt;&gt;&gt; # Find a value in `bounds` that produces a (`d_in`, `d_out`)-chain nearest the decision boundary.</span>
 <span class="sd">    &gt;&gt;&gt; # The first argument is any function that returns your complete computation chain</span>
 <span class="sd">    &gt;&gt;&gt; #     when passed a single numeric parameter.</span>
 <span class="sd">    &gt;&gt;&gt; scale = binary_search_param(make_base_laplace, d_in=0.1, d_out=1.)</span>
-<span class="sd">    &gt;&gt;&gt; # The discovered scale differs by at most `tolerance` from the ideal scale (0.1).</span>
-<span class="sd">    &gt;&gt;&gt; assert scale - 0.1 &lt; 1e-8</span>
+<span class="sd">    &gt;&gt;&gt; assert scale == 0.1</span>
 <span class="sd">    &gt;&gt;&gt; # Constructing the same chain with the discovered parameter will always be (0.1, 1.)-close.</span>
 <span class="sd">    &gt;&gt;&gt; assert make_base_laplace(scale).check(0.1, 1.)</span>
-
 
 <span class="sd">    A policy research organization wants to know the smallest sample size necessary to release an &quot;accurate&quot; epsilon=1 DP mean income. </span>
 <span class="sd">    Determine the smallest dataset size such that, with 95% confidence, </span>
@@ -724,38 +714,35 @@
 <span class="sd">    ...     bounds=(1, 1000000))</span>
 <span class="sd">    1498</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">sys</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="k">lambda</span> <span class="n">param</span><span class="p">:</span> <span class="n">make_chain</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">),</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="k">lambda</span> <span class="n">param</span><span class="p">:</span> <span class="n">make_chain</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">),</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="binary_search"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.binary_search">[docs]</a><span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span>
         <span class="n">predicate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">],</span>
-        <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
-        <span class="n">tolerance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">bounds</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_sign</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Find the closest passing value to the decision boundary of `predicate` within float or integer `bounds`.</span>
 
-<span class="sd">    If `bounds` are float, `tolerance` defaults to 1e-8.</span>
+<span class="sd">    If bounds are not passed, conducts an exponential search.</span>
 
 <span class="sd">    :param predicate: a monotonic unary function from a number to a boolean</span>
 <span class="sd">    :param bounds: a 2-tuple of the lower and upper bounds to the input of `predicate`</span>
-<span class="sd">    :param tolerance: the discovered parameter differs by at most `tolerance` from the ideal parameter</span>
+<span class="sd">    :param T: type of argument to `predicate`, one of {float, int}</span>
+<span class="sd">    :param return_sign: if True, also return the direction away from the decision boundary</span>
 <span class="sd">    :return: the discovered parameter within the bounds</span>
-<span class="sd">    :rtype: Union[float, int]</span>
-<span class="sd">    :raises AssertionError: if the arguments are ill-formed (type issues, decision boundary not within `bounds`)</span>
+<span class="sd">    :raises TypeError: if the type is not inferrable (pass T) or the type is invalid</span>
+<span class="sd">    :raises ValueError: if the predicate function is constant, bounds cannot be inferred, or decision boundary is not within `bounds`.</span>
 
-
-<span class="sd">    :examples:</span>
+<span class="sd">    :example:</span>
 
 <span class="sd">    &gt;&gt;&gt; from opendp.mod import binary_search</span>
-<span class="sd">    &gt;&gt;&gt; # Integer binary search</span>
-<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt; 5, bounds=(0, 10)) == 6</span>
-<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &lt; 5, bounds=(0, 10)) == 4</span>
 <span class="sd">    &gt;&gt;&gt; # Float binary search</span>
-<span class="sd">    &gt;&gt;&gt; assert 0.000 &lt; binary_search(lambda x: x &gt; 5., bounds=(0., 10.)) - 5. &lt; 1e-8</span>
-<span class="sd">    &gt;&gt;&gt; assert -1e-8 &lt; binary_search(lambda x: x &lt; 5., bounds=(0., 10.)) - 5. &lt; 0.00</span>
-
+<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt;= 5.) == 5.</span>
+<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &lt;= 5.) == 5.</span>
+<span class="sd">    &gt;&gt;&gt; # Integer binary search</span>
+<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &gt; 5, T=int) == 6</span>
+<span class="sd">    &gt;&gt;&gt; assert binary_search(lambda x: x &lt; 5, T=int) == 4</span>
 
 <span class="sd">    Find epsilon usage of the gaussian(scale=1.) mechanism applied on a dp mean.</span>
 <span class="sd">    Assume neighboring datasets differ by up to three additions/removals, and fix delta to 1e-8.</span>
@@ -777,7 +764,7 @@
 <span class="sd">    &gt;&gt;&gt; binary_search(</span>
 <span class="sd">    ...     lambda d_out: dp_mean.check(3, (d_out, 1e-8)), </span>
 <span class="sd">    ...     bounds = (0., 1.))</span>
-<span class="sd">    0.6105625927448273</span>
+<span class="sd">    0.6105625903337409</span>
 
 <span class="sd">    Find the L2 distance sensitivity of a histogram when neighboring datasets differ by up to 3 additions/removals.</span>
 
@@ -789,31 +776,139 @@
 <span class="sd">    ...     bounds = (0, 100))</span>
 <span class="sd">    3</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;bounds must share the same type&quot;</span>
+    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">exponential_bounds_search</span><span class="p">(</span><span class="n">predicate</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unable to infer bounds&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)))</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;bounds must share the same type&quot;</span><span class="p">)</span>
     <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
 
     <span class="n">maximize</span> <span class="o">=</span> <span class="n">predicate</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span>  <span class="c1"># if the lower bound passes, we should maximize</span>
     <span class="n">minimize</span> <span class="o">=</span> <span class="n">predicate</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span>  <span class="c1"># if the upper bound passes, we should minimize</span>
-    <span class="k">assert</span> <span class="n">maximize</span> <span class="o">!=</span> <span class="n">minimize</span><span class="p">,</span> <span class="s2">&quot;the decision boundary of the predicate is outside the bounds&quot;</span>
+    <span class="k">if</span> <span class="n">maximize</span> <span class="o">==</span> <span class="n">minimize</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;the decision boundary of the predicate is outside the bounds&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="n">tolerance</span> <span class="o">=</span> <span class="mf">1.0e-8</span> <span class="k">if</span> <span class="n">tolerance</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">tolerance</span>
+        <span class="n">tolerance</span> <span class="o">=</span> <span class="mf">0.</span>
         <span class="n">half</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">/</span> <span class="mf">2.</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="n">tolerance</span> <span class="o">=</span> <span class="n">tolerance</span> <span class="ow">or</span> <span class="mi">1</span>  <span class="c1"># the lower and upper bounds never meet due to int truncation</span>
+        <span class="n">tolerance</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># the lower and upper bounds never meet due to int truncation</span>
         <span class="n">half</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">//</span> <span class="mi">2</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;bounds must be either float or int&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;bounds must be either float or int&quot;</span><span class="p">)</span>
 
+    <span class="n">mid</span> <span class="o">=</span> <span class="n">lower</span>
     <span class="k">while</span> <span class="n">upper</span> <span class="o">-</span> <span class="n">lower</span> <span class="o">&gt;</span> <span class="n">tolerance</span><span class="p">:</span>
-        <span class="n">mid</span> <span class="o">=</span> <span class="n">lower</span> <span class="o">+</span> <span class="n">half</span><span class="p">(</span><span class="n">upper</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span>  <span class="c1"># avoid overflow</span>
+        <span class="n">new_mid</span> <span class="o">=</span> <span class="n">lower</span> <span class="o">+</span> <span class="n">half</span><span class="p">(</span><span class="n">upper</span> <span class="o">-</span> <span class="n">lower</span><span class="p">)</span>  <span class="c1"># avoid overflow</span>
+
+        <span class="c1"># avoid an infinite loop from float roundoff</span>
+        <span class="k">if</span> <span class="n">new_mid</span> <span class="o">==</span> <span class="n">mid</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">mid</span> <span class="o">=</span> <span class="n">new_mid</span>
         <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">mid</span><span class="p">)</span> <span class="o">==</span> <span class="n">minimize</span><span class="p">:</span>
             <span class="n">upper</span> <span class="o">=</span> <span class="n">mid</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">lower</span> <span class="o">=</span> <span class="n">mid</span>
 
     <span class="c1"># one bound is always false, the other true. Return the truthy bound</span>
-    <span class="k">return</span> <span class="n">upper</span> <span class="k">if</span> <span class="n">minimize</span> <span class="k">else</span> <span class="n">lower</span></div>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">upper</span> <span class="k">if</span> <span class="n">minimize</span> <span class="k">else</span> <span class="n">lower</span>
+
+    <span class="c1"># optionally return sign</span>
+    <span class="k">if</span> <span class="n">return_sign</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">value</span><span class="p">,</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">minimize</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="exponential_bounds_search"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.exponential_bounds_search">[docs]</a><span class="k">def</span> <span class="nf">exponential_bounds_search</span><span class="p">(</span>
+    <span class="n">predicate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">],</span> 
+    <span class="n">T</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">type</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]:</span>
+    <span class="sd">&quot;&quot;&quot;Determine bounds for a binary search via an exponential search,</span>
+<span class="sd">    in large bands of [2^((k - 1)^2), 2^(k^2)] for k in [0, 8).</span>
+<span class="sd">    Will attempt to recover once if `predicate` throws an exception, </span>
+<span class="sd">    by searching bands on the ok side of the exception boundary.</span>
+<span class="sd">    </span>
+
+<span class="sd">    :param predicate: a monotonic unary function from a number to a boolean</span>
+<span class="sd">    :param T: type of argument to predicate, one of {float, int}</span>
+<span class="sd">    :return: a tuple of float or int bounds that the decision boundary lies within</span>
+<span class="sd">    :raises TypeError: if the type is not inferrable (pass T)</span>
+<span class="sd">    :raises ValueError: if the predicate function is constant</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># try to infer T</span>
+    <span class="k">if</span> <span class="n">T</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">check_type</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">predicate</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">except</span> <span class="n">OpenDPException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;No match for concrete type&quot;</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        
+        <span class="k">if</span> <span class="n">check_type</span><span class="p">(</span><span class="mf">0.</span><span class="p">):</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="nb">float</span>
+        <span class="k">elif</span> <span class="n">check_type</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="nb">int</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;unable to infer type `T`; pass the type `T` or bounds&quot;</span><span class="p">)</span>
+
+    <span class="c1"># core search functionality</span>
+    <span class="k">def</span> <span class="nf">signed_band_search</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">at_center</span><span class="p">,</span> <span class="n">sign</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;identify which band (of eight) the decision boundary lies in, </span>
+<span class="sd">        starting from `center` in the direction indicated by `sign`&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">T</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="c1"># searching bands of [(k - 1) * 2^16, k * 2^16].</span>
+            <span class="c1"># center + 1 included because zero is prone to error</span>
+            <span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="n">center</span><span class="p">,</span> <span class="n">center</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">center</span> <span class="o">+</span> <span class="n">sign</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">16</span> <span class="o">*</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">))]</span>
+
+        <span class="k">if</span> <span class="n">T</span> <span class="o">==</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="c1"># searching bands of [2^((k - 1)^2), 2^(k^2)].</span>
+            <span class="c1"># exponent has ten bits (2.^1024 overflows) so k must be in [0, 32).</span>
+            <span class="c1"># unlikely to need numbers greater than 2**64, and to avoid overflow from shifted centers,</span>
+            <span class="c1">#    only check k in [0, 8). Set your own bounds if this is not sufficient</span>
+            <span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="n">center</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="n">center</span> <span class="o">+</span> <span class="n">sign</span> <span class="o">*</span> <span class="mf">2.</span> <span class="o">**</span> <span class="n">k</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1024</span> <span class="o">//</span> <span class="mi">32</span> <span class="o">//</span> <span class="mi">4</span><span class="p">))]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">bands</span><span class="p">)):</span>
+            <span class="c1"># looking for a change in sign that indicates the decision boundary is within this band</span>
+            <span class="k">if</span> <span class="n">at_center</span> <span class="o">!=</span> <span class="n">predicate</span><span class="p">(</span><span class="n">bands</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                <span class="c1"># return the band</span>
+                <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">bands</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]))</span>
+        
+        <span class="c1"># No band found!</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="p">{</span><span class="nb">int</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">:</span> <span class="mf">0.</span><span class="p">}[</span><span class="n">T</span><span class="p">]</span>
+        <span class="n">at_center</span> <span class="o">=</span> <span class="n">predicate</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+        <span class="c1"># search positive bands, then negative bands</span>
+        <span class="k">return</span> <span class="n">signed_band_search</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">at_center</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">signed_band_search</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">at_center</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># predicate has thrown an exception</span>
+    <span class="c1"># 1. Treat exceptions as a secondary decision boundary, and find the edge value</span>
+    <span class="c1"># 2. Return a bound by searching from the exception edge, in the direction away from the exception</span>
+    <span class="k">def</span> <span class="nf">exception_predicate</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">predicate</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">exception_bounds</span> <span class="o">=</span> <span class="n">exponential_bounds_search</span><span class="p">(</span><span class="n">exception_predicate</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">exception_bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;predicate always fails&quot;</span><span class="p">)</span>
+
+    <span class="n">center</span><span class="p">,</span> <span class="n">sign</span> <span class="o">=</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">exception_predicate</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">exception_bounds</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">return_sign</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">at_center</span> <span class="o">=</span> <span class="n">predicate</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">signed_band_search</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">at_center</span><span class="p">,</span> <span class="n">sign</span><span class="p">)</span></div>
 </pre></div>
 
               </div>
