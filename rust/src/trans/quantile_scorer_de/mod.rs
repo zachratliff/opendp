@@ -3,7 +3,7 @@ use std::cmp::Ordering;
 
 use crate::{
     core::{Function, StabilityRelation, Transformation},
-    dist::{InfDistance, IntDistance, SubstituteDistance, SymmetricDistance},
+    dist::{AbsoluteDistance, IntDistance, SubstituteDistance, SupDistance, SymmetricDistance},
     dom::{AllDomain, SizedDomain, VectorDomain},
     error::Fallible,
     traits::{CheckNull, DistanceConstant, ExactIntCast},
@@ -17,7 +17,7 @@ pub fn make_quantile_scorer_de<TI, TO>(
         VectorDomain<AllDomain<TI>>,
         VectorDomain<AllDomain<TO>>,
         SymmetricDistance,
-        InfDistance<TO>,
+        SupDistance<AbsoluteDistance<TO>>,
     >,
 >
 where
@@ -25,13 +25,26 @@ where
     TO: CheckNull + DistanceConstant<IntDistance> + Float + ExactIntCast<usize>,
     IntDistance: DistanceConstant<TO>,
 {
+    // distances between candidate scores on neighboring datasets
+    //    max d_abs(s, s')    (where s is a candidate score)
+    //  = max |s - s'| = alpha * (1 - alpha)
+    let abs_dist_const = alpha.max(TO::one() - alpha);
+    // distance between score vectors on neighboring datasets
+    //    max d_sup(s, s')    (where s is a score vector)
+    //  = max_{ij} |d_abs(s_i, s_j) - d_abs(s'_i, s'_j)|
+    //  = max_{ij} |(s_i - s_j) - (s'_i - s'_j)|
+    //  = max_{ij} |(s_i - s'_i) - (s_j - s'_j)|
+    // <= 2 * max_i |s_i - s'_i|    (scorer is not monotonic, so signs on terms can disagree)
+    //  = 2 * max_i d_abs(s_i, s'_i)
+    //  = 2 * alpha * (1 - alpha)   (by abs_dist_const)
+    let sup_dist_const = (TO::one() + TO::one()) * abs_dist_const;
     Ok(Transformation::new(
         VectorDomain::new_all(),
         VectorDomain::new_all(),
         Function::new_fallible(move |arg: &Vec<TI>| score(arg.clone(), &candidates, alpha.clone())),
         SymmetricDistance::default(),
-        InfDistance::default(),
-        StabilityRelation::new_from_constant(alpha.max(TO::one() - alpha)),
+        SupDistance::default(),
+        StabilityRelation::new_from_constant(sup_dist_const),
     ))
 }
 
@@ -44,7 +57,7 @@ pub fn make_sized_quantile_scorer_de<TI, TO>(
         SizedDomain<VectorDomain<AllDomain<TI>>>,
         VectorDomain<AllDomain<TO>>,
         SubstituteDistance,
-        InfDistance<TO>,
+        SupDistance<AbsoluteDistance<TO>>,
     >,
 >
 where
@@ -55,14 +68,13 @@ where
     if candidates.windows(2).any(|w| w[0] >= w[1]) {
         return fallible!(MakeTransformation, "candidates must be increasing");
     }
-
     Ok(Transformation::new(
         SizedDomain::new(VectorDomain::new_all(), size),
         VectorDomain::new_all(),
         Function::new_fallible(move |arg: &Vec<TI>| score(arg.clone(), &candidates, alpha.clone())),
         SubstituteDistance::default(),
-        InfDistance::default(),
-        StabilityRelation::new_from_constant(TO::one()),
+        SupDistance::default(),
+        StabilityRelation::new_from_constant((TO::one() + TO::one())),
     ))
 }
 

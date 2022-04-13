@@ -138,23 +138,24 @@ impl<Q> Metric for AbsoluteDistance<Q> {
 }
 impl<Q> SensitivityMetric for AbsoluteDistance<Q> {}
 
-pub struct InfDistance<Q>(PhantomData<Q>);
-impl<Q> Default for InfDistance<Q> {
-    fn default() -> Self { InfDistance(PhantomData) }
+/// If M measures distances as d(x, x'), then SupDistance(x, x') = max_{ij} |d(x_i, x_j) - d(x'_i, x'_j)|
+pub struct SupDistance<M: Metric>(M);
+impl<M: Metric> Default for SupDistance<M> {
+    fn default() -> Self { SupDistance(M::default()) }
 }
 
-impl<Q> Clone for InfDistance<Q> {
+impl<M: Metric> Clone for SupDistance<M> {
     fn clone(&self) -> Self { Self::default() }
 }
-impl<Q> PartialEq for InfDistance<Q> {
+impl<M: Metric> PartialEq for SupDistance<M> {
     fn eq(&self, _other: &Self) -> bool { true }
 }
-impl<Q> Debug for InfDistance<Q> {
+impl<M: Metric> Debug for SupDistance<M> {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), std::fmt::Error> {
-        write!(f, "InfDistance()")
+        write!(f, "InfDistance({:?})", self.0)
     }
 }
-impl<Q> Metric for InfDistance<Q> {
-    type Distance = Q;
+impl<M: Metric> Metric for SupDistance<M> {
+    type Distance = M::Distance;
 }
-impl<Q> SensitivityMetric for InfDistance<Q> {}
+impl<M: Metric> SensitivityMetric for SupDistance<M> {}
