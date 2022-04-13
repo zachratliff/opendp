@@ -29,6 +29,11 @@ pub mod count;
 pub use crate::trans::count::*;
 
 #[cfg(feature="contrib")]
+pub mod count_cdf;
+#[cfg(feature="contrib")]
+pub use crate::trans::count_cdf::*;
+
+#[cfg(feature="contrib")]
 pub mod mean;
 #[cfg(feature="contrib")]
 pub use crate::trans::mean::*;

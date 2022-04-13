@@ -6,6 +6,7 @@ use std::{
 use num::{Float, Zero};
 
 use crate::{
+    comb::make_postprocess_trans,
     core::{Function, Metric, StabilityRelation, Transformation},
     dist::{AgnosticMetric, LpDistance},
     dom::{AllDomain, VectorDomain},
@@ -114,10 +115,10 @@ where
     TI: CheckNull + Clone,
     TO: CheckNull + Float + RoundCast<TI> + for<'a> Sum<&'a TO> + MulAssign + AddAssign,
 {
-    Ok(Transformation::new(
+    make_postprocess_trans(
         VectorDomain::new_all(),
         VectorDomain::new_all(),
-        Function::new_fallible(move |arg: &Vec<TI>| {
+        move |arg: &Vec<TI>| {
             let layers = num_layers_from_num_nodes(arg.len(), b);
 
             let mut vars = vec![TO::one(); num_nodes_from_num_layers(layers, b)];
@@ -196,15 +197,8 @@ where
             let leaf_start = num_nodes_from_num_layers(layers - 1, b);
             let leaf_end = num_nodes_from_num_layers(layers, b) - zero_leaves;
             Ok(h_b[leaf_start..leaf_end].to_vec())
-        }),
-        AgnosticMetric::default(),
-        AgnosticMetric::default(),
-        StabilityRelation::new_all(
-            |_d_in: &(), _d_out: &()| Ok(true),
-            None::<fn(&_) -> _>,
-            None::<fn(&_) -> _>,
-        ),
-    ))
+        },
+    )
 }
 
 #[cfg(test)]
