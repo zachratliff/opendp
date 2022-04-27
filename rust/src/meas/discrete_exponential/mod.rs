@@ -8,7 +8,7 @@ use crate::{
     dom::{AllDomain, VectorDomain},
     error::Fallible,
     samplers::SampleUniform,
-    traits::{CheckNull, InfMul},
+    traits::{CheckNull, InfMul, InfDiv},
 };
 
 pub fn make_base_discrete_exponential<MI>(
@@ -24,7 +24,7 @@ pub fn make_base_discrete_exponential<MI>(
 >
 where
     MI: SensitivityMetric,
-    MI::Distance: 'static + CheckNull + Float + SampleUniform + InfMul,
+    MI::Distance: 'static + CheckNull + Float + SampleUniform + InfMul + InfDiv,
 {
     Ok(Measurement::new(
         VectorDomain::new_all(),
@@ -35,9 +35,10 @@ where
                 .map(|v| scale * v)
                 // enumerate before sampling so that indexes are inside the result
                 .enumerate()
+                // using the gumbel sampling trick: https://lips.cs.princeton.edu/the-gumbel-max-trick-for-discrete-distributions/
                 .map(|(i, llik)| {
                     MI::Distance::sample_standard_uniform(constant_time)
-                        .map(|v| (i, llik - v.ln().neg().ln()))
+                        .map(|u| (i, llik - u.ln().neg().ln()))
                 })
                 // retrieve the highest noisy likelihood pair
                 .try_fold(
@@ -59,10 +60,10 @@ where
                 if d_out.is_sign_negative() {
                     return fallible!(InvalidDistance, "epsilon must be non-negative");
                 }
-                // d_out * scale >= d_in
-                Ok(d_out.neg_inf_mul(&scale)? >= d_in.clone())
+                // d_out >= d_in * scale
+                Ok(d_out.clone() >= d_in.inf_mul(&scale)?)
             },
-            Some(move |d_out: &MI::Distance| d_out.neg_inf_mul(&scale)),
+            Some(move |d_out: &MI::Distance| d_out.neg_inf_div(&scale)),
         ),
     ))
 }

@@ -3,12 +3,13 @@ use std::cmp::Ordering;
 
 use crate::{
     core::{Function, StabilityRelation, Transformation},
-    dist::{AbsoluteDistance, IntDistance, SubstituteDistance, SupDistance, SymmetricDistance},
+    dist::{AbsoluteDistance, IntDistance, SupDistance, SymmetricDistance},
     dom::{AllDomain, SizedDomain, VectorDomain},
     error::Fallible,
-    traits::{CheckNull, DistanceConstant, ExactIntCast},
+    traits::{CheckNull, DistanceConstant, ExactIntCast, InfSub},
 };
 
+/// Makes a [Transformation] that scores how similar each candidate is to the given `alpha`-quantile on the input dataset.
 pub fn make_quantile_scorer_de<TI, TO>(
     candidates: Vec<TI>,
     alpha: TO,
@@ -22,22 +23,66 @@ pub fn make_quantile_scorer_de<TI, TO>(
 >
 where
     TI: 'static + CheckNull + Clone + PartialOrd,
-    TO: CheckNull + DistanceConstant<IntDistance> + Float + ExactIntCast<usize>,
+    TO: CheckNull + DistanceConstant<IntDistance> + Float + ExactIntCast<usize> + InfSub,
     IntDistance: DistanceConstant<TO>,
 {
     // distances between candidate scores on neighboring datasets
     //    max d_abs(s, s')    (where s is a candidate score)
-    //  = max |s - s'| = alpha * (1 - alpha)
-    let abs_dist_const = alpha.max(TO::one() - alpha);
+    //  = max |s - s'| 
+    //  = max | -|#(x <= c) - alpha * n| - -|#(x' <= c) - alpha * n||
+    //  assume x' is equal to x, but with some x_i <= c removed
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x' <= c) - alpha * (n - 1)||
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - 1 - alpha * n + alpha||  (by the assumption)
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - alpha * n + (alpha - 1)||
+    //     <= max | -|#(x <= c) - alpha * n| - -(|#(x <= c) - alpha * n| + |alpha - 1|)|
+    //      = max | a - a - |alpha - 1|| (where a = -|#(x <= c) - alpha * n|)
+    //      = 1 - alpha (since alpha <= 1)
+    //  assume x' is equal to x, but with some x_i > c removed
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x' <= c) - alpha * (n - 1)||
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - alpha * n + alpha|| (by the assumption)
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - alpha * n + alpha||
+    //     <= max | -|#(x <= c) - alpha * n| - -(|#(x <= c) - alpha * n| + |alpha|)|
+    //      = max | a - a - |alpha|| (where a = -|#(x <= c) - alpha * n|)
+    //      = alpha (since alpha >= 0)
+    //  assume x' is equal to x, but with some x'_i <= c added
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x' <= c) - alpha * (n + 1)||
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) + 1 - alpha * (n + 1)|| (by the assumption)
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - alpha * n + (1 - alpha)||
+    //     <= max | -|#(x <= c) - alpha * n| - -(|#(x <= c) - alpha * n| + |1 - alpha|)|
+    //      = max | a - a - |1 - alpha|| (where a = -|#(x <= c) - alpha * n|)
+    //      = 1 - alpha (since alpha <= 1)
+    //  assume x' is equal to x, but with some x'_i > c added
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x' <= c) - alpha * (n + 1)||
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - alpha * (n + 1)|| (by the assumption)
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - alpha * n - alpha||
+    //     <= max | -|#(x <= c) - alpha * n| - -(|#(x <= c) - alpha * n| + |-alpha|)|
+    //      = max | a - a - |alpha|| (where a = -|#(x <= c) - alpha * n|)
+    //      = alpha (since alpha >= 0)
+    //  via union bound, in all four cases, for any addition or removal, sensitivity bounded above by max(alpha, 1 - alpha)
+    //  therefore max d_abs(s, s') == max(alpha, 1 - alpha)
+    let abs_dist_const = alpha.max(TO::one().inf_sub(&alpha)?);
+
     // distance between score vectors on neighboring datasets
-    //    max d_sup(s, s')    (where s is a score vector)
-    //  = max_{ij} |d_abs(s_i, s_j) - d_abs(s'_i, s'_j)|
-    //  = max_{ij} |(s_i - s_j) - (s'_i - s'_j)|
-    //  = max_{ij} |(s_i - s'_i) - (s_j - s'_j)|
-    // <= 2 * max_i |s_i - s'_i|    (scorer is not monotonic, so signs on terms can disagree)
-    //  = 2 * max_i d_abs(s_i, s'_i)
-    //  = 2 * alpha * (1 - alpha)   (by abs_dist_const)
-    let sup_dist_const = (TO::one() + TO::one()) * abs_dist_const;
+    //    max d_sup(sv, sv')    (where sv is a score vector)
+    //  = max_{ij} |d(sv_i, sv_j) - d(sv'_i, sv'_j)|
+    //  = max_{ij} ||sv_i - sv_j| - |sv'_i - sv'_j||
+    // <= max_{ij} |(sv_i - sv_j) - (sv'_i - sv'_j)| (by reverse triangle inequality)
+    //  = max_{ij} |(sv_i - sv'_i) - (sv_j - sv'_j)|
+    // <= max_i |sv_i - sv'_i| + max_j |sv_j - sv'_j| (by triangle inequality)
+    //  = 2 * max_i |sv_i - sv'_i|
+    //  = 2 * abs_dist_const
+    let sup_dist_const = (TO::one() + TO::one()).inf_mul(&abs_dist_const)?;
+
+    // for comparison, if we were to assume monotonicity:
+    //    max d_sup(sv, sv')    (where sv is a score vector)
+    //  = max_{ij} |d(sv_i, sv_j) - d(sv'_i, sv'_j)|
+    //  = max_{ij} ||sv_i - sv_j| - |sv'_i - sv'_j||
+    // <= max_{ij} |(sv_i - sv_j) - (sv'_i - sv'_j)| (by reverse triangle inequality)
+    //  = max_{ij} |(sv_i - sv'_i) - (sv_j - sv'_j)|
+    //  = max_{ij} ||sv_i - sv'_i| - |sv_j - sv'_j|| (since sv'_k >= sv_k for all k)
+    // <= max_{ij} ||sv_i - sv'_i| - 0| (maximized when second term is zero)
+    //  = max_i |sv_i - sv'_i|
+
     Ok(Transformation::new(
         VectorDomain::new_all(),
         VectorDomain::new_all(),
@@ -48,6 +93,7 @@ where
     ))
 }
 
+/// Makes a [Transformation] that scores how similar each candidate is to the given `alpha`-quantile on the input dataset.
 pub fn make_sized_quantile_scorer_de<TI, TO>(
     size: usize,
     candidates: Vec<TI>,
@@ -56,7 +102,7 @@ pub fn make_sized_quantile_scorer_de<TI, TO>(
     Transformation<
         SizedDomain<VectorDomain<AllDomain<TI>>>,
         VectorDomain<AllDomain<TO>>,
-        SubstituteDistance,
+        SymmetricDistance,
         SupDistance<AbsoluteDistance<TO>>,
     >,
 >
@@ -68,18 +114,56 @@ where
     if candidates.windows(2).any(|w| w[0] >= w[1]) {
         return fallible!(MakeTransformation, "candidates must be increasing");
     }
+    // distances between candidate scores on neighboring datasets
+    //    max d_abs(s, s')    (where s is a candidate score)
+    //  = max |s - s'| 
+    //  = max | -|#(x <= c) - alpha * n| - -|#(x' <= c) - alpha * n||
+    //  assume x' is equal to x, but with some x_i <= c replaced with x'_i > c
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x' <= c) - alpha * n||
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - 1 - alpha * n||  (by the assumption)
+    //     <= max | -|#(x <= c) - alpha * n| - -(|#(x <= c) - alpha * n| + 1)|  (by triangle inequality)
+    //      = max | -a - -(a + 1)|  (where a = |#(x <= c) - alpha * n|)
+    //      = 1
+    //  assume x' is equal to x, but with some x_i > c replaced with x'_i <= c
+    //     by symmetry, distance also <= 1
+    //  assume x' is equal to x, but with some x_i <= c replaced with x'_i <= c
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x' <= c) - alpha * n||
+    //      = max | -|#(x <= c) - alpha * n| - -|#(x <= c) - alpha * n|| (because #(x <= c) == #(x' <= c))
+    //      = max | a - a | (where a = -|#(x <= c) - alpha * n|)
+    //      = 0
+    //  assume x' is equal to x, but with some x_i > c replaced with x'_i > c
+    //     by symmetry, distance also == 0
+    //  via union bound, in all four cases, for any addition and removal, sensitivity bounded above by 1
+    //  therefore max d_abs(s, s') == 1 / 2 (because it takes two changes to get a difference of one)
+    
+    // distance between score vectors on neighboring datasets
+    //    max d_sup(sv, sv')    (where sv is a score vector)
+    //  = max_{ij} |d(sv_i, sv_j) - d(sv'_i, sv'_j)|
+    //  = max_{ij} ||sv_i - sv_j| - |sv'_i - sv'_j||
+    // <= max_{ij} |(sv_i - sv_j) - (sv'_i - sv'_j)| (by reverse triangle inequality)
+    //  = max_{ij} |(sv_i - sv'_i) - (sv_j - sv'_j)|
+    // <= max_i |sv_i - sv'_i| + max_j |sv_j - sv'_j| (by triangle inequality)
+    //  = 2 * max_i |sv_i - sv'_i|
+    // <= 2 * (1 / 2)  (by the "distances between candidate scores on neighboring datasets" proof)
+
+    
     Ok(Transformation::new(
         SizedDomain::new(VectorDomain::new_all(), size),
         VectorDomain::new_all(),
         Function::new_fallible(move |arg: &Vec<TI>| score(arg.clone(), &candidates, alpha.clone())),
-        SubstituteDistance::default(),
+        SymmetricDistance::default(),
         SupDistance::default(),
-        StabilityRelation::new_from_constant((TO::one() + TO::one())),
+        StabilityRelation::new_from_constant(TO::one()),
     ))
 }
 
-/// Compute score of each candidates on a dataset
-/// Formula is -|#(`x` <= c) - alpha * n| for each c in `candidates`.
+/// Compute score of each candidate on a dataset
+/// Formula is -|#(x <= c) - alpha * n| for each c in `candidates`.
+/// Can be understood as -|observed_value - ideal_value|. 
+///     We want greater scores when observed value is near ideal value.
+///     The further away the observed value is from the ideal value, the more negative it gets
+/// TODO: why is the scorer the same as in the continuous case?
+///     http://cs-people.bu.edu/ads22/pubs/2011/stoc194-smith.pdf#page=7
 ///
 /// # Arguments
 /// * `x` - dataset to score against. Must be non-null
@@ -106,10 +190,10 @@ where
     );
 
     // now that we have num_lte, score all candidates
-    let center = alpha * TO::exact_int_cast(x.len())?;
+    let ideal_value = alpha * TO::exact_int_cast(x.len())?;
     num_lte
         .into_iter()
-        .map(|v| TO::exact_int_cast(v).map(|v| -(v - center).abs()))
+        .map(|v| TO::exact_int_cast(v).map(|v| -(v - ideal_value).abs()))
         .collect()
 }
 
