@@ -162,8 +162,6 @@ where
 /// Can be understood as -|observed_value - ideal_value|. 
 ///     We want greater scores when observed value is near ideal value.
 ///     The further away the observed value is from the ideal value, the more negative it gets
-/// TODO: why is the scorer the same as in the continuous case?
-///     http://cs-people.bu.edu/ads22/pubs/2011/stoc194-smith.pdf#page=7
 ///
 /// # Arguments
 /// * `x` - dataset to score against. Must be non-null
