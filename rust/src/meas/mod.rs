@@ -9,9 +9,9 @@ pub mod laplace;
 pub use crate::meas::laplace::*;
 
 #[cfg(all(feature="floating-point", feature="contrib"))]
-pub mod discrete_exponential;
+pub mod exponential_candidates;
 #[cfg(all(feature="floating-point", feature="contrib"))]
-pub use crate::meas::discrete_exponential::*;
+pub use crate::meas::exponential_candidates::*;
 
 #[cfg(all(feature="floating-point", feature="contrib"))]
 pub mod gaussian;

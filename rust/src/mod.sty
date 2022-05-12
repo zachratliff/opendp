@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[top=1in, right=1in, left=1in, bottom=1.5in]{geometry}
+
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{xr}
+\usepackage[outputdir=./out]{minted}
+
+% hyperref
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  linkbordercolor={0 0 1}
+}
+
+% minted (pseudocode)
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\setminted[python]{
+    firstline=2,
+    firstnumber=1,
+    linenos=true,
+    numbersep=5pt,
+    gobble=0,
+    frame=leftline,
+    framerule=0.4pt,
+    framesep=2mm,
+    funcnamehighlighting=true,
+    tabsize=4,
+    obeytabs=false,
+    mathescape=false
+    showspaces=false,
+    showtabs=false,
+    texcomments=true,
+    fontsize=\small
+}
+
+
+% xr (cross reference)
+\makeatletter
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+  \typeout{(#1)}
+  \@addtofilelist{#1}
+  \IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+\newcommand*{\myexternaldocument}[1]{%
+    \externaldocument{#1}%
+    \addFileDependency{#1.tex}%
+    \addFileDependency{#1.aux}%
+}
+
+% Commands
+\newcommand{\dependsOn}[2]{\immediate\write18{
+    mkdir -p out_deps && 
+    git show #1:#2 > ./out_deps/$(basename #2)
+}}
+
+% common commands
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{warning}{Warning}
+
+\providecommand{\cardinality}[1]{\lvert#1\rvert} 
+\providecommand{\abs}[1]{\lvert#1\rvert}

@@ -138,24 +138,25 @@ impl<Q> Metric for AbsoluteDistance<Q> {
 }
 impl<Q> SensitivityMetric for AbsoluteDistance<Q> {}
 
-/// If M measures distances as d(x, x'), then SupDistance(x, x') = max_{ij} |d(x_i, x_j) - d(x'_i, x'_j)|
-pub struct SupDistance<M: Metric>(M);
-impl<M: Metric> Default for SupDistance<M> {
-    fn default() -> Self { SupDistance(M::default()) }
+/// A distance metric d(s, s') = max_{ij} |(s_i - s'_i) - (s_j - s'_j)|
+/// InfDistance would be d(s, s') = max_i |s_i - s'_i|
+pub struct InfDifferenceDistance<Q>(PhantomData<Q>);
+impl<Q> Default for InfDifferenceDistance<Q> {
+    fn default() -> Self { InfDifferenceDistance(PhantomData) }
 }
 
-impl<M: Metric> Clone for SupDistance<M> {
+impl<Q> Clone for InfDifferenceDistance<Q> {
     fn clone(&self) -> Self { Self::default() }
 }
-impl<M: Metric> PartialEq for SupDistance<M> {
+impl<Q> PartialEq for InfDifferenceDistance<Q> {
     fn eq(&self, _other: &Self) -> bool { true }
 }
-impl<M: Metric> Debug for SupDistance<M> {
+impl<Q> Debug for InfDifferenceDistance<Q> {
     fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), std::fmt::Error> {
-        write!(f, "InfDistance({:?})", self.0)
+        write!(f, "InfDifferenceDistance()")
     }
 }
-impl<M: Metric> Metric for SupDistance<M> {
-    type Distance = M::Distance;
+impl<Q> Metric for InfDifferenceDistance<Q> {
+    type Distance = Q;
 }
-impl<M: Metric> SensitivityMetric for SupDistance<M> {}
+impl<Q> SensitivityMetric for InfDifferenceDistance<Q> {}

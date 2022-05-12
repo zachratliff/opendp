@@ -1,0 +1,30 @@
+\input{../mod.sty}
+
+\title{Transformation Constructors Overview}
+\author{OpenDP Project}
+
+\begin{document}
+\maketitle
+
+Each constructor must prove the following theorem.
+
+\begin{theorem}
+\label{thrm:privacy-proof}
+    For every setting of the input parameters to each constructor,
+    an exception is raised or a valid transformation is returned with the following properties:
+    \begin{enumerate}
+        \item \textup{Appropriate output domain.} \\
+        For every element $v$ in \texttt{input\_domain}, $function(v)$ is in \texttt{output\_domain}.
+        
+        \item \textup{Domain-metric compatibility.} \\
+        The \texttt{input\_domain} matches one of the possible domains listed in the definition of \texttt{input\_metric}, 
+        and likewise \texttt{output\_domain} matches one of the possible domains listed in the definition of \texttt{output\_metric}.
+        
+        \item \textup{Stability guarantee.} \\
+        For every pair of elements \texttt{v}, \texttt{w} in \texttt{input\_domain} and for every $(d_{in}, d_{out})$,
+        if \texttt{v}, \texttt{w} are $d_{in}$-close under \texttt{input\_metric} and $\texttt{relation}(d_{in}, d_{out}) = True$,
+        then \texttt{function(v)}, \texttt{function(w)} are $d_{out}$-close under \texttt{output\_metric}.
+    \end{enumerate}
+\end{theorem}
+
+\end{document}
