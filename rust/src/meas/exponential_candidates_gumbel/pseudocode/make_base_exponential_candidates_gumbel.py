@@ -1,5 +1,5 @@
 # type: ignore
-def make_base_exponential_candidates(temperature: TI):
+def make_base_exponential_candidates_gumbel(temperature: TI):
     def function(scores: List[TI]):
         noisy_score = lambda i: scores[i] * temperature -ln( -ln(sample_uniform())) 
         return max(range(len(scores)), key=noisy_score)

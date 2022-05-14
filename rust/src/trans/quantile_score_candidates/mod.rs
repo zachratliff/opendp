@@ -307,7 +307,7 @@ mod test_scorer {
 
 #[cfg(test)]
 mod test_trans {
-    use crate::meas::make_base_exponential_candidates;
+    use crate::meas::make_base_exponential_candidates_gumbel;
 
     use super::*;
 
@@ -316,7 +316,7 @@ mod test_trans {
         let candidates = vec![7, 12, 14, 72, 76];
         let trans = make_quantile_score_candidates(candidates.clone(), 0.75)?;
         let trans_sized = make_sized_quantile_score_candidates(100, candidates, 0.75)?;
-        let exp_mech = make_base_exponential_candidates(1., false)?;
+        let exp_mech = make_base_exponential_candidates_gumbel(1., false)?;
 
         let quantile_meas = (trans >> exp_mech.clone())?;
         let idx = quantile_meas.invoke(&(0..100).collect())?;

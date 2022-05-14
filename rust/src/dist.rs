@@ -138,6 +138,7 @@ impl<Q> Metric for AbsoluteDistance<Q> {
 }
 impl<Q> SensitivityMetric for AbsoluteDistance<Q> {}
 
+/// The maximum distance between the difference of any two neighboring scores.
 /// A distance metric d(s, s') = max_{ij} |(s_i - s'_i) - (s_j - s'_j)|
 /// InfDistance would be d(s, s') = max_i |s_i - s'_i|
 pub struct InfDifferenceDistance<Q>(PhantomData<Q>);

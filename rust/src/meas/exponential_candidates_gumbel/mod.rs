@@ -9,7 +9,7 @@ use crate::{
     traits::{CheckNull, InfMul, InfDiv},
 };
 
-pub fn make_base_exponential_candidates<TI>(
+pub fn make_base_exponential_candidates_gumbel<TI>(
     temperature: TI,
     constant_time: bool,
 ) -> Fallible<
@@ -32,7 +32,7 @@ where
                 .map(|v| v / temperature)
                 // enumerate before sampling so that indexes are inside the result
                 .enumerate()
-                // using the gumbel sampling trick: https://lips.cs.princeton.edu/the-gumbel-max-trick-for-discrete-distributions/
+                // gumbel samples are porous
                 .map(|(i, llik)| {
                     TI::sample_standard_uniform(constant_time)
                         .map(|u| (i, llik - u.ln().neg().ln()))
@@ -71,7 +71,7 @@ pub mod test_exponential {
     
     #[test]
     fn test_exponential() -> Fallible<()> {
-        let de = make_base_exponential_candidates(1., false)?;
+        let de = make_base_exponential_candidates_gumbel(1., false)?;
         let release = de.invoke(&vec![1., 2., 3., 2., 1.])?;
         println!("{:?}", release);
 
