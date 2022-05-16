@@ -23,6 +23,9 @@ pub fn make_base_exponential_candidates_gumbel<TI>(
 where
     TI: 'static + CheckNull + Float + SampleUniform + InfMul + InfDiv,
 {
+    if temperature <= TI::zero() {
+        return fallible!(MakeMeasurement, "temperature must be positive")
+    }
     Ok(Measurement::new(
         VectorDomain::new_all(),
         AllDomain::new(),
