@@ -174,29 +174,31 @@ The following proves that $M$ as defined in \ref{m-naive} satisfies differential
         &&\text{substitute \ref{prob-of-k}, assuming } \tau \geq \Delta / \epsilon \\
     &= \ln \left(\frac
         {\exp{\frac{\epsilon s_k}{\Delta}}}{\exp{\frac{\epsilon s'_k}{\Delta}}}
-        \frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \\
+        \frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) &&\text{by algebra, swap terms} \\
     &= \ln \left(\frac
         {\exp{\frac{\epsilon s_k}{\Delta}}}{\exp{\frac{\epsilon s'_k}{\Delta}}}\right) + ln \left(
-        \frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \\
+        \frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right)  &&\text{split via log rule}\\
     &= \frac{\epsilon (s_k - s'_k)}{\Delta} 
-        + ln\left(\frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \\
-    &\leq \frac{\epsilon (s_k - s'_k)}{\Delta} + \frac{-\epsilon \max_j (s_j - s'_j)}{\Delta} &&\text{by \ref{priv-inequality}} \\
-    &\leq \frac{\epsilon\max\limits_{ij} \abs{(s_i - s'_i) - (s_j - s'_j)}}{\Delta} \\
+        + ln\left(\frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) &&\text{simplify first term} \\
+    &\leq \frac{\epsilon (s_k - s'_k)}{\Delta} + \frac{-\epsilon \min_j (s_j - s'_j)}{\Delta} &&\text{by \ref{priv-inequality}} \\
+    &\leq \frac{\epsilon (max_i(s_i - s'_i) - \min_j (s_j - s'_j))}{\Delta} \\
+    &\leq \frac{\epsilon \abs{\max_i (s_i - s'_i) - \min_j(s_j - s'_j)}}{\Delta} \\
+    &= \frac{\epsilon\max\limits_{ij} \abs{(s_i - s'_i) - (s_j - s'_j)}}{\Delta} \\
     &\leq \epsilon
 \end{align*}
 
 \begin{lemma}
     \label{priv-inequality}
-    $ln\left(\frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \geq \frac{\epsilon \max_j (s_j - s'_j)}{\Delta}$.
+    $ln\left(\frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \leq \frac{-\epsilon \min_j (s_j - s'_j)}{\Delta}$.
 \end{lemma}
 
 \begin{align*}
     ln\left(\frac{\sum_{i} \exp{\frac{\epsilon s'_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right)
     &= ln\left(\frac{\sum_{i} \exp{\frac{\epsilon (s'_i - s_i + s_i)}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \\
-    &= ln\left(\frac{\sum_{i} \exp{\frac{\epsilon (s'_i - s_i)}{\Delta}}\exp{\frac{\epsilon (s_i)}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \\
-    &\geq ln\left(\frac{\exp{\frac{\epsilon min_j(s'_j - s_j)}{\Delta}} \sum_{i} \exp{\frac{\epsilon (s_i)}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \\
-    &= \frac{\epsilon min_j(s'_j - s_j)}{\Delta} \\
-    &= -\frac{\epsilon \max_j (s_j - s'_j)}{\Delta}
+    &= ln\left(\frac{\sum_{i} \exp{\frac{\epsilon (s'_i - s_i)}{\Delta}}\exp{\frac{\epsilon s_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \\
+    &\leq ln\left(\frac{\exp{\frac{\epsilon max_j(s'_j - s_j)}{\Delta}} \sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}{\sum_{i} \exp{\frac{\epsilon s_i}{\Delta}}}\right) \\
+    &= \frac{\epsilon max_j(s'_j - s_j)}{\Delta} \\
+    &= \frac{-\epsilon \min_j (s_j - s'_j)}{\Delta}
 \end{align*}
 
 
