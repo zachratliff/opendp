@@ -826,6 +826,7 @@ Only chain with a resize transformation if the aggregator you intend to use need
 <p>At this time, there are two separate resize transforms:
 one that works on unbounded data, and one that works on bounded data.
 We intend to merge these in the future.</p>
+<p>The input and output metrics may be configured to any combination of <code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code> and <code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code>.</p>
 <table class="table">
 <colgroup>
 <col style="width: 25%" />
@@ -843,13 +844,13 @@ We intend to merge these in the future.</p>
 <tbody>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_resize" title="opendp.trans.make_resize"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_resize()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance/InsertDeleteDistance</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_resize" title="opendp.trans.make_bounded_resize"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_resize()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TA&gt;&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance/InsertDeleteDistance</span></code></p></td>
 </tr>
 </tbody>
 </table>
