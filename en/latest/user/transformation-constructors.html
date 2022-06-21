@@ -387,6 +387,16 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset-ordering">
+   Dataset Ordering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bounded-metrics">
+   Bounded Metrics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#resizing">
    Resizing
   </a>
@@ -492,10 +502,6 @@ You need to chain with <code class="docutils literal notranslate"><span class="p
 <p>Any time you want to convert between data types, you’ll want to use a casting transformation.
 In particular, in pipelines that load dataframes from CSV files, it is very common to cast from Strings to some other type.</p>
 <p>Depending on the caster you choose, the output data may be null and you will be required to chain with an imputer.</p>
-<p>There is an unusual caster in this section that allows you to cast from a <code class="docutils literal notranslate"><span class="pre">SubstituteDistance</span></code> metric to a <code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code> metric.
-It is noted in the <a class="reference external" href="https://github.com/opendp/opendp/issues/156#issuecomment-867900184">linked dev issue</a> that most transformations need only be defined for <code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code>.
-If you are more comfortable working with substitution distances,
-you can chain this caster at the start of a computation pipeline to make <code class="docutils literal notranslate"><span class="pre">d_in</span></code> a substitution distance instead of a symmetric distance.</p>
 <table class="table">
 <colgroup>
 <col style="width: 25%" />
@@ -535,11 +541,6 @@ you can chain this caster at the start of a computation pipeline to make <code c
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TIA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;bool&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_cast_metric" title="opendp.trans.make_cast_metric"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_cast_metric()</span></code></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MI/MO</span></code></p></td>
 </tr>
 </tbody>
 </table>
@@ -705,6 +706,109 @@ Only chain with a clamp transformation if the aggregator you intend to use needs
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dataset-ordering">
+<h2>Dataset Ordering<a class="headerlink" href="#dataset-ordering" title="Permalink to this headline">#</a></h2>
+<p>Most dataset-to-dataset transformations are not sensitive to the order of elements within the dataset.
+This includes all row-by-row transformations.
+These transformations that are not sensitive to operate with SymmetricDistances.</p>
+<p>Transformations that are sensitive to the order of elements in the dataset use the InsertDeleteDistance metric instead.
+It is common for aggregators to be sensitive to the dataset ordering.</p>
+<p>The following transformations are used to relate dataset metrics that are not sensitive to ordering (<code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code> and <code class="docutils literal notranslate"><span class="pre">ChangeOneDistance</span></code>)
+to metrics that are sensitive to ordering (<code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code> and <code class="docutils literal notranslate"><span class="pre">HammingDistance</span></code> respectively).</p>
+<p>Take note that there are separate constructors for metric casts on sized vs unsized datasets.</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Caster</p></th>
+<th class="head"><p>Input/Output Domain</p></th>
+<th class="head"><p>Input Metric</p></th>
+<th class="head"><p>Output Metric</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_ordered_random" title="opendp.trans.make_ordered_random"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_ordered_random()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_ordered_random" title="opendp.trans.make_sized_ordered_random"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_ordered_random()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance/ChangeOneDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance/HammingDistance</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_ordered_random" title="opendp.trans.make_sized_bounded_ordered_random"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_ordered_random()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance/ChangeOneDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance/HammingDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_unordered" title="opendp.trans.make_unordered"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_unordered()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;AllDomain&lt;TA&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_unordered" title="opendp.trans.make_sized_unordered"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_unordered()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance/ChangeOneDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance/HammingDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_unordered" title="opendp.trans.make_sized_bounded_unordered"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_unordered()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance/ChangeOneDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance/HammingDistance</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bounded-metrics">
+<h2>Bounded Metrics<a class="headerlink" href="#bounded-metrics" title="Permalink to this headline">#</a></h2>
+<p>You may be more familiar with “bounded” differential privacy, where dataset distances are expressed in terms of the number of changed rows.
+Expressing dataset distances in this manner is more restrictive, as edit distances are only valid for datasets with a fixed size.
+Generally speaking, if a dataset differs from a neighboring dataset by no more than <code class="docutils literal notranslate"><span class="pre">k</span></code> edits, then they differ by no more than <code class="docutils literal notranslate"><span class="pre">2k</span></code> additions and removals.
+We therefore write all transformations in terms of the more general “unbounded”-dp metrics <code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code> and <code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code>,
+and provide the following constructors to convert to/from “bounded”-dp metrics <code class="docutils literal notranslate"><span class="pre">ChangeOneDistance</span></code> and <code class="docutils literal notranslate"><span class="pre">HammingDistance</span></code> respectively.</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Caster</p></th>
+<th class="head"><p>Input/Output Domain</p></th>
+<th class="head"><p>Input Metric</p></th>
+<th class="head"><p>Output Metric</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_metric_bounded" title="opendp.trans.make_metric_bounded"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_metric_bounded()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ChangeOneDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_metric_bounded" title="opendp.trans.make_metric_bounded"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_metric_bounded()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HammingDistance</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_metric_unbounded" title="opendp.trans.make_metric_unbounded"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_metric_unbounded()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ChangeOneDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_metric_unbounded" title="opendp.trans.make_metric_unbounded"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_metric_unbounded()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;AllDomain&lt;TA&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HammingDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code></p></td>
 </tr>
 </tbody>
 </table>

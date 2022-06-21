@@ -319,7 +319,14 @@
     <span class="s2">&quot;make_is_equal&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_is_null&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_cast_inherent&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;make_cast_metric&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_ordered_random&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_ordered_random&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_ordered_random&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_unordered&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_unordered&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_unordered&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_metric_bounded&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_metric_unbounded&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_clamp&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_unclamp&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_count&quot;</span><span class="p">,</span>
@@ -513,20 +520,52 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">TIA</span><span class="p">,</span> <span class="n">TOA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="make_cast_metric"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_cast_metric">[docs]</a><span class="k">def</span> <span class="nf">make_cast_metric</span><span class="p">(</span>
-    <span class="n">MI</span><span class="p">:</span> <span class="n">DatasetMetric</span><span class="p">,</span>
-    <span class="n">MO</span><span class="p">:</span> <span class="n">DatasetMetric</span><span class="p">,</span>
+<div class="viewcode-block" id="make_ordered_random"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_ordered_random">[docs]</a><span class="k">def</span> <span class="nf">make_ordered_random</span><span class="p">(</span>
     <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the dataset metric from type `MI` to type `MO`.</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the unordered dataset metric `SymmetricDistance` to the respective ordered dataset metric InsertDeleteDistance by assigning a random permutatation. </span>
+<span class="sd">    Operates exclusively on VectorDomain&lt;AllDomain&lt;`TA`&gt;&gt;.</span>
 <span class="sd">    </span>
-<span class="sd">    :param MI: input dataset metric</span>
-<span class="sd">    :type MI: DatasetMetric</span>
-<span class="sd">    :param MO: output dataset metric</span>
-<span class="sd">    :type MO: DatasetMetric</span>
 <span class="sd">    :param TA: atomic type of data</span>
 <span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
-<span class="sd">    :return: A cast_metric step.</span>
+<span class="sd">    :return: A ordered_random step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_ordered_random</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_ordered_random"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_ordered_random">[docs]</a><span class="k">def</span> <span class="nf">make_sized_ordered_random</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">DatasetMetric</span> <span class="o">=</span> <span class="s2">&quot;SymmetricDistance&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the unordered dataset metric `MI` to the respective ordered dataset metric by assigning a random permutatation. </span>
+<span class="sd">    Operates exclusively on SizedDomain&lt;VectorDomain&lt;AllDomain&lt;`TA`&gt;&gt;&gt;. </span>
+<span class="sd">    If `MI` is &quot;SymmetricDistance&quot;, then output metric is &quot;InsertDeleteDistance&quot;, and respectively &quot;ChangeOneDistance&quot; maps to &quot;HammingDistance&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param MI: input dataset metric</span>
+<span class="sd">    :type MI: DatasetMetric</span>
+<span class="sd">    :param TA: atomic type of data</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_ordered_random step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
@@ -536,20 +575,256 @@
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
-    <span class="n">MO</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MO</span><span class="p">)</span>
     <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
     <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
-    <span class="n">MO</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MO</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
-    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_cast_metric</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_ordered_random</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">MO</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_bounded_ordered_random"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_ordered_random">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_ordered_random</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">DatasetMetric</span> <span class="o">=</span> <span class="s2">&quot;SymmetricDistance&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the unordered dataset metric `MI` to the respective ordered dataset metric by assigning a random permutatation. </span>
+<span class="sd">    Operates exclusively on SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;`TA`&gt;&gt;&gt;. </span>
+<span class="sd">    If `MI` is &quot;SymmetricDistance&quot;, then output metric is &quot;InsertDeleteDistance&quot;, and respectively &quot;ChangeOneDistance&quot; maps to &quot;HammingDistance&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of inclusive lower and upper bounds.</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param MI: input dataset metric</span>
+<span class="sd">    :type MI: DatasetMetric</span>
+<span class="sd">    :param TA: atomic type of data</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_ordered_random step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">TA</span><span class="p">,</span> <span class="n">TA</span><span class="p">]))</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_ordered_random</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_unordered"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_unordered">[docs]</a><span class="k">def</span> <span class="nf">make_unordered</span><span class="p">(</span>
+    <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the ordered dataset metric `InsertDeleteDistance` to the respective unordered dataset metric SymmetricDistance with a no-op. </span>
+<span class="sd">    Operates exclusively on VectorDomain&lt;AllDomain&lt;`TA`&gt;&gt;. </span>
+<span class="sd">    If `MI` is &quot;InsertDeleteDistance&quot;, then output metric is &quot;SymmetricDistance&quot;, and respectively &quot;HammingDistance&quot; maps to &quot;ChangeOneDistance&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param TA: atomic type of data</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A unordered step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_unordered</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_unordered"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_unordered">[docs]</a><span class="k">def</span> <span class="nf">make_sized_unordered</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">DatasetMetric</span> <span class="o">=</span> <span class="s2">&quot;InsertDeleteDistance&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the ordered dataset metric `MI` to the respective unordered dataset metric with a no-op. </span>
+<span class="sd">    Operates exclusively on SizedDomain&lt;VectorDomain&lt;AllDomain&lt;`TA`&gt;&gt;&gt;. </span>
+<span class="sd">    If `MI` is &quot;InsertDeleteDistance&quot;, then output metric is &quot;SymmetricDistance&quot;, and respectively &quot;HammingDistance&quot; maps to &quot;ChangeOneDistance&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param MI: input dataset metric.</span>
+<span class="sd">    :type MI: DatasetMetric</span>
+<span class="sd">    :param TA: atomic type of data</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_unordered step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_unordered</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_bounded_unordered"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_unordered">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_unordered</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">DatasetMetric</span> <span class="o">=</span> <span class="s2">&quot;InsertDeleteDistance&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the ordered dataset metric `MI` to the respective unordered dataset metric with a no-op. </span>
+<span class="sd">    Operates exclusively on SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;`TA`&gt;&gt;&gt;. </span>
+<span class="sd">    If `MI` is &quot;InsertDeleteDistance&quot;, then output metric is &quot;SymmetricDistance&quot;, and respectively &quot;HammingDistance&quot; maps to &quot;ChangeOneDistance&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of inclusive lower and upper bounds.</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param MI: input dataset metric</span>
+<span class="sd">    :type MI: DatasetMetric</span>
+<span class="sd">    :param TA: atomic type of data</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_unordered step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">TA</span><span class="p">,</span> <span class="n">TA</span><span class="p">]))</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_unordered</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_metric_bounded"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_metric_bounded">[docs]</a><span class="k">def</span> <span class="nf">make_metric_bounded</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">DatasetMetric</span> <span class="o">=</span> <span class="s2">&quot;SymmetricDistance&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the unbounded dataset metric `MI` to the respective bounded dataset metric with a no-op. </span>
+<span class="sd">    If &quot;SymmetricDistance&quot;, then output metric is &quot;ChangeOneDistance&quot;, and respectively &quot;InsertDeleteDistance&quot; maps to &quot;HammingDistance&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param MI: input dataset metric.</span>
+<span class="sd">    :type MI: DatasetMetric</span>
+<span class="sd">    :param TA: atomic type of data</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A metric_bounded step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_metric_bounded</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_metric_unbounded"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_metric_unbounded">[docs]</a><span class="k">def</span> <span class="nf">make_metric_unbounded</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">TA</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span><span class="p">,</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">DatasetMetric</span> <span class="o">=</span> <span class="s2">&quot;ChangeOneDistance&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that converts the bounded dataset metric `MI` to the respective unbounded dataset metric with a no-op. </span>
+<span class="sd">    If &quot;ChangeOneDistance&quot;, then output metric is &quot;SymmetricDistance&quot;, and respectively &quot;HammingDistance&quot; maps to &quot;InsertDeleteDistance&quot;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param MI: input dataset metric.</span>
+<span class="sd">    :type MI: DatasetMetric</span>
+<span class="sd">    :param TA: atomic type of data</span>
+<span class="sd">    :type TA: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A metric_unbounded step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">TA</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_metric_unbounded</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">TA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_clamp"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_clamp">[docs]</a><span class="k">def</span> <span class="nf">make_clamp</span><span class="p">(</span>
