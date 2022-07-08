@@ -1525,6 +1525,36 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_sum_of_squared_deviations">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_sum_of_squared_deviations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Pairwise&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_sum_of_squared_deviations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_sum_of_squared_deviations" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of squared deviations of bounded data. 
+This uses a restricted-sensitivity proof that takes advantage of known dataset size. 
+Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> to establish dataset size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>S</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A sized_bounded_sum_of_squared_deviations step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_unordered">
 <span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_unordered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MI</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'InsertDeleteDistance'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_unordered"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_unordered" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that converts the ordered dataset metric <cite>MI</cite> to the respective unordered dataset metric with a no-op. 
@@ -1557,7 +1587,7 @@ If <cite>MI</cite> is “InsertDeleteDistance”, then output metric is “Symme
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_variance">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_variance" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_variance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Pairwise&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_variance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_variance" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the variance of bounded data. 
 This uses a restricted-sensitivity proof that takes advantage of known dataset size. 
 Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> to establish dataset size.</p>
@@ -1567,7 +1597,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 <li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
 <li><p><strong>ddof</strong> (<em>int</em>) – Delta degrees of freedom. Set to 0 if not a sample, 1 for sample estimate.</p></li>
-<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type</p></li>
+<li><p><strong>S</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

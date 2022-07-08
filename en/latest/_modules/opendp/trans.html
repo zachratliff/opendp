@@ -362,6 +362,7 @@
     <span class="s2">&quot;make_sized_bounded_int_ordered_sum&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_bounded_int_split_sum&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_sized_bounded_int_split_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_sum_of_squared_deviations&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_sized_bounded_variance&quot;</span>
 <span class="p">]</span>
 
@@ -2135,11 +2136,52 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="make_sized_bounded_sum_of_squared_deviations"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_sum_of_squared_deviations">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_sum_of_squared_deviations</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;Pairwise&lt;T&gt;&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of squared deviations of bounded data. </span>
+<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size. </span>
+<span class="sd">    Use `make_clamp` to bound data and `make_bounded_resize` to establish dataset size.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param S: summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</span>
+<span class="sd">    :type S: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_sum_of_squared_deviations step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_sum_of_squared_deviations</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">S</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
 <div class="viewcode-block" id="make_sized_bounded_variance"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_variance">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_variance</span><span class="p">(</span>
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">ddof</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;Pairwise&lt;T&gt;&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the variance of bounded data. </span>
 <span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size. </span>
@@ -2151,8 +2193,8 @@
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
 <span class="sd">    :param ddof: Delta degrees of freedom. Set to 0 if not a sample, 1 for sample estimate.</span>
 <span class="sd">    :type ddof: int</span>
-<span class="sd">    :param T: atomic data type</span>
-<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :param S: summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</span>
+<span class="sd">    :type S: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A sized_bounded_variance step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
@@ -2162,20 +2204,22 @@
     <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
     
     <span class="c1"># Standardize type arguments.</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
     <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
     <span class="n">ddof</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">ddof</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_variance</span>
     <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">ddof</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">ddof</span><span class="p">,</span> <span class="n">S</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 </pre></div>
 
               </article>
