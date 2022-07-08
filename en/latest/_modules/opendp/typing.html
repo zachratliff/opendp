@@ -672,16 +672,17 @@
 <span class="n">SizedDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="p">(</span><span class="s1">&#39;SizedDomain&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="get_domain_atom"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_domain_atom">[docs]</a><span class="k">def</span> <span class="nf">get_domain_atom</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
-    <span class="k">while</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="p">(</span><span class="n">UnknownType</span><span class="p">,</span> <span class="n">GenericType</span><span class="p">)):</span>
+<div class="viewcode-block" id="get_atom"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_atom">[docs]</a><span class="k">def</span> <span class="nf">get_atom</span><span class="p">(</span><span class="n">type_name</span><span class="p">):</span>
+    <span class="n">type_name</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="n">RuntimeType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_name</span><span class="p">,</span> <span class="p">(</span><span class="n">UnknownType</span><span class="p">,</span> <span class="n">GenericType</span><span class="p">)):</span>
             <span class="k">return</span>
-        <span class="n">domain</span> <span class="o">=</span> <span class="n">domain</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">domain</span></div>
+        <span class="n">type_name</span> <span class="o">=</span> <span class="n">type_name</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">type_name</span></div>
 
 
-<div class="viewcode-block" id="get_domain_atom_or_infer"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_domain_atom_or_infer">[docs]</a><span class="k">def</span> <span class="nf">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">domain</span><span class="p">:</span> <span class="n">RuntimeType</span><span class="p">,</span> <span class="n">example</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">get_domain_atom</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span> <span class="ow">or</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">example</span><span class="p">)</span></div>
+<div class="viewcode-block" id="get_atom_or_infer"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_atom_or_infer">[docs]</a><span class="k">def</span> <span class="nf">get_atom_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="p">:</span> <span class="n">RuntimeType</span><span class="p">,</span> <span class="n">example</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">get_atom</span><span class="p">(</span><span class="n">type_name</span><span class="p">)</span> <span class="ow">or</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">infer</span><span class="p">(</span><span class="n">example</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_first"><a class="viewcode-back" href="../../api/python/opendp.typing.html#opendp.typing.get_first">[docs]</a><span class="k">def</span> <span class="nf">get_first</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>

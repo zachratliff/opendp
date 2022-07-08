@@ -387,6 +387,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maps">
+   Maps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#distances">
    Distances
   </a>
@@ -545,8 +550,20 @@ This is an incredibly useful observation, as we will see in the <a class="refere
 </pre></div>
 </div>
 </section>
+<section id="maps">
+<span id="id5"></span><h2>Maps<a class="headerlink" href="#maps" title="Permalink to this headline">#</a></h2>
+<p>A map is a function that takes some <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and returns the smallest <code class="docutils literal notranslate"><span class="pre">d_out</span></code> that is (<code class="docutils literal notranslate"><span class="pre">d_in</span></code>, <code class="docutils literal notranslate"><span class="pre">d_out</span></code>)-close.</p>
+<p>Maps are a useful shorthand to find privacy properties directly:</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># reusing the prior clamp transformation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clamp</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">d_in</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>The relation check predicate function simply compares the output of the map with <code class="docutils literal notranslate"><span class="pre">d_out</span></code> as follows: <code class="docutils literal notranslate"><span class="pre">d_out</span> <span class="pre">&gt;=</span> <span class="pre">map(d_in)</span></code>.
+For a more thorough understanding of maps, please read the <a class="reference internal" href="#relations"><span class="std std-ref">relations</span></a> section.</p>
+</section>
 <section id="distances">
-<span id="id5"></span><h2>Distances<a class="headerlink" href="#distances" title="Permalink to this headline">#</a></h2>
+<span id="id6"></span><h2>Distances<a class="headerlink" href="#distances" title="Permalink to this headline">#</a></h2>
 <p>You can determine what units <code class="docutils literal notranslate"><span class="pre">d_in</span></code> and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> are expressed in based on the <code class="docutils literal notranslate"><span class="pre">input_metric</span></code>, and <code class="docutils literal notranslate"><span class="pre">output_metric</span></code> or <code class="docutils literal notranslate"><span class="pre">output_measure</span></code>.
 Follow the links into the example metrics and measures to get more detail on what the distances mean for that kind of metric or measure.</p>
 <p>On Transformations, the <code class="docutils literal notranslate"><span class="pre">input_metric</span></code> will be a dataset metric like <a class="reference internal" href="#symmetric-distance"><span class="std std-ref">SymmetricDistance</span></a>.

@@ -422,7 +422,8 @@ Depending on the context, <code class="docutils literal notranslate"><span class
 and <code class="docutils literal notranslate"><span class="pre">d_out</span></code> may be <code class="docutils literal notranslate"><span class="pre">epsilon</span></code>, <code class="docutils literal notranslate"><span class="pre">(epsilon,</span> <span class="pre">delta)</span></code>, or some other measure of privacy.
 More information on distances is available <a class="reference internal" href="supporting-elements.html#distances"><span class="std std-ref">here</span></a>.</p>
 <p>Each invocation of the measurement’s function (via <code class="docutils literal notranslate"><span class="pre">meas.invoke(data)</span></code> or <code class="docutils literal notranslate"><span class="pre">meas(data)</span></code>) is a differentially private release.
-The privacy expenditure of each release is any <code class="docutils literal notranslate"><span class="pre">d_out</span></code> that makes the relation pass.</p>
+The privacy expenditure of each release is any <code class="docutils literal notranslate"><span class="pre">d_out</span></code> that makes the relation pass.
+The tightest privacy expenditure <code class="docutils literal notranslate"><span class="pre">d_out</span></code> can be found directly via <code class="docutils literal notranslate"><span class="pre">meas.map(d_in)</span></code>.</p>
 <p>A measurement structure contains the following internal fields:</p>
 <dl class="field-list simple">
 <dt class="field-odd">input_domain</dt>
@@ -440,8 +441,8 @@ The privacy expenditure of each release is any <code class="docutils literal not
 <dt class="field-odd">output_measure</dt>
 <dd class="field-odd"><p>A <a class="reference internal" href="supporting-elements.html#measures"><span class="std std-ref">measure</span></a> used to measure distance between two distributions in the output domain.</p>
 </dd>
-<dt class="field-even">privacy_relation</dt>
-<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#relations"><span class="std std-ref">relation</span></a> that encapsulates the privacy characteristics of the function.</p>
+<dt class="field-even">privacy_map</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#maps"><span class="std std-ref">map</span></a> that encapsulates the privacy characteristics of the function.</p>
 </dd>
 </dl>
 <p>The framework quantifies output distance bounds on measurements with a measure, instead of a metric,
@@ -481,8 +482,8 @@ Transformations need to be <a class="reference internal" href="combinator-constr
 <dt class="field-odd">output_metric</dt>
 <dd class="field-odd"><p>A <a class="reference internal" href="supporting-elements.html#metrics"><span class="std std-ref">metric</span></a> used to measure distance between two members of the output domain.</p>
 </dd>
-<dt class="field-even">stability_relation</dt>
-<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#relations"><span class="std std-ref">relation</span></a> that encapsulates the stability characteristics of the function.</p>
+<dt class="field-even">stability_map</dt>
+<dd class="field-even"><p>A <a class="reference internal" href="supporting-elements.html#maps"><span class="std std-ref">map</span></a> that encapsulates the stability characteristics of the function.</p>
 </dd>
 </dl>
 </section>

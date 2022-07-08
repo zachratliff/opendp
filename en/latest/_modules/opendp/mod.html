@@ -367,6 +367,11 @@
         <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">measurement_invoke</span>
         <span class="k">return</span> <span class="n">measurement_invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="Measurement.map"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.Measurement.map">[docs]</a>    <span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Map an input distance `d_in` to an output distance.&quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">measurement_map</span>
+        <span class="k">return</span> <span class="n">measurement_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="Measurement.check"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.Measurement.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Check if the measurement is (`d_in`, `d_out`)-close.</span>
 <span class="sd">        If true, implies that if the distance between inputs is at most `d_in`, then the privacy usage is at most `d_out`.</span>
@@ -480,6 +485,11 @@
         <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">transformation_invoke</span>
         <span class="k">return</span> <span class="n">transformation_invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
 
+<div class="viewcode-block" id="Transformation.map"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.Transformation.map">[docs]</a>    <span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Map an input distance `d_in` to an output distance.&quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">opendp.core</span> <span class="kn">import</span> <span class="n">transformation_map</span>
+        <span class="k">return</span> <span class="n">transformation_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="Transformation.check"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.Transformation.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check if the transformation is (`d_in`, `d_out`)-close.</span>
 <span class="sd">        If true, implies that if the distance between inputs is at most `d_in`, then the distance between outputs is at most `d_out`.</span>
@@ -554,6 +564,15 @@
             <span class="n">_transformation_free</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="SMDCurve"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.SMDCurve">[docs]</a><span class="k">class</span> <span class="nc">SMDCurve</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">curve</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">curve</span> <span class="o">=</span> <span class="n">curve</span>
+
+<div class="viewcode-block" id="SMDCurve.epsilon"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.SMDCurve.epsilon">[docs]</a>    <span class="k">def</span> <span class="nf">epsilon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">opendp._data</span> <span class="kn">import</span> <span class="n">smd_curve_epsilon</span>
+        <span class="k">return</span> <span class="n">smd_curve_epsilon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curve</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="UnknownTypeException"><a class="viewcode-back" href="../../api/python/opendp.mod.html#opendp.mod.UnknownTypeException">[docs]</a><span class="k">class</span> <span class="nc">UnknownTypeException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -770,13 +789,14 @@
 <span class="sd">        from opendp.typing import L2Distance, VectorDomain, AllDomain</span>
 <span class="sd">        from opendp.trans import make_sized_bounded_mean</span>
 <span class="sd">        from opendp.meas import make_base_gaussian</span>
+<span class="sd">        from opendp.comb import make_fix_delta</span>
 <span class="sd">        from opendp.mod import enable_features</span>
 <span class="sd">        enable_features(&quot;contrib&quot;, &quot;floating-point&quot;)</span>
 
 <span class="sd">    &gt;&gt;&gt; # build a histogram that emits float counts</span>
-<span class="sd">    &gt;&gt;&gt; dp_mean = (</span>
-<span class="sd">    ...     make_sized_bounded_mean(1000, bounds=(0., 100.)) &gt;&gt;</span>
-<span class="sd">    ...     make_base_gaussian(1.)</span>
+<span class="sd">    &gt;&gt;&gt; dp_mean = make_fix_delta(</span>
+<span class="sd">    ...     make_sized_bounded_mean(1000, bounds=(0., 100.)) &gt;&gt; make_base_gaussian(1.), </span>
+<span class="sd">    ...     1e-8</span>
 <span class="sd">    ... )</span>
 <span class="sd">    ...</span>
 <span class="sd">    &gt;&gt;&gt; binary_search(</span>
@@ -863,9 +883,11 @@
         <span class="k">def</span> <span class="nf">check_type</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">predicate</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
                 <span class="k">return</span> <span class="kc">False</span>
             <span class="k">except</span> <span class="n">OpenDPException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
                 <span class="k">if</span> <span class="s2">&quot;No match for concrete type&quot;</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">:</span>
                     <span class="k">return</span> <span class="kc">False</span>
             <span class="k">return</span> <span class="kc">True</span>

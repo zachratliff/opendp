@@ -497,6 +497,12 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="opendp.mod.Measurement.map">
+<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Measurement.map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Measurement.map" title="Permalink to this definition">#</a></dt>
+<dd><p>Map an input distance <cite>d_in</cite> to an output distance.</p>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="opendp.mod.Measurement.output_distance_type">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">output_distance_type</span></span><a class="headerlink" href="#opendp.mod.Measurement.output_distance_type" title="Permalink to this definition">#</a></dt>
@@ -536,6 +542,17 @@ Error variants may change in library updates.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="opendp.mod.OpenDPException.raw_frames">
 <span class="sig-name descname"><span class="pre">raw_frames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#OpenDPException.raw_frames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.OpenDPException.raw_frames" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opendp.mod.SMDCurve">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">opendp.mod.</span></span><span class="sig-name descname"><span class="pre">SMDCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#SMDCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.SMDCurve" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="opendp.mod.SMDCurve.epsilon">
+<span class="sig-name descname"><span class="pre">epsilon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#SMDCurve.epsilon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.SMDCurve.epsilon" title="Permalink to this definition">#</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -648,6 +665,12 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="opendp.mod.Transformation.map">
+<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/mod.html#Transformation.map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.mod.Transformation.map" title="Permalink to this definition">#</a></dt>
+<dd><p>Map an input distance <cite>d_in</cite> to an output distance.</p>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="opendp.mod.Transformation.output_distance_type">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">output_distance_type</span></span><a class="headerlink" href="#opendp.mod.Transformation.output_distance_type" title="Permalink to this definition">#</a></dt>
@@ -719,9 +742,9 @@ This may be any integral type for dataset metrics, or any numeric type for sensi
 <p>Find epsilon usage of the gaussian(scale=1.) mechanism applied on a dp mean.
 Assume neighboring datasets differ by up to three additions/removals, and fix delta to 1e-8.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># build a histogram that emits float counts</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">dp_mean</span> <span class="o">=</span> <span class="p">(</span>
-<span class="gp">... </span>    <span class="n">make_sized_bounded_mean</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">))</span> <span class="o">&gt;&gt;</span>
-<span class="gp">... </span>    <span class="n">make_base_gaussian</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dp_mean</span> <span class="o">=</span> <span class="n">make_fix_delta</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">make_sized_bounded_mean</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="n">make_base_gaussian</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span> 
+<span class="gp">... </span>    <span class="mf">1e-8</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">binary_search</span><span class="p">(</span>

@@ -316,7 +316,9 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;measurement_invoke&quot;</span><span class="p">,</span>
     <span class="s2">&quot;transformation_invoke&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;transformation_map&quot;</span><span class="p">,</span>
     <span class="s2">&quot;transformation_check&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;measurement_map&quot;</span><span class="p">,</span>
     <span class="s2">&quot;measurement_check&quot;</span><span class="p">,</span>
     <span class="s2">&quot;transformation_input_carrier_type&quot;</span><span class="p">,</span>
     <span class="s2">&quot;measurement_input_carrier_type&quot;</span><span class="p">,</span>
@@ -389,6 +391,35 @@
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation</span><span class="p">,</span> <span class="n">arg</span><span class="p">),</span> <span class="n">AnyObjectPtr</span><span class="p">))</span></div>
 
 
+<div class="viewcode-block" id="transformation_map"><a class="viewcode-back" href="../../api/python/opendp.core.html#opendp.core.transformation_map">[docs]</a><span class="k">def</span> <span class="nf">transformation_map</span><span class="p">(</span>
+    <span class="n">transformation</span><span class="p">:</span> <span class="n">Transformation</span><span class="p">,</span>
+    <span class="n">d_in</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Use the `transformation` to map a given `d_in` to `d_out`.</span>
+<span class="sd">    </span>
+<span class="sd">    :param transformation: Transformation to check the map distances with.</span>
+<span class="sd">    :type transformation: Transformation</span>
+<span class="sd">    :param d_in: Distance in terms of the input metric.</span>
+<span class="sd">    :type d_in: Any</span>
+<span class="sd">    :return: Distance in terms of the output metric.</span>
+<span class="sd">    :rtype: Any</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># No type arguments to standardize.</span>
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">transformation</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">transformation</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">Transformation</span><span class="p">)</span>
+    <span class="n">d_in</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">transformation_input_distance_type</span><span class="p">(</span><span class="n">transformation</span><span class="p">))</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_core__transformation_map</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Transformation</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation</span><span class="p">,</span> <span class="n">d_in</span><span class="p">),</span> <span class="n">AnyObjectPtr</span><span class="p">))</span></div>
+
+
 <div class="viewcode-block" id="transformation_check"><a class="viewcode-back" href="../../api/python/opendp.core.html#opendp.core.transformation_check">[docs]</a><span class="k">def</span> <span class="nf">transformation_check</span><span class="p">(</span>
     <span class="n">transformation</span><span class="p">:</span> <span class="n">Transformation</span><span class="p">,</span>
     <span class="n">d_in</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
@@ -420,6 +451,35 @@
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transformation</span><span class="p">,</span> <span class="n">d_in</span><span class="p">,</span> <span class="n">d_out</span><span class="p">),</span> <span class="n">BoolPtr</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="measurement_map"><a class="viewcode-back" href="../../api/python/opendp.core.html#opendp.core.measurement_map">[docs]</a><span class="k">def</span> <span class="nf">measurement_map</span><span class="p">(</span>
+    <span class="n">measurement</span><span class="p">:</span> <span class="n">Measurement</span><span class="p">,</span>
+    <span class="n">d_in</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Use the `measurement` to map a given `d_in` to `d_out`.</span>
+<span class="sd">    </span>
+<span class="sd">    :param measurement: Measurement to check the map distances with.</span>
+<span class="sd">    :type measurement: Measurement</span>
+<span class="sd">    :param d_in: Distance in terms of the input metric.</span>
+<span class="sd">    :type d_in: Any</span>
+<span class="sd">    :return: Distance in terms of the output measure.</span>
+<span class="sd">    :rtype: Any</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># No type arguments to standardize.</span>
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">measurement</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">Measurement</span><span class="p">)</span>
+    <span class="n">d_in</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">d_in</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">measurement_input_distance_type</span><span class="p">(</span><span class="n">measurement</span><span class="p">))</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_core__measurement_map</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Measurement</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">d_in</span><span class="p">),</span> <span class="n">AnyObjectPtr</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="measurement_check"><a class="viewcode-back" href="../../api/python/opendp.core.html#opendp.core.measurement_check">[docs]</a><span class="k">def</span> <span class="nf">measurement_check</span><span class="p">(</span>

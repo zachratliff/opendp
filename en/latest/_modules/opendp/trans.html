@@ -1274,7 +1274,7 @@
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">DA</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">DA</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TA&quot;</span><span class="p">])</span>
-    <span class="n">TA</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">DA</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+    <span class="n">TA</span> <span class="o">=</span> <span class="n">get_atom_or_infer</span><span class="p">(</span><span class="n">DA</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
     <span class="n">DA</span> <span class="o">=</span> <span class="n">DA</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">TA</span><span class="o">=</span><span class="n">TA</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
@@ -1697,7 +1697,7 @@
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
@@ -1737,7 +1737,7 @@
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
@@ -1777,7 +1777,7 @@
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
@@ -1818,7 +1818,7 @@
     
     <span class="c1"># Standardize type arguments.</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
-    <span class="n">T</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="c1"># Convert arguments to c types.</span>
