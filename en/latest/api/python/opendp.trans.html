@@ -1434,7 +1434,7 @@ Adds the saturating sum of the positives to the saturating sum of the negatives.
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_mean">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_mean" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MI</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SymmetricDistance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_mean" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the mean of bounded data. 
 This uses a restricted-sensitivity proof that takes advantage of known dataset size. 
 Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> to establish dataset size.</p>
@@ -1443,6 +1443,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of inclusive lower and upper bounds of the input data.</p></li>
+<li><p><strong>MI</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – input metric. One of SymmetricDistance or InsertDeleteDistance</p></li>
 <li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic data type</p></li>
 </ul>
 </dd>

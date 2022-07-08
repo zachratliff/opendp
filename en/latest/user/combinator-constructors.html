@@ -498,8 +498,8 @@ The function on the amplified measurement is identical to the standard measureme
 </div>
 <p>The privacy relation on the amplified measurement takes into account that the input dataset of size 10
 is a simple sample of individuals from a theoretical larger dataset that captures the entire population, with 100 rows.</p>
-<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Where we once had a privacy utilization of 2 epsilon...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">meas</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Where we once had a privacy utilization of ~2 epsilon...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">meas</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">2.</span> <span class="o">+</span> <span class="mf">1e-6</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># ...we now have a privacy utilization of ~.4941 epsilon.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">amplified</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">.4941</span><span class="p">)</span>

@@ -1503,6 +1503,7 @@
 <div class="viewcode-block" id="make_sized_bounded_mean"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_mean">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_mean</span><span class="p">(</span>
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;SymmetricDistance&quot;</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the mean of bounded data. </span>
@@ -1513,6 +1514,8 @@
 <span class="sd">    :type size: int</span>
 <span class="sd">    :param bounds: Tuple of inclusive lower and upper bounds of the input data.</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param MI: input metric. One of SymmetricDistance or InsertDeleteDistance</span>
+<span class="sd">    :type MI: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param T: atomic data type</span>
 <span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A sized_bounded_mean step.</span>
@@ -1524,19 +1527,21 @@
     <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
     
     <span class="c1"># Standardize type arguments.</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
     <span class="c1"># Convert arguments to c types.</span>
     <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_mean</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_resize"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_resize">[docs]</a><span class="k">def</span> <span class="nf">make_resize</span><span class="p">(</span>
