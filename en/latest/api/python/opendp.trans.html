@@ -1085,6 +1085,35 @@ Set <cite>DA</cite> to InherentNullDomain&lt;AllDomain&lt;TA&gt;&gt; for imputin
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_lipschitz_float_mul">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_lipschitz_float_mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AllDomain&lt;T&gt;'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AbsoluteDistance&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_lipschitz_float_mul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_lipschitz_float_mul" title="Permalink to this definition">#</a></dt>
+<dd><p>Multiply an aggregate by a constant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>constant</strong> – The constant to multiply aggregates by.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of inclusive lower and upper bounds of the input data.</p></li>
+<li><p><strong>D</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Domain of the function. Must be AllDomain&lt;T&gt; or VectorDomain&lt;AllDomain&lt;T&gt;&gt;</p></li>
+<li><p><strong>M</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – Metric. Must be AbsoluteDistance&lt;T&gt;, L1Distance&lt;T&gt; or L2Distance&lt;T&gt;</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A lipschitz_float_mul step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_metric_bounded">
 <span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_metric_bounded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MI</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SymmetricDistance'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_metric_bounded"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_metric_bounded" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that converts the unbounded dataset metric <cite>MI</cite> to the respective bounded dataset metric with a no-op. 

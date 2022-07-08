@@ -345,6 +345,7 @@
     <span class="s2">&quot;make_find&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_find_bin&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_index&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_lipschitz_float_mul&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_sized_bounded_mean&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_resize&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_bounded_resize&quot;</span><span class="p">,</span>
@@ -1452,6 +1453,50 @@
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
     <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">TOA</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_lipschitz_float_mul"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_lipschitz_float_mul">[docs]</a><span class="k">def</span> <span class="nf">make_lipschitz_float_mul</span><span class="p">(</span>
+    <span class="n">constant</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">D</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;AllDomain&lt;T&gt;&quot;</span><span class="p">,</span>
+    <span class="n">M</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;AbsoluteDistance&lt;T&gt;&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Multiply an aggregate by a constant.</span>
+<span class="sd">    </span>
+<span class="sd">    :param constant: The constant to multiply aggregates by.</span>
+<span class="sd">    :param bounds: Tuple of inclusive lower and upper bounds of the input data.</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param D: Domain of the function. Must be AllDomain&lt;T&gt; or VectorDomain&lt;AllDomain&lt;T&gt;&gt;</span>
+<span class="sd">    :type D: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :param M: Metric. Must be AbsoluteDistance&lt;T&gt;, L1Distance&lt;T&gt; or L2Distance&lt;T&gt;</span>
+<span class="sd">    :type M: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A lipschitz_float_mul step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">D</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_atom_or_infer</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">D</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">constant</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_lipschitz_float_mul</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">constant</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">M</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_sized_bounded_mean"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_mean">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_mean</span><span class="p">(</span>
