@@ -392,6 +392,147 @@
   <section id="module-opendp.trans">
 <span id="opendp-trans-module"></span><h1>opendp.trans module<a class="headerlink" href="#module-opendp.trans" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_bounded_float_checked_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_float_checked_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Pairwise&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_float_checked_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_float_checked_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded floats with unknown dataset size. 
+This computes the sum on up to <cite>size_limit</cite> rows randomly selected from the input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size_limit</strong> (<em>int</em>) – Limit on number of records in input data.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>S</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A bounded_float_checked_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_bounded_float_ordered_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_float_ordered_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Pairwise&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_float_ordered_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_float_ordered_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded floats. 
+You may need to use <cite>make_ordered_random</cite> to impose an ordering on the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size_limit</strong> (<em>int</em>) – Upper bound on the number of records in input data. Used to bound sensitivity. Can be overestimated.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for data in the input domain</p></li>
+<li><p><strong>S</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A bounded_float_ordered_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_bounded_int_monotonic_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_int_monotonic_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_int_monotonic_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_int_monotonic_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded ints, where all values share the same sign.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A bounded_int_monotonic_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_bounded_int_ordered_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_int_ordered_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_int_ordered_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_int_ordered_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded ints. 
+You may need to use <cite>make_ordered_random</cite> to impose an ordering on the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A bounded_int_ordered_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_bounded_int_split_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_int_split_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_int_split_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_int_split_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded ints. 
+Adds the saturating sum of the positives to the saturating sum of the negatives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A bounded_int_split_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_bounded_resize">
 <span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TA</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MI</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SymmetricDistance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MO</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SymmetricDistance'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_resize" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that either truncates or imputes records with <cite>constant</cite> in a Vec&lt;<cite>TA</cite>&gt; to match a provided <cite>size</cite>.</p>
@@ -424,13 +565,14 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_bounded_sum">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_sum" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MI</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SymmetricDistance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_bounded_sum" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the sum of bounded data. 
 Use <cite>make_clamp</cite> to bound data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for data in the input domain</p></li>
+<li><p><strong>MI</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – input metric. One of SymmetricDistance or InsertDeleteDistance.</p></li>
 <li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
 </ul>
 </dd>
@@ -1084,6 +1226,184 @@ Operates exclusively on VectorDomain&lt;AllDomain&lt;<cite>TA</cite>&gt;&gt;.</p
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_float_checked_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_float_checked_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Pairwise&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_float_checked_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_float_checked_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded floats with known dataset size. 
+This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>S</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A sized_bounded_float_checked_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_float_ordered_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_float_ordered_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Pairwise&lt;T&gt;'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_float_ordered_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_float_ordered_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded floats with known dataset size. 
+This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. 
+You may need to use <cite>make_ordered_random</cite> to impose an ordering on the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>S</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A sized_bounded_float_ordered_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_int_checked_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_int_checked_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_int_checked_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_int_checked_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded ints. 
+The effective range is reduced, as (bounds * size) must not overflow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A sized_bounded_int_checked_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_int_monotonic_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_int_monotonic_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_int_monotonic_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_int_monotonic_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded ints with known dataset size. 
+This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. 
+Adds the saturating sum of the positives to the saturating sum of the negatives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A sized_bounded_int_monotonic_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_int_ordered_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_int_ordered_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_int_ordered_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_int_ordered_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded ints with known dataset size. 
+This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. 
+You may need to use <cite>make_ordered_random</cite> to impose an ordering on the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A sized_bounded_int_ordered_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_int_split_sum">
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_int_split_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_int_split_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_int_split_sum" title="Permalink to this definition">#</a></dt>
+<dd><p>Make a Transformation that computes the sum of bounded ints with known dataset size. 
+This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. 
+Adds the saturating sum of the positives to the saturating sum of the negatives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
+<li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A sized_bounded_int_split_sum step.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="opendp.mod.html#opendp.mod.Transformation" title="opendp.mod.Transformation">Transformation</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>AssertionError</strong> – if an argument’s type differs from the expected type</p></li>
+<li><p><strong>UnknownTypeError</strong> – if a type-argument fails to parse</p></li>
+<li><p><a class="reference internal" href="opendp.mod.html#opendp.mod.OpenDPException" title="opendp.mod.OpenDPException"><strong>OpenDPException</strong></a> – packaged error from the core OpenDP library</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_mean">
 <span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_mean" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the mean of bounded data. 
@@ -1146,7 +1466,7 @@ If <cite>MI</cite> is “SymmetricDistance”, then output metric is “InsertDe
 
 <dl class="py function">
 <dt class="sig sig-object py" id="opendp.trans.make_sized_bounded_sum">
-<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_sum" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">opendp.trans.</span></span><span class="sig-name descname"><span class="pre">make_sized_bounded_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MI</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'InsertDeleteDistance'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/opendp/trans.html#make_sized_bounded_sum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opendp.trans.make_sized_bounded_sum" title="Permalink to this definition">#</a></dt>
 <dd><p>Make a Transformation that computes the sum of bounded data with known dataset size. 
 This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. 
 Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> to establish dataset size.</p>
@@ -1155,6 +1475,7 @@ Use <cite>make_clamp</cite> to bound data and <cite>make_bounded_resize</cite> t
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>size</strong> (<em>int</em>) – Number of records in input data.</p></li>
 <li><p><strong>bounds</strong> (<em>Tuple</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>]</em>) – Tuple of lower and upper bounds for input data</p></li>
+<li><p><strong>MI</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – input metric. One of SymmetricDistance or InsertDeleteDistance.</p></li>
 <li><p><strong>T</strong> (<a class="reference internal" href="../../user/supporting-elements.html#runtimetypedescriptor"><span class="std std-ref">Type Arguments</span></a>) – atomic type of data</p></li>
 </ul>
 </dd>

@@ -902,7 +902,7 @@ but does not need a category set (you instead chain with <a class="reference int
 <td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">L1Distance&lt;TOA&gt;/L2Distance&lt;TOA&gt;</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.meas.make_count_by()</span></code></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_count_by" title="opendp.trans.make_count_by"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_count_by()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;TI&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">MapDomain&lt;AllDomain&lt;TI&gt;,AllDomain&lt;TO&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
@@ -911,13 +911,13 @@ but does not need a category set (you instead chain with <a class="reference int
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_sum" title="opendp.trans.make_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_sum()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance/InsertDeleteDistance</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_sum" title="opendp.trans.make_sized_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_sum()</span></code></a></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AllDomain&lt;T&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance/InsertDeleteDistance</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">AbsoluteDistance&lt;TO&gt;</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_mean" title="opendp.trans.make_sized_bounded_mean"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_mean()</span></code></a></p></td>
@@ -940,7 +940,81 @@ but does not need a category set (you instead chain with <a class="reference int
 </tr>
 </tbody>
 </table>
-</section>
+<p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_sum" title="opendp.trans.make_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_sum()</span></code></a> and <a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_sum" title="opendp.trans.make_sized_bounded_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_sum()</span></code></a> make a best guess as to which summation strategy to use.
+Should you need it, the following constructors give greater control over the sum.</p>
+<details style="margin:-1em 0 2em 4em">
+<summary><a>Expand Me</a></summary><p>The following strategies are ordered by computational efficiency:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">checked</span></code> can be used when the dataset size multiplied by the bounds doesn’t overflow.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">monotonic</span></code> can be used when the bounds share the same sign.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ordered</span></code> can be used when the input metric is <code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">split</span></code> separately sums positive and negative numbers, and then adds these sums together.</p></li>
+</ul>
+<p>All four algorithms are valid for integers, but only <code class="docutils literal notranslate"><span class="pre">checked</span></code> and <code class="docutils literal notranslate"><span class="pre">ordered</span></code> are available for floats.
+There are separate constructors for integers and floats, because floats additionally need a dataset truncation and a slightly larger sensitivity.
+The increase in float sensitivity accounts for inexact floating-point arithmetic, and is calibrated according to the length of the mantissa and underlying summation algorithm.</p>
+<p>Floating-point summation may be further configured to either <code class="docutils literal notranslate"><span class="pre">Sequential&lt;T&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">Pairwise&lt;T&gt;</span></code> (default).
+Sequential summation results in an <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> increase in sensitivity, while pairwise summation results only in a <code class="docutils literal notranslate"><span class="pre">O(log_2(n)n))</span></code> increase.</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Aggregator</p></th>
+<th class="head"><p>Input Domain</p></th>
+<th class="head"><p>Input Metric</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_int_checked_sum" title="opendp.trans.make_sized_bounded_int_checked_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_int_checked_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_int_monotonic_sum" title="opendp.trans.make_bounded_int_monotonic_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_int_monotonic_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_int_monotonic_sum" title="opendp.trans.make_sized_bounded_int_monotonic_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_int_monotonic_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_int_ordered_sum" title="opendp.trans.make_bounded_int_ordered_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_int_ordered_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_int_ordered_sum" title="opendp.trans.make_sized_bounded_int_ordered_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_int_ordered_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_int_split_sum" title="opendp.trans.make_bounded_int_split_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_int_split_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_int_split_sum" title="opendp.trans.make_sized_bounded_int_split_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_int_split_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_float_checked_sum" title="opendp.trans.make_bounded_float_checked_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_float_checked_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_float_checked_sum" title="opendp.trans.make_sized_bounded_float_checked_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_float_checked_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SymmetricDistance</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_bounded_float_ordered_sum" title="opendp.trans.make_bounded_float_ordered_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_bounded_float_ordered_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_float_ordered_sum" title="opendp.trans.make_sized_bounded_float_ordered_sum"><code class="xref py py-func docutils literal notranslate"><span class="pre">opendp.trans.make_sized_bounded_float_ordered_sum()</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SizedDomain&lt;VectorDomain&lt;BoundedDomain&lt;T&gt;&gt;&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">InsertDeleteDistance</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</details></section>
 </section>
 
 

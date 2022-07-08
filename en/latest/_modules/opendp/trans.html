@@ -350,6 +350,17 @@
     <span class="s2">&quot;make_bounded_resize&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_bounded_sum&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_sized_bounded_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_bounded_float_checked_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_float_checked_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_bounded_float_ordered_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_float_ordered_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_int_checked_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_bounded_int_monotonic_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_int_monotonic_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_bounded_int_ordered_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_int_ordered_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_bounded_int_split_sum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;make_sized_bounded_int_split_sum&quot;</span><span class="p">,</span>
     <span class="s2">&quot;make_sized_bounded_variance&quot;</span>
 <span class="p">]</span>
 
@@ -1581,6 +1592,7 @@
 
 <div class="viewcode-block" id="make_bounded_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_bounded_sum">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_sum</span><span class="p">(</span>
     <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;SymmetricDistance&quot;</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded data. </span>
@@ -1588,6 +1600,8 @@
 <span class="sd">    </span>
 <span class="sd">    :param bounds: Tuple of lower and upper bounds for data in the input domain</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param MI: input metric. One of SymmetricDistance or InsertDeleteDistance.</span>
+<span class="sd">    :type MI: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param T: atomic type of data</span>
 <span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A bounded_sum step.</span>
@@ -1599,23 +1613,26 @@
     <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
     
     <span class="c1"># Standardize type arguments.</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
     
     <span class="c1"># Convert arguments to c types.</span>
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
     <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_bounded_sum</span>
-    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
-    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="make_sized_bounded_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_sum">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_sum</span><span class="p">(</span>
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">MI</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;InsertDeleteDistance&quot;</span><span class="p">,</span>
     <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded data with known dataset size. </span>
@@ -1626,9 +1643,212 @@
 <span class="sd">    :type size: int</span>
 <span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
 <span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param MI: input metric. One of SymmetricDistance or InsertDeleteDistance.</span>
+<span class="sd">    :type MI: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :param T: atomic type of data</span>
 <span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
 <span class="sd">    :return: A sized_bounded_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">MI</span><span class="p">)</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">MI</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">MI</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">MI</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_bounded_float_checked_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_bounded_float_checked_sum">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_float_checked_sum</span><span class="p">(</span>
+    <span class="n">size_limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;Pairwise&lt;T&gt;&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded floats with unknown dataset size. </span>
+<span class="sd">    This computes the sum on up to `size_limit` rows randomly selected from the input.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size_limit: Limit on number of records in input data.</span>
+<span class="sd">    :type size_limit: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param S: summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</span>
+<span class="sd">    :type S: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A bounded_float_checked_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size_limit</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size_limit</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_bounded_float_checked_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size_limit</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">S</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_bounded_float_checked_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_float_checked_sum">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_float_checked_sum</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;Pairwise&lt;T&gt;&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded floats with known dataset size. </span>
+<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param S: summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</span>
+<span class="sd">    :type S: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_float_checked_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_float_checked_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">S</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_bounded_float_ordered_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_bounded_float_ordered_sum">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_float_ordered_sum</span><span class="p">(</span>
+    <span class="n">size_limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;Pairwise&lt;T&gt;&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded floats. </span>
+<span class="sd">    You may need to use `make_ordered_random` to impose an ordering on the data.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size_limit: Upper bound on the number of records in input data. Used to bound sensitivity. Can be overestimated.</span>
+<span class="sd">    :type size_limit: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for data in the input domain</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param S: summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</span>
+<span class="sd">    :type S: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A bounded_float_ordered_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size_limit</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size_limit</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_bounded_float_ordered_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size_limit</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">S</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_bounded_float_ordered_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_float_ordered_sum">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_float_ordered_sum</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">S</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="s2">&quot;Pairwise&lt;T&gt;&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded floats with known dataset size. </span>
+<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. </span>
+<span class="sd">    You may need to use `make_ordered_random` to impose an ordering on the data.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param S: summation algorithm to use on data type T. One of Sequential&lt;T&gt; or Pairwise&lt;T&gt;.</span>
+<span class="sd">    :type S: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_float_ordered_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">S</span><span class="p">,</span> <span class="n">generics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">])</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">get_domain_atom_or_infer</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">substitute</span><span class="p">(</span><span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_float_ordered_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">S</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_bounded_int_checked_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_int_checked_sum">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_int_checked_sum</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded ints. </span>
+<span class="sd">    The effective range is reduced, as (bounds * size) must not overflow.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param T: atomic type of data</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_int_checked_sum step.</span>
 <span class="sd">    :rtype: Transformation</span>
 <span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
 <span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
@@ -1645,7 +1865,225 @@
     <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
     
     <span class="c1"># Call library function.</span>
-    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_sum</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_int_checked_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_bounded_int_monotonic_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_bounded_int_monotonic_sum">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_int_monotonic_sum</span><span class="p">(</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded ints, where all values share the same sign.</span>
+<span class="sd">    </span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param T: atomic type of data</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A bounded_int_monotonic_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_bounded_int_monotonic_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_bounded_int_monotonic_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_int_monotonic_sum">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_int_monotonic_sum</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded ints with known dataset size. </span>
+<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. </span>
+<span class="sd">    Adds the saturating sum of the positives to the saturating sum of the negatives.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param T: atomic type of data</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_int_monotonic_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_int_monotonic_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_bounded_int_ordered_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_bounded_int_ordered_sum">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_int_ordered_sum</span><span class="p">(</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded ints. </span>
+<span class="sd">    You may need to use `make_ordered_random` to impose an ordering on the data.</span>
+<span class="sd">    </span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param T: atomic type of data</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A bounded_int_ordered_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_bounded_int_ordered_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_bounded_int_ordered_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_int_ordered_sum">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_int_ordered_sum</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded ints with known dataset size. </span>
+<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. </span>
+<span class="sd">    You may need to use `make_ordered_random` to impose an ordering on the data.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param T: atomic type of data</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_int_ordered_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_int_ordered_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_bounded_int_split_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_bounded_int_split_sum">[docs]</a><span class="k">def</span> <span class="nf">make_bounded_int_split_sum</span><span class="p">(</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded ints. </span>
+<span class="sd">    Adds the saturating sum of the positives to the saturating sum of the negatives.</span>
+<span class="sd">    </span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param T: atomic type of data</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A bounded_int_split_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_bounded_int_split_sum</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
+    
+    <span class="k">return</span> <span class="n">c_to_py</span><span class="p">(</span><span class="n">unwrap</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span> <span class="n">Transformation</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="make_sized_bounded_int_split_sum"><a class="viewcode-back" href="../../api/python/opendp.trans.html#opendp.trans.make_sized_bounded_int_split_sum">[docs]</a><span class="k">def</span> <span class="nf">make_sized_bounded_int_split_sum</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">T</span><span class="p">:</span> <span class="n">RuntimeTypeDescriptor</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transformation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make a Transformation that computes the sum of bounded ints with known dataset size. </span>
+<span class="sd">    This uses a restricted-sensitivity proof that takes advantage of known dataset size for better utility. </span>
+<span class="sd">    Adds the saturating sum of the positives to the saturating sum of the negatives.</span>
+<span class="sd">    </span>
+<span class="sd">    :param size: Number of records in input data.</span>
+<span class="sd">    :type size: int</span>
+<span class="sd">    :param bounds: Tuple of lower and upper bounds for input data</span>
+<span class="sd">    :type bounds: Tuple[Any, Any]</span>
+<span class="sd">    :param T: atomic type of data</span>
+<span class="sd">    :type T: :ref:`RuntimeTypeDescriptor`</span>
+<span class="sd">    :return: A sized_bounded_int_split_sum step.</span>
+<span class="sd">    :rtype: Transformation</span>
+<span class="sd">    :raises AssertionError: if an argument&#39;s type differs from the expected type</span>
+<span class="sd">    :raises UnknownTypeError: if a type-argument fails to parse</span>
+<span class="sd">    :raises OpenDPException: packaged error from the core OpenDP library</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assert_features</span><span class="p">(</span><span class="s2">&quot;contrib&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Standardize type arguments.</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">RuntimeType</span><span class="o">.</span><span class="n">parse_or_infer</span><span class="p">(</span><span class="n">type_name</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">public_example</span><span class="o">=</span><span class="n">get_first</span><span class="p">(</span><span class="n">bounds</span><span class="p">))</span>
+    
+    <span class="c1"># Convert arguments to c types.</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">type_name</span><span class="o">=</span><span class="n">RuntimeType</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="s1">&#39;Tuple&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">]))</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">py_to_c</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">c_type</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span>
+    
+    <span class="c1"># Call library function.</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">opendp_trans__make_sized_bounded_int_split_sum</span>
     <span class="n">function</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">,</span> <span class="n">AnyObjectPtr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
     <span class="n">function</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">FfiResult</span>
     
