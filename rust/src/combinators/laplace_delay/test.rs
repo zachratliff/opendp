@@ -99,8 +99,8 @@ fn test_laplace_delay() -> Fallible<()> {
 
     println!("release: {}", m_count_delayed.invoke(&vec![1, 2, 3, 4, 5])?);
 
-    println!("combined loss: {:?}", m_count.map(&1)?);
-    println!("combined loss: {:?}", m_count_delayed.map(&1)?);
+    println!("Epsilon budget spent on DP count: {:?}", m_count.map(&1)?);
+    println!("Combined Epsilon, Delta budget spent on DP count and Laplace Delay: {:?}", m_count_delayed.map(&1)?);
 
     Ok(())
 }

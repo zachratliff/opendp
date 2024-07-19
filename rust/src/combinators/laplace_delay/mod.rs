@@ -83,9 +83,10 @@ where
                 return fallible!(FailedFunction, "Shift is less than the input time");
             }
 
+            let two = FBig::try_from(2.0)?;
             let t_in = FBig::<Up>::from(t_in);
             let f_eps_t = &t_in / &f_scale;
-            let f_del_t = (-&f_eps_t * (&f_shift - &t_in) / t_in).exp();
+            let f_del_t = (-&f_eps_t * (&f_shift - &t_in) / t_in).exp() * two;
             let (eps_t, del_t) = (f_eps_t.to_f64().value(), f_del_t.to_f64().value());
 
             output_metric.compose(vec![(eps_0, del_0), (eps_t, del_t)])
