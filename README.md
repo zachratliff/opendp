@@ -5,9 +5,7 @@ Paper: "A Framework for Differential Privacy Against Timing Attacks"
 ### Installation
 1. You will need to install the Rust toolchain. See https://www.rust-lang.org/tools/install for quickly setting up Rust on your OS. 
 2. Make sure you have the latest version by running `rustup update`
-3. Clone the OpenDP fork and checkout the correct branch:
-`git clone git@github.com:zachratliff/opendp.git && git checkout 931-timing && cd opendp/rust`
-4. **Running the tests**: Run the Laplace timing delay tests from the `opendp/rust` directory by running the following command from your terminal. 
+3. **Running the tests**: To run the Laplace timing delay test, open a terminal and `cd` into the `rust` directory of the artifact repository. Then run the following command from your terminal. 
 `cargo test --package opendp --lib --features untrusted --features bindings -- --nocapture -- combinators::laplace_delay::test::test_laplace_delay --exact --show-output`
 
 For more detailed instructions on installing Rust and OpenDP you can refer to the official OpenDP user guide: https://docs.opendp.org/en/stable/contributing/development-environment.html
